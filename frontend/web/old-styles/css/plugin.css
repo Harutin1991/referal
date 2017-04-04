@@ -1,0 +1,118 @@
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.red-line-img {
+  font-size: 100%;
+ 
+background-color: #3e253c;
+}
+
+
+html, .red-line-img {
+  height: 100%;
+}
+
+.red-line-img{position: relative;}
+.red-line-img::before, .red-line-img::after {
+  content: '';
+  position: fixed;
+  width: 100%;
+  left: 50%;
+  right: auto;
+  -webkit-transform: translateX(0%);
+  -moz-transform: translateX(0%);
+  -ms-transform: translateX(0%);
+  -o-transform: translateX(0%);
+  transform: translateX(0%);
+  height: 50%;
+  z-index: -1;
+}
+
+.red-line-img::before {
+  top: 0;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  transition: all 0.8s;background: #E30C0C;width: 32px;
+}
+
+.red-line-img::after {
+  top: 50%;
+}
+
+.cd-service {
+  position: relative;
+  z-index: 2;
+  min-height: 50px;
+ /* margin-left: 56px;*/
+  
+
+}
+.cd-service::before, .cd-service::after {
+  content: '';
+  position: absolute;
+  width: 56px;
+  right: 100%;
+  z-index: 2;
+}
+.cd-service::before {
+  top: 0;
+  height: 50px;
+  background-repeat: no-repeat;
+}
+.cd-service::after {
+  top: 50px;
+  bottom: 0;
+
+  background-repeat: repeat-y;
+}
+.cd-service.cd-service-divider::after {
+  top: 0;
+}
+/*.cd-service.cd-service-divider:last-child {
+  display: none;
+}*/
+
+
+
+@media only screen and (min-width: 1170px) {
+  .cd-service {
+    min-height: 525px;
+    margin-left:0px;
+    padding: 6em 2em;
+  }
+  .cd-service::before, .cd-service::after {
+    width: 420px;
+  }
+  .cd-service::before {
+    height: 325px;
+  }
+  .cd-service::after {
+    top: 325px;
+ 
+  }
+  .cd-service.cd-service-divider:first-child, .cd-service.cd-service-divider:last-child {
+    min-height: 50px;
+    padding: 0;
+  }
+  .cd-service.cd-service-divider:last-child {
+    display: block;
+  }
+ 
+
+.red-line.cd-service.cd-service-divider{
+    padding-bottom: 10px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.red-line.cd-service.cd-service-divider{
+    padding-bottom: 22px;
+}
+}
