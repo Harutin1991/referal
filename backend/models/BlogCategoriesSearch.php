@@ -5,27 +5,29 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Blog;
+use backend\models\BlogCategories;
 
 /**
- * BlogSearch represents the model behind the search form about `backend\models\Blog`.
+ * BlogCategoriesSearch represents the model behind the search form about `backend\models\BlogCategories`.
  */
-class BlogSearch extends Blog {
-
+class BlogCategoriesSearch extends BlogCategories
+{
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            [['id', 'blog_category_id', 'user_id', 'status', 'views'], 'integer'],
-            [['title', 'description', 'short_description', 'meta_description', 'meta_key', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['id'], 'integer'],
+            [['title', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function scenarios() {
+    public function scenarios()
+    {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -37,8 +39,9 @@ class BlogSearch extends Blog {
      *
      * @return ActiveDataProvider
      */
-    public function search($params) {
-        $query = Blog::find();
+    public function search($params)
+    {
+        $query = BlogCategories::find();
 
         // add conditions that should always apply here
 
@@ -57,22 +60,13 @@ class BlogSearch extends Blog {
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'blog_category_id' => $this->blog_category_id,
-            'user_id' => $this->user_id,
-            'status' => $this->status,
-            'views' => $this->views,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-                ->andFilterWhere(['like', 'description', $this->description])
-                ->andFilterWhere(['like', 'short_description', $this->short_description])
-                ->andFilterWhere(['like', 'meta_description', $this->meta_description])
-                ->andFilterWhere(['like', 'meta_key', $this->meta_key]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }
-
 }

@@ -29,10 +29,11 @@ class Files extends \yii\db\ActiveRecord {
      * @inheritdoc
      */
     public function rules() {
-        return [
-            [['category_id', 'category', 'status', 'top'], 'required'],
-            [['category_id', 'status', 'top'], 'integer'],
-            [['path', 'category'], 'string', 'max' => 255],
+         return [
+            [['filename', 'category', 'category_id', 'mime'], 'required'],
+            [['category_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['filename', 'category', 'mime'], 'string', 'max' => 255],
         ];
     }
 
@@ -42,11 +43,12 @@ class Files extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => Yii::t('app', 'ID'),
-            'path' => Yii::t('app', 'Path'),
-            'category_id' => Yii::t('app', 'Category ID'),
+            'filename' => Yii::t('app', 'Filename'),
             'category' => Yii::t('app', 'Category'),
-            'status' => Yii::t('app', 'Status'),
-            'top' => Yii::t('app', 'Top'),
+            'category_id' => Yii::t('app', 'Category ID'),
+            'mime' => Yii::t('app', 'Mime'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -73,25 +75,23 @@ class Files extends \yii\db\ActiveRecord {
 
                 if ($key == $default_image) {
                     $data[] = [
-                        'path' => $value,
+                        'filename' => $value,
                         'category_id' => $product_id,
                         'category' => $img_type,
                         'top' => $default_image,
-                        'status' => 1
                     ];
                 } else {
                     $data[] = [
-                        'path' => $value,
+                        'filename' => $value,
                         'category_id' => $product_id,
                         'category' => $img_type,
                         'top' => 0,
-                        'status' => 1
                     ];
                 }
             }
             Yii::$app->db->createCommand()
                     ->batchInsert(
-                            'files', ['path', 'category_id', 'category', 'top', 'status'], $data
+                            'files', ['filename', 'category_id', 'category', 'top'], $data
                     )
                     ->execute();
             return true;
@@ -114,13 +114,13 @@ class Files extends \yii\db\ActiveRecord {
             'alt' => $alt,
         ];
         if (!is_null($category_id)) {
-            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'status' => 1, 'top' => $top])->asArray()->all();
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
         } else {
-            $images = self::find()->where(['category' => $category, 'status' => 1])->asArray()->all();
+            $images = self::find()->where(['category' => $category])->asArray()->all();
         }
 
         if (!empty($images[0])) {
-            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/' . $images[0]['path'], $params);
+            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/' . $images[0]['filename'], $params);
         } else {
             return Html::img(Yii::$app->params['adminUrl'] . 'img/default.png');
         }
@@ -132,13 +132,13 @@ class Files extends \yii\db\ActiveRecord {
             'alt' => $alt,
         ];
         if (!is_null($category_id)) {
-            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'status' => 1, 'top' => $top])->asArray()->all();
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
         } else {
-            $images = self::find()->where(['category' => $category, 'status' => 1])->asArray()->all();
+            $images = self::find()->where(['category' => $category])->asArray()->all();
         }
 
         if (!empty($images[0])) {
-            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/thumbnail/' . $images[0]['path'], $params);
+            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/thumbnail/' . $images[0]['filename'], $params);
         } else {
             return Html::img(Yii::$app->params['adminUrl'] . 'img/default.png');
         }
@@ -150,19 +150,19 @@ class Files extends \yii\db\ActiveRecord {
             'alt' => $alt,
         ];
         if (!is_null($category_id)) {
-            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'status' => 1, 'top' => $top])->asArray()->all();
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
         } else {
-            $images = self::find()->where(['category' => $category, 'status' => 1])->asArray()->all();
+            $images = self::find()->where(['category' => $category])->asArray()->all();
         }
         if (!empty($images[0])) {
-            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/thumbnail/' . $images[0]['path'], $params);
+            return Html::img(Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/thumbnail/' . $images[0]['filename'], $params);
         } else {
             return Html::img(Yii::$app->params['adminUrl'] . 'img/default.png');
         }
     }
 
     public static function slider() {
-        return self::find()->where(['category' => 'slider', 'status' => 1])->asArray()->all();
+        return self::find()->where(['category' => 'slider'])->asArray()->all();
     }
 
 }

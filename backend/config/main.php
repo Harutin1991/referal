@@ -12,13 +12,25 @@ return [
     'modules' => [],
     'components' => [
         'db' => $db,
-        'language' => 'en',
-        'sourceLanguage' => 'en',
+        'language' => 'ru',
+        'sourceLanguage' => 'ru',
         'i18n' => [
             'translations' => [
                 'app*' => [
                     'class' => 'yii\i18n\DbMessageSource',
                 //'sourceLanguage' => 'en',
+                ],
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,
+                    'basePath' => '@webroot',
+                    'baseUrl' => '@web',
+                    'js' => [
+                        'js/jquery-1.11.3.min.js',
+                    ]
                 ],
             ],
         ],

@@ -16,15 +16,9 @@ class AppAsset extends AssetBundle
         'vendors/font-awesome/css/font-awesome.min.css',
         'css/styles/black.css',
         'css/panel.css',
-        'css/metisMenu.css',
-        'vendors/fullcalendar/css/fullcalendar.css',
-        'css/pages/calendar_custom.css',
-        'vendors/jvectormap/jquery-jvectormap.css',
-        'vendors/animate/animate.min.css',
-        'css/only_dashboard.css'
+        'css/metisMenu.css'
     ];
     public $js = [
-        'js/jquery-1.11.3.min.js',
         'vendors/fullcalendar/jquery-ui.min.js',
         'js/bootstrap.min.js',
         'vendors/livicons/minified/raphael-min.js',
@@ -44,6 +38,7 @@ class AppAsset extends AssetBundle
         'vendors/jvectormap/jquery-jvectormap-1.2.2.min.js',
         'vendors/jvectormap/jquery-jvectormap-world-mill-en.js',
         'vendors/jscharts/Chart.js',
+        //'js/noConflict.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

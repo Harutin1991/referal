@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "86956c89964a31d5a3b3398fa7018866",
+    "content-hash": "8a9c570ffd3283b78d20591b92b9c2d6",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -175,6 +175,56 @@
                 "yii2"
             ],
             "time": "2015-03-28T21:53:43+00:00"
+        },
+        {
+            "name": "blueimp/jquery-file-upload",
+            "version": "v9.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
+                "reference": "a136ef0280c40a53f40c4411c0d4ec0964713a52"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vkhramtsov/jQuery-File-Upload/zipball/a136ef0280c40a53f40c4411c0d4ec0964713a52",
+                "reference": "a136ef0280c40a53f40c4411c0d4ec0964713a52",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Tschan",
+                    "homepage": "https://blueimp.net"
+                }
+            ],
+            "description": "File Upload widget for jQuery.",
+            "homepage": "https://github.com/blueimp/jQuery-File-Upload",
+            "keywords": [
+                "bootstrap",
+                "chunk",
+                "cross-domain",
+                "cross-site",
+                "drag",
+                "drop",
+                "file",
+                "gae",
+                "go",
+                "jquery",
+                "multiple",
+                "php",
+                "preview",
+                "progress",
+                "python",
+                "resume",
+                "selection",
+                "upload",
+                "widget"
+            ],
+            "time": "2017-03-29T09:26:17+00:00"
         },
         {
             "name": "bower-asset/bootstrap",

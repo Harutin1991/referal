@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel">
                     <div class="panel-body pn">
                         <div class="table-responsive">
-                            <?php Pjax::begin(['id' => 'blogPjaxtbl']) ?>
                             <?=
                             GridView::widget([
                                 'dataProvider' => $dataProvider,
@@ -48,22 +47,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'attribute' => 'title',
                                     ],
                                     [
-                                        'attribute' => 'short_description',
+                                        'attribute' => 'short_description','format' => 'html',
                                     ],
                                     [
                                         'attribute' => 'status',
-                                        'contentOptions' => function ($model) {
-                                            if ($model->status == 0) {
-                                                return ['class' => "label list-status label-rounded label-danger"];
-                                            } elseif ($model->status == 1) {
-                                                return ['class' => "label list-status label-rounded label-system"];
-                                            }
-                                        },
+                                         'format' => 'html',
                                         'value' => function ($model) {
                                             if ($model->status == 0) {
-                                                return "Pasive";
+                                                return '<span class="label label-sm label-danger">'.Yii::t('app','Pasive').'</span>';
                                             } else {
-                                                return "Active";
+                                                return '<span class="label label-sm label-success">'.Yii::t('app','Approved').'</span>';
                                             }
                                         },
                                     ],
@@ -74,36 +67,28 @@ $this->params['breadcrumbs'][] = $this->title;
                                         }
                                     ],
                                     ['class' => 'yii\grid\ActionColumn',
-                                        'template' => '{edit}{delete}',
+                                        'template' => '{delete}{update}',
                                         'buttons' => [
-                                            'edit' => function ($url, $model) {
-                                                $title = '';
-                                                $btn_class = "";
-                                                $data_pjax = '';
-                                                if ($model['status'] == 0) {
-                                                    $data_pjax = json_encode(['id' => $model['id'], 'status' => 1]);
-                                                    $title = "Enable";
-                                                    $btn_class = "btn-success";
-                                                } elseif ($model['status'] == 1) {
-                                                    $data_pjax = json_encode(['id' => $model['id'], 'status' => 0]);
-                                                    $title = "Disable";
-                                                    $btn_class = "btn-danger";
-                                                }
-                                                $link = Html::button($title, ['title' => Yii::t('yii', $title),
-                                                            'class' => 'btn ' . $btn_class . ' br2 btn-xs fs12 blog_change_status',
-                                                            'data-pjax' => $data_pjax
+                                            'update' => function ($url, $model) {
+                                                return Html::a('<span class="glyphicon glyphicon-pencil"></span> Edit', $url, [
+                                                            'title' => Yii::t('app', 'Update'),
+                                                            'aria-label' => Yii::t('app', 'Update'),
+                                                            //'data-confirm' =>Yii::t('app', 'Are you sure! You whant delete this item?'),
+                                                            //'data-method' =>'post',
+                                                            //'data-pjax' => '0',
+                                                            'data-key' => $model->id,
+                                                            'class' => 'btn btn-info btn-xs fs12 br2 ml5 pull-right'
                                                 ]);
-                                                return $link;
                                             },
                                             'delete' => function ($url, $model) {
-                                                return Html::a('<span class="glyphicon glyphicon-trash" style="color: #666666"></span>', $url, [
-                                                            'title' => 'Delete',
-                                                            'aria-label' => 'Delete',
-                                                            'data-confirm' => 'Are you sure! You whant delete this item?',
+                                                return Html::a('<span class="glyphicon glyphicon-trash"></span> Delete', $url, [
+                                                            'title' => Yii::t('app', 'Delete'),
+                                                            'aria-label' => Yii::t('app', 'Delete'),
+                                                            'data-confirm' => Yii::t('app', 'Are you sure! You whant delete this item?'),
                                                             'data-method' => 'post',
                                                             'data-pjax' => '0',
                                                             'data-key' => $model->id,
-                                                            'class' => 'btn btn-danger btn-xs fs12 br2 ml5'
+                                                            'class' => 'btn btn-danger btn-xs fs12 br2 ml5 pull-right'
                                                 ]);
                                             },
                                         ]
@@ -111,7 +96,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                             ]);
                             ?>
-                            <?php Pjax::end() ?>
                         </div>
                     </div>
                 </div>
@@ -119,13 +103,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<?php echo $this->registerJs("
-            CKEDITOR.replace('blog-description', {
-                height: 210,
-                on: {
-                    instanceReady: function(evt) {
-                        $('.cke').addClass('admin-skin cke-hide-bottom');
-                    }
-                },
-            });
-"); ?>

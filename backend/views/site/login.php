@@ -43,7 +43,7 @@ LoginAsset::register($this);
                                 <?=
                                         $form->field($model, 'password', ['template' => '<p><label style="margin-bottom:0px;" for="password" class="youpasswd"> <i class="livicon" data-name="key" data-size="16" data-loop="true" data-c="#3c8dbc" data-hc="#3c8dbc"></i>Password</label>
                                     {input}{error}</p>'])
-                                        ->textInput(['maxlength' => true,'class'=>false, 'placeholder' => 'eg. X8df!90EO'])->label(false)
+                                        ->passwordInput(['maxlength' => true,'class'=>false, 'placeholder' => 'eg. X8df!90EO'])->label(false)
                                 ?>
                                 <p class="keeplogin">
                                     <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />

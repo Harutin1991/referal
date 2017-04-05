@@ -244,14 +244,9 @@ $languages = Language::find()->asArray()->all();
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="lockscreen.html">
-                                            <i class="livicon" data-name="lock" data-s="18"></i> Lock
-                                        </a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="login.html">
-                                            <i class="livicon" data-name="sign-out" data-s="18"></i> Logout
-                                        </a>
+                                        <?= Html::a('<i class="livicon" data-name="sign-out" data-s="18"></i>' . Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout']) ?>
                                     </div>
                                 </li>
                             </ul>
@@ -327,15 +322,18 @@ $languages = Language::find()->asArray()->all();
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create"): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="comment" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
                                     <span class="title">Blog</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li <?php if ($currentUrl == "/slider/index"): ?>class="active"<?php endif ?> >
+                                    <li <?php if ($currentUrl == "/blog/index"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Blog List'), Url::to(['blog/index'])) ?>
+                                    </li>
+                                    <li <?php if ($currentUrl == "/blog-categories/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Blog Categories'), Url::to(['blog-categories/index'])) ?>
                                     </li>
                                     <li>
                                         <a href="blog_details.html">

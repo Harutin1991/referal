@@ -10,26 +10,30 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\User;
-
+use yii\web\UploadedFile;
+use backend\models\Files;
+use yii\helpers\BaseFileHelper;
+use common\models\Language;
+use yii\imagine\Image;
+use backend\models\TrBlog;
 /**
  * BlogController implements the CRUD actions for Blog model.
  */
-class BlogController extends Controller
-{
+class BlogController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index' => ['GET', 'POST'],
                     'view' => ['GET'],
-                    'create' => ['POST','GET'],
-                    'update' => ['POST'],
-                    'delete' => ['POST'],
+                    'create' => ['POST', 'GET'],
+                    'update' => ['POST', 'GET'],
+                    'delete' => ['POST', 'GET'],
                 ],
             ],
             'access' => [
@@ -48,7 +52,7 @@ class BlogController extends Controller
                             User::ADMIN,
                         ],
                     ],
-                    // everything else is denied
+                // everything else is denied
                 ],
             ],
         ];
@@ -58,27 +62,15 @@ class BlogController extends Controller
      * Lists all Blog models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new BlogSearch();
         $model = new Blog();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        if (Yii::$app->request->isAjax) {
-            $id = Yii::$app->request->post('id');
-            $model = $this->findModel($id);
-            echo $_form = $this->renderPartial('_form', [
-                'model' => $model,
-            ]);
-            exit();
-        }
-        $_form = $this->renderPartial('_form', [
-            'model' => $model,
-        ]);
+
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            '_Form' => $_form,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -87,10 +79,9 @@ class BlogController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -99,15 +90,43 @@ class BlogController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Blog();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $modelFiles = new Files();
+            $file = UploadedFile::getInstances($modelFiles, 'filename');
+
+            if (!empty($file)) {
+                $ProdDefImg = Yii::$app->request->post('defaultImage');
+                $paths = $this->upload($file, $model->id);
+                $modelFiles->multiSave($paths, $model->id, $ProdDefImg, 'blog');
+            }
+            $objLang = new Language();
+            $languages = $objLang->find()->asArray()->all();
+            foreach ($languages as $value) {
+                $trmodel = new TrBlog();
+                $trmodel->title = $model->title;
+                $trmodel->short_description = $model->short_description;
+                $trmodel->description = $model->description;
+                $trmodel->meta_description = $model->meta_description;
+                $trmodel->meta_key = $model->meta_key;
+                $trmodel->blog_id = $model->id;
+                $trmodel->language_id = $value['id'];
+                $trmodel->save();
+            }
+            Yii::$app->session->setFlash('success', 'Material successfully created');
+            return $this->redirect(['update',
+                        'id' => $model->id,
+                        'modelFiles' => $modelFiles,
+            ]);
         } else {
+            $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $modelFiles = new Files();
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
+                        'modelFiles' => $modelFiles,
+                        'defoultId' => $defaultLanguage->id
             ]);
         }
     }
@@ -118,15 +137,14 @@ class BlogController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -137,8 +155,7 @@ class BlogController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -151,12 +168,68 @@ class BlogController extends Controller
      * @return Blog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Blog::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function upload($imageFile, $id) {
+        $directoryBlog = Yii::getAlias("@backend/web/uploads/images/blog/");
+        $directory = Yii::getAlias("@backend/web/uploads/images/blog/" . $id);
+        $directoryThumb = Yii::getAlias("@backend/web/uploads/images/blog/" . $id . "/thumbnail");
+        BaseFileHelper::createDirectory($directoryBlog);
+        BaseFileHelper::createDirectory($directory);
+        BaseFileHelper::createDirectory($directoryThumb);
+        if ($imageFile) {
+            $paths = [];
+            foreach ($imageFile as $key => $image) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '_' . $key . '.' . $image->extension;
+                $filePath = $directory . '/' . $fileName;
+                $filePathThumb = $directoryThumb . '/' . $fileName;
+                $image->saveAs($filePath);
+                Image::thumbnail($filePath, 120, 120)->save(Yii::getAlias($directoryThumb . '/' . $fileName), ['quality' => 100]);
+                $paths[$key + 1] = $fileName;
+            }
+            return $paths;
+        }
+        return false;
+    }
+
+    /**
+     * @return false|int
+     * @throws \Exception
+     */
+    public function actionDeleteImage() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Files();
+            $id = Yii::$app->request->post('id');
+            $model = $model->findOne($id);
+            $directory = Yii::getAlias("@backend/web/uploads/images/blog/" . $model->category_id);
+            $directoryThumb = Yii::getAlias("@backend/web/uploads/images/blog/" . $model->category_id . "/thumbnail");
+
+            // BaseFileHelper::removeDirectory($directoryThumb);
+            //BaseFileHelper::removeDirectory($directory);
+            if (file_exists($directory . '/' . $model->path)) {
+                unlink($directory . '/' . $model->path);
+                unlink($directoryThumb . '/' . $model->path);
+            }
+
+            return $model->delete();
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function actionDefaultImage() {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            return Files::updatDefaultImage($data['newid'], $data['product_id']);
+        }
+    }
+
 }

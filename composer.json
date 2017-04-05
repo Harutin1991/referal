@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "*",
-        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-bootstrap": "^2.0",
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-fileinput": "@dev",
@@ -37,7 +37,8 @@
         "klarna/checkout": "4.0",
         "yiisoft/yii2-imagine": "*",
         "2amigos/yii2-ckeditor-widget": "^2.0",
-        "2amigos/yii2-tinymce-widget": "^1.1"
+        "2amigos/yii2-tinymce-widget": "^1.1",
+        "blueimp/jquery-file-upload": "^9.18"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
