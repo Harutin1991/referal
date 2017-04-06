@@ -157,8 +157,9 @@ $this->registerCssFile("@web/css/filInput.css", [
                         ?>
                     </div>
                     <div class="form-group">
-                        <label>Featured image</label>
+                        
                         <div class="col-md-6 pt15">
+                            <label>Featured image</label>
                             <?=
                                     $form->field($modelFiles, 'filename[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
                                     ->fileInput(
@@ -168,7 +169,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                 'onchange' => 'showMyImage(this, -1)',
                                                 'class' => 'inputfile inputfile-6',
                                                 'data-multiple-caption' => "{count} files selected",
-                                    ])->label('<span></span> <strong class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&ensp;Brows…</strong>', ['class' => ''])
+                                    ])->label('<span></span> <strong class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&ensp;Brows…</strong>', ['class' => false])
                             ?>
                             <div class="hidden" id="defaultimg">
                                 <input type="radio" id="def_img_part_-1" name="defaultImage" value=""

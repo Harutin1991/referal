@@ -141,10 +141,42 @@ class BlogController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            echo "<pre>";print_r();die;
+            $modelFiles = new Files();
+            $file = UploadedFile::getInstances($modelFiles, 'path');
+
+            if (!empty($file)) {
+                $ProdDefImg = Yii::$app->request->post('defaultImage');
+                $paths = $this->upload($file, $model->id);
+
+                foreach ($paths as $key => $value) {
+                    $updateFile = new Files();
+                    if ($key == $ProdDefImg) {
+                        $updateFile->path = $value;
+                        $updateFile->category_id = $model->id;
+                        $updateFile->category = 'materials';
+                        $updateFile->top = $ProdDefImg;
+                        $updateFile->status = 1;
+                    } else {
+                        $updateFile->path = $value;
+                        $updateFile->category_id = $model->id;
+                        $updateFile->category = 'materials';
+                        $updateFile->top = 0;
+                        $updateFile->status = 1;
+                    }
+                    $updateFile->save();
+                }
+            }
+            $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $model->updateDefaultTranslate($defaultLanguage->id);
+            return json_encode(['success' => true]);
         } else {
+            $images = Files::find()->where(['category' => 'blog', 'category_id' => $id])->asArray()->all();
+            $modelFiles = new Files();
             return $this->render('update', [
                         'model' => $model,
+                        'modelFiles' => $modelFiles,
+                        'images' => $images,
             ]);
         }
     }

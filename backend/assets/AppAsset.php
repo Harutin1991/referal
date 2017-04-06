@@ -38,6 +38,7 @@ class AppAsset extends AssetBundle
         'vendors/jvectormap/jquery-jvectormap-1.2.2.min.js',
         'vendors/jvectormap/jquery-jvectormap-world-mill-en.js',
         'vendors/jscharts/Chart.js',
+        'js/forms-editing.js',
         //'js/noConflict.js',
     ];
     public $depends = [

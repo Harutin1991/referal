@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use backend\models\TrBlog;
 /**
  * This is the model class for table "blog".
  *
@@ -67,9 +67,9 @@ class Blog extends \yii\db\ActiveRecord {
     }
 
     public function updateDefaultTranslate($language_id) {
-        $tr = TrBrand::findOne(['language_id' => $language_id, 'blog_id' => $this->id]);
+        $tr = TrBlog::findOne(['language_id' => $language_id, 'blog_id' => $this->id]);
         if (!$tr) {
-            $tr = new TrBrand();
+            $tr = new TrBlog();
 
             $tr->setAttribute('language_id', $language_id);
             $tr->setAttribute('blog_id', $this->id);

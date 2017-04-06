@@ -12,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * TrBlogController implements the CRUD actions for TrBlog model.
  */
-class TrBlogController extends Controller
-{
+class TrBlogController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +32,13 @@ class TrBlogController extends Controller
      * Lists all TrBlog models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new TrBlogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -49,10 +47,9 @@ class TrBlogController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -61,15 +58,14 @@ class TrBlogController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new TrBlog();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -80,16 +76,51 @@ class TrBlogController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
+    public function actionUpdate() {
+        if (isset(Yii::$app->request->post()['TrBlog'])) {
+echo "<pre>";print_r(Yii::$app->request->post());die;
+            $model = new TrBlog();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
+            $arrPost = Yii::$app->request->post()['TrBlog'];
+
+            $trModel = $model->findOne(['language_id' => $arrPost['language_id'], 'blog_id' => $arrPost['blog_id']]);
+            if ($trModel) {
+                $trModel->name = $arrPost['name'];
+                $trModel->short_description = $arrPost['short_description'];
+                $trModel->description = $arrPost['description'];
+                $trModel->language_id = $arrPost['language_id'];
+                $trModel->materials_id = $arrPost['materials_id'];
+            } else {
+                $trModel = new TrBlog();
+                $trModel->name = $arrPost['name'];
+                $trModel->short_description = $arrPost['short_description'];
+                $trModel->description = $arrPost['description'];
+                $trModel->language_id = $arrPost['language_id'];
+                $trModel->materials_id = $arrPost['materials_id'];
+            }
+
+            if ($trModel->save()) {
+                echo 'true';
+                exit();
+            } else {
+                echo 'false';
+                exit();
+            }
+        } elseif (!empty(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+
+            $arrPost = Yii::$app->request->post();
+            $tr_materialObj = new TrBlog();
+            $tr_materia = $tr_materialObj->findOne(['language_id' => $arrPost['lang'], 'blog_id' => $arrPost['blog']]);
+
+            if (!$tr_materia) {
+                $tr_materia = new TrBlog();
+                $tr_materia->language_id = $arrPost['lang'];
+                $tr_materia->materials_id = $arrPost['material'];
+            }
+            echo $this->renderAjax('_form', [
+                'model' => $tr_materia,
             ]);
+            exit();
         }
     }
 
@@ -99,8 +130,7 @@ class TrBlogController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -113,12 +143,12 @@ class TrBlogController extends Controller
      * @return TrBlog the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = TrBlog::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
