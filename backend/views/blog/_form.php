@@ -161,7 +161,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                         <div class="col-md-6 pt15">
                             <label>Featured image</label>
                             <?=
-                                    $form->field($modelFiles, 'filename[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
+                                    $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
                                     ->fileInput(
                                             [
                                                 'multiple' => true,

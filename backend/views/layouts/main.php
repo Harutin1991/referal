@@ -322,7 +322,7 @@ $languages = Language::find()->asArray()->all();
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index'): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index' || $currentUrl == '/blog-categories/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="comment" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
                                     <span class="title">Blog</span>
@@ -335,34 +335,23 @@ $languages = Language::find()->asArray()->all();
                                     <li <?php if ($currentUrl == "/blog-categories/index"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Blog Categories'), Url::to(['blog-categories/index'])) ?>
                                     </li>
-                                    <li>
-                                        <a href="blog_details.html">
-                                            <i class="fa fa-angle-double-right"></i> Blog Details
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="add_newblog.html">
-                                            <i class="fa fa-angle-double-right"></i> Add New Blog
-                                        </a>
+                                    <li <?php if ($currentUrl == "/blog/create"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New Blog'), Url::to(['blog/create'])) ?>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li <?php if ($currentUrl == '/news/index' || $currentUrl == '/news/create'): ?>class="active"<?php endif ?>>
                                 <a href="#">
                                     <i class="livicon" data-name="move" data-c="#EF6F6C" data-hc="#EF6F6C" data-size="18" data-loop="true"></i>
                                     <span class="title">News</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li>
-                                        <a href="news.html">
-                                            <i class="fa fa-angle-double-right"></i> News
-                                        </a>
+                                    <li <?php if ($currentUrl == "/news/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'News List'), Url::to(['news/index'])) ?>
                                     </li>
-                                    <li>
-                                        <a href="news_item.html">
-                                            <i class="fa fa-angle-double-right"></i> News Details
-                                        </a>
+                                    <li <?php if ($currentUrl == "/news/create"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add News'), Url::to(['news/create'])) ?>
                                     </li>
                                 </ul>
                             </li>
