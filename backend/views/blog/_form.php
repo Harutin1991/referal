@@ -53,6 +53,37 @@ $this->registerCssFile("@web/css/admin-forms.css", [
 $this->registerCssFile("@web/css/filInput.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
+<div class="col-lg-12">
+                        <ul class="nav  nav-tabs ">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">Form Actions</a>
+                            </li>
+                            <li>
+                                <a href="#tab2" data-toggle="tab">2 Columns</a>
+                            </li>
+                            <li>
+                                <a href="#tab3" data-toggle="tab">Form Striped</a>
+                            </li>
+                            <li>
+                                <a href="#tab4" data-toggle="tab">Form Full Example</a>
+                            </li>
+                        </ul>
+                        <div  class="tab-content mar-top">
+                            <div id="tab1" class="tab-pane fade active in">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">
+                                                    <i class="livicon" data-name="doc-portrait" data-c="#fff" data-hc="#fff" data-size="18" data-loop="true"></i>
+                                                    Form Actions On Top
+                                                </h3>
+                                                <span class="pull-right">
+                                                    <i class="fa fa-fw fa-chevron-up clickable"></i>
+                                                    <i class="fa fa-fw fa-times removepanel clickable"></i>
+                                                </span>
+                                            </div>
+                                            <div class="panel-body">
 <div class="paddingleft_right15">
     <div class="blog-form">
         <div class="the-box no-border">
