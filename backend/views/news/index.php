@@ -10,19 +10,21 @@ use yii\grid\GridView;
 $this->title = Yii::t('app', 'News');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="blog-index">
+
+            <h1><?= Html::encode($this->title) ?></h1>
+
+            <div class="tray tray-center filter">
+                <div id="product-form_cont">
+                    <?= Html::a('<span class="fa fa-plus pr5"></span>'.Yii::t('app','Create News'), ['/news/create'], ['class' => 'btn btn-system mb15']) ?>
+                </div>
+                <div class="panel">
+                    <div class="panel-body pn">
+                        <div class="table-responsive">
 
 
-<div class="table-layout">
-    <div class="tray tray-center">
-        <!-- create new order panel -->
-        <div id="product-form_cont">
-
-            <?= Html::a(Yii::t('app', '<span class="fa fa-plus pr5"></span>Create News'), ['/news/create'], ['class' => 'btn btn-system mb15']) ?>
-        </div>
-        <!-- recent orders table -->
-        <div class="panel">
-            <div class="panel-body pn">
-                <div class="table table-responsive">
                     <?=
                     GridView::widget([
                         'dataProvider' => $dataProvider,
@@ -91,26 +93,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ],
                             ],
                             ['attribute' => 'status',
-                                'contentOptions' => function ($model) {
-                                    if ($model->status == 0) {
-                                        return ['class' => "list-status label label-rounded label-info"];
-                                    } elseif ($model->status == 1) {
-                                        return ['class' => "list-status label label-rounded label-success"];
-                                    }
-                                },
-                                'value' => function ($model) {
-                                    if ($model->status == 0) {
-                                        return "Unavailable";
-                                    } elseif ($model->status == 1) {
-                                        return "Available";
-                                    }
-                                },
-                                'filter' => Html::activeDropDownList($searchModel, 'status', ["Unavailable", "Available"], ['class' => 'form-control prod-search-status', 'prompt' => 'Select Status', 'style' => 'width:130px']),
-                                'filterInputOptions' => [
-                                    'class' => 'form-control',
-                                    'prompt' => 'Search'
-                                ],
-                            ],
+                                         'format' => 'html',
+                                        'value' => function ($model) {
+                                            if ($model->status == 0) {
+                                                return '<span class="label label-sm label-danger">'.Yii::t('app','Pasive').'</span>';
+                                            } else {
+                                                return '<span class="label label-sm label-success">'.Yii::t('app','Approved').'</span>';
+                                            }
+                                        },
+                                    ],
                             ['class' => 'yii\grid\ActionColumn',
                                 'template' => '{update}{delete}',
                                 'buttons' => [
@@ -141,31 +132,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ]);
                     ?>
-                    <div class="conteiner"></div>
-
-                    <div class="action-block row col-lg-6">
-                        <select id="checkbox-actions" data-action="news" data-style="btn-primary">
-                            <option selected class="delete">Delete Items</option>
-                        </select>
-                        <input type="button" class="btn btn-xs btn-info" value="accept">
+                              </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- begin: .tray-right -->
-    <aside class="tray tray-right tray290 filter">
-        <!-- menu quick links -->
-        <div class="admin-form mw250">
-
-            <h4> Filter Products</h4>
-
-            <hr class="short">
-            <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-        </div>
-    </aside>
-    <!-- end: .tray-right -->
-
-
-    <!-- end: .tray-center -->
 </div>

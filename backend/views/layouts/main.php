@@ -12,10 +12,11 @@ use common\widgets\Alert;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use common\models\Language;
-
+use backend\models\Pages;
 AppAsset::register($this);
 $currentUrl = trim(substr($_SERVER['REQUEST_URI'], 3));
 $languages = Language::find()->asArray()->all();
+$pages = Pages::find()->asArray()->all();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -38,7 +39,7 @@ $languages = Language::find()->asArray()->all();
 
         <header class="header">
             <a href="index.html" class="logo">
-                <img src="img/logo.png" alt="Logo">
+                <?= Html::img('@web/img/logo.png', ['class' => 'img-responsive message-image']); ?>
             </a>
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -57,7 +58,7 @@ $languages = Language::find()->asArray()->all();
                                 <li class="dropdown-title">4 New Messages</li>
                                 <li class="unread message">
                                     <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
-                                        <img src="img/authors/avatar.jpg" class="img-responsive message-image" alt="icon" />
+                                        <?= Html::img('@web/img/authors/avatar.jpg', ['class' => 'img-responsive message-image']); ?>
                                         <div class="message-body">
                                             <strong>Riot Zeast</strong>
                                             <br>Hello, You there?
@@ -69,7 +70,7 @@ $languages = Language::find()->asArray()->all();
                                 <li class="unread message">
                                     <a href="javascript:;" class="message">
                                         <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
-                                        <img src="img/authors/avatar1.jpg" class="img-responsive message-image" alt="icon" />
+                                        <?= Html::img('@web/img/authors/avatar1.jpg', ['class' => 'img-responsive message-image']); ?>
                                         <div class="message-body">
                                             <strong>John Kerry</strong>
                                             <br>Can we Meet ?
@@ -83,7 +84,7 @@ $languages = Language::find()->asArray()->all();
                                         <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read">
                                             <span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span>
                                         </i>
-                                        <img src="img/authors/avatar5.jpg" class="img-responsive message-image" alt="icon" />
+                                        <?= Html::img('@web/img/authors/avatar5.jpg', ['class' => 'img-responsive message-image']); ?>
                                         <div class="message-body">
                                             <strong>Jenny Kerry</strong>
                                             <br>Dont forgot to call...
@@ -213,7 +214,7 @@ $languages = Language::find()->asArray()->all();
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="img/authors/avatar3.jpg" width="35" class="img-circle img-responsive pull-left" height="35" alt="riot">
+                                <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-circle img-responsive pull-left','width'=>'35','height'=>'35']); ?>
                                 <div class="riot">
                                     <div>
                                         Riot
@@ -226,7 +227,7 @@ $languages = Language::find()->asArray()->all();
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <img src="img/authors/avatar3.jpg" class="img-responsive img-circle" alt="User Image">
+                                    <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-responsive img-circle']); ?>
                                     <p class="topprofiletext">Riot Zeast</p>
                                 </li>
                                 <!-- Menu Body -->
@@ -288,39 +289,10 @@ $languages = Language::find()->asArray()->all();
                         <!-- BEGIN SIDEBAR MENU -->
                         <ul id="menu" class="page-sidebar-menu">
                             <li <?php if ($currentUrl == "/site/index"): ?>class="active"<?php endif ?>>
-                                <a href="index.html">
+                                <a href="/">
                                     <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title">Dashboard</span>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
-                                    <span class="title">Builders</span>
-                                    <span class="fa arrow"></span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="form_builder.html">
-                                            <i class="fa fa-angle-double-right"></i> Form Builder
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="form_builder2.html">
-                                            <i class="fa fa-angle-double-right"></i> Form Builder 2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="buttonbuilder.html">
-                                            <i class="fa fa-angle-double-right"></i> Button Builder
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="page_builder.html">
-                                            <i class="fa fa-angle-double-right"></i> Page Builder
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
                             <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index' || $currentUrl == '/blog-categories/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
@@ -356,57 +328,25 @@ $languages = Language::find()->asArray()->all();
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="javascript:void(0)">
                                     <i class="livicon" data-name="flag" data-c="#418bca" data-hc="#418bca" data-size="18" data-loop="true"></i>
                                     <span class="title">Pages</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
+                                    <li <?php if ($currentUrl == "/pages/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'List of Pages'), Url::to(['pages/index'])) ?>
+                                    </li>
+                                    <li <?php if ($currentUrl == "/pages/create"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New Page'), Url::to(['pages/create'])) ?>
+                                    </li>
+                                    <?php foreach($pages as $page):?>
                                     <li>
-                                        <a href="lockscreen.html">
-                                            <i class="fa fa-angle-double-right"></i> Lockscreen
+                                        <a href="<?= Url::to(['pages/update', 'id'=>$page['id']])?>">
+                                            <i class="fa fa-angle-double-right"></i> <?=$page['title']?>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="invoice.html">
-                                            <i class="fa fa-angle-double-right"></i> Invoice
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">
-                                            <i class="fa fa-angle-double-right"></i> Login
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login2.html">
-                                            <i class="fa fa-angle-double-right"></i> Login 2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html#toregister">
-                                            <i class="fa fa-angle-double-right"></i> Register
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="register2.html">
-                                            <i class="fa fa-angle-double-right"></i> Register 2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="404.html">
-                                            <i class="fa fa-angle-double-right"></i> 404 Error
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="500.html">
-                                            <i class="fa fa-angle-double-right"></i> 500 Error
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="blank.html">
-                                            <i class="fa fa-angle-double-right"></i> Blank Page
-                                        </a>
-                                    </li>
+                                    <?php endforeach;?>
                                 </ul>
                             </li>
                         </ul>
@@ -417,25 +357,18 @@ $languages = Language::find()->asArray()->all();
             </aside>
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
-                <div class="alert alert-success alert-dismissable margin5">
+                <!--div class="alert alert-success alert-dismissable margin5">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>Success:</strong> You have successfully logged in.
-                </div>
+                </div -->
                 <!-- Main content -->
                 <section class="content-header">
-                    <h1>Add new blog</h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <a href="index.html">
-                                <i class="livicon" data-name="home" data-size="14" data-c="#000" data-loop="true"></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">Blog</a>
-                        </li>
-                        <li class="active">Add new blog</li>
-                    </ol>
+                    <h1><?=$this->title?></h1>
+                    <?=
+                        Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ])
+                        ?>
                     <?php
                     /* Breadcrumbs::widget([
                       'itemTemplate' => "<li>{link}</li>\n",

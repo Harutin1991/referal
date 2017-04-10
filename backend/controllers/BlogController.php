@@ -123,8 +123,10 @@ class BlogController extends Controller {
         } else {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
             $modelFiles = new Files();
+            $trmodel = new TrBlog();
             return $this->render('create', [
                         'model' => $model,
+                        'trmodel' => $trmodel,
                         'modelFiles' => $modelFiles,
                         'defoultId' => $defaultLanguage->id
             ]);
@@ -141,10 +143,8 @@ class BlogController extends Controller {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            echo "<pre>";print_r();die;
             $modelFiles = new Files();
             $file = UploadedFile::getInstances($modelFiles, 'path');
-
             if (!empty($file)) {
                 $ProdDefImg = Yii::$app->request->post('defaultImage');
                 $paths = $this->upload($file, $model->id);

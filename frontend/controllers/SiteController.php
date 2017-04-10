@@ -12,23 +12,10 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
-use backend\models\TrProduct;
-use backend\models\ProductImage;
+
 use common\models\User;
 use common\models\Language;
-use frontend\models\Category;
-use frontend\models\Product;
-use backend\models\Files;
-use backend\models\News;
-use backend\models\Service;
-use backend\models\Events;
-use backend\models\Aboutus;
-use backend\models\Works;
-use backend\models\Partners;
-use backend\models\Materials;
-use backend\models\Brand;
+
 
 /**
  * Site controller

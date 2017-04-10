@@ -294,37 +294,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#tbl_service .odd").on("click", function (event) {
-        if (event.target.nodeName == 'INPUT' || event.target.nodeName == 'A' || event.target.nodeName == 'SPAN' || event.target.nodeName == 'LABEL') {
-        } else {
-            var id = $(this).attr('data-key');
-            $.ajax({
-                url: '/' + language + "/service/index",
-                method: "post",
-                data: {id: id},
-                success: function (res) {
-                    $('#service-form_cont').html(res);
-                    if (jQuery('#service-status').data('select2')) {
-                        jQuery('#service-status').select2('destroy');
-                    }
-                    jQuery.when(jQuery('#service-status').select2(select2_cc5be4bd)).done(initS2Loading('service-status', 's2options_d6851687'));
-
-                    if (jQuery('#repairs-product_id').data('select2')) {
-                        jQuery('#repairs-product_id').select2('destroy');
-                    }
-                    jQuery.when(jQuery('#repairs-product_id').select2(select2_19a1dec7)).done(initS2Loading('repairs-product_id', 's2options_d6851687'));
-
-                    if (jQuery('#repairs-part_id').data('select2')) {
-                        jQuery('#repairs-part_id').select2('destroy');
-                    }
-                    jQuery.when(jQuery('#repairs-part_id').select2(select2_19a1dec7)).done(initS2Loading('repairs-part_id', 's2options_d6851687'));
-
-                }
-            })
-        }
-    });
-
-    $('body').on('submit', '#brandUpdate, #trbrandupdate', (function (e) {
+    $('body').on('submit', '#TrblogCreate, #TrblogUpdate', (function (e) {
 
         e.preventDefault();
         var id = $(this).attr('id');
@@ -342,18 +312,41 @@ $(document).ready(function () {
             contentType: false, // Set content type to false as jQuery will tell
             success: function (res) {
                 if (res) {
-                    //document.getElementById(id).reset();
-                    if (res) {
-                        $('#admin-alerts div').html('Brand successfully updated');
+                        $('#admin-alerts div').html('Blog successfully created');
                         $('#admin-alerts').show();
-//                        $.pjax.reload({container: '#brandPjaxtbl'});
-//                        $.pjax.reload({container: '#brandPjaxForm'});
-                    }
                 }
             }
         });
     }));
-    $('body').on('submit', '#serviceUpdate, #trserviceUpdate', (function (e) {
+    
+    $('#blogCreate').on('afterValidate', function (e) {
+        if (!confirm("Everything is correct. Submit?")) {
+            return false;
+        }
+       e.preventDefault();
+        var id = $(this).attr('id');
+
+        var form = $(this);
+        var url = form.attr('action');
+        var formData = new FormData(this);
+        $.ajax({
+            method: 'POST',
+            url: url,
+            data: formData,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell
+            success: function (res) {
+                if (res) {
+                    $('#admin-alerts div').html('Blog successfully created');
+                    $('#admin-alerts').show();
+                }
+            }
+        });
+    });
+    
+    $('body').on('submit', '#blogUpdate, #blogCreate', (function (e) {
 
         e.preventDefault();
         var id = $(this).attr('id');
@@ -371,7 +364,7 @@ $(document).ready(function () {
             contentType: false, // Set content type to false as jQuery will tell
             success: function (res) {
                 if (res) {
-                    $('#admin-alerts div').html('Service successfully updated');
+                    $('#admin-alerts div').html('Blog successfully created');
                     $('#admin-alerts').show();
                 }
             }
