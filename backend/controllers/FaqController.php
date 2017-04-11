@@ -78,7 +78,7 @@ class FaqController extends Controller {
                 $languages = $objLang->find()->asArray()->all();
                 foreach ($languages as $value) {
                         $model = new TrFaq();
-                        $model->name = $faq->title;
+                        $model->title = $faq->title;
                         $model->short_description = $faq->short_description;
                         $model->description = $faq->description;
                         $model->faq_id = $faq->id;

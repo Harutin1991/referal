@@ -34,10 +34,10 @@ class TrFaq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'short_description', 'description'], 'required'],
+            [['title'], 'required'],
             [['description'], 'string'],
             [['faq_id', 'language_id'], 'integer'],
-            [['name', 'short_description'], 'string', 'max' => 255],
+            [['title', 'short_description'], 'string', 'max' => 255],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
             [['faq_id'], 'exist', 'skipOnError' => true, 'targetClass' => Faq::className(), 'targetAttribute' => ['faq_id' => 'id']],
         ];
@@ -50,7 +50,7 @@ class TrFaq extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'title' => Yii::t('app', 'Name'),
             'short_description' => Yii::t('app', 'Short Description'),
             'description' => Yii::t('app', 'Description'),
             'faq_id' => Yii::t('app', 'Faq ID'),

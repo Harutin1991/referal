@@ -19,7 +19,7 @@ class TrFaqSearch extends TrFaq
     {
         return [
             [['id', 'faq_id', 'language_id'], 'integer'],
-            [['name', 'short_description', 'description'], 'safe'],
+            [['title', 'short_description', 'description'], 'safe'],
         ];
     }
 
@@ -64,7 +64,7 @@ class TrFaqSearch extends TrFaq
             'language_id' => $this->language_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'short_description', $this->short_description])
             ->andFilterWhere(['like', 'description', $this->description]);
 

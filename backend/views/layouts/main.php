@@ -327,7 +327,7 @@ $pages = Pages::find()->asArray()->all();
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="flag" data-c="#418bca" data-hc="#418bca" data-size="18" data-loop="true"></i>
                                     <span class="title">Pages</span>
@@ -349,6 +349,13 @@ $pages = Pages::find()->asArray()->all();
                                     <?php endforeach;?>
                                 </ul>
                             </li>
+                             <li>
+                            <a href="<?= Url::to('/faq/index')?>">
+                                <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
+                                <?=Yii::t('app','Faq')?>
+                                <span class="badge badge-danger">10</span>
+                            </a>
+                        </li>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

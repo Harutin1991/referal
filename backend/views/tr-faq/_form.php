@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
     <div class="clearfix"></div>
     <div class="tab-content row">
         <div class="col-md-12">
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
             <?= $form->field($model, 'short_description')->textInput(['maxlength' => true]) ?>

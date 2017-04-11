@@ -7,560 +7,306 @@ use backend\models\Files;
 
 $this->title = Yii::t('app', 'Home');
 ?>
-<!-- //Header End -->
-<!--Carousel Start -->
-<div id="owl-demo" class="owl-carousel owl-theme">
-    <div class="item">
-        <?= Html::img('@web/images/slide_1.jpg', ['alt' => 'slider-image']); ?>
+<div role="main" class="main">
+    <div class="slider-container rev_slider_wrapper" style="height: 600px;">
+        <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 800, 'gridheight': 600}">
+            <ul>
+                <li data-transition="fade">
+                    <?=
+                    Html::img('@web/img/slides/slide-corporate-6.jpg', ['alt' => 'slider-image',
+                        'data-bgposition' => "center center",
+                        'data-bgfit' => "cover",
+                        'data-bgrepeat' => "no-repeat",
+                        'data-kenburns' => "on",
+                        'data-duration' => "9000",
+                        'data-ease' => "Linear.easeNone",
+                        'data-scalestart' => "115",
+                        'data-scaleend' => "100",
+                        'data-rotatestart' => "0",
+                        'data-rotateend' => "0",
+                        'data-offsetstart' => "0 -200",
+                        'data-offsetend' => "0 200",
+                        'data-bgparallax' => "0",
+                        'class' => "rev-slidebg"]);
+                    ?>
+
+                    <div class="tp-caption tp-caption-overlay tp-caption-overlay-primary main-label"
+                         data-x="center"
+                         data-y="264"
+                         data-start="1200"
+                         data-whitespace="nowrap">WELCOME TO Lorem Ispum</div>
+
+                    <div class="tp-caption tp-caption-overlay-opacity bottom-label"
+                         data-x="center"
+                         data-y="358"
+                         data-start="2000"
+                         data-transform_in="y:[100%];opacity:0;s:500;">The #1 Lorem ispum is dolar</div>
+						 <a href="#">View More</a>
+
+                </li>
+                <li data-transition="fade">
+                    <?=
+                    Html::img('@web/img/demos/digital-agency/slides/slide-digital-agency-1.jpg', ['alt' => 'slider-image',
+                        'data-bgposition' => "center center",
+                        'data-bgfit' => "cover",
+                        'data-bgrepeat' => "no-repeat",
+                        'data-kenburns' => "on",
+                        'data-duration' => "9000",
+                        'data-ease' => "Linear.easeNone",
+                        'data-scalestart' => "115",
+                        'data-scaleend' => "100",
+                        'data-rotatestart' => "0",
+                        'data-rotateend' => "0",
+                        'data-offsetstart' => "0 -200",
+                        'data-offsetend' => "0 200",
+                        'data-bgparallax' => "0",
+                        'class' => "rev-slidebg"]);
+                    ?>
+
+                    <div class="tp-caption tp-caption-overlay tp-caption-overlay-primary main-label"
+                         data-x="center"
+                         data-y="264"
+                         data-start="1200"
+                         data-whitespace="nowrap"						 
+                         data-transform_in="s:500;">Second carusel lorem</div>
+
+                    <div class="tp-caption tp-caption-overlay-opacity bottom-label"
+                         data-x="center"
+                         data-y="358"
+                         data-start="2000"
+                         data-transform_in="y:[100%];opacity:0;s:500;">The #2 Lorem ispum is dolar</div>
+						 <a href="#">View More</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="item">
-        <?= Html::img('@web/images/slide_2.jpg', ['alt' => 'slider-image']); ?>
+    <div class="container">
+        <div class="row mt-xl">
+            <div class="col-md-10 col-md-offset-1">
+
+                <div class="tabs tabs-bottom tabs-center tabs-simple mt-sm mb-xl">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tabsNavigationSimpleIcons1" data-toggle="tab">
+                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                        <span class="box-content p-none m-none">
+                                            <i class="icon-featured icon-bulb icons"></i>
+                                        </span>
+                                    </span>
+                                </span>									
+                                <p class="mb-none pb-none">Strategy</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabsNavigationSimpleIcons2" data-toggle="tab">
+                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                        <span class="box-content p-none m-none">
+                                            <i class="icon-featured icon-mustache icons"></i>
+                                        </span>
+                                    </span>
+                                </span>									
+                                <p class="mb-none pb-none">Creative</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabsNavigationSimpleIcons3" data-toggle="tab">
+                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                        <span class="box-content p-none m-none">
+                                            <i class="icon-featured icon-puzzle icons"></i>
+                                        </span>
+                                    </span>
+                                </span>									
+                                <p class="mb-none pb-none">Development</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabsNavigationSimpleIcons4" data-toggle="tab">
+                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
+                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
+                                        <span class="box-content p-none m-none">
+                                            <i class="icon-featured icon-rocket icons"></i>
+                                        </span>
+                                    </span>
+                                </span>									
+                                <p class="mb-none pb-none">Marketing</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabsNavigationSimpleIcons1">
+                            <div class="center">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabsNavigationSimpleIcons2">
+                            <div class="center">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabsNavigationSimpleIcons3">
+                            <div class="center">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus.Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tabsNavigationSimpleIcons4">
+                            <div class="center">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="center">
+                    <a class="btn btn-default mt-md" href="demo-digital-agency-services.html">Learn More <i class="fa fa-angle-right pl-xs"></i></a>
+                </p>
+            </div>
+        </div>
+
     </div>
-    <div class="item">
-        <?= Html::img('@web/images/slide_3.jpg', ['alt' => 'slider-image']); ?>
-    </div>
-</div>
-<!-- //Carousel End -->
-<!-- Container Start -->
-<!-- //Carousel End -->
-<!-- Container Start -->
-<!-- //Carousel End -->
-<!-- Container Start -->
-<!-- //Carousel End -->
-<!-- Container Start -->
-<div class="container">
-    <section class="purchas-main">
-        <div class="container bg-border">
+    <section class="section section-default section-default-scale-8">
+        <div class="container">
             <div class="row">
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <h1 class="purchae-hed">Excellent admin template for laravel</h1></div>
-                <div class="col-md-5 col-sm-5 col-xs-12"><a href="#" class="btn btn-primary purchase-styl pull-right">Purchase now</a></div>
+                <div class="col-md-12 center">
+                    <h2 class="mb-none mt-none font-weight-semibold text-light">Who We Are:</h2>
+                    <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
+                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                        <hr>
+                    </div>
+                    <p class="mb-none text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>
+
+                    <a class="btn btn-primary mt-xl mb-sm" href="demo-digital-agency-about.html">Learn More <i class="fa fa-angle-right pl-xs"></i></a>
+                </div>
             </div>
         </div>
     </section>
-    <!-- Service Section Start-->
-    <div class="row">
-        <!-- Responsive Section Start -->
-        <div class="text-center">
-            <h3 class="border-primary"><span class="heading_border bg-primary">Our Services</span></h3>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="box">
-                <div class="box-icon">
-                    <i class="livicon icon" data-name="desktop" data-size="55" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
+    <section class="mt-xl mb-none pb-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 center">
+                    <h2 class="mb-none mt-xl font-weight-semibold">Recent Work:</h2>
+                    <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
+                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                        <hr>
+                    </div>
                 </div>
-                <div class="info">
-                    <h3 class="success text-center">Responsive</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
-                    <div class="text-right primary"><a href="#">Read more</a>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="carousel-areas mt-xl mb-none">
+                        <div class="owl-carousel owl-theme m-none" data-plugin-options="{'autoHeight': true, 'items': 1, 'margin': 10, 'nav': true, 'dots': false, 'stagePadding': 0}">
+                            <div>
+                                <a href="demo-digital-agency-work-detail.html">
+                                    <img alt="" class="img-responsive" src="img/previews/areas/content-7.png">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="demo-digital-agency-work-detail.html">
+                                    <img alt="" class="img-responsive" src="img/previews/areas/content-5.png">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- //Responsive Section End -->
-        <!-- Easy to Use Section Start -->
-        <div class="col-sm-6 col-md-3">
-            <!-- Box Start -->
-            <div class="box">
-                <div class="box-icon box-icon1">
-                    <i class="livicon icon1" data-name="gears" data-size="55" data-loop="true" data-c="#418bca" data-hc="#418bca"></i>
-                </div>
-                <div class="info">
-                    <h3 class="primary text-center">Easy to Use</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!.</p>
-                    <div class="text-right primary"><a href="#">Read more</a>
+    </section>
+    <section class="section section-tertiary section-front mt-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 center">
+                    <div class="row">
+                        <div class="col-md-12 center">
+                            <h2 class="mb-none mt-xl font-weight-semibold text-dark">Who Loves Us</h2>
+                            <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
+                            <div class="divider divider-primary divider-small divider-small-center mb-xl">
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="300">
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
+                                </blockquote>
+                                <div class="testimonial-arrow-down"></div>
+                                <div class="testimonial-author">
+                                    <img src="img/clients/client-1.jpg" class="img-responsive img-circle" alt="">
+                                    <p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
+                                </div>
+                            </div>
+                        </div>								
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
+                                </blockquote>
+                                <div class="testimonial-arrow-down"></div>
+                                <div class="testimonial-author">
+                                    <img src="img/clients/client-2.jpg" class="img-responsive img-circle" alt="">
+                                    <p><strong>Jessica Doe</strong><span>Marketing - Okler</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInRight" data-appear-animation-delay="700">
+                                <blockquote>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
+                                </blockquote>
+                                <div class="testimonial-arrow-down"></div>
+                                <div class="testimonial-author">
+                                    <img src="img/clients/client-3.jpg" class="img-responsive img-circle" alt="">
+                                    <p><strong>Bob Smith</strong><span>CEO & Founder - Okler</span></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- //Easy to Use Section End -->
-        <!-- Clean Design Section Start -->
-        <div class="col-sm-6 col-md-3">
-            <div class="box">
-                <div class="box-icon box-icon2">
-                    <i class="livicon icon1" data-name="doc-portrait" data-size="55" data-loop="true" data-c="#f89a14" data-hc="#f89a14"></i>
-                </div>
-                <div class="info">
-                    <h3 class="warning text-center">Clean Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
-                    <div class="text-right primary"><a href="#">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //Clean Design Section End -->
-        <!-- 20+ Page Section Start -->
-        <div class="col-sm-6 col-md-3">
-            <div class="box">
-                <div class="box-icon box-icon3">
-                    <i class="livicon icon1" data-name="folder-open" data-size="55" data-loop="true" data-c="#FFD43C" data-hc="#FFD43C"></i>
-                </div>
-                <div class="info">
-                    <h3 class="yellow text-center">20+ Pages</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti atque, tenetur quam aspernatur corporis at explicabo nulla dolore necessitatibus doloremque exercitationem sequi dolorem architecto perferendis quas aperiam debitis dolor soluta!</p>
-                    <div class="text-right primary"><a href="#">Read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- //20+ Page Section End -->
-    </div>
-    <!-- //Services Section End -->
-</div>
-<!-- Layout Section Start -->
-<section class="feature-main">
-    <div class="container">
-        <div class="row">
+    </section>
 
-            <div class="col-md-9 col-sm-9 col-xs-12">
-                <div class="layout-image">
-                    <?= Html::img('@web/images/layout.png', ['class' => 'img-responsive']); ?>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-12">
-                <ul class="list-unstyled pull-right text-right layout-styl">
-                    <li>
-                        <i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> Responsive clean design
-                    </li>
-                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> User friendly </li>
-                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> HTML5 </li>
-                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> CSS3 </li>
-                    <li><i class="livicon" data-name="checked-on" data-size="20" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i> Bootstrap 3.3.4 </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- //Layout Section Start -->
-<!-- Accordions Section End -->
-<div class="container">
-    <div class="row">
-        <!-- Accordions Start -->
-        <div class="text-center">
-            <h3 class="border-success"><span class="heading_border bg-success">Accordions</span></h3>
-            <label class=" text-center"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.</label>
-        </div>
-        <!-- Accordions End -->
-        <div class="col-md-6 col-sm-12">
-            <!-- Tabbable-Panel Start -->
-            <div class="tabbable-panel">
-                <!-- Tabbablw-line Start -->
-                <div class="tabbable-line">
-                    <!-- Nav Nav-tabs Start -->
-                    <ul class="nav nav-tabs ">
-                        <li class="active">
-                            <a href="#tab_default_1" data-toggle="tab">
-                                Web </a>
-                        </li>
-                        <li>
-                            <a href="#tab_default_2" data-toggle="tab">
-                                Html 5 </a>
-                        </li>
-                        <li>
-                            <a href="#tab_default_3" data-toggle="tab">
-                                CSS 3 </a>
-                        </li>
-                        <li>
-                            <a href="#tab_default_4" data-toggle="tab">
-                                Bootstrap </a>
-                        </li>
-                    </ul>
-                    <!-- //Nav Nav-tabs End -->
-                    <!-- Tab-content Start -->
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_default_1">
-                            <div class="media">
-                                <div class="media-left tab col-sm-12">
-                                    <a href="#">
-                                        <?= Html::img('@web/images/authors/img1.jpg', ['class' => 'media-object img-responsive']); ?>
-                                    </a>
-                                </div>
-                            </div>
-                            <p>
-                                Metrics business-to-business beta bootstrapping virality graphical user interface infrastructure conversion launch party long tail. Strategy virality validation bandwidth creative low hanging fruit long tail startup gen-z business plan technology. Strategy termsheet venture stealth non-disclosure agreement accelerator research & development scrum project product management freemium infographic business plan.
-                            </p>
-                        </div>
-                        <div class="tab-pane" id="tab_default_2">
-                            <div class="media">
-                                <div class="media-left media-middle tab col-sm-12">
-                                    <a href="#">
-                                        <?= Html::img('@web/images/authors/img2.jpg', ['class' => 'media-object img-responsive']); ?>
-                                    </a>
-                                </div>
-                            </div>
-                            <p>
-                                Branding iteration conversion market sales advisor holy grail entrepreneur backing. Gen-z non-disclosure agreement holy grail business-to-consumer disruptive deployment marketing channels seed money seed round ramen pivot social proof. Venture creative metrics focus A/B testing crowdfunding. IPhone scrum project user experience freemium interaction design long tail stealth ownership hackathon crowdfunding investor.
-                            </p>
-                        </div>
-                        <div class="tab-pane" id="tab_default_3">
-                            <div class="media">
-                                <div class="media-left media-middle tab col-sm-12">
-                                    <a href="#">
-                                        <?= Html::img('@web/images/authors/img3.jpg', ['class' => 'media-object img-responsive']); ?>
-                                    </a>
-                                </div>
-                            </div>
-                            <p>
-                                Beta analytics startup direct mailing leverage learning curve www.discoverartisans.com business-to-consumer. IPad metrics channels pivot deployment business plan android burn rate hackathon vesting period research & development launch party user experience. Seed round freemium value proposition learning curve series A financing funding research & development crowdsource. 
-                            </p>
-                        </div>
-                        <div class="tab-pane" id="tab_default_4">
-                            <div class="media">
-                                <div class="media-left media-middle tab col-sm-12">
-                                    <a href="#">
-                                        <?= Html::img('@web/images/authors/img4.jpg', ['class' => 'media-object img-responsive']); ?>
-                                    </a>
-                                </div>
-                            </div>
-                            <p>
-                                Paradigm shift twitter pitch research & development venture. Startup partnership www.discoverartisans.com supply chain crowdsource hackathon metrics paradigm shift interaction design influencer holy grail first mover advantage ramen validation. User experience founders burn rate learning curve infographic leverage gen-z supply chain first mover advantage. 
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Tab-content End -->
-                </div>
-                <!-- //Tabbablw-line End -->
-            </div>
-            <!-- Tabbable_panel End -->
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <!-- Panel-group Start -->
-            <div class="panel-group" id="accordion">
-                <!-- Panel Panel-default Start -->
-                <div class="panel panel-default">
-                    <!-- Panel-heading Start -->
-                    <div class="panel-heading text_bg">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                <span class=" glyphicon glyphicon-minus success"></span>
-                                <span class="success">Why Choose Us</span></a>
-                        </h4>
-                    </div>
-                    <!-- //Panel-heading End -->
-                    <!-- Collapseone Start -->
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <p>In 1972 a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Come and knock on our door. We've been waiting for you. Where the kisses are hers and hers and his. Three's company too. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Here's the story of a man named Brady who was busy with three boys of his own. One two three four five six seven eight Sclemeel schlemazel hasenfeffer incorporated? Till the one day when the lady met this fellow and they knew it was much more than a hunch. Baby if you've ever wondered.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Collapseone End -->
-                </div>
-                <!-- //Panel Panel-default End -->
-                <div class="panel panel-default">
-                    <div class="panel-heading text_bg">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                <span class=" glyphicon glyphicon-plus success"></span>
-                                <span class="success">Why Choose Us</span>
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>
-                                In 1972 a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Come and knock on our door. We've been waiting for you. Where the kisses are hers and hers and his. Three's company too. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Here's the story of a man named Brady who was busy with three boys of his own. One two three four five six seven eight Sclemeel schlemazel hasenfeffer incorporated? Till the one day when the lady met this fellow and they knew it was much more than a hunch. Baby if you've ever wondered.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading text_bg">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                <span class=" glyphicon glyphicon-plus success"></span>
-                                <span class="success">Why Choose Us</span></a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <p>
-                                In 1972 a crack commando unit was sent to prison by a military court for a crime they didn't commit. These men promptly escaped from a maximum security stockade to the Los Angeles underground. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Come and knock on our door. We've been waiting for you. Where the kisses are hers and hers and his. Three's company too. Flying away on a wing and a prayer. Who could it be? Believe it or not its just me. Here's the story of a man named Brady who was busy with three boys of his own. One two three four five six seven eight Sclemeel schlemazel hasenfeffer incorporated? Till the one day when the lady met this fellow and they knew it was much more than a hunch. Baby if you've ever wondered.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- //Panle-group End -->
-        </div>
-    </div>
-    <!-- //Accordions Section End -->
-    <!-- Our Team Start -->
-    <div class="row text-center">
-        <h3 class=" border-danger"><span class="heading_border bg-danger">Our Team</span></h3>
-        <div class="col-md-3 col-sm-5 profile">
-            <div class="thumbnail bg-white">
-                <?= Html::img('@web/images/img_3.jpg', ['alt' => 'team-image','class'=>'img-responsive']); ?>
-                <div class="caption">
-                    <b>John Doe</b>
-                    <br /> Founder & Partner
-                    <br />
-                    <div class="divide">
-                        <a href="#" class="divider"> <i class="livicon" data-name="facebook" data-size="22" data-loop="true" data-c="#3a5795" data-hc="#3a5795"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="twitter" data-size="22" data-loop="true" data-c="#55acee" data-hc="#55acee"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="google-plus" data-size="22" data-loop="true" data-c="#d73d32" data-hc="#d73d32"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="linkedin" data-size="22" data-loop="true" data-c="#1b86bd" data-hc="#1b86bd"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-5 profile">
-            <div class="thumbnail bg-white">
-                <?= Html::img('@web/images/img_5.jpg', ['alt' => 'team-image']); ?>
-                <div class="caption">
-                    <b>John Doe</b>
-                    <br /> Founder & Partner
-                    <br />
-                    <div class="divide">
-                        <a href="#" class="divider"> <i class="livicon" data-name="facebook" data-size="22" data-loop="true" data-c="#3a5795" data-hc="#3a5795"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="twitter" data-size="22" data-loop="true" data-c="#55acee" data-hc="#55acee"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="google-plus" data-size="22" data-loop="true" data-c="#d73d32" data-hc="#d73d32"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="linkedin" data-size="22" data-loop="true" data-c="#1b86bd" data-hc="#1b86bd"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-5 profile">
-            <div class="thumbnail bg-white">
-                <?= Html::img('@web/images/img_4.jpg', ['alt' => 'team-image','class'=>'img-responsive']); ?>
-                <div class="caption">
-                    <b>John Doe</b>
-                    <br /> Founder & Partner
-                    <br />
-                    <div class="divide">
-                        <a href="#" class="divider"> <i class="livicon" data-name="facebook" data-size="22" data-loop="true" data-c="#3a5795" data-hc="#3a5795"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="twitter" data-size="22" data-loop="true" data-c="#55acee" data-hc="#55acee"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="google-plus" data-size="22" data-loop="true" data-c="#d73d32" data-hc="#d73d32"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="linkedin" data-size="22" data-loop="true" data-c="#1b86bd" data-hc="#1b86bd"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-5 profile">
-            <div class="thumbnail bg-white">
-                <?= Html::img('@web/images/img_6.jpg', ['alt' => 'team-image']); ?>
-                <div class="caption">
-                    <b>John Doe</b>
-                    <br /> Founder & Partner
-                    <br />
-                    <div class="divide">
-                        <a href="#" class="divider"> <i class="livicon" data-name="facebook" data-size="22" data-loop="true" data-c="#3a5795" data-hc="#3a5795"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="twitter" data-size="22" data-loop="true" data-c="#55acee" data-hc="#55acee"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="google-plus" data-size="22" data-loop="true" data-c="#d73d32" data-hc="#d73d32"></i>
-                        </a>
-                        <a href="#"> <i class="livicon" data-name="linkedin" data-size="22" data-loop="true" data-c="#1b86bd" data-hc="#1b86bd"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //Our Team End -->
-    <!-- What we are section Start -->
-    <div class="row">
-        <!-- What we are Start -->
-        <div class="col-md-6 col-sm-6">
-            <div class="text-left">
-                <div>
-                    <h4 class="border-warning"><span class="heading_border bg-warning">What We Are</span></h4>
-                </div>
-            </div>
-            <?= Html::img('@web/images/image_12.jpg', ['class' => 'img-responsive']); ?>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <p>
-            <div class="text-right primary"><a href="#">Read more</a></div>
-            </p>
-        </div>
-        <!-- //What we are End -->
-        <!-- About Us Start -->
-        <div class="col-md-6 col-sm-6">
-            <div class="text-left">
-                <div>
-                    <h4 class="border-success"><span class="heading_border bg-success">About Us</span></h4>
-                </div>
-            </div>
-            <?= Html::img('@web/images/image_11.jpg', ['class' => 'img-responsive']); ?>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-            <p>
-            <div class="text-right primary"><a href="#">Read more</a>
-            </div>
-            </p>
-        </div>
-        <!-- //About Us End -->
-    </div>
-    <!-- //What we are section End -->
-    <!-- Testimonial Start -->
-    <div class="row">
-        <!-- Testimonial Section -->
-        <div class="text-center">
-            <h3 class="border-primary"><span class="heading_border bg-primary">Testimonials</span></h3>
-        </div>
-        <div class="col-md-4">
-            <div class="author">
-                <?= Html::img('@web/images/authors/avatar3.jpg', ['class' => 'img-responsive img-circle pull-left']); ?>
-                <p class="text-right">
-                    Tonny Jakson
-                    <br>
-                    <small class="text-right">Themeforest.net</small>
-                </p>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="author">
-                <?= Html::img('@web/images/authors/avatar2.jpg', ['class' => 'img-responsive img-circle pull-left']); ?>
-                <p class="text-right">
-                    Tonny Jakson
-                    <br>
-                    <small class="text-right">Themeforest.net</small>
-                </p>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="author">
-                <?= Html::img('@web/images/authors/avatar4.jpg', ['class' => 'img-responsive img-circle pull-left']); ?>
-                <p class="text-right">
-                    Tonny Jakson
-                    <br>
-                    <small class="text-right">Themeforest.net</small>
-                </p>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-        <!-- Testimonial Section End -->
-    </div>
-    <!-- Testimonial End -->
-    <!-- Features Start -->
-    <div class="row features">
-        <div class="text-center">
-            <div class="text-center">
-                <h3 class=" border-warning"><span class="heading_border bg-warning">Features</span></h3>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div>
-                <a href="#"><i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#25a3d8" data-hc="#25a3d8"></i></a>
-                <h4><bold>Responsive Design</bold></h4>
-            </div>
-            <div>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-            <div>
-                <a href="#"> <i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#ef8424 " data-hc="#ef8424 "></i>
-                </a>
-                <h4><bold>Html 5</bold></h4>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div>
-                <a href="#"> <i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#01bc8c" data-hc="#01bc8c"></i>
-                </a>
-                <h4><bold>Unique Design</bold></h4>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-            <div>
-                <a href="#"> <i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#1360b3 " data-hc="#1360b3 "></i>
-                </a>
-                <h4><bold>Css</bold></h4>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div>
-                <a href="#"> <i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#FFD43C" data-hc="#FFD43C"></i>
-                </a>
-                <h4>Clean Design</h4>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-            <div>
-                <a href="#"> <i class="livicon" data-name="checked-on" data-size="22" data-loop="true" data-c="#91d659 " data-hc="#91d659 "></i>
-                </a>
-                <h4>Bootstrap</h4>
-                <p>
-                    <label>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."</label>
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- //Features End -->
-    <!-- Our Skills Start -->
-
-    <div class="text-center marbtm10">
-        <h3 class="border-danger"><span class="heading_border bg-danger">Our Skills</span></h3>
-    </div>
-</div>
-<div class="sliders">
-    <!-- Our skill Section start -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6  text-center ">
-                <div class="text-center center-block">
-                    <div id="myStat3" class="center-block" data-startdegree="0" data-dimension="150" data-text="90%" data-width="4" data-fontsize="28" data-percent="90" data-fgcolor="#3abec0" data-bgcolor="#eee"></div>
-                    <strong class="success">Bootstrap</strong>
+
+        <div class="row mt-xl">
+            <div class="counters counters-text-dark">
+                <div class="col-md-3 col-sm-6">
+                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+                        <i class="fa fa-user"></i>
+                        <strong data-to="25000" data-append="+">0</strong>
+                        <label>Happy Clients</label>
+                        <p class="text-color-primary mb-xl">They can’t be wrong</p>
+                    </div>
                 </div>
-                <span>Lorem Ipsum is simply dummy text of the printing and type setting industry</span>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center">
-                <div class="text-center center-block">
-                    <div id="myStat4" class="center-block" data-startdegree="0" data-dimension="150" data-text="60%" data-width="4" data-fontsize="28" data-percent="60" data-fgcolor="#3abec0" data-bgcolor="#eee"></div>
-                    <strong class="success">Jquery</strong>
+                <div class="col-md-3 col-sm-6">
+                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
+                        <i class="fa fa-desktop"></i>
+                        <strong data-to="19">0</strong>
+                        <label>Premade HomePages</label>
+                        <p class="text-color-primary mb-xl">Many more to come</p>
+                    </div>
                 </div>
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center">
-                <div class="text-center center-block">
-                    <div id="myStat5" class="center-block" data-startdegree="0" data-dimension="150" data-text="100%" data-width="4" data-fontsize="28" data-percent="100" data-fgcolor="#3abec0" data-bgcolor="#eee"></div>
-                    <strong class="success">Html 5</strong>
+                <div class="col-md-3 col-sm-6">
+                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
+                        <i class="fa fa-ticket"></i>
+                        <strong data-to="2500" data-append="+">0</strong>
+                        <label>Answered Tickets</label>
+                        <p class="text-color-primary mb-xl">Satisfaction guaranteed</p>
+                    </div>
                 </div>
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
-            </div>
-            <div class="col-md-3 col-sm-6 text-center">
-                <div class="text-center center-block">
-                    <div id="myStat6" class="center-block" data-startdegree="0" data-dimension="150" data-text="70%" data-width="4" data-fontsize="28" data-percent="70" data-fgcolor="#3abec0" data-bgcolor="#eee"></div>
-                    <strong class="success">CSS 3</strong>
+                <div class="col-md-3 col-sm-6">
+                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="1200">
+                        <i class="fa fa-clock-o"></i>
+                        <strong data-to="3000" data-append="+">0</strong>
+                        <label>Development Hours</label>
+                        <p class="text-color-primary mb-xl">Available to you for only $17</p>
+                    </div>
                 </div>
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry</span>
             </div>
+
         </div>
-        <!-- Our skills Section End -->
     </div>
-    <!-- //Our Skills End -->
 </div>
-<!-- //Container End -->
-<!-- Footer Section Start -->

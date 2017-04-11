@@ -83,8 +83,8 @@ return [
         ],
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
-            'languages' => ['am', 'ru','en'],
-            'enableDefaultLanguageUrlCode' => true,
+            'languages' => ['ru','en'],
+            'enableDefaultLanguageUrlCode' => false,
             'enableLanguagePersistence' => false,
             'showScriptName' => false,
             'rules' => $Rules,
