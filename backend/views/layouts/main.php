@@ -13,6 +13,7 @@ use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
 use common\models\Language;
 use backend\models\Pages;
+
 AppAsset::register($this);
 $currentUrl = trim(substr($_SERVER['REQUEST_URI'], 3));
 $languages = Language::find()->asArray()->all();
@@ -214,7 +215,7 @@ $pages = Pages::find()->asArray()->all();
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-circle img-responsive pull-left','width'=>'35','height'=>'35']); ?>
+                                <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-circle img-responsive pull-left', 'width' => '35', 'height' => '35']); ?>
                                 <div class="riot">
                                     <div>
                                         Riot
@@ -291,13 +292,13 @@ $pages = Pages::find()->asArray()->all();
                             <li <?php if ($currentUrl == "/site/index"): ?>class="active"<?php endif ?>>
                                 <a href="/">
                                     <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
-                                    <span class="title">Dashboard</span>
+                                    <span class="title"><?= Yii::t('app', 'Dashboard') ?></span>
                                 </a>
                             </li>
                             <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index' || $currentUrl == '/blog-categories/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="comment" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
-                                    <span class="title">Blog</span>
+                                    <span class="title"><?= Yii::t('app', 'Blog') ?></span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
@@ -312,10 +313,25 @@ $pages = Pages::find()->asArray()->all();
                                     </li>
                                 </ul>
                             </li>
+                            <li <?php if ($currentUrl == "/user/index" || $currentUrl == "/user/create"): ?>class="active"<?php endif ?>>
+                                <a href="#">
+                                    <i class="livicon" data-name="users" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                                    <span class="title">Users</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Users List'), Url::to(['user/index'])) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New User'), Url::to(['user/create'])) ?>
+                                    </li>
+                                </ul>
+                            </li>
                             <li <?php if ($currentUrl == '/news/index' || $currentUrl == '/news/create'): ?>class="active"<?php endif ?>>
                                 <a href="#">
                                     <i class="livicon" data-name="move" data-c="#EF6F6C" data-hc="#EF6F6C" data-size="18" data-loop="true"></i>
-                                    <span class="title">News</span>
+                                    <span class="title"><?= Yii::t('app', 'News') ?></span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
@@ -330,7 +346,7 @@ $pages = Pages::find()->asArray()->all();
                             <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="flag" data-c="#418bca" data-hc="#418bca" data-size="18" data-loop="true"></i>
-                                    <span class="title">Pages</span>
+                                    <span class="title"><?= Yii::t('app', 'Pages') ?></span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
@@ -340,22 +356,36 @@ $pages = Pages::find()->asArray()->all();
                                     <li <?php if ($currentUrl == "/pages/create"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New Page'), Url::to(['pages/create'])) ?>
                                     </li>
-                                    <?php foreach($pages as $page):?>
+                                    <?php foreach ($pages as $page): ?>
+                                        <li>
+                                            <a href="<?= Url::to(['pages/update', 'id' => $page['id']]) ?>">
+                                                <i class="fa fa-angle-double-right"></i> <?= $page['title'] ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
                                     <li>
-                                        <a href="<?= Url::to(['pages/update', 'id'=>$page['id']])?>">
-                                            <i class="fa fa-angle-double-right"></i> <?=$page['title']?>
-                                        </a>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
                                     </li>
-                                    <?php endforeach;?>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'About Us'), Url::to(['aboutus/index'])) ?>
+                                    </li>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Contact Us'), Url::to(['contactus/index'])) ?>
+                                    </li>
                                 </ul>
                             </li>
-                             <li>
-                            <a href="<?= Url::to('/faq/index')?>">
-                                <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
-                                <?=Yii::t('app','Faq')?>
-                                <span class="badge badge-danger">10</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a href="<?= Url::to('/content/index') ?>">
+                                    <i class="livicon" data-name="brush" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
+                                    <?= Yii::t('app', 'Content') ?>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::to('/faq/index') ?>">
+                                    <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                                    <?= Yii::t('app', 'Faq') ?>
+                                </a>
+                            </li>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>
@@ -370,12 +400,12 @@ $pages = Pages::find()->asArray()->all();
                 </div -->
                 <!-- Main content -->
                 <section class="content-header">
-                    <h1><?=$this->title?></h1>
+                    <h1><?= $this->title ?></h1>
                     <?=
-                        Breadcrumbs::widget([
-                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        ])
-                        ?>
+                    Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ])
+                    ?>
                     <?php
                     /* Breadcrumbs::widget([
                       'itemTemplate' => "<li>{link}</li>\n",
