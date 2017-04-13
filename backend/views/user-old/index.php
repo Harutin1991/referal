@@ -4,11 +4,17 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\UserSearch */
+/* @var $searchModel app\models\admin\search\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
+?>
+<?php
+$this->registerCssFile("@web/vendors/datatables/extensions/bootstrap/dataTables.bootstrap.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/tables.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -23,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel">
                     <div class="panel-body pn">
                         <div class="table-responsive">
-                            <?=
+                          <?=
                             GridView::widget([
                                 'dataProvider' => $dataProvider,
 //                        'filterModel' => $searchModel,
@@ -47,12 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'class' => 'yii\grid\ActionColumn',
                                         'template' => '{update}',
                                     ],
-                                    'first_name',
-                                    'last_name',
-                                    'gender',
-                                    'phone',
-                                    'starting_amount',
-                                    'purse',
                                 ],
                             ]);
                             ?>

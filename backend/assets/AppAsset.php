@@ -37,6 +37,8 @@ class AppAsset extends AssetBundle
         'vendors/charts/jquery.sparkline.js',
         'vendors/jvectormap/jquery-jvectormap-1.2.2.min.js',
         'vendors/jvectormap/jquery-jvectormap-world-mill-en.js',
+        'vendors/datatables/js/jquery.dataTables.min.js',
+        'vendors/datatables/extensions/bootstrap/dataTables.bootstrap.js',
         'vendors/jscharts/Chart.js',
         'js/forms-editing.js',
         //'js/noConflict.js',

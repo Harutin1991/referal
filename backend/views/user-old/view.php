@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\User */
+/* @var $model app\models\User */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a(Yii::t('app', 'Back'), ['index'], ['class' => 'btn btn-primary pull-right']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -30,39 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'first_name',
-            'last_name',
-            'email:email',
             'password',
-            'role',
-            'bio:ntext',
-            'gender',
-            'dob',
-            'pic',
-            'country',
-            'state',
-            'city',
-            'address',
-            'phone',
-            'mobile_phone',
-            'postal',
-            'starting_amount',
-            'purse',
-            'referal_link',
-            'invitation_users_count',
             'auth_key',
-            'remember_token',
-            'password_token',
-            'api_key',
-            'social_type',
-            'social_id',
-            'social_user_name',
-            'status',
-            'activity_status',
-            'referal_link_created',
-            'deleted_at',
-            'created',
-            'updated',
+            'token',
+            'email:email',
         ],
     ]) ?>
 

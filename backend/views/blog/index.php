@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="tray tray-center filter">
                 <div id="product-form_cont">
-                    <?= Html::a(Yii::t('app', '<i class="fa fa-plus fa-plus-square pr5"></i>Create New Blog'), ['/blog/create'], ['class' => 'btn btn-responsive button-alignment btn-success mb15']) ?>
+                    <?= Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>'.Yii::t('app', 'Create New Blog'), ['/blog/create'], ['class' => 'btn btn-responsive button-alignment btn-success mb15']) ?>
                 </div>
                 <div class="panel">
                     <div class="panel-body pn">
