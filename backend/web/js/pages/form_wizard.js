@@ -1,9 +1,5 @@
 // bootstrap wizard//
-$("#gender, #gender1").select2({
-    theme:"bootstrap",
-    placeholder:"",
-    width: '100%'
-});
+
 $("#commentForm").bootstrapValidator({
     fields: {
         username: {

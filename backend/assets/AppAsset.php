@@ -39,8 +39,12 @@ class AppAsset extends AssetBundle
         'vendors/jvectormap/jquery-jvectormap-world-mill-en.js',
         'vendors/datatables/js/jquery.dataTables.min.js',
         'vendors/datatables/extensions/bootstrap/dataTables.bootstrap.js',
+        'vendors/jasny-bootstrap/jasny-bootstrap.min.js',
+        'vendors/bootstrap-wizard/jquery.bootstrap.wizard.min.js',
+        'vendors/validation/js/bootstrapValidator.min.js',
         'vendors/jscharts/Chart.js',
         'js/forms-editing.js',
+        'js/pages/form_wizard.js',
         //'js/noConflict.js',
     ];
     public $depends = [
