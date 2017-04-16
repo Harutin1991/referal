@@ -60,10 +60,12 @@ class UserController extends Controller {
      */
     public function actionCreate() {
         $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        if (Yii::$app->request->isAjax) {
+            echo "<pre>";print_r(Yii::$app->request->post());die;
+            return json_encode(['success' => true]);
+        } elseif($model->load(Yii::$app->request->post()) && $model->save()){
+            return $this->redirect(['update', 'id' => $model->id]);
+        }else{
             return $this->render('create', [
                         'model' => $model,
             ]);

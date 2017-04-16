@@ -97,7 +97,7 @@ $this->title = Yii::t('app', 'Referal | HOME');
                             <div class="header-column">
                                 <div class="header-logo">
                                     <a href="demo-digital-agency.html">
-										<?= Html::img('@web/img/logo.png', ['width' => '131','height'=>'40']); ?>
+                                        <?= Html::img('@web/img/logo.png', ['width' => '131', 'height' => '40']); ?>
                                     </a>
                                 </div>
                             </div>
@@ -107,21 +107,21 @@ $this->title = Yii::t('app', 'Referal | HOME');
                                         <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main">
                                             <i class="fa fa-bars"></i>
                                         </button>
-										
+
                                         <ul class="header-social-icons social-icons hidden-xs">
                                             <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                             <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                             <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                                         </ul>
-                            <div class="dropdown" style="float: right; margin-top: 38px;">
-                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    RUSSIAN                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                                                                                        <li><a href="/en">ENGLISH</a></li>
-                                                                                                                                                                                                                                            <li><a href="/am">ARMENIAN</a></li>
-                                                                                                            </ul>
-                            </div>
+                                        <div class="dropdown" style="float: right; margin-top: 38px;">
+                                            <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                RUSSIAN                                    <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                <li><a href="/en">ENGLISH</a></li>
+                                                <li><a href="/am">ARMENIAN</a></li>
+                                            </ul>
+                                        </div>
                                         <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1 collapse">
                                             <nav>
                                                 <ul class="nav nav-pills" id="mainNav">
@@ -133,8 +133,8 @@ $this->title = Yii::t('app', 'Referal | HOME');
                                                 </ul>
                                             </nav>
                                         </div>
-										<a class="btn mt-xl mb-sm want" style="margin-left: 160px;" href="demo-digital-agency-about.html">Хочу заработать</a>
-									</div>
+                                        <a class="btn mt-xl mb-sm want" style="margin-left: 160px;" href="demo-digital-agency-about.html">Хочу заработать</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

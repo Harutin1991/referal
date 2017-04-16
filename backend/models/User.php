@@ -24,6 +24,7 @@ use Yii;
  * @property string $address
  * @property string $phone
  * @property string $mobile_phone
+ * @property string $other_phone
  * @property string $postal
  * @property integer $starting_amount
  * @property string $purse
@@ -43,7 +44,7 @@ use Yii;
  * @property string $created
  * @property string $updated
  */
-class User extends \yii\db\ActiveRecord {
+class User extends \common\models\User {
 
     const ADMIN = 0;
 
@@ -59,13 +60,13 @@ class User extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['username', 'first_name', 'last_name', 'email', 'password', 'phone', 'mobile_phone', 'starting_amount', 'purse', 'referal_link', 'invitation_users_count', 'auth_key', 'social_user_name', 'status', 'activity_status'], 'required'],
-            [['role', 'starting_amount', 'purse', 'invitation_users_count', 'status', 'activity_status'], 'integer'],
+            [['username', 'email', 'password','role'], 'required'],
+            [['role', 'starting_amount', 'purse', 'invitation_users_count', 'status','gender', 'activity_status'], 'integer'],
             [['bio'], 'string'],
             [['dob', 'referal_link_created', 'deleted_at', 'created', 'updated'], 'safe'],
-            [['username', 'first_name', 'last_name', 'email', 'gender', 'pic', 'country', 'state', 'city', 'address', 'postal', 'referal_link', 'password_token', 'api_key', 'social_type', 'social_id', 'social_user_name'], 'string', 'max' => 255],
+            [['username', 'first_name', 'last_name', 'email', 'pic', 'country', 'state', 'city', 'address', 'postal', 'referal_link', 'password_token', 'api_key', 'social_type', 'social_id', 'social_user_name'], 'string', 'max' => 255],
             [['password'], 'string', 'max' => 60],
-            [['phone', 'mobile_phone'], 'string', 'max' => 50],
+            [['phone', 'mobile_phone','other_phone'], 'string', 'max' => 50],
             [['auth_key'], 'string', 'max' => 32],
             [['remember_token'], 'string', 'max' => 100],
             [['username'], 'unique'],
@@ -83,7 +84,7 @@ class User extends \yii\db\ActiveRecord {
             'last_name' => Yii::t('app', 'Last Name'),
             'email' => Yii::t('app', 'Email'),
             'password' => Yii::t('app', 'Password'),
-            'role' => Yii::t('app', 'Role'),
+            'role' => Yii::t('app', 'Account type'),
             'bio' => Yii::t('app', 'Bio'),
             'gender' => Yii::t('app', 'Gender'),
             'dob' => Yii::t('app', 'Dob'),
@@ -92,8 +93,9 @@ class User extends \yii\db\ActiveRecord {
             'state' => Yii::t('app', 'State'),
             'city' => Yii::t('app', 'City'),
             'address' => Yii::t('app', 'Address'),
-            'phone' => Yii::t('app', 'Phone'),
-            'mobile_phone' => Yii::t('app', 'Mobile Phone'),
+            'phone' => Yii::t('app', 'Personal Phone'),
+            'mobile_phone' => Yii::t('app', 'Home Number'),
+            'other_phone' => Yii::t('app', 'Alternate number'),
             'postal' => Yii::t('app', 'Postal'),
             'starting_amount' => Yii::t('app', 'Starting Amount'),
             'purse' => Yii::t('app', 'Purse'),
@@ -123,6 +125,16 @@ class User extends \yii\db\ActiveRecord {
      */
     public static function findByUsername($username) {
         return static::findOne(['username' => $username]);
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->password);
     }
 
 }

@@ -60,7 +60,7 @@ $this->registerCssFile("@web/css/filInput.css", [
 ?>
 <div class="row">
     <div class="col-lg-12">
-        <ul class="nav  nav-tabs ">
+        <ul class="nav nav-tabs" style='margin-left: 17px;'>
             <?php foreach ($languages as $value): ?>
                 <li class="<?php
                 if ($value['is_default']) {
@@ -84,7 +84,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
                                             <i class="livicon" data-name="doc-portrait" data-c="#fff" data-hc="#fff" data-size="18" data-loop="true"></i>
-                                            Form Actions On Top & Bottom
+                                            <?= Yii::t('app', 'Blog Details') ?>
                                         </h3>
                                         <span class="pull-right">
                                             <i class="fa fa-fw fa-chevron-up clickable"></i>
@@ -194,7 +194,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                 </div>
                                                 <div class="form-group">
 
-                                                    <div class="col-md-6 pt15">
+                                                    <div class="col-md-6 pt15" style="margin-left: -14px;">
                                                         <label>Featured image</label>
                                                         <?=
                                                                 $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])

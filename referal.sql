@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Апр 12 2017 г., 15:49
--- Версия сервера: 10.1.19-MariaDB
--- Версия PHP: 5.6.28
+-- Host: 127.0.0.1
+-- Generation Time: Apr 16, 2017 at 09:15 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,27 +14,27 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `referal`
+-- Database: `referal`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `aboutus`
+-- Table structure for table `aboutus`
 --
 
-CREATE TABLE `aboutus` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `aboutus` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` text NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `aboutus`
+-- Dumping data for table `aboutus`
 --
 
 INSERT INTO `aboutus` (`id`, `title`, `short_description`, `description`) VALUES
@@ -43,41 +43,41 @@ INSERT INTO `aboutus` (`id`, `title`, `short_description`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `articles`
+-- Table structure for table `articles`
 --
 
-CREATE TABLE `articles` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `articles` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `articles_home`
+-- Table structure for table `articles_home`
 --
 
-CREATE TABLE `articles_home` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `articles_home` (
+`id` int(11) unsigned NOT NULL,
   `asrticle_id` int(11) NOT NULL,
   `ordering` int(2) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `blog`
+-- Table structure for table `blog`
 --
 
-CREATE TABLE `blog` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `blog_category_id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `blog` (
+`id` int(11) unsigned NOT NULL,
+  `blog_category_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `short_description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -88,31 +88,31 @@ CREATE TABLE `blog` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `blog_categories`
+-- Table structure for table `blog_categories`
 --
 
-CREATE TABLE `blog_categories` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `blog_categories` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `blog_comments`
+-- Table structure for table `blog_comments`
 --
 
-CREATE TABLE `blog_comments` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `blog_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `blog_comments` (
+`id` int(10) unsigned NOT NULL,
+  `blog_id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -120,53 +120,53 @@ CREATE TABLE `blog_comments` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `calculator`
+-- Table structure for table `calculator`
 --
 
-CREATE TABLE `calculator` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `calculator` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `calculator_profit`
+-- Table structure for table `calculator_profit`
 --
 
-CREATE TABLE `calculator_profit` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `calculator_profit` (
+`id` int(11) unsigned NOT NULL,
   `background` varchar(255) DEFAULT NULL,
   `description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `contactus`
+-- Table structure for table `contactus`
 --
 
-CREATE TABLE `contactus` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `contactus` (
+`id` int(11) unsigned NOT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `mobile_phone` varchar(255) DEFAULT NULL,
   `fax` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `coordinate` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `contactus`
+-- Dumping data for table `contactus`
 --
 
 INSERT INTO `contactus` (`id`, `phone`, `mobile_phone`, `fax`, `email`, `coordinate`) VALUES
@@ -175,11 +175,11 @@ INSERT INTO `contactus` (`id`, `phone`, `mobile_phone`, `fax`, `email`, `coordin
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content`
+-- Table structure for table `content`
 --
 
-CREATE TABLE `content` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `content` (
+`id` int(11) unsigned NOT NULL,
   `slider` varchar(50) DEFAULT NULL,
   `how_to_earn` varchar(255) DEFAULT NULL,
   `investor_pakage` varchar(255) DEFAULT NULL,
@@ -189,23 +189,23 @@ CREATE TABLE `content` (
   `articles` varchar(255) DEFAULT NULL,
   `content_type` varchar(255) NOT NULL,
   `ordering` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `countries`
+-- Table structure for table `countries`
 --
 
-CREATE TABLE `countries` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `countries` (
+`id` int(11) NOT NULL,
   `sortname` varchar(3) NOT NULL,
   `name` varchar(150) NOT NULL,
   `status` smallint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=247 ;
 
 --
--- Дамп данных таблицы `countries`
+-- Dumping data for table `countries`
 --
 
 INSERT INTO `countries` (`id`, `sortname`, `name`, `status`) VALUES
@@ -459,21 +459,21 @@ INSERT INTO `countries` (`id`, `sortname`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `currency`
+-- Table structure for table `currency`
 --
 
-CREATE TABLE `currency` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `currency` (
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `exchange_value` float DEFAULT '0',
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   `short_code` varchar(255) NOT NULL,
   `default` int(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `currency`
+-- Dumping data for table `currency`
 --
 
 INSERT INTO `currency` (`id`, `name`, `exchange_value`, `created_date`, `updated_date`, `short_code`, `default`) VALUES
@@ -483,11 +483,11 @@ INSERT INTO `currency` (`id`, `name`, `exchange_value`, `created_date`, `updated
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `faq`
+-- Table structure for table `faq`
 --
 
-CREATE TABLE `faq` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `faq` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
@@ -495,10 +495,10 @@ CREATE TABLE `faq` (
   `status` tinyint(1) NOT NULL,
   `yes_count` int(10) NOT NULL DEFAULT '0',
   `no_count` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `faq`
+-- Dumping data for table `faq`
 --
 
 INSERT INTO `faq` (`id`, `title`, `short_description`, `description`, `ordering`, `status`, `yes_count`, `no_count`) VALUES
@@ -507,11 +507,11 @@ INSERT INTO `faq` (`id`, `title`, `short_description`, `description`, `ordering`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `files`
+-- Table structure for table `files`
 --
 
-CREATE TABLE `files` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `files` (
+`id` int(10) unsigned NOT NULL,
   `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -519,10 +519,10 @@ CREATE TABLE `files` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `top` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `files`
+-- Dumping data for table `files`
 --
 
 INSERT INTO `files` (`id`, `path`, `category`, `category_id`, `mime`, `created_at`, `updated_at`, `top`) VALUES
@@ -532,48 +532,48 @@ INSERT INTO `files` (`id`, `path`, `category`, `category_id`, `mime`, `created_a
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `how_to_earn`
+-- Table structure for table `how_to_earn`
 --
 
-CREATE TABLE `how_to_earn` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `how_to_earn` (
+`id` int(11) unsigned NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `ordering` int(2) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `invsetor_packages`
+-- Table structure for table `invsetor_packages`
 --
 
-CREATE TABLE `invsetor_packages` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `invsetor_packages` (
+`id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text,
   `price` float DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
   `default_package` smallint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `language`
+-- Table structure for table `language`
 --
 
-CREATE TABLE `language` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `language` (
+`id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `short_code` varchar(250) DEFAULT NULL,
   `ordering` int(11) NOT NULL DEFAULT '1',
   `is_default` smallint(6) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Дамп данных таблицы `language`
+-- Dumping data for table `language`
 --
 
 INSERT INTO `language` (`id`, `name`, `short_code`, `ordering`, `is_default`) VALUES
@@ -583,17 +583,17 @@ INSERT INTO `language` (`id`, `name`, `short_code`, `ordering`, `is_default`) VA
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `message`
+-- Table structure for table `message`
 --
 
-CREATE TABLE `message` (
+CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL,
   `language` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `translation` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `message`
+-- Dumping data for table `message`
 --
 
 INSERT INTO `message` (`id`, `language`, `translation`) VALUES
@@ -608,26 +608,26 @@ INSERT INTO `message` (`id`, `language`, `translation`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `message_system`
+-- Table structure for table `message_system`
 --
 
-CREATE TABLE `message_system` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `message_system` (
+`id` int(11) NOT NULL,
   `sender_user_id` int(11) NOT NULL COMMENT 'User who sent message',
   `recipient_user_id` int(11) NOT NULL COMMENT 'User who get message',
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `status` int(1) NOT NULL COMMENT 'Is message read',
   `send_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `migrations`
+-- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -635,37 +635,37 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `most_active_users`
+-- Table structure for table `most_active_users`
 --
 
-CREATE TABLE `most_active_users` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `most_active_users` (
+`id` int(11) unsigned NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `news`
+-- Table structure for table `news`
 --
 
-CREATE TABLE `news` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `news` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ordering`
+-- Table structure for table `ordering`
 --
 
-CREATE TABLE `ordering` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ordering` (
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `customer_address_id` int(11) NOT NULL,
   `status` int(1) DEFAULT NULL,
@@ -676,10 +676,10 @@ CREATE TABLE `ordering` (
   `accepted_date` datetime NOT NULL,
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `ordering`
+-- Dumping data for table `ordering`
 --
 
 INSERT INTO `ordering` (`id`, `customer_id`, `customer_address_id`, `status`, `payment_type`, `product_info`, `billing_address`, `shipping_address`, `accepted_date`, `created_date`, `updated_date`) VALUES
@@ -688,25 +688,25 @@ INSERT INTO `ordering` (`id`, `customer_id`, `customer_address_id`, `status`, `p
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `other_investor_diff`
+-- Table structure for table `other_investor_diff`
 --
 
-CREATE TABLE `other_investor_diff` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `other_investor_diff` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `ordering` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `pages`
+-- Table structure for table `pages`
 --
 
-CREATE TABLE `pages` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pages` (
+`id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text,
   `status` int(1) DEFAULT NULL,
@@ -718,10 +718,10 @@ CREATE TABLE `pages` (
   `short_description` varchar(255) NOT NULL,
   `route_name` varchar(255) DEFAULT NULL,
   `social_link` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `pages`
+-- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`id`, `title`, `content`, `status`, `parent_id`, `ordering`, `created_date`, `updated_date`, `type`, `short_description`, `route_name`, `social_link`) VALUES
@@ -730,11 +730,11 @@ INSERT INTO `pages` (`id`, `title`, `content`, `status`, `parent_id`, `ordering`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `pakages`
+-- Table structure for table `pakages`
 --
 
-CREATE TABLE `pakages` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `pakages` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text NOT NULL,
@@ -742,16 +742,16 @@ CREATE TABLE `pakages` (
   `status` tinyint(1) NOT NULL,
   `created_date` int(11) NOT NULL,
   `updated_date` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `pakage_price`
+-- Table structure for table `pakage_price`
 --
 
-CREATE TABLE `pakage_price` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `pakage_price` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) NOT NULL,
   `description` text NOT NULL,
@@ -759,15 +759,15 @@ CREATE TABLE `pakage_price` (
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `route_name` varchar(255) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `password_resets`
+-- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -776,11 +776,11 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `payment`
+-- Table structure for table `payment`
 --
 
-CREATE TABLE `payment` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `payment` (
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `amount` float DEFAULT NULL,
@@ -788,16 +788,45 @@ CREATE TABLE `payment` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   `order_id` int(11) DEFAULT NULL COMMENT 'store order id wich related to payment'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `service`
+-- Table structure for table `referal_links`
 --
 
-CREATE TABLE `service` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `referal_links` (
+`id` int(11) unsigned NOT NULL,
+  `referal_link` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `expiration_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `referer_users`
+--
+
+CREATE TABLE IF NOT EXISTS `referer_users` (
+`id` int(11) unsigned NOT NULL,
+  `user_referer` int(11) NOT NULL,
+  `user_registered` int(11) DEFAULT NULL,
+  `registered_status` tinyint(1) NOT NULL,
+  `from_link` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE IF NOT EXISTS `service` (
+`id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(250) DEFAULT NULL,
@@ -805,36 +834,36 @@ CREATE TABLE `service` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   `price` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `slider`
+-- Table structure for table `slider`
 --
 
-CREATE TABLE `slider` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `slider` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `source_message`
+-- Table structure for table `source_message`
 --
 
-CREATE TABLE `source_message` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `source_message` (
+`id` int(11) unsigned NOT NULL,
   `category` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'app',
   `message` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `source_message`
+-- Dumping data for table `source_message`
 --
 
 INSERT INTO `source_message` (`id`, `category`, `message`) VALUES
@@ -844,17 +873,17 @@ INSERT INTO `source_message` (`id`, `category`, `message`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `states`
+-- Table structure for table `states`
 --
 
-CREATE TABLE `states` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `states` (
+`id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4121 ;
 
 --
--- Дамп данных таблицы `states`
+-- Dumping data for table `states`
 --
 
 INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
@@ -4983,41 +5012,41 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_about`
+-- Table structure for table `tr_about`
 --
 
-CREATE TABLE `tr_about` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_about` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `aboutus_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_articles`
+-- Table structure for table `tr_articles`
 --
 
-CREATE TABLE `tr_articles` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_articles` (
+`id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `events_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_blog`
+-- Table structure for table `tr_blog`
 --
 
-CREATE TABLE `tr_blog` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_blog` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(255) NOT NULL,
@@ -5025,124 +5054,124 @@ CREATE TABLE `tr_blog` (
   `meta_key` varchar(255) NOT NULL,
   `language_id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_blog_categories`
+-- Table structure for table `tr_blog_categories`
 --
 
-CREATE TABLE `tr_blog_categories` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_blog_categories` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `language_id` int(11) NOT NULL,
   `blog_categories_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_calculator`
+-- Table structure for table `tr_calculator`
 --
 
-CREATE TABLE `tr_calculator` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_calculator` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `calculator_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_contact`
+-- Table structure for table `tr_contact`
 --
 
-CREATE TABLE `tr_contact` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_contact` (
+`id` int(11) unsigned NOT NULL,
   `address` varchar(500) NOT NULL,
   `contact_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_faq`
+-- Table structure for table `tr_faq`
 --
 
-CREATE TABLE `tr_faq` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_faq` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `faq_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_how_to_earn`
+-- Table structure for table `tr_how_to_earn`
 --
 
-CREATE TABLE `tr_how_to_earn` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_how_to_earn` (
+`id` int(11) unsigned NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `how_to_earn_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_invsetor_packages`
+-- Table structure for table `tr_invsetor_packages`
 --
 
-CREATE TABLE `tr_invsetor_packages` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_invsetor_packages` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `invsetor_packages_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_news`
+-- Table structure for table `tr_news`
 --
 
-CREATE TABLE `tr_news` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_news` (
+`id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `news_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_pages`
+-- Table structure for table `tr_pages`
 --
 
-CREATE TABLE `tr_pages` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_pages` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `pages_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
   `short_description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `tr_pages`
+-- Dumping data for table `tr_pages`
 --
 
 INSERT INTO `tr_pages` (`id`, `title`, `content`, `pages_id`, `language_id`, `short_description`) VALUES
@@ -5151,55 +5180,55 @@ INSERT INTO `tr_pages` (`id`, `title`, `content`, `pages_id`, `language_id`, `sh
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_pakages`
+-- Table structure for table `tr_pakages`
 --
 
-CREATE TABLE `tr_pakages` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_pakages` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `pakage_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_pakage_price`
+-- Table structure for table `tr_pakage_price`
 --
 
-CREATE TABLE `tr_pakage_price` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_pakage_price` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `pakage_price_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tr_slider`
+-- Table structure for table `tr_slider`
 --
 
-CREATE TABLE `tr_slider` (
-  `id` int(11) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `tr_slider` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(255) DEFAULT NULL,
   `slider_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+`id` int(10) unsigned NOT NULL,
   `username` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -5207,7 +5236,7 @@ CREATE TABLE `user` (
   `password` varchar(60) NOT NULL,
   `role` tinyint(1) NOT NULL DEFAULT '0',
   `bio` text,
-  `gender` varchar(255) DEFAULT NULL,
+  `gender` tinyint(2) DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `pic` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
@@ -5216,11 +5245,12 @@ CREATE TABLE `user` (
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(50) NOT NULL,
   `mobile_phone` varchar(50) NOT NULL,
+  `other_phone` varchar(255) DEFAULT NULL,
   `postal` varchar(255) DEFAULT NULL,
   `starting_amount` int(10) NOT NULL,
-  `purse` int(10) UNSIGNED NOT NULL,
+  `purse` int(10) unsigned NOT NULL,
   `referal_link` varchar(255) NOT NULL,
-  `invitation_users_count` int(10) UNSIGNED NOT NULL,
+  `invitation_users_count` int(10) unsigned NOT NULL,
   `auth_key` varchar(32) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `password_token` varchar(255) DEFAULT NULL,
@@ -5234,579 +5264,590 @@ CREATE TABLE `user` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `user`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `role`, `bio`, `gender`, `dob`, `pic`, `country`, `state`, `city`, `address`, `phone`, `mobile_phone`, `postal`, `starting_amount`, `purse`, `referal_link`, `invitation_users_count`, `auth_key`, `remember_token`, `password_token`, `api_key`, `social_type`, `social_id`, `social_user_name`, `status`, `activity_status`, `referal_link_created`, `deleted_at`, `created`, `updated`) VALUES
-(1, 'admin123', '', '', 'info@termoros.am', '$2y$13$/LJHW5TgflHq.P62ek8/lObb2E4ui0V0FCKeM8JdysaA5w0bWu/n2', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, 0, 0, '', 0, 'zJIqL7C9wyCHbcwbugyZr-jT9zEYdcQ1', NULL, '', NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', '2017-03-04 15:25:58');
+INSERT INTO `user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `role`, `bio`, `gender`, `dob`, `pic`, `country`, `state`, `city`, `address`, `phone`, `mobile_phone`, `other_phone`, `postal`, `starting_amount`, `purse`, `referal_link`, `invitation_users_count`, `auth_key`, `remember_token`, `password_token`, `api_key`, `social_type`, `social_id`, `social_user_name`, `status`, `activity_status`, `referal_link_created`, `deleted_at`, `created`, `updated`) VALUES
+(1, 'admin123', '', '', 'info@termoros.am', '$2y$13$cOqQNxujcCnt9hq510fBaeauxVaT9pTSZ7ivvl06I/wLXMCRPnCYa', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, 0, 0, '', 0, 'zJIqL7C9wyCHbcwbugyZr-jT9zEYdcQ1', NULL, '', NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', '2017-04-15 09:00:37'),
+(2, 'asg', 'sdfgsdfg', 'sfgsdfgfd', 'harut-good@mail.ru', 'sdfgsdf', 1, '', 1, NULL, NULL, '', '', '', '', '', '', '', '', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 11:58:07', '2017-04-16 11:58:07'),
+(3, 'test', 'Test', 'test', 'test@test.com', 'test2015', 2, '<p>fgsfgsdfgsdfgsdfg</p>\r\n', 1, '0000-00-00', NULL, '', '', '', 'New York, NY, United States', '', '', '', '', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 12:19:29', '2017-04-16 12:19:29'),
+(4, 'sdfa', 'asdfasdf', 'dfasd', 'harut-good@mail.ru', 'adf', 2, '<p>asdfasdfsdfasdf</p>\r\n', 1, '0000-00-00', NULL, 'United States', 'IA, Iowa', 'West Des Moines', 'Taste of New York, South Jordan Creek Parkway, West Des Moines, IA, United StatesSouth Jordan Creek Parkway', '12313', '1321', '2313', '50266', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 13:02:15', '2017-04-16 13:02:15');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_card`
+-- Table structure for table `user_card`
 --
 
-CREATE TABLE `user_card` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_card` (
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `card_nuber` varchar(20) DEFAULT NULL,
   `date_from` varchar(10) DEFAULT NULL,
   `date_to` varchar(10) DEFAULT NULL,
   `cv_code` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `aboutus`
+-- Indexes for table `aboutus`
 --
 ALTER TABLE `aboutus`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `articles`
+-- Indexes for table `articles`
 --
 ALTER TABLE `articles`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `articles_home`
+-- Indexes for table `articles_home`
 --
 ALTER TABLE `articles_home`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `blog`
+-- Indexes for table `blog`
 --
 ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_3` (`id`),
-  ADD KEY `blog_category_id` (`blog_category_id`),
-  ADD KEY `id` (`id`),
-  ADD KEY `id_2` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id_3` (`id`), ADD KEY `blog_category_id` (`blog_category_id`), ADD KEY `id` (`id`), ADD KEY `id_2` (`id`);
 
 --
--- Индексы таблицы `blog_categories`
+-- Indexes for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `blog_comments`
+-- Indexes for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `calculator`
+-- Indexes for table `calculator`
 --
 ALTER TABLE `calculator`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `calculator_profit`
+-- Indexes for table `calculator_profit`
 --
 ALTER TABLE `calculator_profit`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `contactus`
+-- Indexes for table `contactus`
 --
 ALTER TABLE `contactus`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `content`
+-- Indexes for table `content`
 --
 ALTER TABLE `content`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `countries`
+-- Indexes for table `countries`
 --
 ALTER TABLE `countries`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `currency`
+-- Indexes for table `currency`
 --
 ALTER TABLE `currency`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `faq`
+-- Indexes for table `faq`
 --
 ALTER TABLE `faq`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `files`
+-- Indexes for table `files`
 --
 ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `how_to_earn`
+-- Indexes for table `how_to_earn`
 --
 ALTER TABLE `how_to_earn`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `invsetor_packages`
+-- Indexes for table `invsetor_packages`
 --
 ALTER TABLE `invsetor_packages`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `language`
+-- Indexes for table `language`
 --
 ALTER TABLE `language`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
-  ADD PRIMARY KEY (`id`,`language`),
-  ADD KEY `idx_message_language` (`language`);
+ ADD PRIMARY KEY (`id`,`language`), ADD KEY `idx_message_language` (`language`);
 
 --
--- Индексы таблицы `message_system`
+-- Indexes for table `message_system`
 --
 ALTER TABLE `message_system`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `most_active_users`
+-- Indexes for table `most_active_users`
 --
 ALTER TABLE `most_active_users`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `ordering`
+-- Indexes for table `ordering`
 --
 ALTER TABLE `ordering`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `other_investor_diff`
+-- Indexes for table `other_investor_diff`
 --
 ALTER TABLE `other_investor_diff`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `pages`
+-- Indexes for table `pages`
 --
 ALTER TABLE `pages`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `pakages`
+-- Indexes for table `pakages`
 --
 ALTER TABLE `pakages`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `pakage_price`
+-- Indexes for table `pakage_price`
 --
 ALTER TABLE `pakage_price`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`),
-  ADD KEY `password_resets_token_index` (`token`);
+ ADD KEY `password_resets_email_index` (`email`), ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Индексы таблицы `payment`
+-- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `order_id` (`order_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `customer_id` (`customer_id`), ADD KEY `order_id` (`order_id`);
 
 --
--- Индексы таблицы `service`
+-- Indexes for table `referal_links`
+--
+ALTER TABLE `referal_links`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `referer_users`
+--
+ALTER TABLE `referer_users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `slider`
+-- Indexes for table `slider`
 --
 ALTER TABLE `slider`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `source_message`
+-- Indexes for table `source_message`
 --
 ALTER TABLE `source_message`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `states`
+-- Indexes for table `states`
 --
 ALTER TABLE `states`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_about`
+-- Indexes for table `tr_about`
 --
 ALTER TABLE `tr_about`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_articles`
+-- Indexes for table `tr_articles`
 --
 ALTER TABLE `tr_articles`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_blog`
+-- Indexes for table `tr_blog`
 --
 ALTER TABLE `tr_blog`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_blog_categories`
+-- Indexes for table `tr_blog_categories`
 --
 ALTER TABLE `tr_blog_categories`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `language_id` (`language_id`),
-  ADD KEY `blog_categories_id` (`blog_categories_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `language_id` (`language_id`), ADD KEY `blog_categories_id` (`blog_categories_id`);
 
 --
--- Индексы таблицы `tr_calculator`
+-- Indexes for table `tr_calculator`
 --
 ALTER TABLE `tr_calculator`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_contact`
+-- Indexes for table `tr_contact`
 --
 ALTER TABLE `tr_contact`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_faq`
+-- Indexes for table `tr_faq`
 --
 ALTER TABLE `tr_faq`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_how_to_earn`
+-- Indexes for table `tr_how_to_earn`
 --
 ALTER TABLE `tr_how_to_earn`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_invsetor_packages`
+-- Indexes for table `tr_invsetor_packages`
 --
 ALTER TABLE `tr_invsetor_packages`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_news`
+-- Indexes for table `tr_news`
 --
 ALTER TABLE `tr_news`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_pages`
+-- Indexes for table `tr_pages`
 --
 ALTER TABLE `tr_pages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_page_pages_id` (`pages_id`),
-  ADD KEY `fk_page_language_id` (`language_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_page_pages_id` (`pages_id`), ADD KEY `fk_page_language_id` (`language_id`);
 
 --
--- Индексы таблицы `tr_pakages`
+-- Indexes for table `tr_pakages`
 --
 ALTER TABLE `tr_pakages`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_pakage_price`
+-- Indexes for table `tr_pakage_price`
 --
 ALTER TABLE `tr_pakage_price`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tr_slider`
+-- Indexes for table `tr_slider`
 --
 ALTER TABLE `tr_slider`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
 
 --
--- Индексы таблицы `user_card`
+-- Indexes for table `user_card`
 --
 ALTER TABLE `user_card`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_cr_card_cust_id` (`customer_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_cr_card_cust_id` (`customer_id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `aboutus`
+-- AUTO_INCREMENT for table `aboutus`
 --
 ALTER TABLE `aboutus`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `articles`
+-- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `articles_home`
+-- AUTO_INCREMENT for table `articles_home`
 --
 ALTER TABLE `articles_home`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `blog`
+-- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `blog_categories`
+-- AUTO_INCREMENT for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `blog_comments`
+-- AUTO_INCREMENT for table `blog_comments`
 --
 ALTER TABLE `blog_comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `calculator`
+-- AUTO_INCREMENT for table `calculator`
 --
 ALTER TABLE `calculator`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `calculator_profit`
+-- AUTO_INCREMENT for table `calculator_profit`
 --
 ALTER TABLE `calculator_profit`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `contactus`
+-- AUTO_INCREMENT for table `contactus`
 --
 ALTER TABLE `contactus`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `content`
+-- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `countries`
+-- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=247;
 --
--- AUTO_INCREMENT для таблицы `currency`
+-- AUTO_INCREMENT for table `currency`
 --
 ALTER TABLE `currency`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT для таблицы `faq`
+-- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `files`
+-- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT для таблицы `how_to_earn`
+-- AUTO_INCREMENT for table `how_to_earn`
 --
 ALTER TABLE `how_to_earn`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `invsetor_packages`
+-- AUTO_INCREMENT for table `invsetor_packages`
 --
 ALTER TABLE `invsetor_packages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `language`
+-- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT для таблицы `message_system`
+-- AUTO_INCREMENT for table `message_system`
 --
 ALTER TABLE `message_system`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `most_active_users`
+-- AUTO_INCREMENT for table `most_active_users`
 --
 ALTER TABLE `most_active_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `ordering`
+-- AUTO_INCREMENT for table `ordering`
 --
 ALTER TABLE `ordering`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `other_investor_diff`
+-- AUTO_INCREMENT for table `other_investor_diff`
 --
 ALTER TABLE `other_investor_diff`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `pages`
+-- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `pakages`
+-- AUTO_INCREMENT for table `pakages`
 --
 ALTER TABLE `pakages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `pakage_price`
+-- AUTO_INCREMENT for table `pakage_price`
 --
 ALTER TABLE `pakage_price`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `payment`
+-- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `service`
+-- AUTO_INCREMENT for table `referal_links`
+--
+ALTER TABLE `referal_links`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `referer_users`
+--
+ALTER TABLE `referer_users`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `slider`
+-- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `source_message`
+-- AUTO_INCREMENT for table `source_message`
 --
 ALTER TABLE `source_message`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT для таблицы `states`
+-- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4121;
 --
--- AUTO_INCREMENT для таблицы `tr_about`
+-- AUTO_INCREMENT for table `tr_about`
 --
 ALTER TABLE `tr_about`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_articles`
+-- AUTO_INCREMENT for table `tr_articles`
 --
 ALTER TABLE `tr_articles`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_blog`
+-- AUTO_INCREMENT for table `tr_blog`
 --
 ALTER TABLE `tr_blog`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_blog_categories`
+-- AUTO_INCREMENT for table `tr_blog_categories`
 --
 ALTER TABLE `tr_blog_categories`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_calculator`
+-- AUTO_INCREMENT for table `tr_calculator`
 --
 ALTER TABLE `tr_calculator`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_contact`
+-- AUTO_INCREMENT for table `tr_contact`
 --
 ALTER TABLE `tr_contact`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_faq`
+-- AUTO_INCREMENT for table `tr_faq`
 --
 ALTER TABLE `tr_faq`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_how_to_earn`
+-- AUTO_INCREMENT for table `tr_how_to_earn`
 --
 ALTER TABLE `tr_how_to_earn`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_invsetor_packages`
+-- AUTO_INCREMENT for table `tr_invsetor_packages`
 --
 ALTER TABLE `tr_invsetor_packages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_news`
+-- AUTO_INCREMENT for table `tr_news`
 --
 ALTER TABLE `tr_news`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_pages`
+-- AUTO_INCREMENT for table `tr_pages`
 --
 ALTER TABLE `tr_pages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT для таблицы `tr_pakages`
+-- AUTO_INCREMENT for table `tr_pakages`
 --
 ALTER TABLE `tr_pakages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_pakage_price`
+-- AUTO_INCREMENT for table `tr_pakage_price`
 --
 ALTER TABLE `tr_pakage_price`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `tr_slider`
+-- AUTO_INCREMENT for table `tr_slider`
 --
 ALTER TABLE `tr_slider`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT для таблицы `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT для таблицы `user_card`
+-- AUTO_INCREMENT for table `user_card`
 --
 ALTER TABLE `user_card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Ограничения внешнего ключа сохраненных таблиц
+-- Constraints for dumped tables
 --
 
 --
--- Ограничения внешнего ключа таблицы `blog`
+-- Constraints for table `blog`
 --
 ALTER TABLE `blog`
-  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

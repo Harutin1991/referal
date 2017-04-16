@@ -386,6 +386,12 @@ $pages = Pages::find()->asArray()->all();
                                     <?= Yii::t('app', 'Faq') ?>
                                 </a>
                             </li>
+							<li>
+                                <a href="<?= Url::to('/source-message/index') ?>">
+                                    <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
+                                    <?= Yii::t('app', 'Language Managment') ?>
+                                </a>
+                            </li>
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>

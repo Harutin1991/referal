@@ -298,7 +298,6 @@ $(document).ready(function () {
 
         e.preventDefault();
         var id = $(this).attr('id');
-
         var form = $(this);
         var url = form.attr('action');
         var formData = new FormData(this);
