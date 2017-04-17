@@ -66,8 +66,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                         },
                                     ],
                                     ['class' => 'yii\grid\ActionColumn',
-                                        'template' => '{update}{delete}',
+                                        'template' => '{subpages}{update}{delete}',
+                                        'contentOptions' => ['style' => 'width: 27%;'],
                                         'buttons' => [
+                                            'subpages'=>function($url, $model){
+                                                $url = \yii\helpers\Url::toRoute(['pages/sub-pages', 'id' => $model->id]);
+                                                return Html::a('<span class="glyphicon glyphicon-edit"></span>'.Yii::t('app','Sub Pages'), $url, [
+                                                            'title' => Yii::t('app','Sub Pages'),
+                                                            'aria-label' => Yii::t('app','Sub Pages'),
+                                                            'class' => 'btn btn-info btn-xs fs12 br2 ml5'
+                                                ]);
+                                            },
                                             'update' => function ($url, $model) {
                                                 return Html::a('<span class="glyphicon glyphicon-edit"></span> Edit', $url, [
                                                             'title' => 'Edit',

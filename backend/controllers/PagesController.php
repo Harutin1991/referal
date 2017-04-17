@@ -234,7 +234,7 @@ class PagesController extends Controller {
         ]);
     }
 
-    public function actionSubPage($id) {
+    public function actionCreateSubpage($id) {
         if (Yii::$app->request->post()) {
             
         } else {
@@ -243,6 +243,21 @@ class PagesController extends Controller {
             $model->parent_id = $id;
             $modelFiles = new Files();
             return $this->render('subpage', [
+                        'model' => $model,
+                        'modelFiles' => $modelFiles,
+                        'defoultId'=>$defaultLanguage->id
+            ]);
+        }
+    }
+    public function actionSubPages($id) {
+        if (Yii::$app->request->post()) {
+            
+        } else {
+            $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $model = new Pages();
+            $model->parent_id = $id;
+            $modelFiles = new Files();
+            return $this->render('sub_view', [
                         'model' => $model,
                         'modelFiles' => $modelFiles,
                         'defoultId'=>$defaultLanguage->id
