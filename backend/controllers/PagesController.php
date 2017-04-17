@@ -12,6 +12,10 @@ use yii\filters\AccessControl;
 use common\models\Language;
 use backend\models\User;
 use backend\models\TrPages;
+use yii\web\UploadedFile;
+use backend\models\Files;
+use yii\helpers\BaseFileHelper;
+use yii\imagine\Image;
 
 /**
  * PagesController implements the CRUD actions for Pages model.
@@ -29,7 +33,7 @@ class PagesController extends Controller {
                     'index' => ['GET', 'POST'],
                     'view' => ['GET'],
                     //'create' => ['POST'],
-                     'update' => ['POST','GET'],
+                    'update' => ['POST', 'GET'],
                     'delete' => ['POST'],
                 ],
             ],
@@ -86,7 +90,7 @@ class PagesController extends Controller {
             $id = Yii::$app->request->post('id');
             $model = $this->findModel($id);
             echo $_form = $this->renderPartial('_form', [
-                    'model' => $model,
+        'model' => $model,
             ]);
             exit();
         }
@@ -130,18 +134,22 @@ class PagesController extends Controller {
                     ->scalar();
             $pages->ordering = $order ? $order + 1 : 1;
             if ($pages->save()) {
+                $modelFiles = new Files();
+                $file = UploadedFile::getInstances($modelFiles, 'path');
+                if (!empty($file)) {
+                    $paths = $this->upload($file, $pages->id);
+                    $modelFiles->multiSave($paths, $pages->id, 1, 'pages');
+                }
                 $objLang = new Language();
                 $languages = $objLang->find()->asArray()->all();
                 foreach ($languages as $value) {
-
-                        $model = new TrPages();
-                        $model->title = $pages->title;
-                        $model->short_description = $pages->short_description;
-                        $model->content = $pages->content;
-                        $model->pages_id = $pages->id;
-                        $model->language_id = $value['id'];
-                        $model->save();
-
+                    $model = new TrPages();
+                    $model->title = $pages->title;
+                    $model->content = $pages->content;
+                    $model->short_description = $pages->short_description;
+                    $model->pages_id = $pages->id;
+                    $model->language_id = $value['id'];
+                    $model->save();
                 }
                 Yii::$app->session->setFlash('success', 'Page successfully created');
                 return $this->redirect(['update',
@@ -151,8 +159,10 @@ class PagesController extends Controller {
         } else {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
             $model = new Pages();
+            $modelFiles = new Files();
             return $this->render('create', [
                         'model' => $model,
+                        'modelFiles' => $modelFiles,
                         'defoultId' => $defaultLanguage->id
             ]);
         }
@@ -178,23 +188,30 @@ class PagesController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if(isset(Yii::$app->request->post()['Pages']) && !empty(Yii::$app->request->post()['Pages'])) {
+        if (isset(Yii::$app->request->post()['Pages']) && !empty(Yii::$app->request->post()['Pages'])) {
             $model_m = new TrPages();
 
             $arrPost = Yii::$app->request->post()['Pages'];
             $model->setAttributes($arrPost);
             $model->save();
+            $modelFiles = new Files();
+            $file = UploadedFile::getInstances($modelFiles, 'path');
+            if (!empty($file)) {
+                $paths = $this->upload($file, $model->id);
+                $modelFiles->multiSave($paths, $model->id, 1, 'pages');
+            }
             $trModel = $model_m->findOne(['language_id' => 1, 'pages_id' => $id]);
 
             if ($trModel) {
                 $trModel->title = $arrPost['title'];
-                $trModel->short_description = $arrPost['short_description'];
                 $trModel->content = $arrPost['content'];
             } else {
                 $trModel = new TrPages();
                 $trModel->title = $arrPost['title'];
-                $trModel->short_description = $arrPost['short_description'];
                 $trModel->content = $arrPost['content'];
+                if(isset($arrPost['short_description'])){
+                    $trModel->short_description = $arrPost['short_description'];
+                }
                 $trModel->language_id = $arrPost['language_id'];
                 $trModel->pages_id = $arrPost['pages_id'];
             }
@@ -208,11 +225,52 @@ class PagesController extends Controller {
             }
         }
 
+        $images = Files::find()->where(['category' => 'blog', 'category_id' => $id])->asArray()->all();
+        $modelFiles = new Files();
+        return $this->render('update', [
+                    'model' => $model,
+                    'modelFiles' => $modelFiles,
+                    'images' => $images,
+        ]);
+    }
 
-            return $this->render('update', [
+    public function actionSubPage($id) {
+        if (Yii::$app->request->post()) {
+            
+        } else {
+            $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $model = new Pages();
+            $model->parent_id = $id;
+            $modelFiles = new Files();
+            return $this->render('subpage', [
                         'model' => $model,
+                        'modelFiles' => $modelFiles,
+                        'defoultId'=>$defaultLanguage->id
             ]);
+        }
+    }
 
+    public function upload($imageFile, $id) {
+        $directoryPages = Yii::getAlias("@backend/web/uploads/images/pages/");
+        $directory = Yii::getAlias("@backend/web/uploads/images/pages/" . $id);
+        $directoryThumb = Yii::getAlias("@backend/web/uploads/images/pages/" . $id . "/thumbnail");
+        BaseFileHelper::createDirectory($directoryPages);
+        BaseFileHelper::createDirectory($directory);
+        BaseFileHelper::createDirectory($directoryThumb);
+        if ($imageFile) {
+            $paths = [];
+            foreach ($imageFile as $key => $image) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '_' . $key . '.' . $image->extension;
+                $filePath = $directory . '/' . $fileName;
+                $filePathThumb = $directoryThumb . '/' . $fileName;
+                $image->saveAs($filePath);
+                Image::thumbnail($filePath, 120, 120)->save(Yii::getAlias($directoryThumb . '/' . $fileName), ['quality' => 100]);
+                $paths[$key + 1] = $fileName;
+            }
+            return $paths;
+        }
+        return false;
     }
 
     /**

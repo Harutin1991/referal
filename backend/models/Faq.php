@@ -34,7 +34,7 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['title','description'], 'required'],
             [['short_description', 'description'], 'string'],
             [['ordering', 'status', 'yes_count', 'no_count'], 'integer'],
             [['title'], 'string', 'max' => 255],
@@ -48,9 +48,9 @@ class Faq extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
+            'title' => Yii::t('app', 'Question'),
             'short_description' => Yii::t('app', 'Short Description'),
-            'description' => Yii::t('app', 'Description'),
+            'description' => Yii::t('app', 'Answer'),
             'ordering' => Yii::t('app', 'Ordering'),
             'status' => Yii::t('app', 'Status'),
             'yes_count' => Yii::t('app', 'Yes Count'),

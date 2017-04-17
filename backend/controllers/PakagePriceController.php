@@ -8,6 +8,8 @@ use backend\models\PakagePriceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Language;
+use backend\models\TrPakagePrice;
 
 /**
  * PakagePriceController implements the CRUD actions for PakagePrice model.
@@ -66,10 +68,24 @@ class PakagePriceController extends Controller
         $model = new PakagePrice();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $objLang = new Language();
+                $languages = $objLang->find()->asArray()->all();
+                foreach ($languages as $value) {
+                    $trmodel = new TrPakagePrice();
+                    $trmodel->title = $model->title;
+                    $trmodel->description = $model->description;
+                    $trmodel->short_description = $model->short_description;
+                    $trmodel->pakage_price_id = $model->id;
+                    $trmodel->language_id = $value['id'];
+                    $trmodel->save();
+                }
+                Yii::$app->session->setFlash('success', 'Package successfully created');
+                return $this->redirect(['update','id' => $model->id]);
         } else {
+            $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
             return $this->render('create', [
-                'model' => $model,
+                        'model' => $model,
+                        'defoultId' => $defaultLanguage->id
             ]);
         }
     }

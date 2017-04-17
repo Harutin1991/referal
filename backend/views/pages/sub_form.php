@@ -2,21 +2,24 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\models\Language;
+use kartik\select2\Select2;
 use yii\helpers\Url;
+use common\models\Language;
+use yii\widgets\Pjax;
+
 $languages = Language::find()->asArray()->all();
+
 /* @var $this yii\web\View */
-/* @var $model backend\models\PakagePrice */
+/* @var $model backend\models\Brand */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <?php
 if (!$model->isNewRecord) {
-    $formId = 'packagePriceUpdate';
-    $action = '/pakage-price/update?id=' . $model->id;
+    $formId = 'pagesUpdate';
+    $action = '/pages/update?id=' . $model->id;
 } else {
-    $formId = 'pakagePriceCreate';
-    $action = '/pakage-price/create';
+    $formId = 'pagesCreate';
+    $action = '/pages/create';
 }
 
 $this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
@@ -29,7 +32,8 @@ $this->registerCssFile("@web/css/filInput.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="pages-form">
-    <?= Html::a(Yii::t('app', 'Back to package list'), ['/pakage-price/index'], ['class' => 'btn btn-primary mb15']) ?>
+    <?= Html::a(Yii::t('app','Back to page list'), ['/pages/index'], ['class' => 'btn btn-primary mb15']) ?>
+    <?= Html::a(Yii::t('app','Create Sub Page'), ['/pages/sub-page?id='.$model->id], ['class' => 'btn btn-success mb15 pull-right']) ?>
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">
@@ -51,7 +55,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                         }
                         ?>">
                             <a href="#tab_<?php echo $value['id'] ?>" data-toggle="tab"
-                               onclick="editPackagePriceTr(<?php echo $value['id']; ?>,<?php echo $model->id; ?>,<?php echo $value['is_default']; ?>)">
+                               onclick="editPagesTr(<?php echo $value['id']; ?>,<?php echo $model->id; ?>,<?php echo $value['is_default']; ?>)">
                                 <span class="flag-xs flag-<?php echo $value['short_code'] ?>"><?php echo $value['name'] ?></span>
                             </a>
                         </li>
@@ -73,19 +77,14 @@ $this->registerCssFile("@web/css/filInput.css", [
                                 'id' => $formId,
                     ]);
                     ?>
+                    <?=$form->field($model, 'parent_id')->hiddenInput(['value' => $model->parent_id])->label(false); ?>
                     <div class="tab-content row">
-                            <div class="col-md-6">
-                                <?=
-                                        $form->field($model, 'title', ['template' => '{label}<div class="">{input}{error}</div>'])
-                                        ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Package Title')])->label(Yii::t('app', 'Package Title'))
-                                ?>
-                            </div>
-                            <div class="col-md-6">
-                                <?=
-                                        $form->field($model, 'price', ['template' => '{label}<div class="">{input}{error}</div>'])
-                                        ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Package Price'), 'type' => 'number'])->label(Yii::t('app', 'Package Price'))
-                                ?>
-                            </div>
+                        <div class="col-md-12">
+                            <?=
+                                    $form->field($model, 'title', ['template' => '{label}<div class="">{input}{error}</div>'])
+                                    ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Page Title')])->label(false)
+                            ?>
+                        </div>
                         <div class="col-md-12">
                             <label><?= Yii::t('app', 'Short Description') ?></label>
                             <?=
@@ -95,13 +94,38 @@ $this->registerCssFile("@web/css/filInput.css", [
                             ?>
                         </div>
                         <div class="col-md-12">
-                            <label><?= Yii::t('app', 'Description') ?></label>
+                            <label><?= Yii::t('app', 'Page Content') ?></label>
                             <?=
-                                    $form->field($model, 'description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
+                                    $form->field($model, 'content', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
                                     {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
-                                    ->textarea(['rows' => 6, 'placeholder' => 'Description'])->label(false)
+                                    ->textarea(['rows' => 6, 'placeholder' => 'Page Content'])->label(false)
                             ?>
                         </div>
+                        <div class="form-group">
+
+                            <div class="col-md-6 pt15">
+                                <label><?= Yii::t('app', 'Upload Image') ?></label>
+                                <?=
+                                        $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
+                                        ->fileInput(
+                                                [
+                                                    'multiple' => false,
+                                                    'accept' => 'image/*',
+                                                    'onchange' => 'showMyImage(this, -1)',
+                                                    'class' => 'inputfile inputfile-6',
+                                                    'data-multiple-caption' => "{count} files selected",
+                                        ])->label('<span></span> <strong class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&ensp;Brows…</strong>', ['class' => false])
+                                ?>
+                                <div class="hidden" id="defaultimg">
+                                    <input type="radio" id="def_img_part_-1" name="defaultImage" value=""
+                                           class="hidden"/>
+                                </div>
+                                <div class="col-md-12 pt15" id="selectedFiles_-1">
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="form-group col-md-12">
@@ -127,6 +151,28 @@ $this->registerCssFile("@web/css/filInput.css", [
 
 </div>
 <?php
+$this->registerJs("
+$('#pages-title').on('focusout',function(){
+   var rout_name = $(this).val();
+   rout_name = rout_name.replace(/[^\w\s\-\d]/gi, '')
+   var splBy = rout_name.split('-');
+        splBy = splBy.filter(String);
+      rout_name = splBy.join(' ');
+   var rout_nameArray = rout_name.match(/[A-Z]*[^A-Z]+/g);
+   for(var i = 0; i < rout_nameArray.length; i++){
+        var splByspace = rout_nameArray[i].split(' ');
+        splByspace = splByspace.filter(String);
+        var str = splByspace.join('-'),
+        str = str.replace(/^\-{1,}|\-{1,}$/,'');
+        rout_nameArray[i]= str;
+   }
+   rout_name = rout_nameArray.join('-').toLowerCase()
+   
+   $('#pages-route_name').val(rout_name);
+})
+")
+?>
+<?php
 $this->registerJsFile(
         '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
@@ -146,3 +192,4 @@ $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 ?>
+

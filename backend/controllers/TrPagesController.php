@@ -87,14 +87,12 @@ class TrPagesController extends Controller {
 
             if ($trModel) {
                 $trModel->title = $arrPost['title'];
-                $trModel->short_description = $arrPost['short_description'];
                 $trModel->content = $arrPost['content'];
                 $trModel->language_id = $arrPost['language_id'];
                 $trModel->pages_id = $arrPost['pages_id'];
             } else {
                 $trModel = new TrPages();
                 $trModel->title = $arrPost['title'];
-                $trModel->short_description = $arrPost['short_description'];
                 $trModel->content = $arrPost['content'];
                 $trModel->language_id = $arrPost['language_id'];
                 $trModel->pages_id = $arrPost['pages_id'];

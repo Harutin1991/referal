@@ -49,21 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'placeholder' => 'Search'
                                         ],
                                     ],
-                                    ['attribute' => 'short_description',
+                                    ['attribute' => 'description',
+                                         'format' => 'html',
                                         'filterInputOptions' => [
                                             'class' => 'form-control',
                                         ],
-                                    ],
-                                    [
-                                        'attribute' => 'status',
-                                         'format' => 'html',
-                                        'value' => function ($model) {
-                                            if ($model->status == 0) {
-                                                return '<span class="label label-sm label-danger">'.Yii::t('app','Pasive').'</span>';
-                                            } else {
-                                                return '<span class="label label-sm label-success">'.Yii::t('app','Approved').'</span>';
-                                            }
-                                        },
                                     ],
                                     ['class' => 'yii\grid\ActionColumn',
                                         'template' => '{update}{delete}',

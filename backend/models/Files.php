@@ -77,7 +77,6 @@ class Files extends \yii\db\ActiveRecord {
                         'category_id' => $product_id,
                         'category' => $img_type,
                         'top' => $default_image,
-                        'status' => 1
                     ];
                 } else {
                     $data[] = [
@@ -85,13 +84,12 @@ class Files extends \yii\db\ActiveRecord {
                         'category_id' => $product_id,
                         'category' => $img_type,
                         'top' => 0,
-                        'status' => 1
                     ];
                 }
             }
             Yii::$app->db->createCommand()
                     ->batchInsert(
-                            'files', ['path', 'category_id', 'category', 'top', 'status'], $data
+                            'files', ['path', 'category_id', 'category', 'top'], $data
                     )
                     ->execute();
             return true;

@@ -80,16 +80,53 @@ class TrPakagePriceController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
+    public function actionUpdate() {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
+        if (isset(Yii::$app->request->post()['TrPakagePrice'])) {
+
+            $model = new TrPakagePrice();
+
+            $arrPost = Yii::$app->request->post()['TrPakagePrice'];
+            $trModel = $model->findOne(['language_id' => $arrPost['language_id'], 'pakage_price_id' => $arrPost['pakage_price_id']]);
+
+            if ($trModel) {
+                $trModel->title = $arrPost['title'];
+                $trModel->short_description = $arrPost['short_description'];
+                $trModel->description = $arrPost['description'];
+                $trModel->language_id = $arrPost['language_id'];
+                $trModel->pakage_price_id = $arrPost['pakage_price_id'];
+            } else {
+                $trModel = new TrPakagePrice();
+                $trModel->title = $arrPost['title'];
+                $trModel->description = $arrPost['description'];
+                $trModel->short_description = $arrPost['short_description'];
+                $trModel->language_id = $arrPost['language_id'];
+                $trModel->pakage_price_id = $arrPost['pakage_price_id'];
+            }
+
+
+            if ($trModel->save()) {
+                echo 'true';
+                exit();
+            } else {
+                echo 'false';
+                exit();
+            }
+        } elseif (!empty(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+
+            $arrPost = Yii::$app->request->post();
+            $tr_pagesObj = new TrPakagePrice();
+            $tr_pages = $tr_pagesObj->findOne(['language_id' => $arrPost['lang'], 'pakage_price_id' => $arrPost['pakage_price_id']]);
+
+            if (!$tr_pages) {
+                $tr_pages = new TrPakagePrice();
+                $tr_pages->language_id = $arrPost['lang'];
+                $tr_pages->pakage_price_id = $arrPost['pakage_price_id'];
+            }
+            echo $this->renderPartial('_form', [
+                'model' => $tr_pages,
             ]);
+            exit();
         }
     }
 

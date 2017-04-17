@@ -200,7 +200,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                                 $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
                                                                 ->fileInput(
                                                                         [
-                                                                            'multiple' => true,
+                                                                            'multiple' => false,
                                                                             'accept' => 'image/*',
                                                                             'onchange' => 'showMyImage(this, -1)',
                                                                             'class' => 'inputfile inputfile-6',

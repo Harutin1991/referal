@@ -7,7 +7,16 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\TrPages */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<?php
+$this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/editor.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/admin-forms.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/filInput.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+?>
 <div class="tr-pages-form">
 
      <?php $form = ActiveForm::begin([
@@ -23,9 +32,6 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
-            <?= $form->field($model, 'short_description')->textarea(['rows' => 6]) ?>
-        </div>
-        <div class="col-md-12">
             <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
         </div>
         
@@ -39,4 +45,24 @@ use yii\widgets\ActiveForm;
     </div>
 <?php ActiveForm::end(); ?>
 </div>
+<?php
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+?>
 

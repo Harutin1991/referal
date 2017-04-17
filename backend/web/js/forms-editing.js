@@ -166,6 +166,24 @@ function editPagesTr(lang, pages, isdefoult) {
         });
     }
 }
+function editPackagePriceTr(lang, pages, isdefoult) {
+    if (isdefoult === 1) {
+        $(".tr-brand-form").hide();
+
+    } else {
+        $.ajax({
+            url: '/' + language + '/tr-pakage-price/update',
+            method: 'post',
+            data: {lang: lang, pakage_price_id: pages},
+            success: function (res) {
+                $(".tab-pane").removeClass('active');
+                $("#tr_pages").addClass('active');
+                $('#tr_pages').html(res);
+                CKEDITOR.replace('trpages-content');
+            }
+        });
+    }
+}
 
 function editBlogTr(lang, blog, isdefoult) {
     if (isdefoult === 1) {

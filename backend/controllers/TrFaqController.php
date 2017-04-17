@@ -85,14 +85,13 @@ class TrFaqController extends Controller {
             $arrPost = Yii::$app->request->post()['TrFaq'];
             $trModel = $model->findOne(['language_id' => $arrPost['language_id'], 'faq_id' => $arrPost['faq_id']]);
             if ($trModel) {
-                $trModel->name = $arrPost['name'];
-                $trModel->short_description = $arrPost['short_description'];
+                $trModel->title = $arrPost['title'];
                 $trModel->description = $arrPost['description'];
                 $trModel->language_id = $arrPost['language_id'];
                 $trModel->faq_id = $arrPost['faq_id'];
             } else {
                 $trModel = new TrFaq();
-                $trModel->name = $arrPost['name'];
+                $trModel->title = $arrPost['title'];
                 $trModel->short_description = $arrPost['short_description'];
                 $trModel->description = $arrPost['description'];
                 $trModel->language_id = $arrPost['language_id'];

@@ -17,7 +17,7 @@ use backend\models\Pages;
 AppAsset::register($this);
 $currentUrl = trim(substr($_SERVER['REQUEST_URI'], 3));
 $languages = Language::find()->asArray()->all();
-$pages = Pages::find()->asArray()->all();
+$pages = Pages::findList();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -358,11 +358,14 @@ $pages = Pages::find()->asArray()->all();
                                     </li>
                                     <?php foreach ($pages as $page): ?>
                                         <li>
-                                            <a href="<?= Url::to(['pages/update', 'id' => $page['id']]) ?>">
+                                            <a href="<?= Url::to(['pages/update', 'id' => $page['pages_id']]) ?>">
                                                 <i class="fa fa-angle-double-right"></i> <?= $page['title'] ?>
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
+                                    <li>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Pakage and Price'), Url::to(['pakage-price/index'])) ?>
+                                    </li>
                                     <li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
                                     </li>

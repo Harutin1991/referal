@@ -32,10 +32,10 @@ class PakagePrice extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'short_description', 'description', 'route_name', 'status'], 'required'],
+            [['title'], 'required'],
             [['description'], 'string'],
             [['created_date', 'updated_date'], 'safe'],
-            [['status'], 'integer'],
+            [['status','price'], 'integer'],
             [['title', 'route_name'], 'string', 'max' => 255],
             [['short_description'], 'string', 'max' => 500],
         ];
@@ -51,6 +51,7 @@ class PakagePrice extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'short_description' => Yii::t('app', 'Short Description'),
             'description' => Yii::t('app', 'Description'),
+            'price' => Yii::t('app', 'Package Price'),
             'created_date' => Yii::t('app', 'Created Date'),
             'updated_date' => Yii::t('app', 'Updated Date'),
             'route_name' => Yii::t('app', 'Route Name'),
