@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Pages */
 
@@ -15,236 +15,37 @@ $this->registerCssFile("@web/css/pages/portlet.css", [
 ?>
 
 <div class="row ui-sortable" id="sortable_portlets">
-    <div class="col-md-4 column sortable">
+    <div class="col-md-12 column sortable">
         <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box primary">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
+        <?php foreach($subPages as $key=>$pages):?>
+        <div class="col-md-6">
+            <div class="portlet box <?php if(!$key):?>primary<?php elseif($key%3): ?>warning<?php elseif(!$key%2):?>success<?php endif;?>">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
+                        <?=$pages['title']?>
+                    </div>
+                    <div class="actions">
+                        <a href="#" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i>
+                            Add
+                        </a>
+                        <a href="<?php echo Url::to(['update','id'=>$pages['pages_id']])?>" class="btn btn-default btn-sm">
+                            <i class="fa fa-pencil"></i>
+                            Edit
+                        </a>
+                    </div>
                 </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
+                <div class="portlet-body">
+                    <?php if($pages['short_description'] != '' || $pages['short_description'] != NULL):?>
+                    <div><?=$pages['short_description']?></div>
+                    <?php else:?>
+                    <div><?=$pages['content']?></div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box warning">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box primary">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-    </div>
-    <div class="col-md-4 column sortable">
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box success">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class="portlet box danger">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box success">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-    </div>
-    <div class="col-md-4 column sortable">
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box info">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box default">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
-        <!-- BEGIN Portlet PORTLET-->
-        <div class=" portlet box info">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="livicon" data-c="#fff" data-hc="#fff" data-name="gift" data-size="18" data-loop="true"></i>
-                    Portlet
-                </div>
-                <div class="actions">
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-plus"></i>
-                        Add
-                    </a>
-                    <a href="#" class="btn btn-default btn-sm">
-                        <i class="fa fa-pencil"></i>
-                        Edit
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div>
-                    Tom loves Canada. Angela and Tom met. Angela and Tom want to play. Angela and Tom want to jump. Angela and Tom want to yell. Angela and Tom play, jump and yell.
-                </div>
-            </div>
-        </div>
-        <!-- END Portlet PORTLET-->
+        <?php endforeach;?>
     </div>
 </div>
 

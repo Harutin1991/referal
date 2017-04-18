@@ -39,6 +39,7 @@ class BlogSearch extends Blog {
      */
     public function search($params) {
         $query = Blog::find();
+        $query->orderBy(['ordering' => SORT_ASC]);
 
         // add conditions that should always apply here
 

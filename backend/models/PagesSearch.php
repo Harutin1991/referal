@@ -41,8 +41,8 @@ class PagesSearch extends Pages
      */
     public function search($params)
     {
-        $query = Pages::find();
-
+        $query = Pages::find()->where(['parent_id'=>NULL]);
+        $query->orderBy(['ordering' => SORT_ASC]);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -61,7 +61,6 @@ class PagesSearch extends Pages
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'ordering' => $this->ordering,
             'created_date' => $this->created_date,
             'short_description' => $this->short_description,
             'updated_date' => $this->updated_date,
@@ -69,7 +68,6 @@ class PagesSearch extends Pages
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content]);
-
         return $dataProvider;
     }
 }

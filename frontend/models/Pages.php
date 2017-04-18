@@ -27,15 +27,15 @@ class Pages extends \yii\db\ActiveRecord
         return 'pages';
     }
 
-    public function findList(){
+    public function findList($page_id){
         $language = Yii::$app->language;
 
         $rows = (new \yii\db\Query())
-            ->select(['pages.id', 'tr_pages.title','pages.route_name'])
+            ->select(['pages.id', 'tr_pages.*'])
             ->from('pages')
             ->leftJoin('tr_pages','pages.id = tr_pages.pages_id')
             ->leftJoin('language','language.id = tr_pages.language_id')
-            ->where(['language.short_code' => $language])
+            ->where(['language.short_code' => $language,'pages.id'=>$page_id])
             ->orderBy(['pages.ordering'=>SORT_ASC])
             ->all();
 

@@ -78,25 +78,25 @@ class TrBlogController extends Controller {
      */
     public function actionUpdate() {
         if (isset(Yii::$app->request->post()['TrBlog'])) {
-echo "<pre>";print_r(Yii::$app->request->post());die;
+            //echo "<pre>";print_r(Yii::$app->request->post());die;
             $model = new TrBlog();
 
             $arrPost = Yii::$app->request->post()['TrBlog'];
 
             $trModel = $model->findOne(['language_id' => $arrPost['language_id'], 'blog_id' => $arrPost['blog_id']]);
             if ($trModel) {
-                $trModel->name = $arrPost['name'];
+                $trModel->title = $arrPost['title'];
                 $trModel->short_description = $arrPost['short_description'];
                 $trModel->description = $arrPost['description'];
                 $trModel->language_id = $arrPost['language_id'];
-                $trModel->materials_id = $arrPost['materials_id'];
+                $trModel->blog_id = $arrPost['blog_id'];
             } else {
                 $trModel = new TrBlog();
-                $trModel->name = $arrPost['name'];
+                $trModel->title = $arrPost['title'];
                 $trModel->short_description = $arrPost['short_description'];
                 $trModel->description = $arrPost['description'];
                 $trModel->language_id = $arrPost['language_id'];
-                $trModel->materials_id = $arrPost['materials_id'];
+                $trModel->blog_id = $arrPost['blog_id'];
             }
 
             if ($trModel->save()) {

@@ -39,8 +39,8 @@ $pages = Pages::findList();
         <?php $this->beginBody() ?>
 
         <header class="header">
-            <a href="index.html" class="logo">
-                <?= Html::img('@web/img/logo.png', ['class' => 'img-responsive message-image']); ?>
+            <a href="/" class="logo">
+                <?= Html::img('@web/img/logo-header.png', ['class' => 'img-responsive message-image','style'=>'width: 50%; margin-top: 5px;']); ?>
             </a>
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -51,12 +51,12 @@ $pages = Pages::findList();
                 </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
+                        <!--li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="livicon" data-name="message-flag" data-loop="true" data-color="#42aaca" data-hovercolor="#42aaca" data-size="28"></i>
                                 <span class="label label-success">4</span>
                             </a>
                             <ul class="dropdown-menu dropdown-messages pull-right">
-                                <li class="dropdown-title">4 New Messages</li>
+                                <!--li class="dropdown-title">4 New Messages</li>
                                 <li class="unread message">
                                     <a href="javascript:;" class="message"> <i class="pull-right" data-toggle="tooltip" data-placement="top" title="Mark as Read"><span class="pull-right ol livicon" data-n="adjust" data-s="10" data-c="#287b0b"></span></i>
                                         <?= Html::img('@web/img/authors/avatar.jpg', ['class' => 'img-responsive message-image']); ?>
@@ -111,12 +111,11 @@ $pages = Pages::findList();
                                 <li class="footer">
                                     <a href="#">View all</a>
                                 </li>
-                            </ul>
+                            </ul -->
                         </li>
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="livicon" data-name="bell" data-loop="true" data-color="#e9573f" data-hovercolor="#e9573f" data-size="28"></i>
-                                <span class="label label-warning">7</span>
+                                <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
                             </a>
                             <ul class=" notifications dropdown-menu">
                                 <?php foreach ($languages as $language): ?>
@@ -140,7 +139,7 @@ $pages = Pages::findList();
                                 </li>
                             </ul>
                         </li>
-                        <li class="dropdown notifications-menu">
+                        <!--li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="livicon" data-name="bell" data-loop="true" data-color="#e9573f" data-hovercolor="#e9573f" data-size="28"></i>
                                 <span class="label label-warning">7</span>
@@ -149,7 +148,7 @@ $pages = Pages::findList();
                                 <li class="dropdown-title">You have 7 notifications</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
+                                    <!-- ul class="menu">
                                         <li>
                                             <i class="livicon danger" data-n="timer" data-s="20" data-c="white" data-hc="white"></i>
                                             <a href="#">after a long time</a>
@@ -212,13 +211,13 @@ $pages = Pages::findList();
                                     <a href="#">View all</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-circle img-responsive pull-left', 'width' => '35', 'height' => '35']); ?>
+                                <?= Html::img('@web/img/img-02.png', ['class' => 'img-circle img-responsive pull-left', 'width' => '35', 'height' => '35']); ?>
                                 <div class="riot">
                                     <div>
-                                        Riot
+                                        Referal
                                         <span>
                                             <i class="caret"></i>
                                         </span>
@@ -228,7 +227,7 @@ $pages = Pages::findList();
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
-                                    <?= Html::img('@web/img/authors/avatar3.jpg', ['class' => 'img-responsive img-circle']); ?>
+                                    <?= Html::img('@web/img/img-02.png', ['class' => 'img-responsive img-circle']); ?>
                                     <p class="topprofiletext">Riot Zeast</p>
                                 </li>
                                 <!-- Menu Body -->
@@ -262,7 +261,7 @@ $pages = Pages::findList();
             <aside class="left-side sidebar-offcanvas">
                 <section class="sidebar ">
                     <div class="page-sidebar  sidebar-nav">
-                        <div class="nav_icons">
+                        <!--div class="nav_icons">
                             <ul class="sidebar_threeicons">
                                 <li>
                                     <a href="form_builder.html">
@@ -285,16 +284,16 @@ $pages = Pages::findList();
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div -->
                         <div class="clearfix"></div>
                         <!-- BEGIN SIDEBAR MENU -->
                         <ul id="menu" class="page-sidebar-menu">
-                            <li <?php if ($currentUrl == "/site/index"): ?>class="active"<?php endif ?>>
+                            <!--li <?php if ($currentUrl == "/site/index"): ?>class="active"<?php endif ?>>
                                 <a href="/">
                                     <i class="livicon" data-name="home" data-size="18" data-c="#418BCA" data-hc="#418BCA" data-loop="true"></i>
                                     <span class="title"><?= Yii::t('app', 'Dashboard') ?></span>
                                 </a>
-                            </li>
+                            </li -->
                             <li <?php if ($currentUrl == "/blog/index" || $currentUrl == "/blog/create" || $currentUrl == '/blog-categories/index' || $currentUrl == '/blog-categories/create'): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="comment" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
@@ -305,9 +304,9 @@ $pages = Pages::findList();
                                     <li <?php if ($currentUrl == "/blog/index"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Blog List'), Url::to(['blog/index'])) ?>
                                     </li>
-                                    <li <?php if ($currentUrl == "/blog-categories/index"): ?>class="active"<?php endif ?> >
+                                    <!--li <?php if ($currentUrl == "/blog-categories/index"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Blog Categories'), Url::to(['blog-categories/index'])) ?>
-                                    </li>
+                                    </li -->
                                     <li <?php if ($currentUrl == "/blog/create"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New Blog'), Url::to(['blog/create'])) ?>
                                     </li>
@@ -343,7 +342,7 @@ $pages = Pages::findList();
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create'): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create' || $currentUrl =='/contactus/index' || $currentUrl =='/aboutus/index' || $currentUrl =='/calculator/index' || strpos($currentUrl, '/pages/update') !== false || strpos($currentUrl, '/pages/sub-pages') !== false): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="flag" data-c="#418bca" data-hc="#418bca" data-size="18" data-loop="true"></i>
                                     <span class="title"><?= Yii::t('app', 'Pages') ?></span>

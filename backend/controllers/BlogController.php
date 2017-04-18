@@ -95,7 +95,7 @@ class BlogController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $modelFiles = new Files();
-            $file = UploadedFile::getInstances($modelFiles, 'filename');
+            $file = UploadedFile::getInstances($modelFiles, 'path');
 
             if (!empty($file)) {
                 $ProdDefImg = Yii::$app->request->post('defaultImage');
@@ -154,15 +154,13 @@ class BlogController extends Controller {
                     if ($key == $ProdDefImg) {
                         $updateFile->path = $value;
                         $updateFile->category_id = $model->id;
-                        $updateFile->category = 'materials';
+                        $updateFile->category = 'blog';
                         $updateFile->top = $ProdDefImg;
-                        $updateFile->status = 1;
                     } else {
                         $updateFile->path = $value;
                         $updateFile->category_id = $model->id;
-                        $updateFile->category = 'materials';
+                        $updateFile->category = 'blog';
                         $updateFile->top = 0;
-                        $updateFile->status = 1;
                     }
                     $updateFile->save();
                 }
@@ -176,7 +174,7 @@ class BlogController extends Controller {
             return $this->render('update', [
                         'model' => $model,
                         'modelFiles' => $modelFiles,
-                        'images' => $images,
+                        'imagePaths' => $images,
             ]);
         }
     }
@@ -188,6 +186,11 @@ class BlogController extends Controller {
      * @return mixed
      */
     public function actionDelete($id) {
+        
+        $trmodel = TrBlog::find()->where(['blog_id'=>$id])->all();
+        foreach($trmodel as $blog){
+            $blog->delete();
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -202,6 +205,14 @@ class BlogController extends Controller {
      */
     protected function findModel($id) {
         if (($model = Blog::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    protected function findTrModel($id) {
+        $currentLanguage = Language::find()->where(['short_code' => Yii::$app->language])->one();
+        if (($model = TrBlog::findOne(['blog_id'=>$id,'language_id'=>$currentLanguage->id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -229,6 +240,17 @@ class BlogController extends Controller {
             return $paths;
         }
         return false;
+    }
+    
+        /**
+     * @return mixed
+     */
+    public function actionUpdateOrdering() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Blog();
+            $data = Yii::$app->request->post();
+            return $model->bachUpdate($data);
+        }
     }
 
     /**

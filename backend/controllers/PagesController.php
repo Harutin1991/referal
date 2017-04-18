@@ -225,10 +225,12 @@ class PagesController extends Controller {
             }
         }
 
-        $images = Files::find()->where(['category' => 'blog', 'category_id' => $id])->asArray()->all();
+        $images = Files::find()->where(['category' => 'pages', 'category_id' => $id])->asArray()->all();
         $modelFiles = new Files();
+        $subpagesCount = Pages::find()->where(['parent_id'=>$id])->count();
         return $this->render('update', [
                     'model' => $model,
+                    'subpagesCount' => $subpagesCount,
                     'modelFiles' => $modelFiles,
                     'images' => $images,
         ]);
@@ -239,30 +241,30 @@ class PagesController extends Controller {
             
         } else {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $currentLanguage = Language::find()->where(['short_code' => Yii::$app->language])->one();
             $model = new Pages();
+            $parentPage = TrPages::find()->where(['pages_id'=>$id,'language_id'=>$currentLanguage->id])->asArray()->all();
             $model->parent_id = $id;
             $modelFiles = new Files();
             return $this->render('subpage', [
                         'model' => $model,
+                        'parentPage' => $parentPage,
                         'modelFiles' => $modelFiles,
                         'defoultId'=>$defaultLanguage->id
             ]);
         }
     }
     public function actionSubPages($id) {
-        if (Yii::$app->request->post()) {
-            
-        } else {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
-            $model = new Pages();
-            $model->parent_id = $id;
-            $modelFiles = new Files();
+            $parentPage = Pages::find()->where(['id'=>$id])->asArray()->all();
+            $model = $this->findModel($id);
+            $subPages = Pages::findList($id);
+            //echo "<pre>";print_r($subPages);die;
             return $this->render('sub_view', [
                         'model' => $model,
-                        'modelFiles' => $modelFiles,
-                        'defoultId'=>$defaultLanguage->id
+                        'parentPage' => $parentPage,
+                        'subPages' => $subPages,
             ]);
-        }
     }
 
     public function upload($imageFile, $id) {
@@ -303,6 +305,40 @@ class PagesController extends Controller {
             $this->findModel($id)->delete();
             Yii::$app->session->setFlash('success', 'Page successfully removed');
             return $this->redirect(['index']);
+        }
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function actionUpdateOrdering() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Pages();
+            $data = Yii::$app->request->post();
+            return $model->bachUpdate($data);
+        }
+    }
+    
+    /**
+     * @return false|int
+     * @throws \Exception
+     */
+    public function actionDeleteImage() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Files();
+            $id = Yii::$app->request->post('id');
+            $model = $model->findOne($id);
+            $directory = Yii::getAlias("@backend/web/uploads/images/pages/" . $model->category_id);
+            $directoryThumb = Yii::getAlias("@backend/web/uploads/images/pages/" . $model->category_id . "/thumbnail");
+
+            // BaseFileHelper::removeDirectory($directoryThumb);
+            //BaseFileHelper::removeDirectory($directory);
+            if (file_exists($directory . '/' . $model->path)) {
+                unlink($directory . '/' . $model->path);
+                unlink($directoryThumb . '/' . $model->path);
+            }
+
+            return $model->delete();
         }
     }
 

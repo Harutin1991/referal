@@ -2,10 +2,10 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 17, 2017 at 09:59 PM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.2
+-- Хост: 127.0.0.1
+-- Время создания: Апр 18 2017 г., 17:14
+-- Версия сервера: 10.1.19-MariaDB
+-- Версия PHP: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `referal`
+-- База данных: `referal`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aboutus`
+-- Структура таблицы `aboutus`
 --
 
 CREATE TABLE `aboutus` (
@@ -34,7 +34,7 @@ CREATE TABLE `aboutus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `aboutus`
+-- Дамп данных таблицы `aboutus`
 --
 
 INSERT INTO `aboutus` (`id`, `title`, `short_description`, `description`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `aboutus` (`id`, `title`, `short_description`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles`
+-- Структура таблицы `articles`
 --
 
 CREATE TABLE `articles` (
@@ -58,7 +58,7 @@ CREATE TABLE `articles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles_home`
+-- Структура таблицы `articles_home`
 --
 
 CREATE TABLE `articles_home` (
@@ -71,29 +71,38 @@ CREATE TABLE `articles_home` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Структура таблицы `blog`
 --
 
 CREATE TABLE `blog` (
   `id` int(11) UNSIGNED NOT NULL,
-  `blog_category_id` int(11) UNSIGNED NOT NULL,
+  `blog_category_id` int(11) UNSIGNED DEFAULT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `short_description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `meta_key` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) DEFAULT '1',
   `views` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `ordering` int(2) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `blog`
+--
+
+INSERT INTO `blog` (`id`, `blog_category_id`, `user_id`, `title`, `description`, `short_description`, `meta_description`, `meta_key`, `status`, `views`, `created_at`, `updated_at`, `deleted_at`, `ordering`) VALUES
+(12, NULL, 1, 'zxcvzxcv', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '', 1, 0, '2017-04-18 13:05:43', '0000-00-00 00:00:00', NULL, 2),
+(13, NULL, 1, 'cvbnvbnc', '', '', '', '', 1, 0, '2017-04-18 14:03:16', '0000-00-00 00:00:00', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog_categories`
+-- Структура таблицы `blog_categories`
 --
 
 CREATE TABLE `blog_categories` (
@@ -107,7 +116,7 @@ CREATE TABLE `blog_categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog_comments`
+-- Структура таблицы `blog_comments`
 --
 
 CREATE TABLE `blog_comments` (
@@ -125,7 +134,7 @@ CREATE TABLE `blog_comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calculator`
+-- Структура таблицы `calculator`
 --
 
 CREATE TABLE `calculator` (
@@ -141,7 +150,7 @@ CREATE TABLE `calculator` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calculator_profit`
+-- Структура таблицы `calculator_profit`
 --
 
 CREATE TABLE `calculator_profit` (
@@ -153,7 +162,7 @@ CREATE TABLE `calculator_profit` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contactus`
+-- Структура таблицы `contactus`
 --
 
 CREATE TABLE `contactus` (
@@ -166,7 +175,7 @@ CREATE TABLE `contactus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `contactus`
+-- Дамп данных таблицы `contactus`
 --
 
 INSERT INTO `contactus` (`id`, `phone`, `mobile_phone`, `fax`, `email`, `coordinate`) VALUES
@@ -175,7 +184,7 @@ INSERT INTO `contactus` (`id`, `phone`, `mobile_phone`, `fax`, `email`, `coordin
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Структура таблицы `content`
 --
 
 CREATE TABLE `content` (
@@ -194,7 +203,7 @@ CREATE TABLE `content` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `countries`
+-- Структура таблицы `countries`
 --
 
 CREATE TABLE `countries` (
@@ -205,7 +214,7 @@ CREATE TABLE `countries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `countries`
+-- Дамп данных таблицы `countries`
 --
 
 INSERT INTO `countries` (`id`, `sortname`, `name`, `status`) VALUES
@@ -459,7 +468,7 @@ INSERT INTO `countries` (`id`, `sortname`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currency`
+-- Структура таблицы `currency`
 --
 
 CREATE TABLE `currency` (
@@ -473,7 +482,7 @@ CREATE TABLE `currency` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `currency`
+-- Дамп данных таблицы `currency`
 --
 
 INSERT INTO `currency` (`id`, `name`, `exchange_value`, `created_date`, `updated_date`, `short_code`, `default`) VALUES
@@ -483,7 +492,7 @@ INSERT INTO `currency` (`id`, `name`, `exchange_value`, `created_date`, `updated
 -- --------------------------------------------------------
 
 --
--- Table structure for table `faq`
+-- Структура таблицы `faq`
 --
 
 CREATE TABLE `faq` (
@@ -498,17 +507,16 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `faq`
+-- Дамп данных таблицы `faq`
 --
 
 INSERT INTO `faq` (`id`, `title`, `short_description`, `description`, `ordering`, `status`, `yes_count`, `no_count`) VALUES
-(1, 'fdhdfh', 'fghfdgh', 'fghfdgh', 1, 1, 0, 0),
-(2, 'sdfgsdfg', NULL, '<p>sdfgsdfgsdfgs</p>\r\n', 2, 1, 0, 0);
+(2, 'xcvbcv', NULL, '<p>bxcvbcvb</p>\r\n', 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `files`
+-- Структура таблицы `files`
 --
 
 CREATE TABLE `files` (
@@ -523,18 +531,21 @@ CREATE TABLE `files` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `files`
+-- Дамп данных таблицы `files`
 --
 
 INSERT INTO `files` (`id`, `path`, `category`, `category_id`, `mime`, `created_at`, `updated_at`, `top`) VALUES
-(1, '149139873458e4f04ec28cb9.86656492_0.jpg', 'blog', 7, '', '2017-04-05 13:25:35', '0000-00-00 00:00:00', 1),
-(2, '149139873558e4f04f33bca6.36168378_1.jpg', 'blog', 7, '', '2017-04-05 13:25:35', '0000-00-00 00:00:00', 0),
-(3, '149242707858f4a146b8c638.33220143_0.jpg', 'pages', 6, '', '2017-04-17 11:04:39', '0000-00-00 00:00:00', 1);
+(4, '149251275458f5eff262b481.44367893_0.jpg', 'blog', 8, '', '2017-04-18 10:52:36', '0000-00-00 00:00:00', 1),
+(5, '149251275858f5eff65b8d80.66564703_0.jpg', 'blog', 9, '', '2017-04-18 10:52:38', '0000-00-00 00:00:00', 1),
+(6, '149251336958f5f259b9f765.78251074_0.jpg', 'blog', 10, '', '2017-04-18 11:02:50', '0000-00-00 00:00:00', 1),
+(10, '149252112658f610a630e036.83359258_0.jpg', 'blog', 12, '', '2017-04-18 13:12:07', '0000-00-00 00:00:00', 1),
+(11, '149252419758f61ca52662a8.44604215_0.jpg', 'blog', 13, '', '2017-04-18 14:03:18', '0000-00-00 00:00:00', 1),
+(14, '149252596958f62391ee2e15.40925568_0.jpg', 'pages', 14, '', '2017-04-18 14:32:51', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `how_to_earn`
+-- Структура таблицы `how_to_earn`
 --
 
 CREATE TABLE `how_to_earn` (
@@ -547,7 +558,7 @@ CREATE TABLE `how_to_earn` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invsetor_packages`
+-- Структура таблицы `invsetor_packages`
 --
 
 CREATE TABLE `invsetor_packages` (
@@ -563,7 +574,7 @@ CREATE TABLE `invsetor_packages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `language`
+-- Структура таблицы `language`
 --
 
 CREATE TABLE `language` (
@@ -575,7 +586,7 @@ CREATE TABLE `language` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `language`
+-- Дамп данных таблицы `language`
 --
 
 INSERT INTO `language` (`id`, `name`, `short_code`, `ordering`, `is_default`) VALUES
@@ -585,7 +596,7 @@ INSERT INTO `language` (`id`, `name`, `short_code`, `ordering`, `is_default`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Структура таблицы `message`
 --
 
 CREATE TABLE `message` (
@@ -595,7 +606,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `message`
+-- Дамп данных таблицы `message`
 --
 
 INSERT INTO `message` (`id`, `language`, `translation`) VALUES
@@ -607,12 +618,26 @@ INSERT INTO `message` (`id`, `language`, `translation`) VALUES
 (4, 'en', 'EVENTS'),
 (4, 'ru', 'Мероприятия'),
 (5, 'en', 'Package and Price'),
-(5, 'ru', 'Пакеты и цены');
+(5, 'ru', 'Пакеты и цены'),
+(6, 'en', 'List of Pages'),
+(6, 'ru', 'Список страниц'),
+(7, 'en', 'Pages'),
+(7, 'ru', 'Страницы'),
+(8, 'en', 'Add New Page'),
+(8, 'ru', 'Добавить новую страницу'),
+(9, 'en', 'Blog List'),
+(9, 'ru', 'Список блогов'),
+(10, 'en', 'Blog'),
+(10, 'ru', 'Блог'),
+(11, 'en', 'Create Sub Page'),
+(11, 'ru', 'Создать Подраздел'),
+(12, 'en', 'Sub Pages'),
+(12, 'ru', 'Подстраницы');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message_system`
+-- Структура таблицы `message_system`
 --
 
 CREATE TABLE `message_system` (
@@ -628,7 +653,7 @@ CREATE TABLE `message_system` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Структура таблицы `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -639,7 +664,7 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `most_active_users`
+-- Структура таблицы `most_active_users`
 --
 
 CREATE TABLE `most_active_users` (
@@ -650,7 +675,7 @@ CREATE TABLE `most_active_users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- Структура таблицы `news`
 --
 
 CREATE TABLE `news` (
@@ -665,7 +690,7 @@ CREATE TABLE `news` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ordering`
+-- Структура таблицы `ordering`
 --
 
 CREATE TABLE `ordering` (
@@ -683,7 +708,7 @@ CREATE TABLE `ordering` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ordering`
+-- Дамп данных таблицы `ordering`
 --
 
 INSERT INTO `ordering` (`id`, `customer_id`, `customer_address_id`, `status`, `payment_type`, `product_info`, `billing_address`, `shipping_address`, `accepted_date`, `created_date`, `updated_date`) VALUES
@@ -692,7 +717,7 @@ INSERT INTO `ordering` (`id`, `customer_id`, `customer_address_id`, `status`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `other_investor_diff`
+-- Структура таблицы `other_investor_diff`
 --
 
 CREATE TABLE `other_investor_diff` (
@@ -706,12 +731,13 @@ CREATE TABLE `other_investor_diff` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pages`
+-- Структура таблицы `pages`
 --
 
 CREATE TABLE `pages` (
   `id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `short_description` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
   `content` text CHARACTER SET utf8,
   `status` int(1) DEFAULT '1',
   `parent_id` int(11) DEFAULT NULL,
@@ -719,27 +745,27 @@ CREATE TABLE `pages` (
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   `type` int(2) DEFAULT NULL,
-  `short_description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `route_name` varchar(255) DEFAULT NULL,
   `social_link` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pages`
+-- Дамп данных таблицы `pages`
 --
 
-INSERT INTO `pages` (`id`, `title`, `content`, `status`, `parent_id`, `ordering`, `created_date`, `updated_date`, `type`, `short_description`, `route_name`, `social_link`) VALUES
-(12, 'Конфиденциальность', '<p>сдгсдгсдгсдгсдгдгсдгдсгс</p>\r\n', 1, NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
-(13, 'Правила безопасности', '<h1>Правила безопасности&nbsp;Правила безопасности</h1>\r\n', 1, NULL, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
-(14, 'Условия использования', '<h1>Условия использования&nbsp;Условия использования</h1>\r\n', 1, NULL, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
-(15, 'Правила торговой площадки', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 1, 14, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n', NULL, NULL),
-(16, 'Поддержка', '', 1, NULL, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL),
-(17, 'Поддержка', '', 1, NULL, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
+INSERT INTO `pages` (`id`, `title`, `short_description`, `content`, `status`, `parent_id`, `ordering`, `created_date`, `updated_date`, `type`, `route_name`, `social_link`) VALUES
+(12, 'Конфиденциальность', NULL, '<p>сдгсдгсдгсдгсдгдгсдгдсгс</p>\r\n', 1, NULL, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(13, 'Правила безопасности', NULL, '<h1>Правила безопасности&nbsp;Правила безопасности</h1>\r\n', 1, NULL, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(14, 'Условия использования', NULL, '<h1>Условия использования&nbsp;Условия использования</h1>\r\n', 1, NULL, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(15, 'Правила торговой площадки', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 1, 14, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(19, 'Публичная оферта', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 1, 14, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(23, 'Отказ от ответственности', '<p>Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n\r\n<p>3. Администрация (владельцы Сайта, должностные лица, директора, акционеры, учредители, работники, агенты, Администраторы, Супермодераторы, Модераторы, Помощники модераторов, Роутеры, Кураторы тем и иные представители) прикладывает все усилия, чтобы обеспечить пользователей точной и достоверной информацией, но в то же время не исключает возможности возникновения ошибок.</p>\r\n\r\n<p>4. Cайт 4pda.ru - это проект с открытым содержимым. Его строение позволяет любому, кто имеет доступ к интернету, изменять его содержание, поэтому Сайт и его Содержимое предоставляются свободно, как акт доброй воли, по принципу &laquo;как есть&raquo;, без заключения каких-либо договорённостей или договоров между Вами, пользователями данного Сайта, Администрацией, владельцами серверов, на которых он размещён, либо кем-то ещё, любым образом связанными с этим или родственными ему проектами, которые [договора] могут стать предметом прямых претензий.</p>\r\n\r\n<p>5. Администрация не дает каких-либо заверений или гарантий в отношении Сайта и его Содержимого, в том числе, без ограничения, в отношении своевременности, актуальности, точности, полноты, достоверности, доступности или соответствия для какой-либо конкретной цели Сайта и Содержимого, в отношении того, что при использовании Сайта не возникнет ошибок, оно будет безопасным и бесперебойным, что Администрация будет исправлять какие-либо ошибки, или что на Сайте не будет вирусов или иных вредоносных кодов, а так же, что Содержимое и Сайт не нарушают прав третьих лиц.</p>\r\n\r\n<p>6. Некоторые ссылки на этом Сайте ведут к ресурсам, расположенным на сторонних сайтах. Данные ссылки размещены для удобства пользователей и не означают, что Администрация одобряет содержание других сайтов. Кроме этого, Администрация Сайта не несет никакой ответственности за доступность этих ресурсов и за их контент. Это заявление относится ко всем ссылкам, представленным на Сайте, и материалам всех веб-сайтов, доступных через баннеры и ссылки на веб-сайте по адресу 4pda.ru.</p>\r\n\r\n<p>7. В обязанности Администрации не входит контроль легальности или нелегальности передаваемой информации (любой, включая, но не ограничиваясь, информацией передаваемой между пользователями, внутренней пересылки информации в виде различных ссылок, текстов или архивов), определение прав собственности или законности передачи, приема или использования этой информации.</p>\r\n\r\n<p>8. Администрация принимает разумные меры для обеспечения точности, актуальности и правомерности Содержимого, но она не принимает на себя ответственности за действия лиц или организаций, прямо или иным образом осуществленные на основании информации, имеющейся на Сайте или полученной через него, как предоставленной Администрацией, так и третьими лицами.</p>\r\n\r\n<p>9. В соответствии с действующим законодательством, Администрация отказывается от каких-либо заверений и гарантий, предоставление которых может иным образом подразумеваться, и отказывается от ответственности в отношении Сайта, Содержимого и их использования. Ни при каких обстоятельствах Администрация Сайта не будет нести ответственности ни перед какой стороной за какой-либо прямой, непрямой, особый или иной косвенный ущерб в результате любого использования информации на этом Сайте или на любом другом сайте, на который имеется гиперссылка с нашего Сайта, возникновение зависимости, снижения продуктивности, увольнения или прерывания трудовой активности, а равно и отчисления из учебных учреждений, за любую упущенную выгоду, приостановку хозяйственной деятельности, потерю программ или данных в Ваших информационных системах или иным образом, возникшие в связи с доступом, использованием или невозможностью использования Сайта, Содержимого или какого-либо связанного интернет-сайта, или неработоспособностью, ошибкой, упущением, перебоем, дефектом, простоем в работе или задержкой в передаче, компьютерным вирусом или системным сбоем, даже если администрация будет явно поставлена в известность о возможности такого ущерба.</p>\r\n\r\n<p>10. За рекламу, размещаемую на Сайте, несет ответственность лишь рекламодатель. Сайт особо уведомляет о том, что не гарантирует возможность приобретения или использования тех или иных товаров или услуг по ценам и/или на условиях, указываемых в рекламных блоках (текстах, баннерах). Вы соглашаетесь с тем, что Сайт не несет никакой ответственности за возможные последствия (включая любой ущерб), возникшие в результате каких-либо отношений с рекламодателями.</p>\r\n\r\n<p>11. На Сайте предусмотрена возможность отправки пользователями вопросов, замечаний, предложений и другой информации с целью включения её в соответствующие разделы Сайта, которые могут и будут использоваться другими его посетителями. Сайт не несет никакой ответственности ни за содержание и точность этой информации, ни за любые рекомендации или мнения, которые могут в ней содержаться, ни за применимость её к конкретным пользователям. Кроме того, поскольку интернет не обеспечивает в полной мере надежной защиты информации, Сайт не несет ответственности за информацию, присылаемую через интернет.</p>\r\n\r\n<p>12. Отправляя материалы, отправляющая сторона гарантирует и подтверждает, что она обладает авторскими правами на эти материалы, получила разрешение на публикацию от обладателя авторских прав, или что эти материалы являются общественным достоянием и размещаются в соответствии законодательством или требованиями первоисточника. Отправляющая сторона также гарантирует и подтверждает, что получатель имеет полное и не ограниченное право отправки данных материалов, и что такая отправка не ущемляет ничьих прав и законных интересов.</p>\r\n\r\n<p>13. Сайт может использовать идентификационные файлы cookies для хранения как вашей личной, так и общей информации. &laquo;Cookies&raquo; представляют собой небольшие текстовые файлы, которые могут использоваться интернет-сайтом для опознавания повторных посетителей, упрощения доступа и использования посетителем сайта, а также отслеживания сайтом обращений посетителей и сбора общей информации для улучшения содержания. Пользуясь Сайтом, вы выражаете свое согласие на использование Сайтом cookies.</p>\r\n\r\n<p>14. Администрация оставляет за собой право вносить изменения без уведомления о них пользователей. Также Администрация не несет ответственности за изменение, редактирование или удаление любой информации, добавленной вами на Сайт или другие связанные с ним проекты.</p>\r\n\r\n<p>15. Администрация вправе отказать в доступе к Сайту любому Пользователю, или группе Пользователей без объяснения причин своих действий и предварительного уведомления.</p>\r\n\r\n<p>16. Администрация вправе изменять либо удалять ссылки на информацию, графические, звуковые и прочие данные, размещенные Пользователями на Сайте, без предварительного уведомления и объяснения причин своих действий.</p>\r\n\r\n<p>17. Любые торговые марки, знаки и названия товаров, служб и организаций, права на дизайн, авторские и смежные права, которые упоминаются, используются или цитируются на страницах Сайта, принадлежат их законным владельцам и их использование здесь не дает вам право на любое другое использование. Если не указано иное, страницы данного Сайта никак не связаны с правообладателями, и никто кроме правообладателя не может распоряжаться правами на использование материалов, защищенных авторским правом. Вы несете ответственность за использование этих и подобных материалов.</p>\r\n\r\n<p>18. Чтение, распространение или изменение информации, размещённой на данном сайте, может являться нарушением законов той страны, в которой вы просматриваете этот сайт.</p>\r\n\r\n<p>19. Пользователь соглашается с тем, что все возможные споры будут разрешаться по нормам российского права.</p>\r\n\r\n<p>20. Пользователь соглашается с тем, что нормы и законы о защите прав потребителей не могут быть применимы к использованию им Сайта, поскольку он не оказывает возмездных услуг.</p>\r\n\r\n<p>21. Бездействие со стороны Администрации в случае нарушения Пользователем либо группой Пользователей пользовательского соглашения не лишает Администрации права предпринять соответствующие действия в защиту интересов Сайта позднее.</p>\r\n\r\n<p>22. Все права на материалы, находящиеся на Сайте, охраняются в соответствии с законодательством ЕС и РФ, в том числе, об авторском праве и смежных правах.</p>\r\n\r\n<p>23. Компоновка страниц, логотип, графики и рисунки, размещенные на данном Сайте защищены авторским правом.</p>\r\n\r\n<p>24. Если в соответствии с действующими законами какие-либо условия будут признаны недействительными, остальные условия остаются в полной силе.</p>\r\n\r\n<p>Используя данный Сайт, Вы выражаете свое согласие с &quot;Отказом от ответственности&quot; и установленными Правилами и принимаете всю ответственность, которая может быть на Вас возложена.</p>\r\n\r\n<p>Администрация Сайта в любое время вправе внести изменения в Правила, которые вступают в силу немедленно. Продолжение пользования Сайтом после внесения изменений означает Ваше автоматическое согласие на соблюдение новых правил.</p>\r\n', 1, 14, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(24, 'Поддержка', NULL, '<p>Поддержка&nbsp;Поддержка&nbsp;Поддержка</p>\r\n', 1, NULL, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pakages`
+-- Структура таблицы `pakages`
 --
 
 CREATE TABLE `pakages` (
@@ -756,7 +782,7 @@ CREATE TABLE `pakages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pakage_price`
+-- Структура таблицы `pakage_price`
 --
 
 CREATE TABLE `pakage_price` (
@@ -772,7 +798,7 @@ CREATE TABLE `pakage_price` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `pakage_price`
+-- Дамп данных таблицы `pakage_price`
 --
 
 INSERT INTO `pakage_price` (`id`, `title`, `short_description`, `description`, `price`, `created_date`, `updated_date`, `route_name`, `status`) VALUES
@@ -781,7 +807,7 @@ INSERT INTO `pakage_price` (`id`, `title`, `short_description`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Структура таблицы `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -793,7 +819,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Структура таблицы `payment`
 --
 
 CREATE TABLE `payment` (
@@ -810,7 +836,7 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referal_links`
+-- Структура таблицы `referal_links`
 --
 
 CREATE TABLE `referal_links` (
@@ -825,7 +851,7 @@ CREATE TABLE `referal_links` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `referer_users`
+-- Структура таблицы `referer_users`
 --
 
 CREATE TABLE `referer_users` (
@@ -839,7 +865,7 @@ CREATE TABLE `referer_users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `service`
+-- Структура таблицы `service`
 --
 
 CREATE TABLE `service` (
@@ -856,7 +882,7 @@ CREATE TABLE `service` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slider`
+-- Структура таблицы `slider`
 --
 
 CREATE TABLE `slider` (
@@ -870,7 +896,7 @@ CREATE TABLE `slider` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `source_message`
+-- Структура таблицы `source_message`
 --
 
 CREATE TABLE `source_message` (
@@ -880,18 +906,25 @@ CREATE TABLE `source_message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `source_message`
+-- Дамп данных таблицы `source_message`
 --
 
 INSERT INTO `source_message` (`id`, `category`, `message`) VALUES
 (3, 'app', 'ABOUT US'),
 (4, 'app', 'EVENTS'),
-(5, 'app', 'Pakage and Price');
+(5, 'app', 'Pakage and Price'),
+(6, 'app', 'List of Pages'),
+(7, 'app', 'Pages'),
+(8, 'app', 'Add New Page'),
+(9, 'app', 'Blog List'),
+(10, 'app', 'Blog'),
+(11, 'app', 'Create Sub Page'),
+(12, 'app', 'Sub Pages');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `states`
+-- Структура таблицы `states`
 --
 
 CREATE TABLE `states` (
@@ -901,7 +934,7 @@ CREATE TABLE `states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `states`
+-- Дамп данных таблицы `states`
 --
 
 INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
@@ -5030,7 +5063,7 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_about`
+-- Структура таблицы `tr_about`
 --
 
 CREATE TABLE `tr_about` (
@@ -5045,7 +5078,30 @@ CREATE TABLE `tr_about` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_articles`
+-- Структура таблицы `tr_aboutus`
+--
+
+CREATE TABLE `tr_aboutus` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `short_description` text NOT NULL,
+  `description` text NOT NULL,
+  `aboutus_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `tr_aboutus`
+--
+
+INSERT INTO `tr_aboutus` (`id`, `title`, `short_description`, `description`, `aboutus_id`, `language_id`) VALUES
+(1, 'Lorem Ispum222', '<p>fsadfdfsdfasdfasdfasdfasdf aasadfsdfasdfasdfasdfasdfsa asdfsafasdfsadf sadfadfsdfas sadfsdfsdfasd asdfsadfasdf &nbsp;fsadfdfsdfasdfasdfasdfasdf aasadfsdfasdfasdfasdfasdfsa asdfsafasdfsadf sadfadfsdfas sadfsdfsdfasd asdfsadfasdf&nbsp;</p>\r\n', '<p>Lorem IspumLorem IspumLorem Ispum&nbsp;Lorem IspumLorem IspumLorem IspumLorem IspumLorem Ispum</p>\r\n\r\n<p>Lorem IspumLorem IspumLorem IspumLorem Ispum&nbsp;Lorem IspumLorem IspumLorem IspumLorem Ispum</p>\r\n', 1, 2),
+(2, 'Lorem Ispum222', '<p>fsadfdfsdfasdfasdfasdfasdf aasadfsdfasdfasdfasdfasdfsa asdfsafasdfsadf sadfadfsdfas sadfsdfsdfasd asdfsadfasdf &nbsp;fsadfdfsdfasdfasdfasdfasdf aasadfsdfasdfasdfasdfasdfsa asdfsafasdfsadf sadfadfsdfas sadfsdfsdfasd asdfsadfasdf&nbsp;</p>\r\n', '<p>Lorem IspumLorem IspumLorem Ispum&nbsp;Lorem IspumLorem IspumLorem IspumLorem IspumLorem Ispum</p>\r\n\r\n<p>Lorem IspumLorem IspumLorem IspumLorem Ispum&nbsp;Lorem IspumLorem IspumLorem IspumLorem Ispum</p>\r\n', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tr_articles`
 --
 
 CREATE TABLE `tr_articles` (
@@ -5060,24 +5116,34 @@ CREATE TABLE `tr_articles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_blog`
+-- Структура таблицы `tr_blog`
 --
 
 CREATE TABLE `tr_blog` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `short_description` varchar(255) NOT NULL,
-  `meta_description` varchar(255) NOT NULL,
-  `meta_key` varchar(255) NOT NULL,
+  `description` text,
+  `short_description` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `meta_key` varchar(255) DEFAULT NULL,
   `language_id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Дамп данных таблицы `tr_blog`
+--
+
+INSERT INTO `tr_blog` (`id`, `title`, `description`, `short_description`, `meta_description`, `meta_key`, `language_id`, `blog_id`) VALUES
+(25, 'zxcvzxcv', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '', 1, 12),
+(26, 'zxcvzxcv', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '<p>xzcvxzcv</p>\r\n', '', 2, 12),
+(27, 'cvbnvbnc', '', '', '', '', 1, 13),
+(28, 'cvbnvbnc', '', '', '', '', 2, 13);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_blog_categories`
+-- Структура таблицы `tr_blog_categories`
 --
 
 CREATE TABLE `tr_blog_categories` (
@@ -5090,7 +5156,7 @@ CREATE TABLE `tr_blog_categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_calculator`
+-- Структура таблицы `tr_calculator`
 --
 
 CREATE TABLE `tr_calculator` (
@@ -5105,7 +5171,7 @@ CREATE TABLE `tr_calculator` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_contact`
+-- Структура таблицы `tr_contact`
 --
 
 CREATE TABLE `tr_contact` (
@@ -5119,7 +5185,7 @@ CREATE TABLE `tr_contact` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_faq`
+-- Структура таблицы `tr_faq`
 --
 
 CREATE TABLE `tr_faq` (
@@ -5132,17 +5198,17 @@ CREATE TABLE `tr_faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tr_faq`
+-- Дамп данных таблицы `tr_faq`
 --
 
 INSERT INTO `tr_faq` (`id`, `title`, `short_description`, `description`, `faq_id`, `language_id`) VALUES
-(1, 'sdfgsdfg', NULL, '<p>sdfgsdfgsdfgs</p>\r\n', 2, 1),
-(2, 'sdfgsdfgENG', NULL, '<p>sdfgsdfgsdfgssdfsdfsdWENG</p>\r\n', 2, 2);
+(1, 'xcvbcv', NULL, '<p>bxcvbcvb</p>\r\n', 2, 1),
+(2, 'xcvbcv', NULL, '<p>bxcvbcvb</p>\r\n', 2, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_how_to_earn`
+-- Структура таблицы `tr_how_to_earn`
 --
 
 CREATE TABLE `tr_how_to_earn` (
@@ -5155,7 +5221,7 @@ CREATE TABLE `tr_how_to_earn` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_invsetor_packages`
+-- Структура таблицы `tr_invsetor_packages`
 --
 
 CREATE TABLE `tr_invsetor_packages` (
@@ -5169,7 +5235,7 @@ CREATE TABLE `tr_invsetor_packages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_news`
+-- Структура таблицы `tr_news`
 --
 
 CREATE TABLE `tr_news` (
@@ -5184,38 +5250,43 @@ CREATE TABLE `tr_news` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_pages`
+-- Структура таблицы `tr_pages`
 --
 
 CREATE TABLE `tr_pages` (
   `id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `short_description` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
   `content` text CHARACTER SET utf8,
   `pages_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  `short_description` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+  `language_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tr_pages`
+-- Дамп данных таблицы `tr_pages`
 --
 
-INSERT INTO `tr_pages` (`id`, `title`, `content`, `pages_id`, `language_id`, `short_description`) VALUES
-(16, 'Конфиденциальность', '<p>сдгсдгсдгсдгсдгдгсдгдсгс</p>\r\n', 12, 1, ''),
-(17, 'Confidentiality', '<p>gsdfgdfgdfgsdfg</p>\r\n', 12, 2, ''),
-(18, 'Правила безопасности', '<h1>Правила безопасности&nbsp;Правила безопасности</h1>\r\n', 13, 1, ''),
-(19, 'Safety regulations', '<h1>Safety regulations&nbsp;Safety regulations</h1>\r\n', 13, 2, ''),
-(20, 'Условия использования', '<h1>Условия использования&nbsp;Условия использования</h1>\r\n', 14, 1, ''),
-(21, 'Terms of Use', '<h1>Terms of Use&nbsp;Terms of Use</h1>\r\n', 14, 2, ''),
-(22, 'Правила торговой площадки', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 15, 1, '<p>1. ??????????? ?? ????????? 4pda.ru (? ?????????? ????) ?????????? ????????????? ??? ?????????? ???????????? ????????????? ? ?????????, ??????? ????? ???????????? ??? ??? ???????.</p>\r\n'),
-(23, 'Marketplace rules', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 15, 2, '<p>1. ??????????? ?? ????????? 4pda.ru (? ?????????? ????) ?????????? ????????????? ??? ?????????? ???????????? ????????????? ? ?????????, ??????? ????? ???????????? ??? ??? ???????.</p>\r\n'),
-(24, 'Поддержка', '', 17, 1, NULL),
-(25, 'Support', '', 17, 2, NULL);
+INSERT INTO `tr_pages` (`id`, `title`, `short_description`, `content`, `pages_id`, `language_id`) VALUES
+(16, 'Конфиденциальность', '', '<p>сдгсдгсдгсдгсдгдгсдгдсгс</p>\r\n', 12, 1),
+(17, 'Confidentiality', '', '<p>gsdfgdfgdfgsdfg</p>\r\n', 12, 2),
+(18, 'Правила безопасности', '', '<h1>Правила безопасности&nbsp;Правила безопасности</h1>\r\n', 13, 1),
+(19, 'Safety regulations', '', '<h1>Safety regulations&nbsp;Safety regulations</h1>\r\n', 13, 2),
+(20, 'Условия использования', '', '<h1>Условия использования&nbsp;Условия использования</h1>\r\n', 14, 1),
+(21, 'Terms of Use', '', '<h1>Terms of Use&nbsp;Terms of Use</h1>\r\n', 14, 2),
+(22, 'Правила торговой площадки', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\n\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\n', 15, 1),
+(23, 'Marketplace rules', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 15, 2),
+(28, 'Публичная оферта', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 19, 1),
+(29, 'Public offer', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', 19, 2),
+(30, 'Denial of responsibilit', NULL, '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n\r\n<p>3. Администрация (владельцы Сайта, должностные лица, директора, акционеры, учредители, работники, агенты, Администраторы, Супермодераторы, Модераторы, Помощники модераторов, Роутеры, Кураторы тем и иные представители) прикладывает все усилия, чтобы обеспечить пользователей точной и достоверной информацией, но в то же время не исключает возможности возникновения ошибок.</p>\r\n\r\n<p>4. Cайт 4pda.ru - это проект с открытым содержимым. Его строение позволяет любому, кто имеет доступ к интернету, изменять его содержание, поэтому Сайт и его Содержимое предоставляются свободно, как акт доброй воли, по принципу &laquo;как есть&raquo;, без заключения каких-либо договорённостей или договоров между Вами, пользователями данного Сайта, Администрацией, владельцами серверов, на которых он размещён, либо кем-то ещё, любым образом связанными с этим или родственными ему проектами, которые [договора] могут стать предметом прямых претензий.</p>\r\n\r\n<p>5. Администрация не дает каких-либо заверений или гарантий в отношении Сайта и его Содержимого, в том числе, без ограничения, в отношении своевременности, актуальности, точности, полноты, достоверности, доступности или соответствия для какой-либо конкретной цели Сайта и Содержимого, в отношении того, что при использовании Сайта не возникнет ошибок, оно будет безопасным и бесперебойным, что Администрация будет исправлять какие-либо ошибки, или что на Сайте не будет вирусов или иных вредоносных кодов, а так же, что Содержимое и Сайт не нарушают прав третьих лиц.</p>\r\n\r\n<p>6. Некоторые ссылки на этом Сайте ведут к ресурсам, расположенным на сторонних сайтах. Данные ссылки размещены для удобства пользователей и не означают, что Администрация одобряет содержание других сайтов. Кроме этого, Администрация Сайта не несет никакой ответственности за доступность этих ресурсов и за их контент. Это заявление относится ко всем ссылкам, представленным на Сайте, и материалам всех веб-сайтов, доступных через баннеры и ссылки на веб-сайте по адресу 4pda.ru.</p>\r\n\r\n<p>7. В обязанности Администрации не входит контроль легальности или нелегальности передаваемой информации (любой, включая, но не ограничиваясь, информацией передаваемой между пользователями, внутренней пересылки информации в виде различных ссылок, текстов или архивов), определение прав собственности или законности передачи, приема или использования этой информации.</p>\r\n\r\n<p>8. Администрация принимает разумные меры для обеспечения точности, актуальности и правомерности Содержимого, но она не принимает на себя ответственности за действия лиц или организаций, прямо или иным образом осуществленные на основании информации, имеющейся на Сайте или полученной через него, как предоставленной Администрацией, так и третьими лицами.</p>\r\n\r\n<p>9. В соответствии с действующим законодательством, Администрация отказывается от каких-либо заверений и гарантий, предоставление которых может иным образом подразумеваться, и отказывается от ответственности в отношении Сайта, Содержимого и их использования. Ни при каких обстоятельствах Администрация Сайта не будет нести ответственности ни перед какой стороной за какой-либо прямой, непрямой, особый или иной косвенный ущерб в результате любого использования информации на этом Сайте или на любом другом сайте, на который имеется гиперссылка с нашего Сайта, возникновение зависимости, снижения продуктивности, увольнения или прерывания трудовой активности, а равно и отчисления из учебных учреждений, за любую упущенную выгоду, приостановку хозяйственной деятельности, потерю программ или данных в Ваших информационных системах или иным образом, возникшие в связи с доступом, использованием или невозможностью использования Сайта, Содержимого или какого-либо связанного интернет-сайта, или неработоспособностью, ошибкой, упущением, перебоем, дефектом, простоем в работе или задержкой в передаче, компьютерным вирусом или системным сбоем, даже если администрация будет явно поставлена в известность о возможности такого ущерба.</p>\r\n\r\n<p>10. За рекламу, размещаемую на Сайте, несет ответственность лишь рекламодатель. Сайт особо уведомляет о том, что не гарантирует возможность приобретения или использования тех или иных товаров или услуг по ценам и/или на условиях, указываемых в рекламных блоках (текстах, баннерах). Вы соглашаетесь с тем, что Сайт не несет никакой ответственности за возможные последствия (включая любой ущерб), возникшие в результате каких-либо отношений с рекламодателями.</p>\r\n\r\n<p>11. На Сайте предусмотрена возможность отправки пользователями вопросов, замечаний, предложений и другой информации с целью включения её в соответствующие разделы Сайта, которые могут и будут использоваться другими его посетителями. Сайт не несет никакой ответственности ни за содержание и точность этой информации, ни за любые рекомендации или мнения, которые могут в ней содержаться, ни за применимость её к конкретным пользователям. Кроме того, поскольку интернет не обеспечивает в полной мере надежной защиты информации, Сайт не несет ответственности за информацию, присылаемую через интернет.</p>\r\n\r\n<p>12. Отправляя материалы, отправляющая сторона гарантирует и подтверждает, что она обладает авторскими правами на эти материалы, получила разрешение на публикацию от обладателя авторских прав, или что эти материалы являются общественным достоянием и размещаются в соответствии законодательством или требованиями первоисточника. Отправляющая сторона также гарантирует и подтверждает, что получатель имеет полное и не ограниченное право отправки данных материалов, и что такая отправка не ущемляет ничьих прав и законных интересов.</p>\r\n\r\n<p>13. Сайт может использовать идентификационные файлы cookies для хранения как вашей личной, так и общей информации. &laquo;Cookies&raquo; представляют собой небольшие текстовые файлы, которые могут использоваться интернет-сайтом для опознавания повторных посетителей, упрощения доступа и использования посетителем сайта, а также отслеживания сайтом обращений посетителей и сбора общей информации для улучшения содержания. Пользуясь Сайтом, вы выражаете свое согласие на использование Сайтом cookies.</p>\r\n\r\n<p>14. Администрация оставляет за собой право вносить изменения без уведомления о них пользователей. Также Администрация не несет ответственности за изменение, редактирование или удаление любой информации, добавленной вами на Сайт или другие связанные с ним проекты.</p>\r\n\r\n<p>15. Администрация вправе отказать в доступе к Сайту любому Пользователю, или группе Пользователей без объяснения причин своих действий и предварительного уведомления.</p>\r\n\r\n<p>16. Администрация вправе изменять либо удалять ссылки на информацию, графические, звуковые и прочие данные, размещенные Пользователями на Сайте, без предварительного уведомления и объяснения причин своих действий.</p>\r\n\r\n<p>17. Любые торговые марки, знаки и названия товаров, служб и организаций, права на дизайн, авторские и смежные права, которые упоминаются, используются или цитируются на страницах Сайта, принадлежат их законным владельцам и их использование здесь не дает вам право на любое другое использование. Если не указано иное, страницы данного Сайта никак не связаны с правообладателями, и никто кроме правообладателя не может распоряжаться правами на использование материалов, защищенных авторским правом. Вы несете ответственность за использование этих и подобных материалов.</p>\r\n\r\n<p>18. Чтение, распространение или изменение информации, размещённой на данном сайте, может являться нарушением законов той страны, в которой вы просматриваете этот сайт.</p>\r\n\r\n<p>19. Пользователь соглашается с тем, что все возможные споры будут разрешаться по нормам российского права.</p>\r\n\r\n<p>20. Пользователь соглашается с тем, что нормы и законы о защите прав потребителей не могут быть применимы к использованию им Сайта, поскольку он не оказывает возмездных услуг.</p>\r\n\r\n<p>21. Бездействие со стороны Администрации в случае нарушения Пользователем либо группой Пользователей пользовательского соглашения не лишает Администрации права предпринять соответствующие действия в защиту интересов Сайта позднее.</p>\r\n\r\n<p>22. Все права на материалы, находящиеся на Сайте, охраняются в соответствии с законодательством ЕС и РФ, в том числе, об авторском праве и смежных правах.</p>\r\n\r\n<p>23. Компоновка страниц, логотип, графики и рисунки, размещенные на данном Сайте защищены авторским правом.</p>\r\n\r\n<p>24. Если в соответствии с действующими законами какие-либо условия будут признаны недействительными, остальные условия остаются в полной силе.</p>\r\n\r\n<p>Используя данный Сайт, Вы выражаете свое согласие с &quot;Отказом от ответственности&quot; и установленными Правилами и принимаете всю ответственность, которая может быть на Вас возложена.</p>\r\n\r\n<p>Администрация Сайта в любое время вправе внести изменения в Правила, которые вступают в силу немедленно. Продолжение пользования Сайтом после внесения изменений означает Ваше автоматическое согласие на соблюдение новых правил.</p>\r\n', 20, 2),
+(33, 'Отказ от ответственности', '<p>Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n\r\n<p>3. Администрация (владельцы Сайта, должностные лица, директора, акционеры, учредители, работники, агенты, Администраторы, Супермодераторы, Модераторы, Помощники модераторов, Роутеры, Кураторы тем и иные представители) прикладывает все усилия, чтобы обеспечить пользователей точной и достоверной информацией, но в то же время не исключает возможности возникновения ошибок.</p>\r\n\r\n<p>4. Cайт 4pda.ru - это проект с открытым содержимым. Его строение позволяет любому, кто имеет доступ к интернету, изменять его содержание, поэтому Сайт и его Содержимое предоставляются свободно, как акт доброй воли, по принципу &laquo;как есть&raquo;, без заключения каких-либо договорённостей или договоров между Вами, пользователями данного Сайта, Администрацией, владельцами серверов, на которых он размещён, либо кем-то ещё, любым образом связанными с этим или родственными ему проектами, которые [договора] могут стать предметом прямых претензий.</p>\r\n\r\n<p>5. Администрация не дает каких-либо заверений или гарантий в отношении Сайта и его Содержимого, в том числе, без ограничения, в отношении своевременности, актуальности, точности, полноты, достоверности, доступности или соответствия для какой-либо конкретной цели Сайта и Содержимого, в отношении того, что при использовании Сайта не возникнет ошибок, оно будет безопасным и бесперебойным, что Администрация будет исправлять какие-либо ошибки, или что на Сайте не будет вирусов или иных вредоносных кодов, а так же, что Содержимое и Сайт не нарушают прав третьих лиц.</p>\r\n\r\n<p>6. Некоторые ссылки на этом Сайте ведут к ресурсам, расположенным на сторонних сайтах. Данные ссылки размещены для удобства пользователей и не означают, что Администрация одобряет содержание других сайтов. Кроме этого, Администрация Сайта не несет никакой ответственности за доступность этих ресурсов и за их контент. Это заявление относится ко всем ссылкам, представленным на Сайте, и материалам всех веб-сайтов, доступных через баннеры и ссылки на веб-сайте по адресу 4pda.ru.</p>\r\n\r\n<p>7. В обязанности Администрации не входит контроль легальности или нелегальности передаваемой информации (любой, включая, но не ограничиваясь, информацией передаваемой между пользователями, внутренней пересылки информации в виде различных ссылок, текстов или архивов), определение прав собственности или законности передачи, приема или использования этой информации.</p>\r\n\r\n<p>8. Администрация принимает разумные меры для обеспечения точности, актуальности и правомерности Содержимого, но она не принимает на себя ответственности за действия лиц или организаций, прямо или иным образом осуществленные на основании информации, имеющейся на Сайте или полученной через него, как предоставленной Администрацией, так и третьими лицами.</p>\r\n\r\n<p>9. В соответствии с действующим законодательством, Администрация отказывается от каких-либо заверений и гарантий, предоставление которых может иным образом подразумеваться, и отказывается от ответственности в отношении Сайта, Содержимого и их использования. Ни при каких обстоятельствах Администрация Сайта не будет нести ответственности ни перед какой стороной за какой-либо прямой, непрямой, особый или иной косвенный ущерб в результате любого использования информации на этом Сайте или на любом другом сайте, на который имеется гиперссылка с нашего Сайта, возникновение зависимости, снижения продуктивности, увольнения или прерывания трудовой активности, а равно и отчисления из учебных учреждений, за любую упущенную выгоду, приостановку хозяйственной деятельности, потерю программ или данных в Ваших информационных системах или иным образом, возникшие в связи с доступом, использованием или невозможностью использования Сайта, Содержимого или какого-либо связанного интернет-сайта, или неработоспособностью, ошибкой, упущением, перебоем, дефектом, простоем в работе или задержкой в передаче, компьютерным вирусом или системным сбоем, даже если администрация будет явно поставлена в известность о возможности такого ущерба.</p>\r\n\r\n<p>10. За рекламу, размещаемую на Сайте, несет ответственность лишь рекламодатель. Сайт особо уведомляет о том, что не гарантирует возможность приобретения или использования тех или иных товаров или услуг по ценам и/или на условиях, указываемых в рекламных блоках (текстах, баннерах). Вы соглашаетесь с тем, что Сайт не несет никакой ответственности за возможные последствия (включая любой ущерб), возникшие в результате каких-либо отношений с рекламодателями.</p>\r\n\r\n<p>11. На Сайте предусмотрена возможность отправки пользователями вопросов, замечаний, предложений и другой информации с целью включения её в соответствующие разделы Сайта, которые могут и будут использоваться другими его посетителями. Сайт не несет никакой ответственности ни за содержание и точность этой информации, ни за любые рекомендации или мнения, которые могут в ней содержаться, ни за применимость её к конкретным пользователям. Кроме того, поскольку интернет не обеспечивает в полной мере надежной защиты информации, Сайт не несет ответственности за информацию, присылаемую через интернет.</p>\r\n\r\n<p>12. Отправляя материалы, отправляющая сторона гарантирует и подтверждает, что она обладает авторскими правами на эти материалы, получила разрешение на публикацию от обладателя авторских прав, или что эти материалы являются общественным достоянием и размещаются в соответствии законодательством или требованиями первоисточника. Отправляющая сторона также гарантирует и подтверждает, что получатель имеет полное и не ограниченное право отправки данных материалов, и что такая отправка не ущемляет ничьих прав и законных интересов.</p>\r\n\r\n<p>13. Сайт может использовать идентификационные файлы cookies для хранения как вашей личной, так и общей информации. &laquo;Cookies&raquo; представляют собой небольшие текстовые файлы, которые могут использоваться интернет-сайтом для опознавания повторных посетителей, упрощения доступа и использования посетителем сайта, а также отслеживания сайтом обращений посетителей и сбора общей информации для улучшения содержания. Пользуясь Сайтом, вы выражаете свое согласие на использование Сайтом cookies.</p>\r\n\r\n<p>14. Администрация оставляет за собой право вносить изменения без уведомления о них пользователей. Также Администрация не несет ответственности за изменение, редактирование или удаление любой информации, добавленной вами на Сайт или другие связанные с ним проекты.</p>\r\n\r\n<p>15. Администрация вправе отказать в доступе к Сайту любому Пользователю, или группе Пользователей без объяснения причин своих действий и предварительного уведомления.</p>\r\n\r\n<p>16. Администрация вправе изменять либо удалять ссылки на информацию, графические, звуковые и прочие данные, размещенные Пользователями на Сайте, без предварительного уведомления и объяснения причин своих действий.</p>\r\n\r\n<p>17. Любые торговые марки, знаки и названия товаров, служб и организаций, права на дизайн, авторские и смежные права, которые упоминаются, используются или цитируются на страницах Сайта, принадлежат их законным владельцам и их использование здесь не дает вам право на любое другое использование. Если не указано иное, страницы данного Сайта никак не связаны с правообладателями, и никто кроме правообладателя не может распоряжаться правами на использование материалов, защищенных авторским правом. Вы несете ответственность за использование этих и подобных материалов.</p>\r\n\r\n<p>18. Чтение, распространение или изменение информации, размещённой на данном сайте, может являться нарушением законов той страны, в которой вы просматриваете этот сайт.</p>\r\n\r\n<p>19. Пользователь соглашается с тем, что все возможные споры будут разрешаться по нормам российского права.</p>\r\n\r\n<p>20. Пользователь соглашается с тем, что нормы и законы о защите прав потребителей не могут быть применимы к использованию им Сайта, поскольку он не оказывает возмездных услуг.</p>\r\n\r\n<p>21. Бездействие со стороны Администрации в случае нарушения Пользователем либо группой Пользователей пользовательского соглашения не лишает Администрации права предпринять соответствующие действия в защиту интересов Сайта позднее.</p>\r\n\r\n<p>22. Все права на материалы, находящиеся на Сайте, охраняются в соответствии с законодательством ЕС и РФ, в том числе, об авторском праве и смежных правах.</p>\r\n\r\n<p>23. Компоновка страниц, логотип, графики и рисунки, размещенные на данном Сайте защищены авторским правом.</p>\r\n\r\n<p>24. Если в соответствии с действующими законами какие-либо условия будут признаны недействительными, остальные условия остаются в полной силе.</p>\r\n\r\n<p>Используя данный Сайт, Вы выражаете свое согласие с &quot;Отказом от ответственности&quot; и установленными Правилами и принимаете всю ответственность, которая может быть на Вас возложена.</p>\r\n\r\n<p>Администрация Сайта в любое время вправе внести изменения в Правила, которые вступают в силу немедленно. Продолжение пользования Сайтом после внесения изменений означает Ваше автоматическое согласие на соблюдение новых правил.</p>\r\n', 23, 1),
+(34, 'Denial of responsibilit', '<p>Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n', '<p>1. Размещаемая на страницах 4pda.ru (в дальнейшем Сайт) информация предназначена для свободного ознакомления пользователей с вопросами, которые могут представлять для них интерес.</p>\r\n\r\n<p>2. Вся информация предоставляется в исходном виде, без гарантий полноты или своевременности, и без иных явно выраженных или подразумеваемых гарантий. Доступ к Сайту, а также использование его Содержимого осуществляются исключительно по вашему усмотрению и на ваш риск.</p>\r\n\r\n<p>3. Администрация (владельцы Сайта, должностные лица, директора, акционеры, учредители, работники, агенты, Администраторы, Супермодераторы, Модераторы, Помощники модераторов, Роутеры, Кураторы тем и иные представители) прикладывает все усилия, чтобы обеспечить пользователей точной и достоверной информацией, но в то же время не исключает возможности возникновения ошибок.</p>\r\n\r\n<p>4. Cайт 4pda.ru - это проект с открытым содержимым. Его строение позволяет любому, кто имеет доступ к интернету, изменять его содержание, поэтому Сайт и его Содержимое предоставляются свободно, как акт доброй воли, по принципу &laquo;как есть&raquo;, без заключения каких-либо договорённостей или договоров между Вами, пользователями данного Сайта, Администрацией, владельцами серверов, на которых он размещён, либо кем-то ещё, любым образом связанными с этим или родственными ему проектами, которые [договора] могут стать предметом прямых претензий.</p>\r\n\r\n<p>5. Администрация не дает каких-либо заверений или гарантий в отношении Сайта и его Содержимого, в том числе, без ограничения, в отношении своевременности, актуальности, точности, полноты, достоверности, доступности или соответствия для какой-либо конкретной цели Сайта и Содержимого, в отношении того, что при использовании Сайта не возникнет ошибок, оно будет безопасным и бесперебойным, что Администрация будет исправлять какие-либо ошибки, или что на Сайте не будет вирусов или иных вредоносных кодов, а так же, что Содержимое и Сайт не нарушают прав третьих лиц.</p>\r\n\r\n<p>6. Некоторые ссылки на этом Сайте ведут к ресурсам, расположенным на сторонних сайтах. Данные ссылки размещены для удобства пользователей и не означают, что Администрация одобряет содержание других сайтов. Кроме этого, Администрация Сайта не несет никакой ответственности за доступность этих ресурсов и за их контент. Это заявление относится ко всем ссылкам, представленным на Сайте, и материалам всех веб-сайтов, доступных через баннеры и ссылки на веб-сайте по адресу 4pda.ru.</p>\r\n\r\n<p>7. В обязанности Администрации не входит контроль легальности или нелегальности передаваемой информации (любой, включая, но не ограничиваясь, информацией передаваемой между пользователями, внутренней пересылки информации в виде различных ссылок, текстов или архивов), определение прав собственности или законности передачи, приема или использования этой информации.</p>\r\n\r\n<p>8. Администрация принимает разумные меры для обеспечения точности, актуальности и правомерности Содержимого, но она не принимает на себя ответственности за действия лиц или организаций, прямо или иным образом осуществленные на основании информации, имеющейся на Сайте или полученной через него, как предоставленной Администрацией, так и третьими лицами.</p>\r\n\r\n<p>9. В соответствии с действующим законодательством, Администрация отказывается от каких-либо заверений и гарантий, предоставление которых может иным образом подразумеваться, и отказывается от ответственности в отношении Сайта, Содержимого и их использования. Ни при каких обстоятельствах Администрация Сайта не будет нести ответственности ни перед какой стороной за какой-либо прямой, непрямой, особый или иной косвенный ущерб в результате любого использования информации на этом Сайте или на любом другом сайте, на который имеется гиперссылка с нашего Сайта, возникновение зависимости, снижения продуктивности, увольнения или прерывания трудовой активности, а равно и отчисления из учебных учреждений, за любую упущенную выгоду, приостановку хозяйственной деятельности, потерю программ или данных в Ваших информационных системах или иным образом, возникшие в связи с доступом, использованием или невозможностью использования Сайта, Содержимого или какого-либо связанного интернет-сайта, или неработоспособностью, ошибкой, упущением, перебоем, дефектом, простоем в работе или задержкой в передаче, компьютерным вирусом или системным сбоем, даже если администрация будет явно поставлена в известность о возможности такого ущерба.</p>\r\n\r\n<p>10. За рекламу, размещаемую на Сайте, несет ответственность лишь рекламодатель. Сайт особо уведомляет о том, что не гарантирует возможность приобретения или использования тех или иных товаров или услуг по ценам и/или на условиях, указываемых в рекламных блоках (текстах, баннерах). Вы соглашаетесь с тем, что Сайт не несет никакой ответственности за возможные последствия (включая любой ущерб), возникшие в результате каких-либо отношений с рекламодателями.</p>\r\n\r\n<p>11. На Сайте предусмотрена возможность отправки пользователями вопросов, замечаний, предложений и другой информации с целью включения её в соответствующие разделы Сайта, которые могут и будут использоваться другими его посетителями. Сайт не несет никакой ответственности ни за содержание и точность этой информации, ни за любые рекомендации или мнения, которые могут в ней содержаться, ни за применимость её к конкретным пользователям. Кроме того, поскольку интернет не обеспечивает в полной мере надежной защиты информации, Сайт не несет ответственности за информацию, присылаемую через интернет.</p>\r\n\r\n<p>12. Отправляя материалы, отправляющая сторона гарантирует и подтверждает, что она обладает авторскими правами на эти материалы, получила разрешение на публикацию от обладателя авторских прав, или что эти материалы являются общественным достоянием и размещаются в соответствии законодательством или требованиями первоисточника. Отправляющая сторона также гарантирует и подтверждает, что получатель имеет полное и не ограниченное право отправки данных материалов, и что такая отправка не ущемляет ничьих прав и законных интересов.</p>\r\n\r\n<p>13. Сайт может использовать идентификационные файлы cookies для хранения как вашей личной, так и общей информации. &laquo;Cookies&raquo; представляют собой небольшие текстовые файлы, которые могут использоваться интернет-сайтом для опознавания повторных посетителей, упрощения доступа и использования посетителем сайта, а также отслеживания сайтом обращений посетителей и сбора общей информации для улучшения содержания. Пользуясь Сайтом, вы выражаете свое согласие на использование Сайтом cookies.</p>\r\n\r\n<p>14. Администрация оставляет за собой право вносить изменения без уведомления о них пользователей. Также Администрация не несет ответственности за изменение, редактирование или удаление любой информации, добавленной вами на Сайт или другие связанные с ним проекты.</p>\r\n\r\n<p>15. Администрация вправе отказать в доступе к Сайту любому Пользователю, или группе Пользователей без объяснения причин своих действий и предварительного уведомления.</p>\r\n\r\n<p>16. Администрация вправе изменять либо удалять ссылки на информацию, графические, звуковые и прочие данные, размещенные Пользователями на Сайте, без предварительного уведомления и объяснения причин своих действий.</p>\r\n\r\n<p>17. Любые торговые марки, знаки и названия товаров, служб и организаций, права на дизайн, авторские и смежные права, которые упоминаются, используются или цитируются на страницах Сайта, принадлежат их законным владельцам и их использование здесь не дает вам право на любое другое использование. Если не указано иное, страницы данного Сайта никак не связаны с правообладателями, и никто кроме правообладателя не может распоряжаться правами на использование материалов, защищенных авторским правом. Вы несете ответственность за использование этих и подобных материалов.</p>\r\n\r\n<p>18. Чтение, распространение или изменение информации, размещённой на данном сайте, может являться нарушением законов той страны, в которой вы просматриваете этот сайт.</p>\r\n\r\n<p>19. Пользователь соглашается с тем, что все возможные споры будут разрешаться по нормам российского права.</p>\r\n\r\n<p>20. Пользователь соглашается с тем, что нормы и законы о защите прав потребителей не могут быть применимы к использованию им Сайта, поскольку он не оказывает возмездных услуг.</p>\r\n\r\n<p>21. Бездействие со стороны Администрации в случае нарушения Пользователем либо группой Пользователей пользовательского соглашения не лишает Администрации права предпринять соответствующие действия в защиту интересов Сайта позднее.</p>\r\n\r\n<p>22. Все права на материалы, находящиеся на Сайте, охраняются в соответствии с законодательством ЕС и РФ, в том числе, об авторском праве и смежных правах.</p>\r\n\r\n<p>23. Компоновка страниц, логотип, графики и рисунки, размещенные на данном Сайте защищены авторским правом.</p>\r\n\r\n<p>24. Если в соответствии с действующими законами какие-либо условия будут признаны недействительными, остальные условия остаются в полной силе.</p>\r\n\r\n<p>Используя данный Сайт, Вы выражаете свое согласие с &quot;Отказом от ответственности&quot; и установленными Правилами и принимаете всю ответственность, которая может быть на Вас возложена.</p>\r\n\r\n<p>Администрация Сайта в любое время вправе внести изменения в Правила, которые вступают в силу немедленно. Продолжение пользования Сайтом после внесения изменений означает Ваше автоматическое согласие на соблюдение новых правил.</p>\r\n', 23, 2),
+(36, 'Поддержка', NULL, '<p>Поддержка&nbsp;Поддержка&nbsp;Поддержка</p>\r\n', 24, 1),
+(37, 'Поддержка', NULL, '<p>Поддержка&nbsp;Поддержка&nbsp;Поддержка</p>\r\n', 24, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_pakages`
+-- Структура таблицы `tr_pakages`
 --
 
 CREATE TABLE `tr_pakages` (
@@ -5230,7 +5301,7 @@ CREATE TABLE `tr_pakages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_pakage_price`
+-- Структура таблицы `tr_pakage_price`
 --
 
 CREATE TABLE `tr_pakage_price` (
@@ -5243,7 +5314,7 @@ CREATE TABLE `tr_pakage_price` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tr_pakage_price`
+-- Дамп данных таблицы `tr_pakage_price`
 --
 
 INSERT INTO `tr_pakage_price` (`id`, `title`, `short_description`, `description`, `pakage_price_id`, `language_id`) VALUES
@@ -5253,7 +5324,7 @@ INSERT INTO `tr_pakage_price` (`id`, `title`, `short_description`, `description`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_slider`
+-- Структура таблицы `tr_slider`
 --
 
 CREATE TABLE `tr_slider` (
@@ -5267,7 +5338,7 @@ CREATE TABLE `tr_slider` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
@@ -5310,19 +5381,17 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Дамп данных таблицы `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `role`, `bio`, `gender`, `dob`, `pic`, `country`, `state`, `city`, `address`, `phone`, `mobile_phone`, `other_phone`, `postal`, `starting_amount`, `purse`, `referal_link`, `invitation_users_count`, `auth_key`, `remember_token`, `password_token`, `api_key`, `social_type`, `social_id`, `social_user_name`, `status`, `activity_status`, `referal_link_created`, `deleted_at`, `created`, `updated`) VALUES
 (1, 'admin123', '', '', 'info@termoros.am', '$2y$13$cOqQNxujcCnt9hq510fBaeauxVaT9pTSZ7ivvl06I/wLXMCRPnCYa', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, NULL, 0, 0, '', 0, 'zJIqL7C9wyCHbcwbugyZr-jT9zEYdcQ1', NULL, '', NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '0000-00-00 00:00:00', '2017-04-15 09:00:37'),
-(2, 'asg', 'sdfgsdfg', 'sfgsdfgfd', 'harut-good@mail.ru', 'sdfgsdf', 1, '', 1, NULL, NULL, '', '', '', '', '', '', '', '', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 11:58:07', '2017-04-16 11:58:07'),
-(3, 'test', 'Test', 'test', 'test@test.com', 'test2015', 2, '<p>fgsfgsdfgsdfgsdfg</p>\r\n', 1, '0000-00-00', NULL, '', '', '', 'New York, NY, United States', '', '', '', '', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 12:19:29', '2017-04-16 12:19:29'),
-(4, 'sdfa', 'asdfasdf', 'dfasd', 'harut-good@mail.ru', 'adf', 2, '<p>asdfasdfsdfasdf</p>\r\n', 1, '0000-00-00', NULL, 'United States', 'IA, Iowa', 'West Des Moines', 'Taste of New York, South Jordan Creek Parkway, West Des Moines, IA, United StatesSouth Jordan Creek Parkway', '12313', '1321', '2313', '50266', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 13:02:15', '2017-04-16 13:02:15');
+(2, 'asg', 'sdfgsdfg', 'sfgsdfgfd', 'harut-good@mail.ru', 'sdfgsdf', 1, '', 1, NULL, NULL, '', '', '', '', '', '', '', '', 0, 0, '', 0, '', NULL, NULL, NULL, NULL, NULL, '', 0, 0, '0000-00-00 00:00:00', NULL, '2017-04-16 11:58:07', '2017-04-16 11:58:07');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_card`
+-- Структура таблицы `user_card`
 --
 
 CREATE TABLE `user_card` (
@@ -5335,29 +5404,29 @@ CREATE TABLE `user_card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `aboutus`
+-- Индексы таблицы `aboutus`
 --
 ALTER TABLE `aboutus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `articles`
+-- Индексы таблицы `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `articles_home`
+-- Индексы таблицы `articles_home`
 --
 ALTER TABLE `articles_home`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `blog`
+-- Индексы таблицы `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`id`),
@@ -5367,147 +5436,147 @@ ALTER TABLE `blog`
   ADD KEY `id_2` (`id`);
 
 --
--- Indexes for table `blog_categories`
+-- Индексы таблицы `blog_categories`
 --
 ALTER TABLE `blog_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `blog_comments`
+-- Индексы таблицы `blog_comments`
 --
 ALTER TABLE `blog_comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `calculator`
+-- Индексы таблицы `calculator`
 --
 ALTER TABLE `calculator`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `calculator_profit`
+-- Индексы таблицы `calculator_profit`
 --
 ALTER TABLE `calculator_profit`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `contactus`
+-- Индексы таблицы `contactus`
 --
 ALTER TABLE `contactus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `content`
+-- Индексы таблицы `content`
 --
 ALTER TABLE `content`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `countries`
+-- Индексы таблицы `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `currency`
+-- Индексы таблицы `currency`
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `faq`
+-- Индексы таблицы `faq`
 --
 ALTER TABLE `faq`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `files`
+-- Индексы таблицы `files`
 --
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `how_to_earn`
+-- Индексы таблицы `how_to_earn`
 --
 ALTER TABLE `how_to_earn`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `invsetor_packages`
+-- Индексы таблицы `invsetor_packages`
 --
 ALTER TABLE `invsetor_packages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `language`
+-- Индексы таблицы `language`
 --
 ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `message`
+-- Индексы таблицы `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`,`language`),
   ADD KEY `idx_message_language` (`language`);
 
 --
--- Indexes for table `message_system`
+-- Индексы таблицы `message_system`
 --
 ALTER TABLE `message_system`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `most_active_users`
+-- Индексы таблицы `most_active_users`
 --
 ALTER TABLE `most_active_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `news`
+-- Индексы таблицы `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `ordering`
+-- Индексы таблицы `ordering`
 --
 ALTER TABLE `ordering`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `other_investor_diff`
+-- Индексы таблицы `other_investor_diff`
 --
 ALTER TABLE `other_investor_diff`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pages`
+-- Индексы таблицы `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pakages`
+-- Индексы таблицы `pakages`
 --
 ALTER TABLE `pakages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pakage_price`
+-- Индексы таблицы `pakage_price`
 --
 ALTER TABLE `pakage_price`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Индексы таблицы `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Indexes for table `payment`
+-- Индексы таблицы `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
@@ -5515,61 +5584,67 @@ ALTER TABLE `payment`
   ADD KEY `order_id` (`order_id`);
 
 --
--- Indexes for table `referal_links`
+-- Индексы таблицы `referal_links`
 --
 ALTER TABLE `referal_links`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `referer_users`
+-- Индексы таблицы `referer_users`
 --
 ALTER TABLE `referer_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `service`
+-- Индексы таблицы `service`
 --
 ALTER TABLE `service`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `slider`
+-- Индексы таблицы `slider`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `source_message`
+-- Индексы таблицы `source_message`
 --
 ALTER TABLE `source_message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `states`
+-- Индексы таблицы `states`
 --
 ALTER TABLE `states`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_about`
+-- Индексы таблицы `tr_about`
 --
 ALTER TABLE `tr_about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_articles`
+-- Индексы таблицы `tr_aboutus`
+--
+ALTER TABLE `tr_aboutus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tr_articles`
 --
 ALTER TABLE `tr_articles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_blog`
+-- Индексы таблицы `tr_blog`
 --
 ALTER TABLE `tr_blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_blog_categories`
+-- Индексы таблицы `tr_blog_categories`
 --
 ALTER TABLE `tr_blog_categories`
   ADD PRIMARY KEY (`id`),
@@ -5577,43 +5652,43 @@ ALTER TABLE `tr_blog_categories`
   ADD KEY `blog_categories_id` (`blog_categories_id`);
 
 --
--- Indexes for table `tr_calculator`
+-- Индексы таблицы `tr_calculator`
 --
 ALTER TABLE `tr_calculator`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_contact`
+-- Индексы таблицы `tr_contact`
 --
 ALTER TABLE `tr_contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_faq`
+-- Индексы таблицы `tr_faq`
 --
 ALTER TABLE `tr_faq`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_how_to_earn`
+-- Индексы таблицы `tr_how_to_earn`
 --
 ALTER TABLE `tr_how_to_earn`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_invsetor_packages`
+-- Индексы таблицы `tr_invsetor_packages`
 --
 ALTER TABLE `tr_invsetor_packages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_news`
+-- Индексы таблицы `tr_news`
 --
 ALTER TABLE `tr_news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_pages`
+-- Индексы таблицы `tr_pages`
 --
 ALTER TABLE `tr_pages`
   ADD PRIMARY KEY (`id`),
@@ -5621,287 +5696,292 @@ ALTER TABLE `tr_pages`
   ADD KEY `fk_page_language_id` (`language_id`);
 
 --
--- Indexes for table `tr_pakages`
+-- Индексы таблицы `tr_pakages`
 --
 ALTER TABLE `tr_pakages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_pakage_price`
+-- Индексы таблицы `tr_pakage_price`
 --
 ALTER TABLE `tr_pakage_price`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tr_slider`
+-- Индексы таблицы `tr_slider`
 --
 ALTER TABLE `tr_slider`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Индексы таблицы `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `user_card`
+-- Индексы таблицы `user_card`
 --
 ALTER TABLE `user_card`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_cr_card_cust_id` (`customer_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `aboutus`
+-- AUTO_INCREMENT для таблицы `aboutus`
 --
 ALTER TABLE `aboutus`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `articles`
+-- AUTO_INCREMENT для таблицы `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `articles_home`
+-- AUTO_INCREMENT для таблицы `articles_home`
 --
 ALTER TABLE `articles_home`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT для таблицы `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT for table `blog_categories`
+-- AUTO_INCREMENT для таблицы `blog_categories`
 --
 ALTER TABLE `blog_categories`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `blog_comments`
+-- AUTO_INCREMENT для таблицы `blog_comments`
 --
 ALTER TABLE `blog_comments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `calculator`
+-- AUTO_INCREMENT для таблицы `calculator`
 --
 ALTER TABLE `calculator`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `calculator_profit`
+-- AUTO_INCREMENT для таблицы `calculator_profit`
 --
 ALTER TABLE `calculator_profit`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `contactus`
+-- AUTO_INCREMENT для таблицы `contactus`
 --
 ALTER TABLE `contactus`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `content`
+-- AUTO_INCREMENT для таблицы `content`
 --
 ALTER TABLE `content`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `countries`
+-- AUTO_INCREMENT для таблицы `countries`
 --
 ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 --
--- AUTO_INCREMENT for table `currency`
+-- AUTO_INCREMENT для таблицы `currency`
 --
 ALTER TABLE `currency`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `faq`
+-- AUTO_INCREMENT для таблицы `faq`
 --
 ALTER TABLE `faq`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `files`
+-- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT for table `how_to_earn`
+-- AUTO_INCREMENT для таблицы `how_to_earn`
 --
 ALTER TABLE `how_to_earn`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `invsetor_packages`
+-- AUTO_INCREMENT для таблицы `invsetor_packages`
 --
 ALTER TABLE `invsetor_packages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `language`
+-- AUTO_INCREMENT для таблицы `language`
 --
 ALTER TABLE `language`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `message_system`
+-- AUTO_INCREMENT для таблицы `message_system`
 --
 ALTER TABLE `message_system`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `most_active_users`
+-- AUTO_INCREMENT для таблицы `most_active_users`
 --
 ALTER TABLE `most_active_users`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `news`
+-- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `ordering`
+-- AUTO_INCREMENT для таблицы `ordering`
 --
 ALTER TABLE `ordering`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `other_investor_diff`
+-- AUTO_INCREMENT для таблицы `other_investor_diff`
 --
 ALTER TABLE `other_investor_diff`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT для таблицы `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT for table `pakages`
+-- AUTO_INCREMENT для таблицы `pakages`
 --
 ALTER TABLE `pakages`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pakage_price`
+-- AUTO_INCREMENT для таблицы `pakage_price`
 --
 ALTER TABLE `pakage_price`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT для таблицы `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `referal_links`
+-- AUTO_INCREMENT для таблицы `referal_links`
 --
 ALTER TABLE `referal_links`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `referer_users`
+-- AUTO_INCREMENT для таблицы `referer_users`
 --
 ALTER TABLE `referer_users`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `service`
+-- AUTO_INCREMENT для таблицы `service`
 --
 ALTER TABLE `service`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `slider`
+-- AUTO_INCREMENT для таблицы `slider`
 --
 ALTER TABLE `slider`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `source_message`
+-- AUTO_INCREMENT для таблицы `source_message`
 --
 ALTER TABLE `source_message`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `states`
+-- AUTO_INCREMENT для таблицы `states`
 --
 ALTER TABLE `states`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
 --
--- AUTO_INCREMENT for table `tr_about`
+-- AUTO_INCREMENT для таблицы `tr_about`
 --
 ALTER TABLE `tr_about`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_articles`
+-- AUTO_INCREMENT для таблицы `tr_aboutus`
+--
+ALTER TABLE `tr_aboutus`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT для таблицы `tr_articles`
 --
 ALTER TABLE `tr_articles`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_blog`
+-- AUTO_INCREMENT для таблицы `tr_blog`
 --
 ALTER TABLE `tr_blog`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
--- AUTO_INCREMENT for table `tr_blog_categories`
+-- AUTO_INCREMENT для таблицы `tr_blog_categories`
 --
 ALTER TABLE `tr_blog_categories`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_calculator`
+-- AUTO_INCREMENT для таблицы `tr_calculator`
 --
 ALTER TABLE `tr_calculator`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_contact`
+-- AUTO_INCREMENT для таблицы `tr_contact`
 --
 ALTER TABLE `tr_contact`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_faq`
+-- AUTO_INCREMENT для таблицы `tr_faq`
 --
 ALTER TABLE `tr_faq`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `tr_how_to_earn`
+-- AUTO_INCREMENT для таблицы `tr_how_to_earn`
 --
 ALTER TABLE `tr_how_to_earn`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_invsetor_packages`
+-- AUTO_INCREMENT для таблицы `tr_invsetor_packages`
 --
 ALTER TABLE `tr_invsetor_packages`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_news`
+-- AUTO_INCREMENT для таблицы `tr_news`
 --
 ALTER TABLE `tr_news`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_pages`
+-- AUTO_INCREMENT для таблицы `tr_pages`
 --
 ALTER TABLE `tr_pages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
--- AUTO_INCREMENT for table `tr_pakages`
+-- AUTO_INCREMENT для таблицы `tr_pakages`
 --
 ALTER TABLE `tr_pakages`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `tr_pakage_price`
+-- AUTO_INCREMENT для таблицы `tr_pakage_price`
 --
 ALTER TABLE `tr_pakage_price`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `tr_slider`
+-- AUTO_INCREMENT для таблицы `tr_slider`
 --
 ALTER TABLE `tr_slider`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `user_card`
+-- AUTO_INCREMENT для таблицы `user_card`
 --
 ALTER TABLE `user_card`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `blog`
+-- Ограничения внешнего ключа таблицы `blog`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;

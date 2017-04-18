@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel">
                     <div class="panel-body pn">
                         <div class="table-responsive">
-
                             <?=
                             GridView::widget([
                                 'dataProvider' => $dataProvider,
@@ -66,15 +65,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                         },
                                     ],
                                     ['class' => 'yii\grid\ActionColumn',
-                                        'template' => '{subpages}{update}{delete}',
-                                        'contentOptions' => ['style' => 'width: 27%;'],
+                                        'template' => '{createsubpage}{subpages}{update}{delete}',
+                                        'contentOptions' => ['style' => 'width: 45%;'],
                                         'buttons' => [
+                                            'createsubpage'=>function($url, $model){
+                                                $url = \yii\helpers\Url::toRoute(['pages/create-subpage', 'id' => $model->id]);
+                                                return Html::a('<span class="fa fa-plus-circle"></span>'.Yii::t('app','Create Sub Page'), $url, [
+                                                            'title' => Yii::t('app','Create Sub Page'),
+                                                            'aria-label' => Yii::t('app','Create Sub Page'),
+                                                            'class' => 'btn btn-success btn-xs fs12 br2 ml5'
+                                                ]);
+                                            },
                                             'subpages'=>function($url, $model){
                                                 $url = \yii\helpers\Url::toRoute(['pages/sub-pages', 'id' => $model->id]);
-                                                return Html::a('<span class="glyphicon glyphicon-edit"></span>'.Yii::t('app','Sub Pages'), $url, [
+                                                return Html::a('<span class="fa fa-eye-slash"></span>'.Yii::t('app','Sub Pages'), $url, [
                                                             'title' => Yii::t('app','Sub Pages'),
                                                             'aria-label' => Yii::t('app','Sub Pages'),
-                                                            'class' => 'btn btn-info btn-xs fs12 br2 ml5'
+                                                            'class' => 'btn btn-primary btn-xs fs12 br2 ml5'
                                                 ]);
                                             },
                                             'update' => function ($url, $model) {
@@ -109,3 +116,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php
+$this->registerJs('
+ $("#tbl_blog").sortable({
+            connectWith: ".portlet",
+            items: ".portlet",
+            opacity: 0.8,
+            coneHelperSize: true,
+            placeholder: "sortable-box-placeholder round-all",
+            forcePlaceholderSize: true,
+            tolerance: "pointer"
+        });
+        $(".column").disableSelection();
+')
+?>

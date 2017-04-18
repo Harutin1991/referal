@@ -7,306 +7,474 @@ use backend\models\Files;
 
 $this->title = Yii::t('app', 'Home');
 ?>
-<div role="main" class="main">
-    <div class="slider-container rev_slider_wrapper" style="height: 600px;">
-        <div id="revolutionSlider" class="slider rev_slider" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 800, 'gridheight': 600}">
-            <ul>
-                <li data-transition="fade">
-                    <?=
-                    Html::img('@web/img/slides/slide-corporate-6.jpg', ['alt' => 'slider-image',
-                        'data-bgposition' => "center center",
-                        'data-bgfit' => "cover",
-                        'data-bgrepeat' => "no-repeat",
-                        'data-kenburns' => "on",
-                        'data-duration' => "9000",
-                        'data-ease' => "Linear.easeNone",
-                        'data-scalestart' => "115",
-                        'data-scaleend' => "100",
-                        'data-rotatestart' => "0",
-                        'data-rotateend' => "0",
-                        'data-offsetstart' => "0 -200",
-                        'data-offsetend' => "0 200",
-                        'data-bgparallax' => "0",
-                        'class' => "rev-slidebg"]);
-                    ?>
+<div class="carousel-wrapper col-xs-12">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="image/carousel.png" alt="">
+                <div class="carousel-caption">
+                    <div class="title">
+                        Lorem Ipsum
+                    </div>
+                    <div class="description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    <div class="view-more">
+                        <a href="#">
+                            VIEW MORE...
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="tp-caption tp-caption-overlay tp-caption-overlay-primary main-label"
-                         data-x="center"
-                         data-y="264"
-                         data-start="1200"
-                         data-whitespace="nowrap">WELCOME TO Lorem Ispum</div>
+            <div class="item">
+                <img src="image/carousel.png" alt="">
+                <div class="carousel-caption">
+                    <div class="title">
+                        Lorem Ipsum
+                    </div>
+                    <div class="description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    <div class="view-more">
+                        <a href="#">
+                            VIEW MORE...
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                    <div class="tp-caption tp-caption-overlay-opacity bottom-label"
-                         data-x="center"
-                         data-y="358"
-                         data-start="2000"
-                         data-transform_in="y:[100%];opacity:0;s:500;">The #1 Lorem ispum is dolar</div>
-						 <a href="#">View More</a>
+            <div class="item">
+                <img src="image/carousel.png" alt="">
+                <div class="carousel-caption">
+                    <div class="title">
+                        Lorem Ipsum
+                    </div>
+                    <div class="description">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </div>
+                    <div class="view-more">
+                        <a href="#">
+                            VIEW MORE...
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-                </li>
-                <li data-transition="fade">
-                    <?=
-                    Html::img('@web/img/demos/digital-agency/slides/slide-digital-agency-1.jpg', ['alt' => 'slider-image',
-                        'data-bgposition' => "center center",
-                        'data-bgfit' => "cover",
-                        'data-bgrepeat' => "no-repeat",
-                        'data-kenburns' => "on",
-                        'data-duration' => "9000",
-                        'data-ease' => "Linear.easeNone",
-                        'data-scalestart' => "115",
-                        'data-scaleend' => "100",
-                        'data-rotatestart' => "0",
-                        'data-rotateend' => "0",
-                        'data-offsetstart' => "0 -200",
-                        'data-offsetend' => "0 200",
-                        'data-bgparallax' => "0",
-                        'class' => "rev-slidebg"]);
-                    ?>
-
-                    <div class="tp-caption tp-caption-overlay tp-caption-overlay-primary main-label"
-                         data-x="center"
-                         data-y="264"
-                         data-start="1200"
-                         data-whitespace="nowrap"						 
-                         data-transform_in="s:500;">Second carusel lorem</div>
-
-                    <div class="tp-caption tp-caption-overlay-opacity bottom-label"
-                         data-x="center"
-                         data-y="358"
-                         data-start="2000"
-                         data-transform_in="y:[100%];opacity:0;s:500;">The #2 Lorem ispum is dolar</div>
-						 <a href="#">View More</a>
-                </li>
-            </ul>
         </div>
     </div>
+</div>
+<div class="counter col-xs-12">
     <div class="container">
-        <div class="row mt-xl">
-            <div class="col-md-10 col-md-offset-1">
+        <div class="cols">
+            <img src="image/counter/img-01.png">
+            <div class="num">1856</div>
+            <div class="title">зарегистрировано участников</div>
+        </div>
+        <div class="cols">
+            <img src="image/counter/img-02.png">
+            <div class="num">1600</div>
+            <div class="title">активных участников</div>
+        </div>
+        <div class="cols">
+            <img src="image/counter/img-03.png">
+            <div class="num">3560</div>
+            <div class="title">приглашеных участников</div>
+        </div>
+        <div class="cols">
+            <img src="image/counter/img-04.png">
+            <div class="num">65000$</div>
+            <div class="title">инвестировано</div>
+        </div>
+        <div class="cols">
+            <img src="image/counter/img-05.png">
+            <div class="num">99000$</div>
+            <div class="title">заработано</div>
+        </div>
+    </div>
+</div>
+<div class="price col-xs-12">
+    <div class="container">
+        <div class="paragraph">
+            <span>Как можно зарабатывать с нами?</span>
+        </div>
 
-                <div class="tabs tabs-bottom tabs-center tabs-simple mt-sm mb-xl">
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#tabsNavigationSimpleIcons1" data-toggle="tab">
-                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
-                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
-                                        <span class="box-content p-none m-none">
-                                            <i class="icon-featured icon-bulb icons"></i>
-                                        </span>
-                                    </span>
-                                </span>									
-                                <p class="mb-none pb-none">Strategy</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tabsNavigationSimpleIcons2" data-toggle="tab">
-                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
-                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
-                                        <span class="box-content p-none m-none">
-                                            <i class="icon-featured icon-mustache icons"></i>
-                                        </span>
-                                    </span>
-                                </span>									
-                                <p class="mb-none pb-none">Creative</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tabsNavigationSimpleIcons3" data-toggle="tab">
-                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
-                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
-                                        <span class="box-content p-none m-none">
-                                            <i class="icon-featured icon-puzzle icons"></i>
-                                        </span>
-                                    </span>
-                                </span>									
-                                <p class="mb-none pb-none">Development</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tabsNavigationSimpleIcons4" data-toggle="tab">
-                                <span class="featured-boxes featured-boxes-style-6 p-none m-none">
-                                    <span class="featured-box featured-box-primary featured-box-effect-6 p-none m-none">
-                                        <span class="box-content p-none m-none">
-                                            <i class="icon-featured icon-rocket icons"></i>
-                                        </span>
-                                    </span>
-                                </span>									
-                                <p class="mb-none pb-none">Marketing</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tabsNavigationSimpleIcons1">
-                            <div class="center">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+        <div class="fild-odd col-xs-12">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <div class="info">
+                            <div class="number">
+                                <span>1</span>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="tabsNavigationSimpleIcons2">
-                            <div class="center">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabsNavigationSimpleIcons3">
-                            <div class="center">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus.Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tabsNavigationSimpleIcons4">
-                            <div class="center">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <img src="image/price.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <p class="center">
-                    <a class="btn btn-default mt-md" href="demo-digital-agency-services.html">Learn More <i class="fa fa-angle-right pl-xs"></i></a>
-                </p>
+        <div class="fild-even col-xs-12">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <img src="image/price.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <div class="info">
+                            <div class="number">
+                                <span>2</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fild-odd col-xs-12">
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <div class="info">
+                            <div class="number">
+                                <span>1</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <img src="image/price.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fild-even col-xs-12">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <img src="image/price.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                <div class="table-price">
+                    <div class="cell-price">
+                        <div class="info">
+                            <div class="number">
+                                <span>2</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
-    <section class="section section-default section-default-scale-8">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 center">
-                    <h2 class="mb-none mt-none font-weight-semibold text-light">Who We Are:</h2>
-                    <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
-                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
-                        <hr>
-                    </div>
-                    <p class="mb-none text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>
-
-                    <a class="btn btn-primary mt-xl mb-sm" href="demo-digital-agency-about.html">Learn More <i class="fa fa-angle-right pl-xs"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="mt-xl mb-none pb-none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 center">
-                    <h2 class="mb-none mt-xl font-weight-semibold">Recent Work:</h2>
-                    <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
-                    <div class="divider divider-primary divider-small divider-small-center mb-xl">
-                        <hr>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="carousel-areas mt-xl mb-none">
-                        <div class="owl-carousel owl-theme m-none" data-plugin-options="{'autoHeight': true, 'items': 1, 'margin': 10, 'nav': true, 'dots': false, 'stagePadding': 0}">
-                            <div>
-                                <a href="demo-digital-agency-work-detail.html">
-                                    <img alt="" class="img-responsive" src="img/previews/areas/content-7.png">
-                                </a>
-                            </div>
-                            <div>
-                                <a href="demo-digital-agency-work-detail.html">
-                                    <img alt="" class="img-responsive" src="img/previews/areas/content-5.png">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section section-tertiary section-front mt-none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 center">
-                    <div class="row">
-                        <div class="col-md-12 center">
-                            <h2 class="mb-none mt-xl font-weight-semibold text-dark">Who Loves Us</h2>
-                            <p class="lead mb-xlg">Pellentesque pellentesque eget tempor tellus. </p>
-                            <div class="divider divider-primary divider-small divider-small-center mb-xl">
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInLeft" data-appear-animation-delay="300">
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
-                                </blockquote>
-                                <div class="testimonial-arrow-down"></div>
-                                <div class="testimonial-author">
-                                    <img src="img/clients/client-1.jpg" class="img-responsive img-circle" alt="">
-                                    <p><strong>John Smith</strong><span>CEO & Founder - Okler</span></p>
-                                </div>
-                            </div>
-                        </div>								
-                        <div class="col-md-4">
-                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
-                                </blockquote>
-                                <div class="testimonial-arrow-down"></div>
-                                <div class="testimonial-author">
-                                    <img src="img/clients/client-2.jpg" class="img-responsive img-circle" alt="">
-                                    <p><strong>Jessica Doe</strong><span>Marketing - Okler</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="testimonial testimonial-style-2 appear-animation" data-appear-animation="fadeInRight" data-appear-animation-delay="700">
-                                <blockquote>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec hendrerit vehicula est, in consequat.</p>
-                                </blockquote>
-                                <div class="testimonial-arrow-down"></div>
-                                <div class="testimonial-author">
-                                    <img src="img/clients/client-3.jpg" class="img-responsive img-circle" alt="">
-                                    <p><strong>Bob Smith</strong><span>CEO & Founder - Okler</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+</div>
+<div class="package col-xs-12">
     <div class="container">
-
-        <div class="row mt-xl">
-            <div class="counters counters-text-dark">
-                <div class="col-md-3 col-sm-6">
-                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
-                        <i class="fa fa-user"></i>
-                        <strong data-to="25000" data-append="+">0</strong>
-                        <label>Happy Clients</label>
-                        <p class="text-color-primary mb-xl">They can’t be wrong</p>
+        <div class="paragraph">
+            <span>Пакеты инвестора</span>
+        </div>
+        <div class="colums col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="title"><span>Classic</span></div>
+            <div class="sum"><span>от 10$</span></div>
+            <div class="info">
+                <ul>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                </ul>
+            </div>
+            <div class="buy">
+                <a href="#">Купить</a>
+            </div>
+        </div>
+        <div class="colums col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="title"><span>Silver</span></div>
+            <div class="sum"><span>от 50$</span></div>
+            <div class="info">
+                <ul>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                </ul>
+            </div>
+            <div class="buy">
+                <a href="#">Купить</a>
+            </div>
+        </div>
+        <div class="colums col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="title"><span>Gold</span></div>
+            <div class="sum"><span>от 100$</span></div>
+            <div class="info">
+                <ul>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                    <li>Пакеты инвестора</li>
+                </ul>
+            </div>
+            <div class="buy">
+                <a href="#">Купить</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="investor col-xs-12" style="background-image: url(image/investor-banner.png);">
+    <div class="layer"></div>
+    <div class="container">
+        <div class="info">
+            <div class="paragraph">
+                <span>Чем мы отличаемся от других инвесторских программ?</span>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 colums">
+                <img src="image/icon-1.png" alt="" class="img-responsive">
+                <div class="title">Можете начинать всего от 10$</div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 colums">
+                <img src="image/icon-2.png" alt="" class="img-responsive">
+                <div class="title">Прозрачная система контроля</div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 colums">
+                <img src="image/icon-3.png" alt="" class="img-responsive">
+                <div class="title">Всегда можете снять заработанные деньги.</div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 colums">
+                <img src="image/icon-4.png" alt="" class="img-responsive">
+                <div class="title">Все участники имеют ограниченное количество рефералов</div>
+            </div>
+            <div class="col-xs-12 see-more">
+                <a href="#">
+                    Стать инвестором
+                </a>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="active-people col-xs-12">
+    <div class="container">
+        <div class="paragraph">
+            <span>Самые активные участники</span>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <span class="num">1</span>
+            <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
+            <div class="title">Name ( login )</div>
+            <div class="sum">уже заработал 999$</div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <span class="num">2</span>
+            <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
+            <div class="title">Name ( login )</div>
+            <div class="sum">уже заработал 599$</div>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <span class="num">3</span>
+            <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
+            <div class="title">Name ( login )</div>
+            <div class="sum">уже заработал 300$</div>
+        </div>
+    </div>
+</div>		
+<div class="calculator col-xs-12" style="background-image: url(image/calc-banner.png);">
+    <div class="container">
+        <div class="info">
+            <div class="paragraph">
+                <span>
+                    Калькулятор доходов
+                </span>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 range">
+                <div class="selecteurPrix">
+                    <div class="range-slider">
+                        <input class="input-range" type="range" value="250" min="1" max="500">
+                        <div class="valeurPrix">
+                            <span class="range-value"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="600">
-                        <i class="fa fa-desktop"></i>
-                        <strong data-to="19">0</strong>
-                        <label>Premade HomePages</label>
-                        <p class="text-color-primary mb-xl">Many more to come</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="900">
-                        <i class="fa fa-ticket"></i>
-                        <strong data-to="2500" data-append="+">0</strong>
-                        <label>Answered Tickets</label>
-                        <p class="text-color-primary mb-xl">Satisfaction guaranteed</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="counter appear-animation" data-appear-animation="fadeInUp" data-appear-animation-delay="1200">
-                        <i class="fa fa-clock-o"></i>
-                        <strong data-to="3000" data-append="+">0</strong>
-                        <label>Development Hours</label>
-                        <p class="text-color-primary mb-xl">Available to you for only $17</p>
+                </div> 
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 range">
+                <div class="selecteurPrix">
+                    <div class="range-slider">
+                        <input class="input-range" type="range" value="250" min="1" max="500">
+                        <div class="valeurPrix">
+                            <span class="range-values"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 drops">
+                <select>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 drops">
+                <select>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 drops">
+                <select>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 drops">
+                <select>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                    <option>Пользователь может выбрать пакет</option>
+                </select>
+            </div>
+            <div class="col-xs-12 see-more">
+                <a href="">
+                    Рассчитать
+                </a>
+            </div>
+            <div class="description col-xs-12">
+                <div class="title">Остались вопросы? </div>
+                <div class="txt">Читайте наш блог или Раздел Часто задаваемые вопросы или обратитесь в службу поддержки 24/7</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="news col-xs-12">
+    <div class="container">
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <a href="">
+                <img src="image/blog-01.png" class="img-responsive">
+                <div class="title">название статьи</div>
+                <div class="see-date">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6 see">
+                            <i class="fa fa-eye" aria-hidden="true"></i>268
+                        </div>
+                        <div class="col-xs-6 date">
+                            05.04.2017
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <a href="">
+                <img src="image/blog-01.png" class="img-responsive">
+                <div class="title">название статьи</div>
+                <div class="see-date">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6 see">
+                            <i class="fa fa-eye" aria-hidden="true"></i>268
+                        </div>
+                        <div class="col-xs-6 date">
+                            05.04.2017
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+            <a href="">
+                <img src="image/blog-01.png" class="img-responsive">
+                <div class="title">название статьи</div>
+                <div class="see-date">
+                    <div class="col-xs-12">
+                        <div class="col-xs-6 see">
+                            <i class="fa fa-eye" aria-hidden="true"></i>268
+                        </div>
+                        <div class="col-xs-6 date">
+                            05.04.2017
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

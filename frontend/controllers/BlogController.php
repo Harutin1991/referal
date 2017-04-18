@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use backend\models\Blog;
+use backend\models\TrBlog;
 use backend\models\BlogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -22,7 +23,8 @@ class BlogController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $blog = Blog::find();
+        $blog = Blog::findList();
+        /*
         $countQuery = clone $blog;
         $pageSize = 5;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => $pageSize]);
@@ -32,11 +34,11 @@ class BlogController extends Controller {
         $blogs = $countQuery->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
-
+*/
         return $this->render('index', [
-                    'blogs' => $blogs,
-                    'pages' => $pages,
-                    'last' => $last,
+                    'blogs' => $blog,
+                   // 'pages' => $pages,
+                   // 'last' => $last,
         ]);
     }
 
@@ -46,7 +48,7 @@ class BlogController extends Controller {
      * @return mixed
      */
     public function actionView($id) {
-        $blog = Blog::find()->where(['id' => $id])->all();
+        $blog = Blog::findList($id);
         
         return $this->render('view-blog', [
                     'blog' => $blog,

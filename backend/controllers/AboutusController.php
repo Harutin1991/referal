@@ -206,6 +206,11 @@ class AboutusController extends Controller {
             }
 			$defaultLanguage = Language::find()->where(['is_default' => 1])->one();
 			$trmodel = TrAboutus::findOne(['aboutus_id'=>$id,'language_id'=>$defaultLanguage->id]);
+                        if(!$trmodel){
+                            $trmodel = new TrAboutus;
+                            $trmodel->aboutus_id = $id;
+                            $trmodel->language_id = $defaultLanguage->id;
+                        }
 			$trmodel->title = $model->title;
 			$trmodel->short_description = $model->short_description;
 			$trmodel->description = $model->description;

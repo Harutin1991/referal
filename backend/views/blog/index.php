@@ -50,17 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'attribute' => 'short_description','format' => 'html',
                                     ],
                                     [
-                                        'attribute' => 'status',
-                                         'format' => 'html',
-                                        'value' => function ($model) {
-                                            if ($model->status == 0) {
-                                                return '<span class="label label-sm label-danger">'.Yii::t('app','Pasive').'</span>';
-                                            } else {
-                                                return '<span class="label label-sm label-success">'.Yii::t('app','Approved').'</span>';
-                                            }
-                                        },
-                                    ],
-                                    [
                                         'attribute' => 'created_at',
                                         'value' => function($model) {
                                             return TimeFormaterHelper::convert($model->created_at);
@@ -103,3 +92,17 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<?php
+$this->registerJs('
+ $("#tbl_blog").sortable({
+            connectWith: ".portlet",
+            items: ".portlet",
+            opacity: 0.8,
+            coneHelperSize: true,
+            placeholder: "sortable-box-placeholder round-all",
+            forcePlaceholderSize: true,
+            tolerance: "pointer"
+        });
+        $(".column").disableSelection();
+')
+?>

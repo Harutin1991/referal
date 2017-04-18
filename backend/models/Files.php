@@ -30,8 +30,8 @@ class Files extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['category_id', 'category', 'status', 'top'], 'required'],
-            [['category_id', 'status', 'top'], 'integer'],
+            [['category_id', 'category', 'top'], 'required'],
+            [['category_id', 'top'], 'integer'],
             [['path', 'category'], 'string', 'max' => 255],
         ];
     }
@@ -45,7 +45,6 @@ class Files extends \yii\db\ActiveRecord {
             'path' => Yii::t('app', 'Path'),
             'category_id' => Yii::t('app', 'Category ID'),
             'category' => Yii::t('app', 'Category'),
-            'status' => Yii::t('app', 'Status'),
             'top' => Yii::t('app', 'Top'),
         ];
     }
@@ -112,9 +111,9 @@ class Files extends \yii\db\ActiveRecord {
             'alt' => $alt,
         ];
         if (!is_null($category_id)) {
-            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'status' => 1, 'top' => $top])->asArray()->all();
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
         } else {
-            $images = self::find()->where(['category' => $category, 'status' => 1])->asArray()->all();
+            $images = self::find()->where(['category' => $category])->asArray()->all();
         }
 
         if (!empty($images[0])) {
@@ -160,7 +159,7 @@ class Files extends \yii\db\ActiveRecord {
     }
 
     public static function slider() {
-        return self::find()->where(['category' => 'slider', 'status' => 1])->asArray()->all();
+        return self::find()->where(['category' => 'slider'])->asArray()->all();
     }
 
 }

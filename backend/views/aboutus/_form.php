@@ -20,6 +20,12 @@ if (!$model->isNewRecord) {
     $action = '/aboutus/create';
 }
 $languages = Language::find()->asArray()->all();
+$this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/editor.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/blog.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="repairs-form">
     <?= Html::a('Back to about page', ['/aboutus/index'], ['class' => 'btn btn-primary mb15']) ?>
@@ -39,7 +45,7 @@ $languages = Language::find()->asArray()->all();
                         }
                         ?>">
                             <a href="#tab_<?php echo $value['id'] ?>"  data-toggle="tab" onclick="editAboutTr(<?php echo $value['id']; ?>,<?php echo $model->id; ?>,<?php echo $value['is_default']; ?>)" disabled="disabled">
-                                <span class="flag-xs flag-<?php echo $value['short_code'] ?>"></span>
+                                <span class="flag-xs flag-<?php echo $value['short_code'] ?>"><?php echo $value['name'] ?></span>
                             </a>
                         </li>
                         <?php
@@ -194,12 +200,26 @@ $languages = Language::find()->asArray()->all();
         </div>
     </div>
 </div>
-<?php echo $this->registerJs("
-            CKEDITOR.replace('aboutus-short_description');
-            CKEDITOR.replace('aboutus-description');
- 
-"); ?>
-
+<?php
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+?>
 
 
 

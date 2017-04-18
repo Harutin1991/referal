@@ -32,16 +32,17 @@ $this->registerCssFile("@web/css/filInput.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="pages-form">
+    <h1><?=Yii::t('app','Parent Page')?> : <?=$parentPage[0]['title']?></h1>
     <?= Html::a(Yii::t('app','Back to page list'), ['/pages/index'], ['class' => 'btn btn-primary mb15']) ?>
-    <?= Html::a(Yii::t('app','Create Sub Page'), ['/pages/sub-page?id='.$model->id], ['class' => 'btn btn-success mb15 pull-right']) ?>
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">
             <span
                 class="panel-title"><?php echo ($model->isNewRecord) ? Yii::t('app', 'Add New Page') : Yii::t('app', 'Update Brand') ?></span>
-            <span style="float: left;" class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#"
-                                                                                                              style="margin-left: 5px"
-                                                                                                              class="panel-control-collapse"></a></span>
+            <span style="float: left;" class="panel-controls">
+                <a href="#" class="panel-control-loader"></a>
+                <a href="#" style="margin-left: 5px" class="panel-control-collapse"></a>
+            </span>
             <ul class="nav panel-tabs-border panel-tabs">
 
                 <?php

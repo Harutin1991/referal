@@ -36,7 +36,8 @@ class TrPages extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['content'], 'string'],
             [['pages_id', 'language_id'], 'integer'],
-            [['title','short_description'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
+            [['short_description'], 'string', 'max' => 500],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Language::className(), 'targetAttribute' => ['language_id' => 'id']],
             [['pages_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pages::className(), 'targetAttribute' => ['pages_id' => 'id']],
         ];

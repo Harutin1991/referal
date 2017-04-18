@@ -2,16 +2,15 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
-
-$this->title = $page['title'];
+use backend\models\Files;
+$this->title = $page[0]['title'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<section id="content">
-    <div class="container box blog-page">
-
-        <div class="row blog-header">
-            <h1><?= Html::encode($this->title) ?></h1>
-        </div>
-        <div class="blog-body"><?=$page['content'] ?></div> 
+<div class="container-fluid">
+    <div class="content-page col-xs-12">
+        <div class="title"><?= Html::encode($this->title) ?></div>
+        <?php $file = Files::find()->where(['category'=>'pages','category_id'=>$page[0]['pages_id']])->count(); if($file){ echo Files::getImagesToFront('pages',$page[0]['pages_id'], 'img-responsive', $page[0]['title'], 1);} ?>
+        <!-- img src="image/banner.jpg" class="img-responsive hidden" -->
+        <div class="txt"><?= $page[0]['content'] ?></div>
     </div>
-</section>
+</div>

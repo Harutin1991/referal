@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use backend\models\TrFaq;
+use yii\db\Query;
 /**
  * This is the model class for table "faq".
  *
@@ -79,5 +80,20 @@ class Faq extends \yii\db\ActiveRecord
             $tr->save();
 
         return true;
+    }
+    
+        public static function findList($parent_id = false) {
+
+        $language = Yii::$app->language;
+        $where = ['language.short_code' => $language];
+        $query = (new Query());
+        $query->select(['tr_faq.*']);
+        $query->from('faq');
+        $query->leftJoin('tr_faq', 'faq.id = tr_faq.faq_id');
+        $query->leftJoin('language', 'language.id = tr_faq.language_id');
+        $query->where($where);
+        $query->orderBy(['faq.id' => SORT_ASC]);
+        $rows = $query->all();
+        return $rows;
     }
 }

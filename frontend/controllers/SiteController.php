@@ -12,9 +12,11 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-
+use frontend\models\Pages;
 use common\models\User;
 use common\models\Language;
+use backend\models\Faq;
+use backend\models\Aboutus;
 
 
 /**
@@ -273,7 +275,7 @@ class SiteController extends Controller {
 
     public function actionAbout() {
         $about = Aboutus::find_One();
-        return $this->render('about', ['about' => $about]);
+        return $this->render('about', ['page' => $about]);
     }
 
     /**
@@ -281,7 +283,8 @@ class SiteController extends Controller {
      *
      * @return mixed
      */
-    public function actionPage($tag) {
+    public function actionPage($id) {
+        $page = Pages::findList($id);
         return $this->render('page', ['page' => $page]);
     }
 
@@ -291,7 +294,17 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionFaq() {
-        return $this->render('/faq/faq');
+        $faq = Faq::findList();
+        return $this->render('/faq/faq',['faq'=>$faq]);
+    }
+    
+    /**
+     * Displays faq page.
+     *
+     * @return mixed
+     */
+    public function actionBlog() {
+        return $this->render('/blog/index');
     }
 
     /**

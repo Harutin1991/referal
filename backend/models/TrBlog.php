@@ -32,7 +32,7 @@ class TrBlog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'short_description', 'meta_description', 'meta_key', 'language_id', 'blog_id'], 'required'],
+            [['title','language_id', 'blog_id'], 'required'],
             [['description'], 'string'],
             [['language_id', 'blog_id'], 'integer'],
             [['title', 'short_description', 'meta_description', 'meta_key'], 'string', 'max' => 255],

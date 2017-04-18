@@ -7880,3 +7880,9 @@ body.timeline-page .panel-clone {
 .dataTables_filter{
     float: right;
 }
+.panel-heading .panel-tabs li.active{
+    background-color: #d0e1f0 !important;
+}
+.panel-heading .panel-tabs li{
+    float:left !important;
+}

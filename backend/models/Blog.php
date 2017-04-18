@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use backend\models\TrBlog;
+use yii\db\Query;
 /**
  * This is the model class for table "blog".
  *
@@ -29,8 +30,8 @@ class Blog extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['blog_category_id', 'user_id', 'title', 'description', 'meta_description'], 'required'],
-            [['blog_category_id', 'user_id', 'status', 'views'], 'integer'],
+            [['user_id', 'title','status'], 'required'],
+            [['blog_category_id', 'user_id', 'status', 'views','ordering'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['title', 'meta_description', 'meta_key'], 'string', 'max' => 255],
@@ -81,6 +82,39 @@ class Blog extends \yii\db\ActiveRecord {
         $tr->setAttribute('meta_key', $this->meta_key);
         $tr->save();
         return true;
+    }
+    
+    public static function findList($blog_id = false) {
+
+        $language = Yii::$app->language;
+        $where = ['language.short_code' => $language];
+        $query = (new Query());
+        $query->select(['tr_blog.*']);
+        $query->from('blog');
+        $query->leftJoin('tr_blog', 'blog.id = tr_blog.blog_id');
+        $query->leftJoin('language', 'language.id = tr_blog.language_id');
+        if($blog_id){
+            $where = array_merge($where,['blog.id'=>$blog_id]);
+        }
+        $query->where($where);
+        $query->orderBy(['blog.ordering' => SORT_ASC]);
+        $rows = $query->all();
+        return $rows;
+    }
+    
+    /**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `blog` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
     }
 
 }

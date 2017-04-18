@@ -38,7 +38,8 @@ class Pages extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['status', 'ordering','parent_id'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
-            [['title','short_description','route_name'], 'string', 'max' => 255],
+            [['title','route_name'], 'string', 'max' => 255],
+            [['short_description'], 'string', 'max' => 500],
         ];
     }
 
@@ -61,7 +62,7 @@ class Pages extends \yii\db\ActiveRecord
         ];
     }
     
-    public static function findList($parents = false) {
+    public static function findList($parent_id = false) {
 
         $language = Yii::$app->language;
         $where = ['language.short_code' => $language];
@@ -70,12 +71,15 @@ class Pages extends \yii\db\ActiveRecord
         $query->from('pages');
         $query->leftJoin('tr_pages', 'pages.id = tr_pages.pages_id');
         $query->leftJoin('language', 'language.id = tr_pages.language_id');
-        if($parents){
-            $query->andWhere(['not', ['pages.parents_id' => null]]);
+
+        if($parent_id){
+            $where = array_merge($where,['pages.parent_id'=>$parent_id]);
+        }else{
+            $where = array_merge($where,['pages.parent_id'=>NULL]);
         }
         
         $query->where($where);
-        $query->orderBy(['pages.id' => SORT_ASC]);
+        $query->orderBy(['pages.ordering' => SORT_ASC]);
         $rows = $query->all();
         return $rows;
     }
@@ -101,5 +105,20 @@ class Pages extends \yii\db\ActiveRecord
         $tr->save();
 
         return true;
+    }
+    
+    /**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `pages` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
     }
 }
