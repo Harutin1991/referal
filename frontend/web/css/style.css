@@ -898,6 +898,129 @@ message services style
 .close-message:hover {
   opacity: 0.5;
 }
+
+#blog-item .row-image {
+    position: relative;
+}
+#blog-item .img-container {
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    transition: 500ms;
+    position: relative;
+    overflow: hidden;
+    max-height: 540px;
+    height: 450px;
+}
+#blog-item .img-container .image {
+    -webkit-transition: transform 0.35s ease 0s;
+    -moz-transition: transform 0.35s ease 0s;
+    -o-transition: transform 0.35s ease 0s;
+    transition: transform 0.35s ease 0s;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: 50% 100% 0;
+    -moz-transform-origin: 50% 100% 0;
+    transform-origin: 50% 100% 0;
+    background-position: center center;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    visibility: visible;
+}
+#blog-item .img-container .image:before {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.4)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#b3000000', GradientType=0);
+    -webkit-transition: background-color .2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+}
+#blog-item .img-container:hover .image {
+    -webkit-transform: scale(1.035);
+    -moz-transform: scale(1.035);
+    transform: scale(1.035);
+}
+#blog-item .img-container-bg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(54,54,54,0.4);
+}
+#blog-item .text-container {
+    position: absolute;
+    bottom: 50px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+#blog-item .text-container h1 {
+    color: #ffffff;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    font-weight: 400;
+    text-transform: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 15px;
+}
+#blog-item .text-container a.date,
+#blog-item .text-container span.view {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+    text-transform: lowercase;
+}
+#blog-item .text-container a.href {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+}
+#blog-item .text-container a.href .glyphicon {
+    margin-right: 5px;
+    zoom: 0.8;
+}
+#blog-item .text-container span.view .glyphicon {
+    margin-left: 15px;
+    margin-right: 3px;
+}
+#blog-item .text {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: justify;
+    margin-top: 50px;
+}
+#blog-item .text img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 /*
 end style
 *

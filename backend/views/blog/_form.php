@@ -85,14 +85,14 @@ $this->registerCssFile("@web/css/filInput.css", [
                             <div class="col-lg-12">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">
+                                        <!--h3 class="panel-title">
                                             <i class="livicon" data-name="doc-portrait" data-c="#fff" data-hc="#fff" data-size="18" data-loop="true"></i>
                                             <?= Yii::t('app', 'Blog Details') ?>
-                                        </h3>
+                                        </h3 >
                                         <span class="pull-right">
                                             <i class="fa fa-fw fa-chevron-up clickable"></i>
                                             <i class="fa fa-fw fa-times removepanel clickable"></i>
-                                        </span>
+                                        </span-->
                                     </div>
                                     <div class="panel-body">
                                         <?php
@@ -108,9 +108,9 @@ $this->registerCssFile("@web/css/filInput.css", [
                                             <div class="col-sm-12">
                                                 <?=
                                                         $form->field($model, 'title')
-                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Post title here') . '...'])->label(false)
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Post title') . '...'])->label(false)
                                                 ?>
-                                                <div class="row">
+                                                <!--div class="row">
                                                     <div class="panel panel-success">
                                                         <div class="panel-heading">
                                                             <div class="text-muted bootstrap-admin-box-title editor-clr">
@@ -125,7 +125,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                             ?>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div -->
                                                 <div class="row">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
@@ -142,7 +142,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <!--div class="row">
                                                     <div class="panel panel-info">
                                                         <div class="panel-heading">
                                                             <div class="text-muted bootstrap-admin-box-title editor-clr">
@@ -157,13 +157,13 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                             ?>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div -->
                                             </div>
                                         </div>
                                         <div class="row">
                                             <!-- /.col-sm-8 -->
                                             <div class="col-sm-12">
-                                                <div class="form-group">
+                                                <!--div class="form-group">
                                                     <?=
                                                     $form->field($model, 'blog_category_id')->widget(Select2::className(), [
                                                         'data' => $categoryDropDown,
@@ -175,8 +175,8 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                         ],
                                                     ])->label(Yii::t('app', 'Post Category'))
                                                     ?>
-                                                </div>
-                                                <div class="form-group">
+                                                </div -->
+                                                <!--div class="form-group">
                                                     <?=
                                                     $form->field($model, 'status')->widget(Select2::className(), [
                                                         'data' => ["Pasive", "Active"],
@@ -188,16 +188,16 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                         ],
                                                     ])->label(Yii::t('app', 'Select Status'))
                                                     ?>
-                                                </div>
+                                                </div >
                                                 <div class="form-group">
                                                     <?=
                                                             $form->field($model, 'meta_key')
                                                             ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Meta Key')])->label(Yii::t('app', 'Meta Key'))
                                                     ?>
-                                                </div>
+                                                </div -->
                                                 <div class="form-group">
                                                     <div class="col-md-6 pt15" style="margin-left: -14px;">
-                                                        <label>Featured image</label>
+                                                        <label><?=Yii::t('app','Upload image')?>(960x540)</label>
                                                         <?=
                                                                 $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
                                                                 ->fileInput(
@@ -347,7 +347,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                         $trform->field($trmodel, 'title')
                                                         ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Post title here') . '...'])->label(false)
                                                 ?>
-                                                <div class="row">
+                                                <!--div class="row">
                                                     <div class="panel panel-success">
                                                         <div class="panel-heading">
                                                             <div class="text-muted bootstrap-admin-box-title editor-clr">
@@ -362,7 +362,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                             ?>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div -->
                                                 <div class="row">
                                                     <div class="panel panel-primary">
                                                         <div class="panel-heading">
@@ -379,7 +379,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <!--div class="row">
                                                     <div class="panel panel-info">
                                                         <div class="panel-heading">
                                                             <div class="text-muted bootstrap-admin-box-title editor-clr">
@@ -408,7 +408,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                             ?>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div -->
                                             </div>
                                         </div>
                                         <div class="row">

@@ -122,6 +122,24 @@ class Files extends \yii\db\ActiveRecord {
             return Html::img(Yii::$app->params['adminUrl'] . 'img/default.png');
         }
     }
+	
+	public static function getImagesPathToFront($category, $category_id = null, $class = '', $alt = '', $top = 0) {
+        $params = [
+            'class' => $class,
+            'alt' => $alt,
+        ];
+        if (!is_null($category_id)) {
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
+        } else {
+            $images = self::find()->where(['category' => $category])->asArray()->all();
+        }
+
+        if (!empty($images[0])) {
+            return Yii::$app->params['adminUrl'] . 'uploads/images/' . $category . '/' . $category_id . '/' . $images[0]['path'];
+        } else {
+            return Yii::$app->params['adminUrl'] . 'img/default.png';
+        }
+    }
 
     public static function getImagesToThumb($category, $category_id = null, $class = '', $alt = '', $top = 0) {
         $params = [

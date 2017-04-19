@@ -136,15 +136,6 @@ if (!$model->isNewRecord) {
                             <?= $form->field($model, 'mobile_phone')->textInput(['maxlength' => true, 'id' => 'mobile_phone', 'placeholder' => Yii::t('app', 'Enter Home Number'), 'class' => 'form-control']) ?>
                             <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true, 'id' => 'other_phone', 'placeholder' => Yii::t('app', 'Enter Alternate Number'), 'class' => 'form-control']) ?>
 
-                            <h2 class="hidden">&nbsp;</h2>
-                            <div class="form-group">
-                                <span>Terms and Conditions</span>
-
-                                <label>
-                                    <input id="acceptTerms" name="acceptTerms" type="checkbox">
-                                    I agree with the Terms and Conditions.
-                                </label>
-                            </div>
                         </div>
                         <?php if (!$model->isNewRecord): ?>
                             <div class="tab-pane" id="tab5" disabled="disabled">

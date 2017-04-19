@@ -41,13 +41,13 @@ $pages = Pages::findList();
         <header class="header">
             <a href="/" class="logo">
                 <?= Html::img('@web/img/logo-header.png', ['class' => 'img-responsive message-image','style'=>'width: 50%; margin-top: 5px;']); ?>
-            </a>
+			</a>
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
-                <div>
-                    <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <div class="responsive_nav"></div>
-                    </a>
+                <div class="navbar-left"> 
+					<ul class="nav navbar-nav superadmin">
+						<li><a href=""><?=Yii::t('app','Superadmin')?></a></li>
+					</ul>
                 </div>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
@@ -111,8 +111,8 @@ $pages = Pages::findList();
                                 <li class="footer">
                                     <a href="#">View all</a>
                                 </li>
-                            </ul -->
-                        </li>
+                            </ul >
+                        </li-->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
@@ -212,25 +212,27 @@ $pages = Pages::findList();
                                 </li>
                             </ul>
                         </li -->
-                        <li class="dropdown user user-menu">
+						<li><?= Html::a('<i class="livicon" data-name="gears" data-s="18"></i>' . Yii::t('app', 'Settings') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout'],['style'=>'color: #fff3f3 !important;']) ?></li>
+						<li><?= Html::a('<i class="livicon" data-name="sign-out" data-s="18"></i>' . Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout'],['style'=>'color: #fff3f3 !important;']) ?></li>
+                        <!--li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <?= Html::img('@web/img/img-02.png', ['class' => 'img-circle img-responsive pull-left', 'width' => '35', 'height' => '35']); ?>
+                                <?php // Html::img('@web/img/img-02.png', ['class' => 'img-circle img-responsive pull-left', 'width' => '35', 'height' => '35']); ?>
                                 <div class="riot">
                                     <div>
-                                        Referal
+                                        <?=Yii::t('app','Referal') ;?>
                                         <span>
                                             <i class="caret"></i>
                                         </span>
                                     </div>
                                 </div>
                             </a>
-                            <ul class="dropdown-menu">
+                            <!--ul class="dropdown-menu">
                                 <!-- User image -->
-                                <li class="user-header bg-light-blue">
-                                    <?= Html::img('@web/img/img-02.png', ['class' => 'img-responsive img-circle']); ?>
+                                <!--li class="user-header bg-light-blue">
+                                    <?php // Html::img('@web/img/img-02.png', ['class' => 'img-responsive img-circle']); ?>
                                     <p class="topprofiletext">Riot Zeast</p>
-                                </li>
-                                <!-- Menu Body -->
+                                </li -->
+                                <!-- Menu Body 
                                 <li>
                                     <a href="#">
                                         <i class="livicon" data-name="user" data-s="18"></i> My Profile
@@ -242,7 +244,7 @@ $pages = Pages::findList();
                                         <i class="livicon" data-name="gears" data-s="18"></i> Account Settings
                                     </a>
                                 </li>
-                                <!-- Menu Footer-->
+                                <!-- Menu Footer
                                 <li class="user-footer">
                                     <div class="pull-left">
                                     </div>
@@ -250,7 +252,7 @@ $pages = Pages::findList();
                                         <?= Html::a('<i class="livicon" data-name="sign-out" data-s="18"></i>' . Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout']) ?>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul -->
                         </li>
                     </ul>
                 </div>
@@ -408,7 +410,7 @@ $pages = Pages::findList();
                 </div -->
                 <!-- Main content -->
                 <section class="content-header">
-                    <h1><?= $this->title ?></h1>
+                    <?= $this->title ?> 
                     <?=
                     Breadcrumbs::widget([
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

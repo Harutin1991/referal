@@ -285,7 +285,8 @@ class SiteController extends Controller {
      */
     public function actionPage($id) {
         $page = Pages::findList($id);
-        return $this->render('page', ['page' => $page]);
+        $subPage = Pages::findChildList($id);
+        return $this->render('page', ['page' => $page,'subPage'=>$subPage]);
     }
 
     /**

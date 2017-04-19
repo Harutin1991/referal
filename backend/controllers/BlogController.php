@@ -20,7 +20,7 @@ use backend\models\TrBlog;
  * BlogController implements the CRUD actions for Blog model.
  */
 class BlogController extends Controller {
-
+	public $title2;
     /**
      * @inheritdoc
      */
@@ -146,6 +146,20 @@ class BlogController extends Controller {
             $modelFiles = new Files();
             $file = UploadedFile::getInstances($modelFiles, 'path');
             if (!empty($file)) {
+				$oldFiles = Files::find()->where(['category' => 'blog', 'category_id' => $id])->asArray()->all();
+				if(!empty($oldFiles)){
+					$filemodel = Files::findOne($oldFiles[0]['id']);
+					$directory = Yii::getAlias("@backend/web/uploads/images/blog/" . $id);
+					$directoryThumb = Yii::getAlias("@backend/web/uploads/images/blog/" . $id . "/thumbnail");
+
+					// BaseFileHelper::removeDirectory($directoryThumb);
+					//BaseFileHelper::removeDirectory($directory);
+					if (file_exists($directory . '/' . $oldFiles[0]['path'])) {
+						unlink($directory . '/' . $oldFiles[0]['path']);
+						unlink($directoryThumb . '/' . $oldFiles[0]['path']);
+					}
+					$filemodel->delete();
+				}
                 $ProdDefImg = Yii::$app->request->post('defaultImage');
                 $paths = $this->upload($file, $model->id);
 

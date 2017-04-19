@@ -117,12 +117,17 @@ $this->title = Yii::t('app', 'Make Coin | Home');
                                     <div class="language">
                                         <div class="dropdown">
                                             <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                RUS
+                                                <?= $languege[0]['name'] ?>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <li><a href="">KZ</a></li>
-                                                <li><a href="">ENG</a></li>
+                                                <?php foreach ($languages as $language): ?>
+                                        <?php if ($currentUrl != "" && $language['short_code'] != $languege[0]['short_code']): ?>
+                                            <li><a href="/<?= $language['short_code'] ?><?= $currentUrl ?>"  ><?= $language['name'] ?></a></li>
+                                        <?php elseif ($language['short_code'] != $languege[0]['short_code']): ?>
+                                            <li><a href="/<?= $language['short_code'] ?>" ><?= $language['name'] ?></a></li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     </div>

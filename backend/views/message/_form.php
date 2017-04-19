@@ -31,7 +31,7 @@ use common\models\Language;
                     <?php  foreach ($languages as $value):  ?>
                             <li class="<?php if ($value['is_default']) { $defoultLanguage->id = $value['id']; echo 'active'; } ?>">
                                 <a href="#tab_<?php echo $value['id'] ?>"  data-toggle="tab" disabled="disabled">
-                                    <span class="flag-xs flag-<?php echo $value['short_code'] ?>"></span>
+                                    <span class="flag-xs flag-<?php echo $value['short_code'] ?>"><?php echo $value['name'] ?></span>
                                 </a>
                             </li>
                     <?php  endforeach; ?>

@@ -1635,3 +1635,12 @@ table.dataTable thead .sorting_asc {
     height: 15px;
     width: 18px;
 }
+ul.superadmin li a{
+	font-size: 20px;
+    float: left;
+    margin-left: -120px;
+    margin-top: 5px;
+}
+ul.superadmin li a:hover{
+	    background-color: transparent !important;
+}

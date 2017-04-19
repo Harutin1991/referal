@@ -4,8 +4,11 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\data\ArrayDataProvider;
 use backend\models\Files;
-
+use backend\models\Blog;
+use backend\models\TrBlog;
 $this->title = Yii::t('app', 'Home');
+$blog = Blog::findList(false,3);
+
 ?>
 <div class="carousel-wrapper col-xs-12">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -428,53 +431,21 @@ $this->title = Yii::t('app', 'Home');
 </div>
 <div class="news col-xs-12">
     <div class="container">
+	<?php foreach($blog as $statii):?>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
-            <a href="">
-                <img src="image/blog-01.png" class="img-responsive">
-                <div class="title">название статьи</div>
+		 <a href="/<?= Yii::$app->language ?>/blog/<?= $statii['blog_id'] ?>" class="view-blog">
+                        <?php echo Files::getImagesToFront('blog', $statii['blog_id'], 'img-responsive', $statii['title'], 1) ?>
+                <div class="title"><?=$statii['title']?></div>
                 <div class="see-date">
                     <div class="col-xs-12">
                         <div class="col-xs-6 see">
-                            <i class="fa fa-eye" aria-hidden="true"></i>268
+                            <i class="fa fa-eye" aria-hidden="true"></i><?=$statii['views']?>
                         </div>
-                        <div class="col-xs-6 date">
-                            05.04.2017
-                        </div>
+                        <div class="col-xs-6 date"><?php date('d.m.Y',strtotime($statii['created_at']))?></div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
-            <a href="">
-                <img src="image/blog-01.png" class="img-responsive">
-                <div class="title">название статьи</div>
-                <div class="see-date">
-                    <div class="col-xs-12">
-                        <div class="col-xs-6 see">
-                            <i class="fa fa-eye" aria-hidden="true"></i>268
-                        </div>
-                        <div class="col-xs-6 date">
-                            05.04.2017
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
-            <a href="">
-                <img src="image/blog-01.png" class="img-responsive">
-                <div class="title">название статьи</div>
-                <div class="see-date">
-                    <div class="col-xs-12">
-                        <div class="col-xs-6 see">
-                            <i class="fa fa-eye" aria-hidden="true"></i>268
-                        </div>
-                        <div class="col-xs-6 date">
-                            05.04.2017
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+		<?php endforeach;?>
     </div>
 </div>

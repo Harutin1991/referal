@@ -41,6 +41,20 @@ class Pages extends \yii\db\ActiveRecord
 
         return $rows;
     }
+	public function findChildList($parent_id){
+        $language = Yii::$app->language;
+
+        $rows = (new \yii\db\Query())
+            ->select(['pages.id', 'tr_pages.*'])
+            ->from('pages')
+            ->leftJoin('tr_pages','pages.id = tr_pages.pages_id')
+            ->leftJoin('language','language.id = tr_pages.language_id')
+            ->where(['language.short_code' => $language,'pages.parent_id'=>$parent_id])
+            ->orderBy(['pages.ordering'=>SORT_ASC])
+            ->all();
+
+        return $rows;
+    }
 
 
 

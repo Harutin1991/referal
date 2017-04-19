@@ -30,7 +30,7 @@ class Blog extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['user_id', 'title','status'], 'required'],
+            [['user_id', 'title'], 'required'],
             [['blog_category_id', 'user_id', 'status', 'views','ordering'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
@@ -84,18 +84,21 @@ class Blog extends \yii\db\ActiveRecord {
         return true;
     }
     
-    public static function findList($blog_id = false) {
+    public static function findList($blog_id = false,$limit = false) {
 
         $language = Yii::$app->language;
         $where = ['language.short_code' => $language];
         $query = (new Query());
-        $query->select(['tr_blog.*']);
+        $query->select(['tr_blog.*','blog.created_at','blog.views']);
         $query->from('blog');
         $query->leftJoin('tr_blog', 'blog.id = tr_blog.blog_id');
         $query->leftJoin('language', 'language.id = tr_blog.language_id');
         if($blog_id){
             $where = array_merge($where,['blog.id'=>$blog_id]);
         }
+		if($limit){
+			$query->limit($limit);
+		}
         $query->where($where);
         $query->orderBy(['blog.ordering' => SORT_ASC]);
         $rows = $query->all();
