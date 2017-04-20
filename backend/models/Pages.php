@@ -67,7 +67,7 @@ class Pages extends \yii\db\ActiveRecord
         $language = Yii::$app->language;
         $where = ['language.short_code' => $language];
         $query = (new Query());
-        $query->select(['tr_pages.*']);
+        $query->select(['tr_pages.*','pages.ordering']);
         $query->from('pages');
         $query->leftJoin('tr_pages', 'pages.id = tr_pages.pages_id');
         $query->leftJoin('language', 'language.id = tr_pages.language_id');

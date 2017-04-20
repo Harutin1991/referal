@@ -29,7 +29,7 @@ $this->registerCssFile("@web/css/filInput.css", [
     <div class="clearfix"></div>
     <div class="tab-content row">
         <div class="col-md-12">
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true])->label(false) ?>
         </div>
         <div class="col-md-12">
             <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>

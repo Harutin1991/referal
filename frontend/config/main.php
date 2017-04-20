@@ -75,8 +75,8 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'language' => 'am',
-        'sourceLanguage' => 'am',
+        'language' => 'ru',
+        'sourceLanguage' => 'ru',
         'i18n' => [
             'translations' => [
                 'app*' => [

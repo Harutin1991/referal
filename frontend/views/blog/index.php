@@ -10,6 +10,7 @@ $this->registerCssFile("@web/css/mansory/component.css", [
 $this->registerJsFile(
         '@web/js/mansory/modernizr.custom.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
+$this->title = Yii::t('app','Blog');
 ?>
 <div class="blog-page col-xs-12">
     <div class="container-fluid">

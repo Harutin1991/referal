@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Blogs');
                                                             //'data-pjax' => '0',
                                                             'data-key' => $model->id,
                                                             'class' => 'btn btn-info btn-xs fs12 br2 ml5 pull-right',
-															'style'=>'font-size: 15px;'
+                                                            'style'=>'font-size: 15px;'
                                                 ]);
                                             },
                                             'delete' => function ($url, $model) {
@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Blogs');
                                                             'data-pjax' => '0',
                                                             'data-key' => $model->id,
                                                             'class' => 'btn btn-danger btn-xs fs12 br2 ml5 pull-right',
-															'style'=>'font-size: 15px;'
+                                                            'style'=>'font-size: 15px;'
                                                 ]);
                                             },
                                         ]

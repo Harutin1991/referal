@@ -105,7 +105,7 @@ class TrServiceController extends Controller
                 echo 'false';
                 exit();
             }
-        } elseif (!empty(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+        } elseif (Yii::$app->request->isAjax) {
 
             $arrPost = Yii::$app->request->post();
             $tr_materialObj = new TrService();

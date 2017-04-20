@@ -105,7 +105,7 @@ class TrCategoryController extends Controller {
             } else {
                 return json_encode(['success'=>false,'message'=>$trModel->errors]);
             }
-        } elseif (!empty(Yii::$app->request->post()) && Yii::$app->request->isAjax) {
+        } elseif (Yii::$app->request->isAjax) {
 
             $arrPost = Yii::$app->request->post();
             $tr_brandObj = new TrCategory();

@@ -9,7 +9,6 @@
         CKEDITOR.on('instanceCreated', function(event) {
             var editor = event.editor,
                 element = editor.element;
-
             // Customize editors for headers and tag list.
             // These editors don't need features like smileys, templates, iframes etc.
             if (element.is('h1', 'h2', 'h3') || element.getAttribute('id') == 'taglist') {
@@ -39,6 +38,7 @@
                 });
             }
         });
+        
         // TinyMCE Basic
         /*
         tinymce.init({

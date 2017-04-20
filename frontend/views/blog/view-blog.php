@@ -15,27 +15,30 @@ $date = date_create(date('Y-m-d',strtotime($blog[0]['created_at'])));
         <!--div class="txt"><?= $blog[0]['description'] ?></div>
     </div>
 </div --->
-
-<div id="blogContainer" class="minHeight">
-    <div id="blog-item">
-        <div class="container-fluid">
-            <div class="row row-image">
+<div class="container-fluid">
+		<div class="blog-sub col-xs-12">
+			<div class="fild row">
 			<?php $file = Files::find()->where(['category'=>'blog','category_id'=>$blog[0]['blog_id']])->count(); if($file){ ?>
-			
-                <div class="img-container">
-                    <div class="image" style="background-image: url('<?php echo Files::getImagesPathToFront('blog',$blog[0]['blog_id'], 'img-responsive', $blog[0]['title'], 1); ?>')"></div>
+                <div class="img-center">
+                    <div class="img" style="background-image: url('<?php echo Files::getImagesPathToFront('blog',$blog[0]['blog_id'], '', $blog[0]['title'], 1); ?>')"></div>
                 </div>
 				<?php } ?>
-                <div class="img-container-bg"></div>
-                <div class="text-container">
-                    <a href="/<?=Yii::$app->language?>/blog" class="href"><span class="glyphicon glyphicon-arrow-left"></span>Обратно в блог</a>
-                    <h1><?= Html::encode($this->title) ?></h1>
-                    <p><a href="javascript:void(0)" class="date"><?=date_format($date,'d').'&nbsp;'.Yii::t('app',date_format($date,'F')).'&nbsp;'.date_format($date,'Y');?></a><span class="view"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>1</span></p>
-                </div>
-            </div>
-            <div class="row row-max">
-                <div class="text"><?= $blog[0]['description'] ?></div>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="layer"></div>
+				<div class="description">
+					<div class="goback">
+						<a href="/<?=Yii::$app->language?>/blog">
+							<i class="fa fa-long-arrow-left" aria-hidden="true"></i><?= Html::encode($this->title) ?>
+						</a>
+					</div>
+					<div class="title"><?= Html::encode($this->title) ?></div>
+					<div class="dateSee">
+						<span class="date"><?=date_format($date,'d').'&nbsp;'.Yii::t('app',date_format($date,'F')).'&nbsp;'.date_format($date,'Y');?></span>
+						<span class="see">
+							<i class="fa fa-eye" aria-hidden="true"></i>1
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="txt"><?= $blog[0]['description'] ?></div>
+		</div>
+	</div>

@@ -60,7 +60,7 @@ return [
         ],
         'urlManager' => [
             'class' => 'codemix\localeurls\UrlManager',
-            'languages' => ['en', 'am', 'ru','pe'],
+            'languages' => ['en', 'ru'],
             'enableDefaultLanguageUrlCode' => false,
             'enableLanguagePersistence' => false,
             'showScriptName' => false,

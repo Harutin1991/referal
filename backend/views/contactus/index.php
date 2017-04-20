@@ -34,37 +34,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['class' => 'br-r', 'id' => 'product'],
                         'columns' => [
                             [
-                                'attribute' => 'phone',
-                                'filterInputOptions' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => 'Search'
-                                ],
-                            ],
-                            [
-                                'attribute' => 'mobile_phone',
-                                'filterInputOptions' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => 'Search'
-                                ],
-                            ],
-                            [
-                                'attribute' => 'fax',
-                            ],
-                            [
                                 'attribute' => 'email', 'format' => 'email',
                             ],
                             ['class' => 'yii\grid\ActionColumn',
                                 'template' => '{update}',
                                 'buttons' => [
                                     'update' => function ($url, $model) {
-                                        return Html::a('<span class="glyphicon glyphicon-pencil"></span> Edit', $url, [
+                                        return Html::a('<span class="glyphicon glyphicon-pencil"></span> '.Yii::t('app','Update'), $url, [
                                                     'title' => Yii::t('app', 'Update'),
                                                     'aria-label' => Yii::t('app', 'Update'),
                                                     //'data-confirm' =>Yii::t('app', 'Are you sure! You whant delete this item?'),
                                                     //'data-method' =>'post',
                                                     //'data-pjax' => '0',
                                                     'data-key' => $model->id,
-                                                    'class' => 'btn btn-info btn-xs fs12 br2 ml5 pull-right'
+                                                    'class' => 'btn btn-info btn-xs fs12 br2 ml5 pull-right',
+                                                    'style'=>'font-size:15px'
                                         ]);
                                     }
                                 ]

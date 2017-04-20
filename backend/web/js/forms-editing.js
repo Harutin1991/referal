@@ -1433,16 +1433,22 @@ var tbl_brand = $("#tbl_pages> tbody");
         // tbody.disableSelection();
         tbl_brand.sortable({
             stop: function (event, ui) {
-
                 updateOrdering('pages')
             }
         });
-var tbl_brand = $("#tbl_blog> tbody");
-        tbl_brand.sortable();
+var tbl_sub_pages = $("#sortable_portlets");
+        tbl_sub_pages.sortable();
         // tbody.disableSelection();
-        tbl_brand.sortable({
+        tbl_sub_pages.sortable({
             stop: function (event, ui) {
-
+                updateOrderingSubPages()
+            }
+        });
+var tbl_blog = $("#tbl_blog> tbody");
+        tbl_blog.sortable();
+        // tbody.disableSelection();
+        tbl_blog.sortable({
+            stop: function (event, ui) {
                 updateOrdering('blog')
             }
         });
@@ -1460,6 +1466,24 @@ function updateOrdering(selector) {
         method: 'post',
         data: ordering,
         url: '/' + language + '/' + selector + '/update-ordering',
+        success: function (res) {
+        }
+    });
+
+}
+function updateOrderingSubPages(selector) {
+    var ordering = {};
+    $('#sortable_portlets .sortable-div').each(function (i, v) {
+        $(this).attr('data-order', i + 1);
+        ordering[i] = {
+            id: $(this).attr('data-id'),
+            ordering: $(this).attr('data-order')
+        }
+    });
+    $.ajax({
+        method: 'post',
+        data: ordering,
+        url: '/' + language + '/pages/update-ordering',
         success: function (res) {
         }
     });

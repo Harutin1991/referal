@@ -32,21 +32,19 @@ $this->registerCssFile("@web/css/filInput.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="pages-form">
-    <?= Html::a(Yii::t('app','Back to page list'), ['/pages/index'], ['class' => 'btn btn-primary mb15']) ?>
-    <?php if(!$model->isNewRecord):?>
-    <?= Html::a('<span class="fa fa-plus-circle"></span>'.Yii::t('app','Create Sub Page'), ['/pages/create-subpage?id='.$model->id], ['class' => 'btn btn-success mb15 pull-right']) ?>
-    <?php if(isset($subpagesCount) && $subpagesCount > 0){ echo Html::a('<span class="fa fa-eye-slash"></span>'.Yii::t('app','Show Sub Pages'), ['/pages/sub-pages?id='.$model->id], ['class' => 'btn btn-primary mb15 pull-right','style'=>'margin-right: 5px;']);} ?>
-    <?php endif;?>
+    <?= Html::a(Yii::t('app', 'Back to page list'), ['/pages/index'], ['class' => 'btn btn-primary mb15']) ?>
+    <?php if (!$model->isNewRecord): ?>
+        <?= Html::a('<span class="fa fa-plus-circle"></span>' . Yii::t('app', 'Create Sub Page'), ['/pages/create-subpage?id=' . $model->id], ['class' => 'btn btn-success mb15 pull-right']) ?>
+        <?php
+        if (isset($subpagesCount) && $subpagesCount > 0) {
+            echo Html::a('<span class="fa fa-eye-slash"></span>' . Yii::t('app', 'Show Sub Pages'), ['/pages/sub-pages?id=' . $model->id], ['class' => 'btn btn-primary mb15 pull-right', 'style' => 'margin-right: 5px;']);
+        }
+        ?>
+    <?php endif; ?>
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">
-            <span
-                class="panel-title"><?php echo ($model->isNewRecord) ? Yii::t('app', 'Add New Page') : Yii::t('app', 'Update Brand') ?></span>
-            <span style="float: left;" class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#"
-                                                                                                              style="margin-left: 5px"
-                                                                                                              class="panel-control-collapse"></a></span>
             <ul class="nav panel-tabs-border panel-tabs">
-
                 <?php
                 if (!$model->isNewRecord) {
                     foreach ($languages as $value):
@@ -72,7 +70,6 @@ $this->registerCssFile("@web/css/filInput.css", [
         <div class="panel-body" style="display: block;">
             <div class="tab-content pn br-n admin-form">
                 <div class="tab-pane" id="tr_pages"></div>
-
                 <div class="tab-pane active" id="tab_<?php echo $defoultId; ?>">
                     <?php
                     $form = ActiveForm::begin([
@@ -80,7 +77,7 @@ $this->registerCssFile("@web/css/filInput.css", [
                                 'id' => $formId,
                     ]);
                     ?>
-                    <?=$form->field($model, 'parent_id')->hiddenInput(['value' => $model->parent_id])->label(false); ?>
+                    <?= $form->field($model, 'parent_id')->hiddenInput(['value' => $model->parent_id])->label(false); ?>
                     <div class="tab-content row">
                         <div class="col-md-12">
                             <?=
@@ -120,72 +117,72 @@ $this->registerCssFile("@web/css/filInput.css", [
                                 </div>
                             </div>
                         </div>
-<div class="col-md-12">
-                                                <?php if (!$model->isNewRecord): ?>
-                                                    <div class="col-md-6 pl15 pull-right">
-                                                        <div class="gallery-page sb-l-o sb-r-c onload-check">
-                                                            <div class="">
-                                                                <div id="mix-container">
-                                                                    <div class="fail-message">
-                                                                        <span><?php echo Yii::t('app', 'No images were found for the selected product') ?></span>
+                        <div class="col-md-12">
+                            <?php if (!$model->isNewRecord): ?>
+                                <div class="col-md-6 pl15 pull-right">
+                                    <div class="gallery-page sb-l-o sb-r-c onload-check">
+                                        <div class="">
+                                            <div id="mix-container">
+                                                <div class="fail-message">
+                                                    <span><?php echo Yii::t('app', 'No images were found for the selected product') ?></span>
+                                                </div>
+
+                                                <?php if (!empty($imagePaths)) : ?>
+                                                    <?php foreach ($imagePaths as $key => $imagePath): ?>
+                                                        <div style="display: inline-block;"
+                                                             class="mix label1 folder1 <?php
+                                                             if ($imagePath['top']) {
+                                                                 echo 'default-view';
+                                                             } else {
+                                                                 echo '';
+                                                             }
+                                                             ?>"
+                                                             id="image_<?php echo $imagePath['id'] ?>">
+                                                            <span class="close remove">
+                                                                <i class="fa fa-close icon-close-materials icon-close-page"></i>
+                                                            </span>
+                                                            <div class="panel p6 pbn">
+                                                                <div class="of-h">
+                                                                    <?php
+                                                                    echo Html::img('/uploads/images/pages/' . $model->id . '/' . $imagePath['path'], [
+                                                                        'class' => 'img-responsive',
+                                                                        'title' => $model->title,
+                                                                        'alt' => '',
+                                                                    ])
+                                                                    ?>
+                                                                    <div class="row table-layout change_image"
+                                                                         data-key="<?php echo $imagePath['id'] ?>" product-id="<?= $model->id ?>">
+                                                                        <input type="hidden" value="blog" id="category">
+                                                                        <div class="col-xs-8 va-m pln">
+                                                                            <h6><?= $model->title . '.jpg' ?></h6>
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xs-4 text-right va-m prn">
+                                                                            <span
+                                                                                class="fa fa-eye-slash fs12 text-muted"></span>
+                                                                            <span
+                                                                                class="fa fa-circle fs10 text-info ml10"></span>
+                                                                        </div>
                                                                     </div>
-
-                                                                    <?php if (!empty($imagePaths)) : ?>
-                                                                        <?php foreach ($imagePaths as $key => $imagePath): ?>
-                                                                            <div style="display: inline-block;"
-                                                                                 class="mix label1 folder1 <?php
-                                                                                 if ($imagePath['top']) {
-                                                                                     echo 'default-view';
-                                                                                 } else {
-                                                                                     echo '';
-                                                                                 }
-                                                                                 ?>"
-                                                                                 id="image_<?php echo $imagePath['id'] ?>">
-                                                                                <span class="close remove">
-                                                                                    <i class="fa fa-close icon-close-materials icon-close-page"></i>
-                                                                                </span>
-                                                                                <div class="panel p6 pbn">
-                                                                                    <div class="of-h">
-                                                                                        <?php
-                                                                                        echo Html::img('/uploads/images/pages/' . $model->id . '/' . $imagePath['path'], [
-                                                                                            'class' => 'img-responsive',
-                                                                                            'title' => $model->title,
-                                                                                            'alt' => '',
-                                                                                        ])
-                                                                                        ?>
-                                                                                        <div class="row table-layout change_image"
-                                                                                             data-key="<?php echo $imagePath['id'] ?>" product-id="<?= $model->id ?>">
-                                                                                            <input type="hidden" value="blog" id="category">
-                                                                                            <div class="col-xs-8 va-m pln">
-                                                                                                <h6><?= $model->title . '.jpg' ?></h6>
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="col-xs-4 text-right va-m prn">
-                                                                                                <span
-                                                                                                    class="fa fa-eye-slash fs12 text-muted"></span>
-                                                                                                <span
-                                                                                                    class="fa fa-circle fs10 text-info ml10"></span>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        <?php endforeach; ?>
-                                                                    <?php endif; ?>
-                                                                    <div class="gap"></div>
-                                                                    <div class="gap"></div>
-                                                                    <div class="gap"></div>
-                                                                    <div class="gap"></div>
-
                                                                 </div>
+
                                                             </div>
                                                         </div>
-                                                    </div>
-
+                                                    <?php endforeach; ?>
                                                 <?php endif; ?>
+                                                <div class="gap"></div>
+                                                <div class="gap"></div>
+                                                <div class="gap"></div>
+                                                <div class="gap"></div>
 
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endif; ?>
+
+                        </div>
                     </div>
 
                     <div class="form-group col-md-12">
@@ -252,4 +249,5 @@ $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 ?>
+
 

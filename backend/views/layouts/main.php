@@ -371,9 +371,6 @@ $pages = Pages::findList();
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
                                     </li>
                                     <li>
-                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'About Us'), Url::to(['aboutus/index'])) ?>
-                                    </li>
-                                    <li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Contact Us'), Url::to(['contactus/index'])) ?>
                                     </li>
                                 </ul>

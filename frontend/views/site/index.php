@@ -441,7 +441,7 @@ $blog = Blog::findList(false,3);
                         <div class="col-xs-6 see">
                             <i class="fa fa-eye" aria-hidden="true"></i><?=$statii['views']?>
                         </div>
-                        <div class="col-xs-6 date"><?php date('d.m.Y',strtotime($statii['created_at']))?></div>
+                        <div class="col-xs-6 date"><?=date('d.m.Y',strtotime($statii['created_at']))?></div>
                     </div>
                 </div>
             </a>

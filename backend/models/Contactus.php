@@ -30,7 +30,7 @@ class Contactus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['phone', 'mobile_phone', 'fax', 'email', 'coordinate'], 'string', 'max' => 255],
+            [['description'], 'string'],
         ];
     }
 

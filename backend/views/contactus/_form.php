@@ -14,6 +14,14 @@ if (!$model->isNewRecord) {
     $formId = 'contactusCreate';
     $action = '/contactus/create';
 }
+$this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/editor.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/admin-forms.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/filInput.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -21,35 +29,22 @@ if (!$model->isNewRecord) {
     'id' => $formId,
 ]); ?>
     <div class="panel mb25">
-        <div class="panel-heading">
-            <span class="panel-title hidden-xs"><?php echo Yii::t('app','Add New Contact US')?></span>
-            <ul class="nav panel-tabs-border panel-tabs">
-                <li class="active">
-                    <a href="#tab1_1" data-toggle="tab"><?php echo Yii::t('app','Contact US')?></a>
-                </li>
-            </ul>
-        </div>
         <div class="panel-body p20 pb10">
             <div class="tab-content pn br-n admin-form">
                 <div id="tab1_1" class="tab-pane active">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-12">
                              <div class="section">
-                                <?= $form->field($model, 'phone',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                            {input}<label for="customer-name" class="field-icon"><i class="fa fa-phone"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Phone')])->label(false) ?>
+                                  <?=
+                                    $form->field($model, 'description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
+                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
+                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app','Contact Info')])->label(Yii::t('app','Contact Info'))
+                                     ?>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="section">
-                                <?= $form->field($model, 'mobile_phone',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                            {input}<label for="customer-name" class="field-icon"><i class="fa fa-phone"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Mobile Phone')])->label(false) ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12">
                             <div class="section">
                                 <?= $form->field($model, 'email',
                                     ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
@@ -57,36 +52,7 @@ if (!$model->isNewRecord) {
                                     ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Email')])->label(false) ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="section">
-                                <?= $form->field($model, 'fax',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                                {input}<label for="customer-name" class="field-icon"><i class="fa fa-envelope"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Fax')])->label(false) ?>
-                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="section">
-                                <?= $form->field($model, 'coordinate',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                                {input}<label for="customer-name" class="field-icon"><i class="fa fa-envelope"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Coordinate longitude')])->label(false) ?>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="section">
-                                <?= $form->field($model, 'coordinate',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                                {input}<label for="customer-name" class="field-icon"><i class="fa fa-envelope"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Coordinate latitude')])->label(false) ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                    </div>
                 </div>
                 <div class="form-group col-md-12">
                     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-sm btn-primary pull-right ' : 'btn btn-sm btn-success pull-right ']) ?>
@@ -96,10 +62,23 @@ if (!$model->isNewRecord) {
     </div>
 <?php ActiveForm::end() ?>
 <?php
-echo $this->registerJs("
-jQuery(document).ready(function () {
-$('#contactus-phone').mask('99-99-9999-9999');
-$('#contactus-mobile_phone').mask('+33 9 99 99 99 99');
-})
-") ?>
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+?>
 

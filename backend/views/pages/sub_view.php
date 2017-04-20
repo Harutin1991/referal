@@ -14,11 +14,11 @@ $this->registerCssFile("@web/css/pages/portlet.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 
-<div class="row ui-sortable" id="sortable_portlets">
-    <div class="col-md-12 column sortable">
+<div class="row ui-sortable" >
+    <div class="col-md-12 column sortable" id="sortable_portlets">
         <!-- BEGIN Portlet PORTLET-->
         <?php foreach($subPages as $key=>$pages):?>
-        <div class="col-md-6">
+        <div class="col-md-6 sortable-div" data-id="<?=$pages['pages_id']?>" data-order="<?=$pages['ordering']?>">
             <div class="portlet box <?php if(!$key):?>primary<?php elseif($key%3): ?>warning<?php elseif(!$key%2):?>success<?php endif;?>">
                 <div class="portlet-title">
                     <div class="caption">
@@ -48,19 +48,3 @@ $this->registerCssFile("@web/css/pages/portlet.css", [
         <?php endforeach;?>
     </div>
 </div>
-
-
-<?php
-$this->registerJs('
- $("#sortable_portlets").sortable({
-            connectWith: ".portlet",
-            items: ".portlet",
-            opacity: 0.8,
-            coneHelperSize: true,
-            placeholder: "sortable-box-placeholder round-all",
-            forcePlaceholderSize: true,
-            tolerance: "pointer"
-        });
-        $(".column").disableSelection();
-')
-?>

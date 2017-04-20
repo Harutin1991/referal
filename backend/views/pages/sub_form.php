@@ -37,14 +37,7 @@ $this->registerCssFile("@web/css/filInput.css", [
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">
-            <span
-                class="panel-title"><?php echo ($model->isNewRecord) ? Yii::t('app', 'Add New Page') : Yii::t('app', 'Update Brand') ?></span>
-            <span style="float: left;" class="panel-controls">
-                <a href="#" class="panel-control-loader"></a>
-                <a href="#" style="margin-left: 5px" class="panel-control-collapse"></a>
-            </span>
             <ul class="nav panel-tabs-border panel-tabs">
-
                 <?php
                 if (!$model->isNewRecord) {
                     foreach ($languages as $value):
@@ -66,7 +59,6 @@ $this->registerCssFile("@web/css/filInput.css", [
                 ?>
             </ul>
         </div>
-
         <div class="panel-body" style="display: block;">
             <div class="tab-content pn br-n admin-form">
                 <div class="tab-pane" id="tr_pages"></div>

@@ -29,7 +29,11 @@ AppAsset::register($this);
 <?php
 $languege = Language::find()->where(['short_code' => Yii::$app->language])->asArray()->all();
 $isDefaultLanguage = $languege[0]['is_default'];
-$this->title = Yii::t('app', 'Make Coin | Home');
+if (isset($this->title)) {
+    $this->title = Yii::t('app', 'Make Coin') . ' | ' . $this->title;
+} else {
+    $this->title = Yii::t('app', 'Make Coin | Home');
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" data-style-switcher-options="{'changeLogo': false,'borderRadius': 0, 'colorPrimary': '#89b837', 'colorSecondary': '#78A330', 'colorTertiary': '#DFE5EA', 'colorQuaternary': '#444'}">
@@ -42,7 +46,7 @@ $this->title = Yii::t('app', 'Make Coin | Home');
         <title>
             <?= Html::encode($this->title) ?>
         </title>
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/image/favicon.png" type="image/gif" sizes="16x16">
         <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
         <?php $this->head() ?>
     </head>
@@ -91,52 +95,101 @@ $this->title = Yii::t('app', 'Make Coin | Home');
         }
         ?>
         <header>
-            <div class="header-wrapper col-xs-12" <?php if($currentUrl): ?> style="background-color: #000" <?php endif;?> >
-                <div class="container">
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                        <div class="logo-header">
-                            <a href="/<?= Yii::$app->language ?>">
-                                <?= Html::img('@web/image/logo-header.png'); ?>
-                            </a>
+            <?php if (!$currentUrl): ?>
+                <div class="header-wrapper col-xs-12"  >
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <div class="logo-header">
+                                <a href="/<?= Yii::$app->language ?>">
+                                    <?= Html::img('@web/image/logo-header.png'); ?>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                        <div class="earn">
-                            <a href="#">Хочу заработать</a>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="earn">
+                                <a href="#">Хочу заработать</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-                        <div class="reg-lang col-xs-12">
-                            <ul>
-                                <li>
-                                    <div class="registration">
-                                        <a href="#">Регистрация</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="language">
-                                        <div class="dropdown">
-                                            <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <?= $languege[0]['name'] ?>
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                                <?php foreach ($languages as $language): ?>
-                                        <?php if ($currentUrl != "" && $language['short_code'] != $languege[0]['short_code']): ?>
-                                            <li><a href="/<?= $language['short_code'] ?><?= $currentUrl ?>"  ><?= $language['name'] ?></a></li>
-                                        <?php elseif ($language['short_code'] != $languege[0]['short_code']): ?>
-                                            <li><a href="/<?= $language['short_code'] ?>" ><?= $language['name'] ?></a></li>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                            </ul>
+                        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                            <div class="reg-lang col-xs-12">
+                                <ul>
+                                    <li>
+                                        <div class="registration">
+                                            <a href="#">Регистрация</a>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <div class="language">
+                                            <div class="dropdown">
+                                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <?= $languege[0]['name'] ?>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                    <?php foreach ($languages as $language): ?>
+                                                        <?php if ($currentUrl != "" && $language['short_code'] != $languege[0]['short_code']): ?>
+                                                            <li><a href="/<?= $language['short_code'] ?><?= $currentUrl ?>"  ><?= $language['name'] ?></a></li>
+                                                        <?php elseif ($language['short_code'] != $languege[0]['short_code']): ?>
+                                                            <li><a href="/<?= $language['short_code'] ?>" ><?= $language['name'] ?></a></li>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="header-wrapper-secound col-xs-12">
+                    <div class="container">
+                        <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+                            <div class="logo-header">
+                                <a href="/<?= Yii::$app->language ?>">
+                                    <?= Html::img('@web/image/logo-header.png'); ?>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                            <div class="earn">
+                                <a href="#">Хочу заработать</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="reg-lang col-xs-12">
+                                <ul>
+                                    <li>
+                                        <div class="registration">
+                                            <a href="#">Регистрация</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="language">
+                                            <div class="dropdown">
+                                                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <?= $languege[0]['name'] ?>
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                                    <?php foreach ($languages as $language): ?>
+                                                        <?php if ($currentUrl != "" && $language['short_code'] != $languege[0]['short_code']): ?>
+                                                            <li><a href="/<?= $language['short_code'] ?><?= $currentUrl ?>"  ><?= $language['name'] ?></a></li>
+                                                        <?php elseif ($language['short_code'] != $languege[0]['short_code']): ?>
+                                                            <li><a href="/<?= $language['short_code'] ?>" ><?= $language['name'] ?></a></li>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </header>
         <div class="main-section">
             <?php echo $content ?>
@@ -146,13 +199,12 @@ $this->title = Yii::t('app', 'Make Coin | Home');
                 <div class="container">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 menu">
                         <ul>
-                            <li><a href="/<?=Yii::$app->language?>/about"><?=Yii::t('app','About Us')?></a></li>
-                            <li><a href="/<?=Yii::$app->language?>/blog"><?=Yii::t('app','Blog')?></a></li>
-                            <?php foreach($pages as $page):?>
-                            <li><a href="/<?=Yii::$app->language?>/page/<?=$page['pages_id']?>"><?=$page['title']?></a></li>
-                            <?php endforeach;?>
-                            <li><a href="/<?=Yii::$app->language?>/contact"><?=Yii::t('app','Contact')?></a></li>
-                            <li><a href="/<?=Yii::$app->language?>/faq"><?=Yii::t('app','F.A.Q')?></a></li>
+                            <?php foreach ($pages as $page): ?>
+                                <li><a href="/<?= Yii::$app->language ?>/page/<?= $page['pages_id'] ?>"><?= $page['title'] ?></a></li>
+                            <?php endforeach; ?>
+                            <li><a href="/<?= Yii::$app->language ?>/blog"><?= Yii::t('app', 'Blog') ?></a></li>
+                            <li><a href="/<?= Yii::$app->language ?>/contact"><?= Yii::t('app', 'Contact') ?></a></li>
+                            <li><a href="/<?= Yii::$app->language ?>/faq"><?= Yii::t('app', 'F.A.Q') ?></a></li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
@@ -169,8 +221,8 @@ $this->title = Yii::t('app', 'Make Coin | Home');
                 <div class="container">
                     <div class="logo">
                         <a href="/<?= Yii::$app->language ?>">
-                                <?= Html::img('@web/image/logo-footer.png',['class'=>'img-responsive']); ?>
-                            </a>
+                            <?= Html::img('@web/image/logo-footer.png', ['class' => 'img-responsive']); ?>
+                        </a>
                     </div>
                 </div>
             </div>
