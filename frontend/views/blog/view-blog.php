@@ -38,7 +38,9 @@ $date = date_create(date('Y-m-d',strtotime($blog[0]['created_at'])));
 						</span>
 					</div>
 				</div>
+			</div> 
+			<div class="container">
+				<div class="txt"><?= $blog[0]['description'] ?></div>
 			</div>
-			<div class="txt"><?= $blog[0]['description'] ?></div>
 		</div>
 	</div>

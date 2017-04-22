@@ -17,12 +17,14 @@ use common\models\User;
 use common\models\Language;
 use backend\models\Faq;
 use backend\models\Aboutus;
+use frontend\models\ContactForm;
 
 
 /**
  * Site controller
  */
 class SiteController extends Controller {
+
 
     /**
      * @inheritdoc

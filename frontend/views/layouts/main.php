@@ -46,7 +46,7 @@ if (isset($this->title)) {
         <title>
             <?= Html::encode($this->title) ?>
         </title>
-        <link rel="icon" href="/image/favicon.png" type="image/gif" sizes="16x16">
+        <link rel="icon" href="/image/favicon.ico" type="image/gif" sizes="16x16">
         <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
         <?php $this->head() ?>
     </head>
@@ -194,7 +194,8 @@ if (isset($this->title)) {
         <div class="main-section">
             <?php echo $content ?>
         </div>
-        <footer>
+		<!-- <?php if (!$currentUrl): ?> style="bottom:-295px;" <?php else: ?> style="bottom: 0px;" <?php endif; ?> -->
+        <footer id="footer">
             <div class="top-banner col-xs-12">
                 <div class="container">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 menu">
@@ -203,7 +204,7 @@ if (isset($this->title)) {
                                 <li><a href="/<?= Yii::$app->language ?>/page/<?= $page['pages_id'] ?>"><?= $page['title'] ?></a></li>
                             <?php endforeach; ?>
                             <li><a href="/<?= Yii::$app->language ?>/blog"><?= Yii::t('app', 'Blog') ?></a></li>
-                            <li><a href="/<?= Yii::$app->language ?>/contact"><?= Yii::t('app', 'Contact') ?></a></li>
+                            <li><a href="/<?= Yii::$app->language ?>/contact"><?= Yii::t('app', 'Support') ?></a></li>
                             <li><a href="/<?= Yii::$app->language ?>/faq"><?= Yii::t('app', 'F.A.Q') ?></a></li>
                         </ul>
                     </div>
@@ -211,19 +212,19 @@ if (isset($this->title)) {
                         <div class="scrollTop">
                             <span><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
                         </div>
-                        <div class="company">
-                            <a href="http://studionomad.kz/" target="_blank">design and developmant by</a> studio<span>Nomad</span>	
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="bottom-banner col-xs-12">
                 <div class="container">
-                    <div class="logo">
+                    <div class="logo col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <a href="/<?= Yii::$app->language ?>">
                             <?= Html::img('@web/image/logo-footer.png', ['class' => 'img-responsive']); ?>
                         </a>
                     </div>
+					<div class="company col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<a href="http://studionomad.kz/" target="_blank"><?=Yii::t('app','design and developmant by')?></a> <span>Studio Nomad</span>	
+					</div>
                 </div>
             </div>
         </footer>

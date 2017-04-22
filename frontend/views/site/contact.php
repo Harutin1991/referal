@@ -5,52 +5,58 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-
+use backend\models\Contactus;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
+$themes = Contactus::find()->asArray()->all();
 ?>
-
-<div class="container">
-    <div class="contact-page col-xs-12">
-        <div class="information">
-            <div class="left-sidebar col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <form method="" action="">
-                    <div class="form-group">
-                        <input type="" placeholder="Name*" name="name">
-                    </div>
-                    <div class="form-group">
-                        <input type="" placeholder="Email*" name="email">
-                    </div>
-                    <div class="form-group">
-                        <input type="" placeholder="Theme*" name="theme">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Message..." name="message"></textarea>
-                    </div>
-                    <div class="form-group text-center">
-                        <input type="submit" name="" value="Send Message">
-                    </div>
-                </form>
-            </div>
-            <div class="right-sidebar col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="title">
-                    Contact
-                </div>
-                <div class="txt">
-                    <p>
-                        Profmont, VIN: 820324301566
-                    </p>
-                    <p>
-                        Address: Armenia, 0069, Erevan Davit Anaxti poxoc., 10/10
-                    </p>
-                    <p>
-                        Tel. (+374)77 35 55 55, (+374) 10 58 00 59
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1276.6212864082986!2d44.53202621927273!3d40.2020726870864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sProfmont!5e1!3m2!1sru!2s!4v1488881299847" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-        </div>
-    </div>
-</div>
+<div class="support col-xs-12">
+		<div class="container">
+			<div class="paragraph">
+				Поддержка
+			</div>
+			<div class="form-container">
+			    <form method="post" role="form" action="" enctype="multipart/form-data">
+			        <div class="form-group">
+			            <select class="form-control" name="theme">
+			                <option value="null" selected="selected">Выберите тему</option>
+							<?php foreach($themes as $theme):?>
+			                <option value=""><?=$theme['title']?></option>
+							<?php endforeach;?>
+			            </select>
+			        </div>
+			        <div class="form-group">
+			            <label>Пожалуйста, подробно опишите свой вопрос. Наиболее полная информация поможет нам ответить на ваше обращение в кратчайшие сроки. Вы можете также приложить файл со снимком экрана.</label>
+			            <textarea class="form-control" placeholder="Введите вопрос" cols="1" rows="5" name="question"></textarea>
+			        </div>
+			        <div class="form-group">
+			            <input type="file" class="form-control" multiple="multiple" placeholder="Выберите файл" name="">
+			        </div>
+			        <div class="form-group">
+			            <input type="text" class="form-control" placeholder="Ваша Фамилия, Имя и Отчетство" name="name" maxlength="255" value="">
+			        </div>
+			        <div class="form-group">
+			            <p>Желаете, чтобы к вам перезвонил наш менеджер?</p>
+			            <label class="radio-inline"><input type="radio" name="call">Да</label>
+			            <label class="radio-inline"><input type="radio" name="call">Нет</label>
+			        </div>
+			        <div class="form-group">
+			            <input type="number" class="form-control" placeholder="Введите номер" name="phone" maxlength="255" value="">
+			        </div>
+			        <div class="form-group">
+			            <input type="email" class="form-control" placeholder="Введите эл.почту" name="email" maxlength="255" value="">
+			        </div>
+			        <div class="form-group">
+			            <p class="text-center">
+			                <img alt="" title="" src="/image/img-001.gif" width="150">
+			            </p>
+			            
+			            <input type="text" class="form-control" placeholder="Введите код с картинки" name="capcha" maxlength="6" value="">
+			        </div>
+			        <div class="text-center">
+			            <input type="submit" name="send" value="Отправить">
+			        </div>
+			    </form>
+			</div>
+		</div>
+	</div>

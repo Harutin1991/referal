@@ -32,27 +32,40 @@ $this->registerCssFile("@web/css/filInput.css", [
         <div class="panel-body p20 pb10">
             <div class="tab-content pn br-n admin-form">
                 <div id="tab1_1" class="tab-pane active">
-                    <div class="row">
+				<div class="row">
                         <div class="col-md-12">
-                             <div class="section">
-                                  <?=
-                                    $form->field($model, 'description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
-                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
-                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app','Contact Info')])->label(Yii::t('app','Contact Info'))
-                                     ?>
+                            <div class="section">
+                                <?= $form->field($model, 'title',
+                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
+                                                {input}<label for="customer-name" class="field-icon"><i class="fa fa-envelope"></i></label></label>{error}</div>'
+                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Title')])->label(false) ?>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col-md-12">
-                            <div class="section">
-                                <?= $form->field($model, 'email',
-                                    ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
-                                                {input}<label for="customer-name" class="field-icon"><i class="fa fa-envelope"></i></label></label>{error}</div>'
-                                    ])->textInput(['maxlength' => true, 'placeholder' => Yii::t('app','Email')])->label(false) ?>
+                        <div class="col-md-12">
+                             <div class="section">
+							 <label><?=Yii::t('app','Short Description')?></label>
+                                  <?=
+                                    $form->field($model, 'short_description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
+                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
+                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app','Short Description')])->label(Yii::t('app','Short Description'))
+                                     ?>
                             </div>
                         </div>
+                    </div>
+					<div class="row">
+                        <div class="col-md-12">
+                             <div class="section">
+							<label><?=Yii::t('app','Description')?></label>
+                                  <?=
+                                    $form->field($model, 'description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
+                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
+                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app','Description')])->label(Yii::t('app','Description'))
+                                     ?>
+                            </div>
                         </div>
+                    </div>
                 </div>
                 <div class="form-group col-md-12">
                     <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-sm btn-primary pull-right ' : 'btn btn-sm btn-success pull-right ']) ?>

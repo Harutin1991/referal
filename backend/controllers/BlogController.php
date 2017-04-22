@@ -115,7 +115,7 @@ class BlogController extends Controller {
                 $trmodel->language_id = $value['id'];
                 $trmodel->save();
             }
-            Yii::$app->session->setFlash('success', 'Material successfully created');
+            Yii::$app->session->setFlash('success', Yii::t('app','Blog successfully created'));
             return $this->redirect(['update',
                         'id' => $model->id,
                         'modelFiles' => $modelFiles,
@@ -256,7 +256,7 @@ class BlogController extends Controller {
         return false;
     }
     
-        /**
+    /**
      * @return mixed
      */
     public function actionUpdateOrdering() {

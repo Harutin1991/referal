@@ -85,7 +85,7 @@ class FaqController extends Controller {
                         $model->language_id = $value['id'];
                         $model->save();
                 }
-                Yii::$app->session->setFlash('success', 'Faq successfully created');
+                Yii::$app->session->setFlash('success', Yii::t('app','Faq successfully created'));
                 return $this->redirect(['update',
                             'id' => $faq->id,
                 ]);
@@ -145,6 +145,18 @@ class FaqController extends Controller {
             $this->findModel($id)->delete();
             Yii::$app->session->setFlash('success', 'Faq successfully removed');
             return $this->redirect(['index']);
+        }
+    }
+	
+	
+        /**
+     * @return mixed
+     */
+    public function actionUpdateOrdering() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Faq();
+            $data = Yii::$app->request->post();
+            return $model->bachUpdate($data);
         }
     }
 

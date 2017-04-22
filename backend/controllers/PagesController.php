@@ -200,7 +200,8 @@ class PagesController extends Controller {
                 $paths = $this->upload($file, $model->id);
                 $modelFiles->multiSave($paths, $model->id, 1, 'pages');
             }
-            $trModel = $model_m->findOne(['language_id' => 1, 'pages_id' => $id]);
+			$defaultLanguage = Language::find()->where(['is_default' => 1])->one();
+            $trModel = $model_m->findOne(['language_id' => $defaultLanguage->id, 'pages_id' => $id]);
 
             if ($trModel) {
                 $trModel->title = $arrPost['title'];
@@ -212,10 +213,9 @@ class PagesController extends Controller {
                 if(isset($arrPost['short_description'])){
                     $trModel->short_description = $arrPost['short_description'];
                 }
-                $trModel->language_id = $arrPost['language_id'];
+                $trModel->language_id = $defaultLanguage->id;
                 $trModel->pages_id = $arrPost['pages_id'];
             }
-
             if ($trModel->save()) {
                 echo 'true';
                 exit();
@@ -254,6 +254,7 @@ class PagesController extends Controller {
             ]);
         }
     }
+    
     public function actionSubPages($id) {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
             $parentPage = Pages::find()->where(['id'=>$id])->asArray()->all();

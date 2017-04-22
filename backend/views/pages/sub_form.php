@@ -33,7 +33,7 @@ $this->registerCssFile("@web/css/filInput.css", [
 ?>
 <div class="pages-form">
     <h1><?=Yii::t('app','Parent Page')?> : <?=$parentPage[0]['title']?></h1>
-    <?= Html::a(Yii::t('app','Back to page list'), ['/pages/index'], ['class' => 'btn btn-primary mb15']) ?>
+    <?= Html::a(Yii::t('app','Back to page list'), ['pages/sub-pages?id='.$parentPage[0]['pages_id']], ['class' => 'btn btn-primary mb15']) ?>
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">

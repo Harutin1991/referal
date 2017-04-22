@@ -423,11 +423,6 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                     'type' => 'button'
                                                 ])
                                                 ?>
-                                                <?php
-                                                if (!$trmodel->isNewRecord) {
-                                                    echo Html::a(Yii::t('app', 'Reset'), Url::to('/' . Yii::$app->language . '/blog/index', true), ['class' => 'btn btn-default btn-sm ph25 reste-button pull-left']);
-                                                }
-                                                ?>
                                             </div>
                                         </div>
                                         <!-- /.row -->

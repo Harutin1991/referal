@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'buttons' => [
                                             'createsubpage'=>function($url, $model){
                                                 $url = \yii\helpers\Url::toRoute(['pages/create-subpage', 'id' => $model->id]);
-                                                return Html::a('<span class="fa fa-plus-circle"></span>'.Yii::t('app','Create Sub Page'), $url, [
+                                                return Html::a('<span class="fa fa-plus-circle"></span>  '.Yii::t('app','Create Sub Page'), $url, [
                                                             'title' => Yii::t('app','Create Sub Page'),
                                                             'aria-label' => Yii::t('app','Create Sub Page'),
                                                             'class' => 'btn btn-success btn-xs fs12 br2 ml5',
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             },
                                             'subpages'=>function($url, $model){
                                                 $url = \yii\helpers\Url::toRoute(['pages/sub-pages', 'id' => $model->id]);
-                                                return Html::a('<span class="fa fa-eye-slash"></span>'.Yii::t('app','Sub Pages'), $url, [
+                                                return Html::a('<span class="fa fa-eye-slash"></span>  '.Yii::t('app','Sub Pages'), $url, [
                                                             'title' => Yii::t('app','Sub Pages'),
                                                             'aria-label' => Yii::t('app','Sub Pages'),
                                                             'class' => 'btn btn-primary btn-xs fs12 br2 ml5',
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 ]);
                                             },
                                             'delete' => function ($url, $model) {
-                                                return Html::a('<span class="glyphicon glyphicon-trash"></span> '.Yii::t('app', 'Delete'), $url, [
+                                                return Html::a('<span class="glyphicon glyphicon-trash"></span>  '.Yii::t('app', 'Delete'), $url, [
                                                             'title' => 'Delete',
                                                             'aria-label' => 'Delete',
                                                             'data-confirm' => 'Are you sure! You whant delete this item?',
