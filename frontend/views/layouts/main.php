@@ -232,7 +232,7 @@ if (isset($this->title)) {
                                                             <div class="input-group">
                                                                 <span class="input-group-addon icon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                                                 <?=
-                                                                        $form->field($model, 'email', ['template' => '{input}{error}'])
+                                                                        $form->field($model, 'username', ['template' => '{input}{error}'])
                                                                         ->textInput(["placeholder" => Yii::t('app', 'Login'), 'type' => 'email', 'id' => 'inputEmail', "class" => "form-control", 'required' => true])
                                                                         ->label(false)
                                                                 ?>
