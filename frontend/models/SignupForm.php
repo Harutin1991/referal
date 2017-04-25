@@ -3,8 +3,6 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
-use common\models\Customer;
-use common\models\CustomerAddress;
 use Yii;
 use common\components\Location;
 
@@ -18,6 +16,14 @@ class SignupForm extends Model
     public $last_name;
     public $email;
     public $password;
+    public $address;
+    public $state;
+    public $city;
+    public $country;
+    public $phone;
+    public $postal;
+    public $gender;
+    public $dob;
     public $confirm_password;
     public $verifyToken;
 
@@ -42,17 +48,26 @@ class SignupForm extends Model
             ['last_name', 'string', 'min' => 2, 'max' => 50],
 
             ['email', 'trim'],
-            ['email', 'required'],
+            ['email', 'required','message' => Yii::t('app','Login field required')],
             ['email', 'email'],
             ['email', 'string', 'max' => 50],
             ['email', 'unique', 'targetClass' => '\frontend\models\Customer', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
+            ['password', 'required','message' => Yii::t('app','Password field required')],
             ['password', 'string', 'min' => 6],
 
             ['confirm_password', 'required'],
             ['confirm_password', 'string', 'min' => 6],
             ['confirm_password', 'compare', 'compareAttribute' => 'password'],
+            
+            ['address', 'trim'],
+            ['state', 'trim'],
+            ['city', 'trim'],
+            ['country', 'trim'],
+            ['phone', 'trim'],
+            ['dob', 'trim'],
+            ['postal', 'trim'],
+            ['gender', 'trim'],
         ];
     }
 
@@ -67,9 +82,10 @@ class SignupForm extends Model
             return null;
         }
         $customer = new Customer();
-       // $customerAddress = new CustomerAddress();
+        $customerAddress = new CustomerAddress();
         $user = new User();
         $user->username = $this->username;
+        $user->email = $this->email;
         $user->role = 20;
         $user->setPassword($this->password);
         $user->generateAuthKey();
@@ -77,9 +93,18 @@ class SignupForm extends Model
             $customer->first_name = $this->first_name;
             $customer->last_name = $this->last_name;
             $customer->email = $this->email;
+            $customer->gender = $this->gender;
+            $customer->dob = $this->dob;
             $customer->user_id = $user->id;
             $customer->last_ip = \Yii::$app->request->userIP;
             $customer->save(false);
+            $customerAddress->city = $this->city;
+            $customerAddress->customer_id = $customer->id;
+            $customerAddress->address = $this->address;
+            $customerAddress->country = $this->country;
+            $customerAddress->postal = $this->postal;
+            $customerAddress->default_address = 1;
+            $customerAddress->save(false);
             return $user ;
         }
         return null;

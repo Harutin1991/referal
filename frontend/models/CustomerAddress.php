@@ -41,11 +41,11 @@ class CustomerAddress extends ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'city', 'country', 'address', 'state','country'], 'required'],
+            [['customer_id', 'city', 'country', 'address', 'country'], 'required'],
             [['customer_id', 'default_address'], 'integer'],
 
-            [['zip'], 'string', 'max'=>20 ],
-            [['city', 'country', 'address', 'state',], 'string', 'max' => 50],
+            [['postal'], 'string', 'max'=>20 ],
+            [['city', 'country', 'address', 'state',], 'string', 'max' => 250],
             [['country'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['country' => 'name']],
         ];
     }
@@ -64,7 +64,7 @@ class CustomerAddress extends ActiveRecord
             'customer_id' => Yii::t('app', 'Customer ID'),
             'long' => Yii::t('app', 'Long'),
             'lat' => Yii::t('app', 'Lat'),
-            'zip' => Yii::t('app', 'Zip/Postal Code'),
+            'postal' => Yii::t('app', 'Zip/Postal Code'),
             'default_address' => Yii::t('app', 'Default Address'),
         ];
     }

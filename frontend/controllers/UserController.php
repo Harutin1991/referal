@@ -61,26 +61,21 @@ class UserController extends \yii\web\Controller
 
     public function actionProfile()
     {
-
-
-        $this->layout = 'main';
         $role = Yii::$app->user->identity->role;
         $view_file_path = '';
         $userModel = null;
         if ($role == User::CUSTOMER) {
             $userModel = Yii::$app->user->identity->customer;
             $view_file_path = 'customer/profile';
-        } elseif ($role == User::REPAIRER) {
-            $userModel = Yii::$app->user->identity->repairer;
-            $view_file_path = 'repairer/profile';
         }
-
-
         $customerAdressObj = CustomerAddress::findOne(['customer_id' => $userModel->id, 'default_address' => 1]);
         if ($customerAdressObj) {
             $modelAdd = $customerAdressObj;
+            $countries = Countries::find()->select(['id', 'name'])->asArray()->all();
+            $countries = ArrayHelper::map($countries, 'name', 'name');           
             $addresForm = $this->renderPartial('customer/update', array(
-                'model' => $modelAdd
+                'model' => $modelAdd,
+                'countries' => $countries,
             ));
         } else {
             $modelAdd = new CustomerAddress();

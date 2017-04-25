@@ -27,15 +27,10 @@ $this->registerCssFile("@web/css/pages/editor.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="pages-form">
-    <?= Html::a('Back to faq list', ['/faq/index'], ['class' => 'btn btn-primary mb15']) ?>
+    <?= Html::a(Yii::t('app','Back to faq list'), ['/faq/index'], ['class' => 'btn btn-primary mb15']) ?>
     <div class="panel sort-disable mb50" id="p2" data-panel-color="false" data-panel-fullscreen="false"
          data-panel-remove="false" data-panel-title="false">
         <div class="panel-heading">
-            <span
-                class="panel-title"><?php echo ($model->isNewRecord) ? Yii::t('app', 'Add New Faq') : Yii::t('app', 'Update Faq') ?></span>
-            <span style="float: left;" class="panel-controls"><a href="#" class="panel-control-loader"></a><a href="#"
-                                                                                                              style="margin-left: 5px"
-                                                                                                              class="panel-control-collapse"></a></span>
             <ul class="nav panel-tabs-border panel-tabs">
 
                 <?php

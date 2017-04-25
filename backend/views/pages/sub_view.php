@@ -26,13 +26,9 @@ $this->registerCssFile("@web/css/pages/portlet.css", [
                         <?=$pages['title']?>
                     </div>
                     <div class="actions">
-                        <a href="#" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i>
-                            Add
-                        </a>
                         <a href="<?php echo Url::to(['update','id'=>$pages['pages_id']])?>" class="btn btn-default btn-sm">
                             <i class="fa fa-pencil"></i>
-                            Edit
+                            <?=Yii::t('app','Update')?>
                         </a>
                     </div>
                 </div>

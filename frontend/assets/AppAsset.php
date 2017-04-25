@@ -19,7 +19,6 @@ class AppAsset extends AssetBundle
     ];
     public $baseUrl = '@web';
     public $js = [
-        "js/jquery.js",
         "js/bootstrap.js",
         "js/script.js",
     ];

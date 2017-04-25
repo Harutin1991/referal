@@ -92,8 +92,24 @@ class Faq extends \yii\db\ActiveRecord
         $query->leftJoin('tr_faq', 'faq.id = tr_faq.faq_id');
         $query->leftJoin('language', 'language.id = tr_faq.language_id');
         $query->where($where);
-        $query->orderBy(['faq.id' => SORT_ASC]);
+        $query->orderBy(['faq.ordering' => SORT_ASC]);
         $rows = $query->all();
         return $rows;
     }
+	
+	/**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `faq` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
+    }
+
 }

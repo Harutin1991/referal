@@ -13,7 +13,7 @@ $this->registerJsFile(
 $this->title = Yii::t('app','Blog');
 ?>
 <div class="blog-page col-xs-12">
-    <div class="container-fluid">
+    <div class="container">
         <ul class="grid effect-1" id="grid">
             <?php foreach ($blogs as $key => $blog): ?>
                 <li>

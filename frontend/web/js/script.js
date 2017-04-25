@@ -32,31 +32,11 @@
             return false;
         });
     });
-
-    $(".contact").click(function(e) { 
-        e.preventDefault(); 
-        $('html, body').animate({
-            scrollTop: $(".article-contact-us").offset().top
-        }, 1500);         
-    });
-
-
-    $('.map').click(function () {
-        $('.map iframe').css("pointer-events", "auto");
-    });
+	
+	$("#registrationModela").click(function(){
+        $(".login").toggleClass("loginActive");
+    });  
     
-    $( ".map" ).mouseleave(function() {
-      $('.map iframe').css("pointer-events", "none"); 
-    });
-  
 
 
 });
-
-
-
-
-
-
-
-

@@ -30,7 +30,7 @@ class Contactus extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
+            [['description','title','short_description'], 'string'],
         ];
     }
 
@@ -45,7 +45,23 @@ class Contactus extends \yii\db\ActiveRecord
             'mobile_phone' => Yii::t('app', 'Mobile Phone'),
             'fax' => Yii::t('app', 'Fax'),
             'email' => Yii::t('app', 'Email'),
+            'title' => Yii::t('app', 'Title'),
             'coordinate' => Yii::t('app', 'Coordinate'),
         ];
+    }
+	
+	/**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `contactus` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
     }
 }

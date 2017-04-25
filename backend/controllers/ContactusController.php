@@ -66,7 +66,7 @@ class ContactusController extends Controller
         $model = new Contactus();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect('idnex');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -119,6 +119,17 @@ class ContactusController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+	
+	/**
+     * @return mixed
+     */
+    public function actionUpdateOrdering() {
+        if (Yii::$app->request->isAjax) {
+            $model = new Contactus();
+            $data = Yii::$app->request->post();
+            return $model->bachUpdate($data);
         }
     }
 }

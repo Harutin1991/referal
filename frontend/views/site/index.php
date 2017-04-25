@@ -6,9 +6,9 @@ use yii\data\ArrayDataProvider;
 use backend\models\Files;
 use backend\models\Blog;
 use backend\models\TrBlog;
-$this->title = Yii::t('app', 'Home');
-$blog = Blog::findList(false,3);
 
+$this->title = Yii::t('app', 'Home');
+$blog = Blog::findList(false, 3);
 ?>
 <div class="carousel-wrapper col-xs-12">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -131,12 +131,9 @@ $blog = Blog::findList(false,3);
                                 <span>1</span>
                             </div>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <p>Зарегистрируйтесь и купите </p>
+                                <p>один из пакетов инвестора </p>
+                                <p>Classic, Silver или Gold за 10, 50 или 100$</p>
                             </div>
                         </div>
                     </div>
@@ -145,7 +142,7 @@ $blog = Blog::findList(false,3);
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <div class="table-price">
                     <div class="cell-price">
-                        <img src="image/price.jpg" alt="">
+                        <img src="image/price-01.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -155,7 +152,7 @@ $blog = Blog::findList(false,3);
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <div class="table-price">
                     <div class="cell-price">
-                        <img src="image/price.jpg" alt="">
+                        <img src="image/price-02.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -167,12 +164,9 @@ $blog = Blog::findList(false,3);
                                 <span>2</span>
                             </div>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <p>Пригласите друзей и знакомых </p>
+                                <p>участвовать в программе и </p>
+                                <p>в качестве премии получите реальные деньги!</p>
                             </div>
                         </div>
                     </div>
@@ -186,15 +180,11 @@ $blog = Blog::findList(false,3);
                     <div class="cell-price">
                         <div class="info">
                             <div class="number">
-                                <span>1</span>
+                                <span>3</span>
                             </div>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <p>Можете повысить свой уровень </p>
+                                <p>инвестора и зарабатывать больше </p>
                             </div>
                         </div>
                     </div>
@@ -203,7 +193,7 @@ $blog = Blog::findList(false,3);
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <div class="table-price">
                     <div class="cell-price">
-                        <img src="image/price.jpg" alt="">
+                        <img src="image/price-03.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -213,7 +203,7 @@ $blog = Blog::findList(false,3);
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                 <div class="table-price">
                     <div class="cell-price">
-                        <img src="image/price.jpg" alt="">
+                        <img src="image/icon-4.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -222,15 +212,10 @@ $blog = Blog::findList(false,3);
                     <div class="cell-price">
                         <div class="info">
                             <div class="number">
-                                <span>2</span>
+                                <span>4</span>
                             </div>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <p>Или можете получить проценты инвестора</p>
                             </div>
                         </div>
                     </div>
@@ -337,20 +322,32 @@ $blog = Blog::findList(false,3);
         <div class="paragraph">
             <span>Самые активные участники</span>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+        <div class="col-xs-12 colums">
             <span class="num">1</span>
             <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
             <div class="title">Name ( login )</div>
             <div class="sum">уже заработал 999$</div>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+        <div class="col-xs-12 colums">
             <span class="num">2</span>
             <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
             <div class="title">Name ( login )</div>
             <div class="sum">уже заработал 599$</div>
         </div>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+        <div class="col-xs-12 colums">
             <span class="num">3</span>
+            <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
+            <div class="title">Name ( login )</div>
+            <div class="sum">уже заработал 300$</div>
+        </div>
+		<div class="col-xs-12 colums">
+            <span class="num">4</span>
+            <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
+            <div class="title">Name ( login )</div>
+            <div class="sum">уже заработал 300$</div>
+        </div>
+		<div class="col-xs-12 colums">
+            <span class="num">5</span>
             <img src="image/people-250x250.jpg" alt="people-250x250.jpg" class="img-responsive">
             <div class="title">Name ( login )</div>
             <div class="sum">уже заработал 300$</div>
@@ -431,21 +428,21 @@ $blog = Blog::findList(false,3);
 </div>
 <div class="news col-xs-12">
     <div class="container">
-	<?php foreach($blog as $statii):?>
-        <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
-		 <a href="/<?= Yii::$app->language ?>/blog/<?= $statii['blog_id'] ?>" class="view-blog">
-                        <?php echo Files::getImagesToFront('blog', $statii['blog_id'], 'img-responsive', $statii['title'], 1) ?>
-                <div class="title"><?=$statii['title']?></div>
-                <div class="see-date">
-                    <div class="col-xs-12">
-                        <div class="col-xs-6 see">
-                            <i class="fa fa-eye" aria-hidden="true"></i><?=$statii['views']?>
+        <?php foreach ($blog as $statii): ?>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 colums">
+                <a href="/<?= Yii::$app->language ?>/blog/<?= $statii['blog_id'] ?>" class="view-blog">
+                    <?php echo Files::getImagesToFront('blog', $statii['blog_id'], 'img-responsive', $statii['title'], 1) ?>
+                    <div class="title"><?= $statii['title'] ?></div>
+                    <div class="see-date">
+                        <div class="col-xs-12">
+                            <div class="col-xs-6 see">
+                                <i class="fa fa-eye" aria-hidden="true"></i><?= $statii['views'] ?>
+                            </div>
+                            <div class="col-xs-6 date"><?= date('d.m.Y', strtotime($statii['created_at'])) ?></div>
                         </div>
-                        <div class="col-xs-6 date"><?=date('d.m.Y',strtotime($statii['created_at']))?></div>
                     </div>
-                </div>
-            </a>
-        </div>
-		<?php endforeach;?>
+                </a>
+            </div>
+        <?php endforeach; ?>  
     </div>
 </div>

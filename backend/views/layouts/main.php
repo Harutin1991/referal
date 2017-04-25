@@ -18,6 +18,7 @@ AppAsset::register($this);
 $currentUrl = trim(substr($_SERVER['REQUEST_URI'], 3));
 $languages = Language::find()->asArray()->all();
 $pages = Pages::findList();
+Yii::$app->language = "ru";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -113,7 +114,7 @@ $pages = Pages::findList();
                                 </li>
                             </ul >
                         </li-->
-                        <li class="dropdown notifications-menu">
+                        <!--li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
                             </a>
@@ -124,7 +125,7 @@ $pages = Pages::findList();
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                                 <li>
-                                    <!-- inner menu: contains the actual data -->
+                                    <!-- inner menu: contains the actual data >
                                     <ul class="menu">
                                         <?php foreach ($languages as $language): ?>
                                             <?php if (Yii::$app->language != $language['short_code']): ?>
@@ -138,7 +139,7 @@ $pages = Pages::findList();
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li -->
                         <!--li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="livicon" data-name="bell" data-loop="true" data-color="#e9573f" data-hovercolor="#e9573f" data-size="28"></i>
@@ -212,7 +213,7 @@ $pages = Pages::findList();
                                 </li>
                             </ul>
                         </li -->
-						<li><?= Html::a('<i class="livicon" data-name="gears" data-s="18"></i>' . Yii::t('app', 'Settings') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout'],['style'=>'color: #fff3f3 !important;']) ?></li>
+						<li><?= Html::a('<i class="livicon" data-name="gears" data-s="18"></i>' . Yii::t('app', 'Settings') . '(' . Yii::$app->user->identity->username . ')', ['#'],['style'=>'color: #fff3f3 !important;']) ?></li>
 						<li><?= Html::a('<i class="livicon" data-name="sign-out" data-s="18"></i>' . Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout'],['style'=>'color: #fff3f3 !important;']) ?></li>
                         <!--li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -364,35 +365,35 @@ $pages = Pages::findList();
                                             </a>
                                         </li>
                                     <?php endforeach; ?>
-                                    <li>
+                                    <!--li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Pakage and Price'), Url::to(['pakage-price/index'])) ?>
                                     </li>
                                     <li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
-                                    </li>
+                                    </li -->
                                     <li>
-                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Contact Us'), Url::to(['contactus/index'])) ?>
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Support'), Url::to(['contactus/index'])) ?>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="<?= Url::to('/content/index') ?>">
+                            <!--li>
+                                <a href="/<?=Yii::$app->language?><?= Url::to('/content/index') ?>">
                                     <i class="livicon" data-name="brush" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
                                     <?= Yii::t('app', 'Content') ?>
                                 </a>
-                            </li>
+                            </li -->
                             <li>
-                                <a href="<?= Url::to('/faq/index') ?>">
+                                <a href="/<?=Yii::$app->language?><?= Url::to('/faq/index') ?>">
                                     <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                     <?= Yii::t('app', 'Faq') ?>
                                 </a>
                             </li>
-							<li>
-                                <a href="<?= Url::to('/source-message/index') ?>">
+							<!--li>
+                                <a href="/<?=Yii::$app->language?><?= Url::to('/source-message/index') ?>">
                                     <i class="livicon" data-c="#EF6F6C" data-hc="#EF6F6C" data-name="list-ul" data-size="18" data-loop="true"></i>
                                     <?= Yii::t('app', 'Language Managment') ?>
                                 </a>
-                            </li>
+                            </li -->
                         </ul>
                         <!-- END SIDEBAR MENU -->
                     </div>
@@ -433,6 +434,11 @@ $pages = Pages::findList();
                     ?>
                 </section>
                 <section class="content">
+				<?= Alert::widget() ?>
+				<div id="admin-alerts" class="alert-success alert" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <div></div>
+                    </div>
                     <?= $content ?>
                 </section>
             </aside>

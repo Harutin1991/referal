@@ -42,7 +42,7 @@ class CustomerAddress extends \yii\db\ActiveRecord
 //            [['customer_id'], 'required'],
             [['customer_id', 'default_address'], 'integer'],
             [['long', 'lat'], 'number'],
-            [['city', 'country', 'address', 'state'], 'string', 'max' => 50],
+            [['city', 'country', 'address', 'state'], 'string', 'max' => 255],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::className(), 'targetAttribute' => ['customer_id' => 'id']],
         ];
     }

@@ -6,7 +6,7 @@ use kartik\select2\Select2;
 use yii\helpers\Url;
 use common\models\Language;
 use yii\widgets\Pjax;
-
+use backend\models\Pages;
 $languages = Language::find()->asArray()->all();
 
 /* @var $this yii\web\View */
@@ -14,9 +14,12 @@ $languages = Language::find()->asArray()->all();
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <?php
+$subPage = [];
 if (!$model->isNewRecord) {
     $formId = 'pagesUpdate';
     $action = '/pages/update?id=' . $model->id;
+	$subId = Yii::$app->request->get('id');
+	$subPage = Pages::find()->where(['id'=>$subId])->asArray()->all();
 } else {
     $formId = 'pagesCreate';
     $action = '/pages/create';
@@ -84,7 +87,17 @@ $this->registerCssFile("@web/css/filInput.css", [
                                     $form->field($model, 'title', ['template' => '{label}<div class="">{input}{error}</div>'])
                                     ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Page Title')])->label(false)
                             ?>
+                        </div> 
+						<?php if(!empty($subPage) && !is_null($subPage[0]['parent_id'])):?>
+						<div class="col-md-12">
+                            <label><?= Yii::t('app', 'Short Description') ?></label>
+                            <?=
+                                    $form->field($model, 'short_description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
+                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
+                                    ->textarea(['rows' => 6, 'placeholder' => 'Short Description'])->label(false)
+                            ?>
                         </div>
+						<?php endif;?>
                         <div class="col-md-12">
                             <label><?= Yii::t('app', 'Page Content') ?></label>
                             <?=
@@ -192,11 +205,6 @@ $this->registerCssFile("@web/css/filInput.css", [
                             'id' => $formId,
                             'type' => 'button'
                         ])
-                        ?>
-                        <?php
-                        if (!$model->isNewRecord) {
-                            echo Html::a(Yii::t('app', 'Reset'), Url::to('/' . Yii::$app->language . '/brand/index', true), ['class' => 'btn btn-default btn-sm ph25 reste-button pull-right']);
-                        }
                         ?>
                     </div>
                     <?php ActiveForm::end(); ?>

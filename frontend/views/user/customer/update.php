@@ -1,20 +1,34 @@
+<?php
+
+use yii\bootstrap\ActiveForm;
+use kartik\select2\Select2;
+//var_dump($countries); die;
+?>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <h3>Address</h3>
-<br>
+<?php $form = ActiveForm::begin(['options' => ['class' => 'col-xs-12']]) ?>
+<div class="clearfix"></div>
 <ul>
     <li>Country
-<!--        <span data-name="country" data-type="adrress">--><?//= $model->country; ?><!--</span><i class="material-icons edit">create</i>-->
-
         <div class="select-country">
-            <select class="edit-country ">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-            </select>
+            <?=
+                                    $form->field($model, 'country', ['template' => '{input}{error}'])->widget(Select2::className(), [
+                                        'data' => $countries,
+                                        'language' => Yii::$app->language,
+                                        'options' => ['placeholder' => Yii::t('app', "Choose your country") . '...', 'id' => 'gender'],
+                                        'pluginOptions' => [
+                                            'allowClear' => true,
+                                            'multiple' => false
+                                        ],
+                                    ])->label(Yii::t('app', 'Select Gender'))
+                                    ?>
         </div>
     </li>
 
-    <li>State <span data-name="state" data-type="adrress"><?= $model->state; ?></span><i class="material-icons edit">create</i></li>
-    <li>City <span data-name="city" data-type="adrress"><?= $model->city; ?></span><i class="material-icons edit">create</i></li>
-    <li>Address <span data-name="address" data-type="adrress"><?= $model->address; ?></span><i class="material-icons edit">create</i></li>
-    <li>Zip/Postal Code  <span data-name="zip" data-type="adrress"><?= $model->zip; ?></span><i class="material-icons edit">create</i></li>
+    <li>City <span data-name="city" data-type="adrress"><?= $model->city; ?></span></li>
+    <li>Address <span data-name="address" data-type="adrress"><?= $model->address; ?></span></li>
+    <li>Zip/Postal Code  <span data-name="postal" data-type="adrress"><?= $model->postal; ?></span></li>
 
 </ul>
+<?php ActiveForm::end() ?>
+</div>

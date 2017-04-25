@@ -3,6 +3,9 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+use kartik\select2\Select2;
+use yii\authclient\widgets\AuthChoice;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -12,12 +15,13 @@ use common\models\Language;
 use yii\helpers\Url;
 use backend\models\Files;
 use backend\models\Pages;
+use frontend\models\LoginForm;
 
 $languages = Language::find()->asArray()->all();
 
 $action = Yii::$app->controller->action->id;
 $controller = Yii::$app->controller->id;
-
+$model = new LoginForm();
 $currentUrl = trim(substr($_SERVER['REQUEST_URI'], 3));
 
 $com = strcmp($currentUrl, "/site/index");
@@ -46,7 +50,7 @@ if (isset($this->title)) {
         <title>
             <?= Html::encode($this->title) ?>
         </title>
-        <link rel="icon" href="/image/favicon.png" type="image/gif" sizes="16x16">
+        <link rel="icon" href="/image/favicon.ico" type="image/gif" sizes="16x16">
         <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
         <?php $this->head() ?>
     </head>
@@ -114,9 +118,64 @@ if (isset($this->title)) {
                             <div class="reg-lang col-xs-12">
                                 <ul>
                                     <li>
-                                        <div class="registration">
-                                            <a href="#">Регистрация</a>
-                                        </div>
+                                        <?php if (!Yii::$app->user->identity): ?>
+                                            <div class="registration">
+                                                <a href=" javascript:void(0);" id="registrationModela"><?= Yii::t('app', 'Login/Registration') ?></a>
+                                            </div>
+                                            <div id="login" class="login">
+                                                <?php $form = ActiveForm::begin(['action' => '/' . Yii::$app->language . '/site/login', 'options' => ['accept-charset' => 'utf-8']]) ?>
+                                                <div class="form">
+                                                    <div class="form-group">
+                                                        <div class="people">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon icon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                                <?=
+                                                                        $form->field($model, 'username', ['template' => '{input}{error}'])
+                                                                        ->textInput(["placeholder" => Yii::t('app', 'Login'), "class" => "form-control", 'required' => true])
+                                                                        ->label(false)
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="people">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon icon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                                <?=
+                                                                        $form->field($model, 'password', ['template' => '{input}{error}'])
+                                                                        ->passwordInput(["placeholder" => Yii::t('app', 'Password'), "class" => "form-control",'required' => true])
+                                                                        ->label(false)
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Войти" id="loginBtn">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="reg">
+                                                            <a href="/<?= Yii::$app->language ?>/signup"><?= Yii::t('app', 'Registration') ?></a>
+                                                        </div>
+                                                        <div class="forget">
+                                                            <a href="/<?= Yii::$app->language ?>/site/request-password-reset"><?= Yii::t('app', 'Forgot Password') ?>?</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php ActiveForm::end() ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="registration">
+                                                <a href="javascript:void(0)" id="registrationModela"><?= Yii::$app->user->identity->customer->first_name . ' ' . Yii::$app->user->identity->customer->last_name ?></a>
+                                            </div>
+                                            <div id="login" class="login">
+                                                <div class="form">
+                                                    <div class="form-group">
+                                                        <a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a>
+                                                        <a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </li>
                                     <li>
                                         <div class="language">
@@ -161,9 +220,64 @@ if (isset($this->title)) {
                             <div class="reg-lang col-xs-12">
                                 <ul>
                                     <li>
-                                        <div class="registration">
-                                            <a href="#">Регистрация</a>
-                                        </div>
+                                        <?php if (!Yii::$app->user->identity): ?>
+                                            <div class="registration">
+                                                <a href=" javascript:void(0);" id="registrationModela"><?= Yii::t('app', 'Login/Registration') ?></a>
+                                            </div>
+                                            <div id="login" class="login">
+                                                <?php $form = ActiveForm::begin(['action' => '/' . Yii::$app->language . '/site/login', 'options' => ['accept-charset' => 'utf-8']]) ?>
+                                                <div class="form">
+                                                    <div class="form-group">
+                                                        <div class="people">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon icon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                                <?=
+                                                                        $form->field($model, 'email', ['template' => '{input}{error}'])
+                                                                        ->textInput(["placeholder" => Yii::t('app', 'Login'), 'type' => 'email', 'id' => 'inputEmail', "class" => "form-control", 'required' => true])
+                                                                        ->label(false)
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="people">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon icon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                                <?=
+                                                                        $form->field($model, 'password', ['template' => '{input}{error}'])
+                                                                        ->passwordInput(["placeholder" => Yii::t('app', 'Password'), "class" => "form-control", 'id' => 'inputPassword', 'required' => true])
+                                                                        ->label(false)
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Войти" id="loginBtn">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="reg">
+                                                            <a href="/<?= Yii::$app->language ?>/signup"><?= Yii::t('app', 'Registration') ?></a>
+                                                        </div>
+                                                        <div class="forget">
+                                                            <a href="/<?= Yii::$app->language ?>/site/request-password-reset"><?= Yii::t('app', 'Forgot Password') ?>?</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php ActiveForm::end() ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="registration">
+                                                <a href="javascript:void(0)" id="registrationModela"><?= Yii::$app->user->identity->customer->first_name . ' ' . Yii::$app->user->identity->customer->last_name ?></a>
+                                            </div>
+                                            <div id="login" class="login">
+                                                <div class="form">
+                                                    <div class="form-group">
+                                                        <a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a>
+                                                        <a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </li>
                                     <li>
                                         <div class="language">
@@ -194,7 +308,8 @@ if (isset($this->title)) {
         <div class="main-section">
             <?php echo $content ?>
         </div>
-        <footer>
+                <!-- <?php if (!$currentUrl): ?> style="bottom:-295px;" <?php else: ?> style="bottom: 0px;" <?php endif; ?> -->
+        <footer id="footer">
             <div class="top-banner col-xs-12">
                 <div class="container">
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 menu">
@@ -203,7 +318,7 @@ if (isset($this->title)) {
                                 <li><a href="/<?= Yii::$app->language ?>/page/<?= $page['pages_id'] ?>"><?= $page['title'] ?></a></li>
                             <?php endforeach; ?>
                             <li><a href="/<?= Yii::$app->language ?>/blog"><?= Yii::t('app', 'Blog') ?></a></li>
-                            <li><a href="/<?= Yii::$app->language ?>/contact"><?= Yii::t('app', 'Contact') ?></a></li>
+                            <li><a href="/<?= Yii::$app->language ?>/contact"><?= Yii::t('app', 'Support') ?></a></li>
                             <li><a href="/<?= Yii::$app->language ?>/faq"><?= Yii::t('app', 'F.A.Q') ?></a></li>
                         </ul>
                     </div>
@@ -211,18 +326,18 @@ if (isset($this->title)) {
                         <div class="scrollTop">
                             <span><i class="fa fa-chevron-up" aria-hidden="true"></i></span>
                         </div>
-                        <div class="company">
-                            <a href="http://studionomad.kz/" target="_blank">design and developmant by</a> studio<span>Nomad</span>	
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="bottom-banner col-xs-12">
                 <div class="container">
-                    <div class="logo">
+                    <div class="logo col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <a href="/<?= Yii::$app->language ?>">
                             <?= Html::img('@web/image/logo-footer.png', ['class' => 'img-responsive']); ?>
                         </a>
+                    </div>
+                    <div class="company col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <a href="http://studionomad.kz/" target="_blank"><?= Yii::t('app', 'design and developmant by') ?></a> <span>Studio Nomad</span>	
                     </div>
                 </div>
             </div>

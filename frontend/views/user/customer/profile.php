@@ -35,34 +35,26 @@ use kartik\growl\Growl;
                         <h1>Account Information</h1>
                     </div>
                 </div>
-                <div class="row account-body">
-                    <div class="col-sm-6 bx-info contact-box">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                         <h3>Contact informations</h3>
                         <br>
                         <ul>
                             <li class="info-row">First Name <span
-                                    data-name="name"><?= ucfirst($UserModel->name); ?></span><i
-                                    class="material-icons edit">create</i></li>
+                                    data-name="name"><?= ucfirst($UserModel->first_name); ?></span></li>
                             <li class="info-row">Last Name <span
-                                    data-name="surname"><?= ucfirst($UserModel->surname); ?></span><i
-                                    class="material-icons edit">create</i></li>
+                                    data-name="surname"><?= ucfirst($UserModel->last_name); ?></span></li>
                             <li class="info-row">Phone Number <span
-                                    data-name="phone"><?php echo $UserModel->phone ? $UserModel->phone : "<span class='unverfy'><i class=\"material-icons\">&#xE001;</i>not verifyed</span>"; ?></span><i
-                                    class="material-icons edit">create</i></li>
+                                    data-name="phone"><?php echo $UserModel->phone ? $UserModel->phone : "<span class='unverfy'><i class=\"material-icons\">&#xE001;</i>not verifyed</span>"; ?></span></li>
                             <li class="info-row">Mobile Number <span
-                                    data-name="phone"><?php echo $UserModel->phone ? $UserModel->phone : "<span class='unverfy'><i class=\"material-icons\">&#xE001;</i>not verifyed</span>"; ?></span><i
-                                    class="material-icons edit">create</i></li>
-                            <li class="info-row">Email <span data-name="email"><?= $UserModel->email; ?></span><i
-                                    class="material-icons edit">create</i></li>
+                                    data-name="phone"><?php echo $UserModel->phone ? $UserModel->phone : "<span class='unverfy'><i class=\"material-icons\">&#xE001;</i>not verifyed</span>"; ?></span></li>
+                            <li class="info-row">Email <span data-name="email"><?= $UserModel->email; ?></span></li>
                             <input id="user_id" type="hidden" value="<?= ucfirst($UserModel->id); ?>">
                         </ul>
                     </div>
-                    <div class="col-sm-6 bx-info shipping-box">
-
                         <?php echo $addressForm; ?>
-                    </div>
                 </div>
-                <div class="row" id="account_tab">
+                <!--div class="row" id="account_tab">
                     <?php
                     echo \yii\bootstrap\Tabs::widget([
                         'items' => [
@@ -81,7 +73,7 @@ use kartik\growl\Growl;
                     ]);
                     ?>
                     
-                </div>
+                </div -->
             </div>
         </div>
     </div>

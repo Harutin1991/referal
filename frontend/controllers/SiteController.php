@@ -17,12 +17,16 @@ use common\models\User;
 use common\models\Language;
 use backend\models\Faq;
 use backend\models\Aboutus;
+use frontend\models\ContactForm;
+use frontend\models\SignupForm;
+use common\models\Customer;
 
 
 /**
  * Site controller
  */
 class SiteController extends Controller {
+
 
     /**
      * @inheritdoc
@@ -129,7 +133,7 @@ class SiteController extends Controller {
         }
 
         if ($model->load(Yii::$app->request->post())) {
-            $email = Yii::$app->request->post('LoginForm')['email'];
+            $username = Yii::$app->request->post('LoginForm')['username'];
             if ($model->login()) {
                 return $this->redirect(Url::previous());
             } elseif (User::$notverified) {
@@ -174,6 +178,7 @@ class SiteController extends Controller {
                 $userLogin = User::find()->where(['id' => $user->user_id])->one();
                 if (!empty($userLogin)) {
                     Yii::$app->user->login($userLogin);
+                    $this->redirect('/'.Yii::$app->language.'/user/profile');
                 }
             } else {
                 // Save session attribute user from FB
@@ -183,6 +188,7 @@ class SiteController extends Controller {
                     if ($social == 'facebook') {
                         $user = new User();
                         $user->username = str_replace(' ', '_', $session['attributes']['name']);
+                        $user->email = $session['attributes']['email'];
                         $user->role = 20;
                         $password = Yii::$app->security->generateRandomString(6);
                         $user->setPassword($password);
@@ -190,12 +196,13 @@ class SiteController extends Controller {
                         if ($user->save()) {
                             $customer = new Customer();
                             $user_fio = explode(' ', $session['attributes']['name']);
-                            $customer->name = $user_fio[0];
-                            $customer->surname = $user_fio[1];
+                            $customer->first_name = $user_fio[0];
+                            $customer->last_name = $user_fio[1];
                             $customer->email = $session['attributes']['email'];
                             $customer->user_id = $user->id;
                             $customer->last_ip = \Yii::$app->request->userIP;
                             $customer->status = 0;
+                            $customer->social_type = 'facebook';
                             if (isset($session['attributes']['username'])) {
                                 $customer->social_user_name = $session['attributes']['name'];
                             } else {
@@ -206,6 +213,7 @@ class SiteController extends Controller {
                                 $userData = ['email' => $customer->email, 'password' => $password];
                                 if ($this->sendEmail($customer->email, 'Invite', $userData)) {
                                     Yii::$app->session->setFlash('success', "Your login data sent to your email, please enter to your email to see");
+                                    $this->redirect('user/profile');
                                 }
                             }
                         }
@@ -230,7 +238,7 @@ class SiteController extends Controller {
         return Yii::$app
                         ->mailer
                         ->compose('email-layout', ['content' => $message])
-                        ->setFrom(['admin-odenson@test.com' => Yii::$app->name])
+                        ->setFrom(['info@make-coin.com' => Yii::$app->name])
                         ->setTo($to)
                         ->setSubject($subject)
                         ->send();
@@ -319,8 +327,7 @@ class SiteController extends Controller {
             $verifyToken = Yii::$app->request->post('verifyToken');
             $customer = Customer::findByPasswordResetToken($verifyToken);
             $model->load(Yii::$app->request->post());
-            $model->username = $model->name . time();
-            ;
+            //$model->username = $model->user . time();
             if ($customer) {
                 $customer->auth_token = "";
                 if ($customer->save()) {

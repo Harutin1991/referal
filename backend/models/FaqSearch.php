@@ -42,6 +42,7 @@ class FaqSearch extends Faq
     public function search($params)
     {
         $query = Faq::find();
+		$query->orderBy(['ordering' => SORT_ASC]);
 
         // add conditions that should always apply here
 

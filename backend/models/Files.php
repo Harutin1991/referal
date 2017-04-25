@@ -111,7 +111,7 @@ class Files extends \yii\db\ActiveRecord {
             'alt' => $alt,
         ];
         if (!is_null($category_id)) {
-            $images = self::find()->where(['category' => $category, 'category_id' => $category_id, 'top' => $top])->asArray()->all();
+            $images = self::find()->where(['category' => $category, 'category_id' => $category_id])->asArray()->all();
         } else {
             $images = self::find()->where(['category' => $category])->asArray()->all();
         }
