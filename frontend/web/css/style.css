@@ -99,6 +99,22 @@ header .header-wrapper .reg-lang ul li .language .dropdown .dropdown-menu > li >
   color: #dab82d;
   background-color: transparent;
 }
+header .header-wrapper .reg-lang ul li .menua i {
+  color: #dab82d;
+  border: 1px solid #b2b2b2;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+}
+header .header-wrapper .reg-lang ul li .menua i:hover {
+  color: #fff;
+  border-color: #dab82d;
+}
 header .header-wrapper-secound {
   background-color: #000;
   z-index: 9;
@@ -192,6 +208,22 @@ header .header-wrapper-secound .reg-lang ul li .language .dropdown .dropdown-men
 header .header-wrapper-secound .reg-lang ul li .language .dropdown .dropdown-menu > li > a:focus {
   color: #dab82d;
   background-color: transparent;
+}
+header .header-wrapper-secound .reg-lang ul li .menu i {
+  color: #dab82d;
+  border: 1px solid #b2b2b2;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+}
+header .header-wrapper-secound .reg-lang ul li .menu i:hover {
+  color: #fff;
+  border-color: #dab82d;
 }
 header .loginActive {
   border-top: 2px solid #dab82d;
@@ -530,6 +562,7 @@ header .modal-forget-password .change-pass .send-form button:hover {
   text-align: center;
   width: 20%;
   float: left;
+  position: relative;
 }
 .main-section .counter .cols img {
   width: 100%;
@@ -2427,3 +2460,138 @@ header .login .form .form-group .help-block {
   border-color: #ececec;
 }
 /*Custom*/
+.menu-opener,
+.menu-opener:hover,
+.menu-opener.active,
+.menu-opener-inner,
+.menu-opener-inner::before,
+.menu-opener-inner::after,
+.menu,
+.menu.active {
+  -webkit-transition: 250ms all;
+  transition: 250ms all;
+}
+.menu-opener {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.menu-opener:hover,
+.menu-opener.active {
+  background: transparent;
+}
+.menu-opener-inner {
+  background: #fff;
+  height: .5rem;
+  margin-left: .75rem;
+  margin-top: 14px;
+  width: 2.5rem;
+}
+.menu-opener-inner::before,
+.menu-opener-inner::after {
+  background: white;
+  content: '';
+  display: block;
+  height: .5rem;
+  width: 2.5rem;
+}
+.menu-opener-inner::before {
+  -webkit-transform: translateY(-0.75rem);
+  -ms-transform: translateY(-0.75rem);
+  transform: translateY(-0.75rem);
+}
+.menu-opener-inner::after {
+  -webkit-transform: translateY(0.25rem);
+  -ms-transform: translateY(0.25rem);
+  transform: translateY(0.25rem);
+}
+.menu-opener-inner.active {
+  background: transparent;
+}
+.menu-opener-inner.active::before {
+  -webkit-transform: translateY(0rem) rotate(-45deg);
+  -ms-transform: translateY(0rem) rotate(-45deg);
+  transform: translateY(0rem) rotate(-45deg);
+}
+.menu-opener-inner.active::after {
+  -webkit-transform: translateY(-0.5rem) translateX(0rem) rotate(45deg);
+  -ms-transform: translateY(-0.5rem) translateX(0rem) rotate(45deg);
+  transform: translateY(-0.5rem) translateX(0rem) rotate(45deg);
+}
+.header-menu {
+  position: relative;
+}
+.header-menu .menu {
+  background: rgba(218, 184, 45, 0.4);
+  color: transparent;
+  height: 40px;
+  position: absolute;
+  top: 25px;
+  left: 1%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 0rem;
+  z-index: -1;
+}
+.header-menu .menu.active {
+  width: -webkit-calc(98%);
+  width: calc(98%);
+}
+.header-menu .menu.active .menu-link {
+  color: #fff;
+}
+.header-menu .menu-inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  height: 100%;
+  list-style-type: none;
+  margin: 0;
+  margin-left: 4rem;
+  padding: 0;
+}
+.header-menu .menu-link {
+  color: transparent;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-size: 2rem;
+  font-weight: 100;
+  height: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+.header-menu .menu-link li {
+  margin: auto;
+}
+@media screen and (max-width: 768px) {
+  .header-menu .menu {
+    height: auto;
+  }
+  .header-menu .menu-inner {
+    display: block;
+  }
+  .header-menu .menu-link {
+    padding: 10px 0;
+    font-size: 1.2em;
+  }
+  .header-menu .menu.active {
+    width: -webkit-calc(99.5%);
+    width: calc(99.5%);
+  }
+}

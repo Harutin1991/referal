@@ -94,18 +94,12 @@ class SliderController extends Controller {
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $modelFiles = new Files();
             $file = UploadedFile::getInstances($modelFiles, 'path');
-
             if (!empty($file)) {
                 $ProdDefImg = Yii::$app->request->post('defaultImage');
                 $paths = $this->upload($file, $model->id);
                 $modelFiles->multiSave($paths, $model->id, $ProdDefImg, 'slider');
             }
-
             Yii::$app->session->setFlash('success', 'Slider successfully created');
-            return $this->redirect(['update',
-                        'id' => $model->id,
-                        'modelFiles' => $modelFiles,
-            ]);
             return $this->redirect('index');
         } else {
             $modelFiles = new Files();
@@ -152,7 +146,8 @@ class SliderController extends Controller {
                 }
                 //$modelFiles->multiUpdate($paths, $model->id, $ProdDefImg, 'news');
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', 'Slider successfully updated');
+            return $this->redirect('index');
         } else {
             $images = Files::find()->where(['category' => 'slider', 'category_id' => $id])->asArray()->all();
             $modelFiles = new Files();

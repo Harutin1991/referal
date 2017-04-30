@@ -8,23 +8,23 @@ $(document).ready(function () {
 //         e.preventDefault();
 //        $(this).toggleClass('showMenu');
 //     });
-    var range = $('.input-range'),
-            value = $('.range-value');
-
-    value.html(range.attr('value') + ' $');
-
-    range.on('input', function () {
-        value.html(this.value + ' $');
-    });
-
-    var range = $('.input-range'),
-            value = $('.range-values');
-
-    value.html(range.attr('value') + ' $');
-
-    range.on('input', function () {
-        value.html(this.value + ' $');
-    });
+//    var range1 = $('#input-range1'),
+//    value1 = $('#range-value1');
+//
+//    value1.html(range1.attr('value') + ' $');
+//
+//    range1.on('input', function () {
+//        value1.html(this.value + ' $');
+//    });
+//
+//    var range2 = $('#input-range2'),
+//            value2 = $('#range-values2');
+//
+//    value2.html(range2.attr('value') + ' $');
+//
+//    range2.on('input', function () {
+//        value2.html(this.value2 + ' $');
+//    });
 
     $(function () {
         $('.scrollTop').bind("click", function () {
@@ -142,6 +142,9 @@ function imageUpload(e) {
             $(this).find('i').addClass('fa-pencil').removeClass('fa-check');
         }
 
+    });
+    $(".menu-opener").click(function(){
+      $(".menu-opener, .menu-opener-inner, .menu").toggleClass("active");
     });
 
 });

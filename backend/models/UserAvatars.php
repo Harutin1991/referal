@@ -41,4 +41,19 @@ class UserAvatars extends \yii\db\ActiveRecord
             'path' => Yii::t('app', 'Path'),
         ];
     }
+    
+    /**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `user_avatars` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
+    }
 }

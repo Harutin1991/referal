@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+use yii\db\Query;
 /**
  * This is the model class for table "{{%investor_packages}}".
  *
@@ -69,5 +69,20 @@ class InvestorPackages extends \yii\db\ActiveRecord
         }
         $updateQuery .= $subUpdateOrderingQuery . ' END';
         return self::getDb()->createCommand($updateQuery)->execute();
+    }
+    
+    public static function findList($blog_id = false,$limit = false) {
+
+        $language = Yii::$app->language;
+        $where = ['language.short_code' => $language];
+        $query = (new Query());
+        $query->select(['tr_investor_packages.*','investor_packages.price']);
+        $query->from('investor_packages');
+        $query->leftJoin('tr_investor_packages', 'investor_packages.id = tr_investor_packages.invsetor_packages_id');
+        $query->leftJoin('language', 'language.id = tr_investor_packages.language_id');
+        $query->where($where);
+        $query->orderBy(['investor_packages.ordering' => SORT_ASC]);
+        $rows = $query->all();
+        return $rows;
     }
 }

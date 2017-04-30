@@ -8,6 +8,7 @@ use backend\models\UserAvatarsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use backend\models\User;
 use yii\web\UploadedFile;
 use backend\models\Files;
@@ -62,13 +63,16 @@ class UserAvatarsController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserAvatarsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+       $images = UserAvatars::find()->all();
+       $model = new  UserAvatars();
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'images' => $images,
+            'model' =>  $model,
         ]);
+    }
+    
+    public function actionFileUpload(){
+        
     }
 
     /**
@@ -91,9 +95,16 @@ class UserAvatarsController extends Controller
     public function actionCreate()
     {
         $model = new UserAvatars();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $file = UploadedFile::getInstances($model, 'path');
+            $paths = $this->upload($file, $model->id);
+            foreach($paths as $key=>$path){
+                $newmodel = new UserAvatars();
+                $newmodel->ordering = $key ? $key + 1 : 1;
+                $newmodel->path = $path;
+                $newmodel->save();
+            }
+            return $this->redirect('index');
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -146,6 +157,40 @@ class UserAvatarsController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    public function upload($imageFile, $id) {
+        $directoryBlog = Yii::getAlias("@backend/web/uploads/images/user_avatars/");
+        $directory = Yii::getAlias("@backend/web/uploads/images/user_avatars/" . $id);
+        $directoryThumb = Yii::getAlias("@backend/web/uploads/images/user_avatars/" . $id . "/thumbnail");
+        BaseFileHelper::createDirectory($directoryBlog);
+        BaseFileHelper::createDirectory($directory);
+        BaseFileHelper::createDirectory($directoryThumb);
+        if ($imageFile) {
+            $paths = [];
+            foreach ($imageFile as $key => $image) {
+                $uid = uniqid(time(), true);
+                $fileName = $uid . '_' . $key . '.' . $image->extension;
+                $filePath = $directory . '/' . $fileName;
+                $filePathThumb = $directoryThumb . '/' . $fileName;
+                $image->saveAs($filePath);
+                Image::thumbnail($filePath, 76, 76)->save(Yii::getAlias($directoryThumb . '/' . $fileName), ['quality' => 100]);
+                $paths[$key + 1] = $fileName;
+            }
+            return $paths;
+        }
+        return false;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function actionUpdateOrdering() {
+        if (Yii::$app->request->isAjax) {
+            $model = new UserAvatars();
+            $data = Yii::$app->request->post();
+            return $model->bachUpdate($data);
         }
     }
 }

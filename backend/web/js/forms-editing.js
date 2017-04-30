@@ -1452,6 +1452,23 @@ tbl_brand.sortable({
         updateOrdering('pages')
     }
 });
+var tbl_faq = $("#tbl_faq> tbody");
+tbl_faq.sortable();
+// tbody.disableSelection();
+tbl_faq.sortable({
+    stop: function (event, ui) {
+        updateOrdering('faq')
+    }
+});
+
+var tbl_avatars = $("#user-avatars>div");
+tbl_avatars.sortable();
+// tbody.disableSelection();
+tbl_avatars.sortable({
+    stop: function (event, ui) {
+        updateOrdering('user-avatars')
+    }
+});
 
 var tbl_other = $("#tbl_other-investor-diff> tbody");
 tbl_other.sortable();

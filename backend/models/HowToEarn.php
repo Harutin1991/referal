@@ -71,5 +71,35 @@ class HowToEarn extends \yii\db\ActiveRecord {
         $tr->save();
         return true;
     }
+    
+    public static function findList($blog_id = false,$limit = false) {
+
+        $language = Yii::$app->language;
+        $where = ['language.short_code' => $language];
+        $query = (new Query());
+        $query->select(['tr_how_to_earn.*']);
+        $query->from('how_to_earn');
+        $query->leftJoin('tr_how_to_earn', 'how_to_earn.id = tr_how_to_earn.how_to_earn_id');
+        $query->leftJoin('language', 'language.id = tr_how_to_earn.language_id');
+        $query->where($where);
+        $query->orderBy(['how_to_earn.ordering' => SORT_ASC]);
+        $rows = $query->all();
+        return $rows;
+    }
+    
+    /**
+     * @param $AllData
+     * @return int
+     */
+    public function bachUpdate($AllData) {
+
+        $updateQuery = "UPDATE `how_to_earn` SET ";
+        $subUpdateOrderingQuery = '`ordering` = CASE `id` ';
+        foreach ($AllData as $item => $data) {
+            $subUpdateOrderingQuery .= ' WHEN ' . $data['id'] . ' THEN ' . "'{$data['ordering']}'";
+        }
+        $updateQuery .= $subUpdateOrderingQuery . ' END';
+        return self::getDb()->createCommand($updateQuery)->execute();
+    }
 
 }

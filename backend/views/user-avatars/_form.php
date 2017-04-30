@@ -27,6 +27,7 @@ $this->registerCssFile("@web/css/filInput.css", [
     <div class="col-lg-12">
         <div class="panel panel-info">
             <div class="panel-heading">
+                <?=Yii::t('app','Upload User Avatar')?>
             </div>
             <div class="panel-body">
 

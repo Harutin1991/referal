@@ -112,14 +112,16 @@ if (isset($this->title)) {
                             <div class="form-group">
                                 <div class="question-pass hidden">
                                     <?php $form = ActiveForm::begin(); ?>
-                                        <div class="input-group">
-                                            <?= $form->field($modelResetPass, 'email')
-                                        ->textInput(['autofocus' => true, "placeholder" => Yii::t('app','Enter email'),'aria-describedby'=>'basic-addon1', "class" => "form-control"])
-                                        ->label(false) ?>
-                                            <span class="input-group-addon" id="basic-addon1">
-                                                <?= Html::submitButton(Yii::t('app','Send')) ?>
-                                            </span>
-                                        </div>
+                                    <div class="input-group">
+                                        <?=
+                                                $form->field($modelResetPass, 'email')
+                                                ->textInput(['autofocus' => true, "placeholder" => Yii::t('app', 'Enter email'), 'aria-describedby' => 'basic-addon1', "class" => "form-control"])
+                                                ->label(false)
+                                        ?>
+                                        <span class="input-group-addon" id="basic-addon1">
+                                            <?= Html::submitButton(Yii::t('app', 'Send')) ?>
+                                        </span>
+                                    </div>
                                     <?php ActiveForm::end(); ?>
                                 </div>
                                 <div class="pass-answer hidden">
@@ -230,12 +232,12 @@ if (isset($this->title)) {
                                                 <a href="javascript:void(0)" id="registrationModela"><?= Yii::$app->user->identity->customer->first_name . ' ' . Yii::$app->user->identity->customer->last_name ?></a>
                                             </div>
                                             <div id="login" class="login">
-												<div class="login-form">
-													<ul>
-														<li><a href=""><a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a></a></li>
-														<li><a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a></li>
-													</ul>
-												</div>
+                                                <div class="login-form">
+                                                    <ul>
+                                                        <li><a href=""><a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a></a></li>
+                                                        <li><a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         <?php endif; ?>
                                     </li>
@@ -258,8 +260,41 @@ if (isset($this->title)) {
                                             </div>
                                         </div>
                                     </li>
+                                    <li>
+                                        <div class="menua hidden">
+                                            <i class="fa fa-bars" aria-hidden="true"></i>
+                                            <ul>
+                                                <li>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <nav class="menu-opener">
+                                            <div class="menu-opener-inner"></div>
+                                        </nav>
+                                    </li>
                                 </ul>
                             </div>
+                        </div>
+                        <div class="header-menu col-xs-12">
+                            <nav class="menu">
+                                <ul class="menu-inner">
+                                    <a href="#" class="menu-link">
+                                        <li>О проекте</li>
+                                    </a>
+                                    <a href="#" class="menu-link">
+                                        <li>Блог</li>
+                                    </a>
+                                    <a href="#" class="menu-link">
+                                        <li>Пакеты и цены</li>
+                                    </a>
+                                    <a href="#" class="menu-link">
+                                        <li>Конфиденциальность</li>
+                                    </a>
+                                    <a href="#" class="menu-link">
+                                        <li>Контакты</li>
+                                    </a>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -334,11 +369,11 @@ if (isset($this->title)) {
                                             </div>
                                             <div id="login" class="login">
                                                 <div class="login-form">
-													<ul>
-														<li><a href=""><a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a></a></li>
-														<li><a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a></li>
-													</ul>
-												</div>
+                                                    <ul>
+                                                        <li><a href=""><a href="/<?= Yii::$app->language ?>/user/profile"><?= Yii::t('app', 'Profile') ?></a></a></li>
+                                                        <li><a href="/<?= Yii::$app->language ?>/site/logout"><?= Yii::t('app', 'Logout') ?></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         <?php endif; ?>
                                     </li>

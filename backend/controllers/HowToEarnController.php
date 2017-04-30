@@ -245,7 +245,7 @@ class HowToEarnController extends Controller {
      */
     public function actionUpdateOrdering() {
         if (Yii::$app->request->isAjax) {
-            $model = new Blog();
+            $model = new HowToEarn();
             $data = Yii::$app->request->post();
             return $model->bachUpdate($data);
         }
