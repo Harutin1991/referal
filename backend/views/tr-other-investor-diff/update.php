@@ -3,21 +3,21 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\OtherInvestorDiff */
+/* @var $model backend\models\TrOtherInvestorDiff */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Other Investor Diff',
+    'modelClass' => 'Tr Other Investor Diff',
 ]) . $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Other Investor Diffs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tr Other Investor Diffs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="other-investor-diff-update">
+<div class="tr-other-investor-diff-update">
+
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-         'model' => $model,
-        'imagePaths' => $imagePaths,
-        'modelFiles' => $modelFiles,
+        'model' => $model,
     ]) ?>
 
 </div>

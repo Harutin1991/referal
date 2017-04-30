@@ -159,7 +159,7 @@ if (!$model->isNewRecord) {
                                                                                     ?>
                                                                                     <div class="row table-layout change_image"
                                                                                          data-key="<?php echo $imagePath['id'] ?>" product-id="<?= $model->id ?>">
-                                                                                        <input type="hidden" value="blog" id="category">
+                                                                                        <input type="hidden" value="how-to-earn" id="category">
                                                                                         <div class="col-xs-8 va-m pln">
                                                                                             <h6><?= $model->id . '.jpg' ?></h6>
                                                                                         </div>

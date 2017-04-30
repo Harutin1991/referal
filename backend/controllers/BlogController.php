@@ -20,7 +20,6 @@ use backend\models\TrBlog;
  * BlogController implements the CRUD actions for Blog model.
  */
 class BlogController extends Controller {
-	public $title2;
     /**
      * @inheritdoc
      */
@@ -29,7 +28,7 @@ class BlogController extends Controller {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'index' => ['GET', 'POST'],
+                    'index' => ['GET'],
                     'view' => ['GET'],
                     'create' => ['POST', 'GET'],
                     'update' => ['POST', 'GET'],
@@ -66,8 +65,6 @@ class BlogController extends Controller {
         $searchModel = new BlogSearch();
         $model = new Blog();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,

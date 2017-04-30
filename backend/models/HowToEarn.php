@@ -61,7 +61,7 @@ class HowToEarn extends \yii\db\ActiveRecord {
     public function updateDefaultTranslate($language_id) {
         $tr = TrHowToEarn::findOne(['language_id' => $language_id, 'how_to_earn_id' => $this->id]);
         if (!$tr) {
-            $tr = new TrBlog();
+            $tr = new TrHowToEarn();
 
             $tr->setAttribute('language_id', $language_id);
             $tr->setAttribute('how_to_earn_id', $this->id);

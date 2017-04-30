@@ -1445,29 +1445,59 @@ $('body').on('click', '.chk-usr', function () {
 });
 
 var tbl_brand = $("#tbl_pages> tbody");
-        tbl_brand.sortable();
-        // tbody.disableSelection();
-        tbl_brand.sortable({
-            stop: function (event, ui) {
-                updateOrdering('pages')
-            }
-        });
+tbl_brand.sortable();
+// tbody.disableSelection();
+tbl_brand.sortable({
+    stop: function (event, ui) {
+        updateOrdering('pages')
+    }
+});
+
+var tbl_other = $("#tbl_other-investor-diff> tbody");
+tbl_other.sortable();
+// tbody.disableSelection();
+tbl_other.sortable({
+    stop: function (event, ui) {
+        updateOrdering('other-investor-diff')
+    }
+});
+
+var tbl_package = $("#tbl_packages> tbody");
+tbl_package.sortable();
+// tbody.disableSelection();
+tbl_package.sortable({
+    stop: function (event, ui) {
+        updateOrdering('packages')
+    }
+});
+
+var tbl_investor_packages = $("#tbl_investor-packages> tbody");
+tbl_investor_packages.sortable();
+// tbody.disableSelection();
+tbl_investor_packages.sortable({
+    stop: function (event, ui) {
+        updateOrdering('investor-packages')
+    }
+});
+
 var tbl_sub_pages = $("#sortable_portlets");
-        tbl_sub_pages.sortable();
-        // tbody.disableSelection();
-        tbl_sub_pages.sortable({
-            stop: function (event, ui) {
-                updateOrderingSubPages()
-            }
-        });
+tbl_sub_pages.sortable();
+// tbody.disableSelection();
+tbl_sub_pages.sortable({
+    stop: function (event, ui) {
+        updateOrderingSubPages()
+    }
+});
+
+
 var tbl_blog = $("#tbl_blog> tbody");
-        tbl_blog.sortable();
-        // tbody.disableSelection();
-        tbl_blog.sortable({
-            stop: function (event, ui) {
-                updateOrdering('blog')
-            }
-        });
+tbl_blog.sortable();
+// tbody.disableSelection();
+tbl_blog.sortable({
+    stop: function (event, ui) {
+        updateOrdering('blog')
+    }
+});
 
 function updateOrdering(selector) {
     var ordering = {};

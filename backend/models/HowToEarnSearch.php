@@ -42,7 +42,7 @@ class HowToEarnSearch extends HowToEarn
     public function search($params)
     {
         $query = HowToEarn::find();
-
+$query->orderBy(['ordering' => SORT_ASC]);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

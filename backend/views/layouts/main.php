@@ -315,20 +315,26 @@ Yii::$app->language = "ru";
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == "/user/index" || $currentUrl == "/user/create"): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == "/user/index" || $currentUrl == "/user/create" || $currentUrl == '/user-avatars/create' || $currentUrl == '/user-avatars/index'): ?>class="active"<?php endif ?>>
                                 <a href="#">
                                     <i class="livicon" data-name="users" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                     <span class="title">Users</span>
                                     <span class="fa arrow"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    <li>
+                                    <li <?php if ($currentUrl == "/user/index"):?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Users List'), Url::to(['user/index'])) ?>
                                     </li>
-                                    <li>
+                                    <li <?php if ($currentUrl == "/user/create"):?>class="active"<?php endif ?>>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Add New User'), Url::to(['user/create'])) ?>
                                     </li>
+                                    <li <?php if ($currentUrl == "/user-avatars/index"):?>class="active"<?php endif ?> > 
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Users Avatars'), Url::to(['user-avatars/index'])) ?>
+                                    </li>
                                 </ul>
+                            </li>
+                            <li <?php if ($currentUrl == "/packages/index" || $currentUrl == "/packages/create"):?>class="active"<?php endif; ?> >
+                                <?= Html::a('<i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>' . Yii::t('app', 'Packages'), Url::to(['packages/index'])) ?>
                             </li>
                             <li <?php if ($currentUrl == '/news/index' || $currentUrl == '/news/create'): ?>class="active"<?php endif ?>>
                                 <a href="#">
@@ -376,7 +382,7 @@ Yii::$app->language = "ru";
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == '/slider/index' || $currentUrl == '/how-to-earn/index' || $currentUrl == '/how-to-earn/create' || $currentUrl == '/slider/create' || $currentUrl == "/pakages/index" || $currentUrl == "/pakages/create"): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == '/slider/index' || $currentUrl == '/how-to-earn/index' || $currentUrl == '/how-to-earn/create' || $currentUrl == '/slider/create' || $currentUrl == "/investor-packages/index" || $currentUrl == "/investor-packages/create" || $currentUrl == "/other-investor-diff/index" || $currentUrl == "/other-investor-diff/create"): ?>class="active"<?php endif ?>>
                                 <a href="#">
                                     <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                     <span class="title"><?= Yii::t('app', 'Content') ?></span>
@@ -389,12 +395,15 @@ Yii::$app->language = "ru";
                                     <li <?php if ($currentUrl == "/how-to-earn/index"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'How to earn'), Url::to(['how-to-earn/index'])) ?>
                                     </li>
-                                     <li>
-                                        <?= Html::a('<i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>' . Yii::t('app', 'Packages List'), Url::to(['pakages/index'])) ?>
+                                    <li <?php if ($currentUrl == "/investor-packages/index" || $currentUrl == "/investor-packages/create"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Investor Packages'), Url::to(['investor-packages/index'])) ?>
+                                    </li>
+                                    <li <?php if ($currentUrl == "/other-investor-diff/index" || $currentUrl == "/other-investor-diff/create"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Other Investor`s Differents'), Url::to(['other-investor-diff/index'])) ?>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li <?php if ($currentUrl == "/faq/index"):?>class="active"<?php endif ?>>
                                 <a href="/<?=Yii::$app->language?><?= Url::to('/faq/index') ?>">
                                     <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                     <?= Yii::t('app', 'Faq') ?>

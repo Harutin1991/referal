@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\OtherInvestorDiff;
+use backend\models\Packages;
 
 /**
- * OtherInvestorDiffSearch represents the model behind the search form about `backend\models\OtherInvestorDiff`.
+ * PackagesSearch represents the model behind the search form about `backend\models\Packages`.
  */
-class OtherInvestorDiffSearch extends OtherInvestorDiff
+class PackagesSearch extends Packages
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class OtherInvestorDiffSearch extends OtherInvestorDiff
     public function rules()
     {
         return [
-            [['id', 'status', 'ordering'], 'integer'],
-            [['title', 'icon'], 'safe'],
+            [['id', 'status', 'created_date', 'updated_date', 'ordering'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
@@ -41,8 +41,8 @@ class OtherInvestorDiffSearch extends OtherInvestorDiff
      */
     public function search($params)
     {
-        $query = OtherInvestorDiff::find();
-$query->orderBy(['ordering' => SORT_ASC]);
+        $query = Packages::find();
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -61,11 +61,12 @@ $query->orderBy(['ordering' => SORT_ASC]);
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
+            'created_date' => $this->created_date,
+            'updated_date' => $this->updated_date,
             'ordering' => $this->ordering,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'icon', $this->icon]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }
