@@ -57,7 +57,7 @@ class News extends \yii\db\ActiveRecord {
      * @return array
      */
     public function getDefaultImage($event_id) {
-        $result = Files::find()->where(['category_id' => $event_id, 'category' => 'news', 'top' => 1, 'status' => 1])->asArray()->all();
+        $result = Files::find()->where(['category_id' => $event_id, 'category' => 'news', 'top' => 1])->asArray()->all();
         return ArrayHelper::map($result, 'top', 'path');
     }
     

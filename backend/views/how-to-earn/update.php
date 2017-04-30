@@ -13,11 +13,10 @@ $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' 
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="how-to-earn-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
+        'imagePaths' => $imagePaths,
+        'modelFiles' => $modelFiles,
     ]) ?>
 
 </div>

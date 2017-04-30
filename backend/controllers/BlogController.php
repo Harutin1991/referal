@@ -116,10 +116,11 @@ class BlogController extends Controller {
                 $trmodel->save();
             }
             Yii::$app->session->setFlash('success', Yii::t('app','Blog successfully created'));
-            return $this->redirect(['update',
+           /*  return $this->redirect(['update',
                         'id' => $model->id,
                         'modelFiles' => $modelFiles,
-            ]);
+            ]); */
+			return $this->redirect('index');
         } else {
             $defaultLanguage = Language::find()->where(['is_default' => 1])->one();
             $modelFiles = new Files();

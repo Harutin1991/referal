@@ -46,4 +46,5 @@ class TrHowToEarn extends \yii\db\ActiveRecord
             'language_id' => Yii::t('app', 'Language ID'),
         ];
     }
+
 }

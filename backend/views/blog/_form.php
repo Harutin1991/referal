@@ -85,14 +85,6 @@ $this->registerCssFile("@web/css/filInput.css", [
                             <div class="col-lg-12">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <!--h3 class="panel-title">
-                                            <i class="livicon" data-name="doc-portrait" data-c="#fff" data-hc="#fff" data-size="18" data-loop="true"></i>
-                                            <?= Yii::t('app', 'Blog Details') ?>
-                                        </h3 >
-                                        <span class="pull-right">
-                                            <i class="fa fa-fw fa-chevron-up clickable"></i>
-                                            <i class="fa fa-fw fa-times removepanel clickable"></i>
-                                        </span-->
                                     </div>
                                     <div class="panel-body">
                                         <?php
@@ -295,11 +287,6 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                     'type' => 'button'
                                                 ])
                                                 ?>
-                                                <?php
-                                                if (!$model->isNewRecord) {
-                                                    echo Html::a(Yii::t('app', 'Reset'), Url::to('/' . Yii::$app->language . '/blog/index', true), ['class' => 'btn btn-default btn-sm ph25 reste-button pull-left']);
-                                                }
-                                                ?>
                                             </div>
                                         </div>
                                         <!-- /.row -->
@@ -437,23 +424,9 @@ $this->registerCssFile("@web/css/filInput.css", [
         </div>
     </div>
 </div>
-
-
 <?php
 $this->registerJsFile(
-        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+        '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]

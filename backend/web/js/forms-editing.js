@@ -1211,6 +1211,22 @@ $(document).ready(function () {
         }
 
     });
+    $body.on('click', '.icon-close-earn', function () {
+        var image_id = $(this).parent().next().find('.change_image').attr('data-key');
+        var $cont = $(this).parent().parent();
+        var is_default = $cont.hasClass('default-view');
+        if (confirm("Are you sure you want to delete this item?")) {
+            $.ajax({
+                url: '/' + language + '/how-to-earn/delete-image',
+                data: {id: image_id},
+                method: 'post',
+                success: function (res) {
+                    $('#image_' + image_id).remove();
+                }
+            });
+        }
+
+    });
     $body.on('click', '.icon-close-events', function () {
         var image_id = $(this).parent().next().find('.change_image').attr('data-key');
         var $cont = $(this).parent().parent();

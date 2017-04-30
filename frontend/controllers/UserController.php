@@ -1,8 +1,6 @@
 <?php
 
-
 namespace frontend\controllers;
-
 
 use common\models\Countries;
 use common\models\Favorites;
@@ -17,17 +15,12 @@ use yii\filters\VerbFilter;
 use frontend\models\Customer;
 use yii\helpers\ArrayHelper;
 
-
-class UserController extends \yii\web\Controller
-
-{
+class UserController extends \yii\web\Controller {
 
     /**
      * @inheritdoc
      */
-
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -37,7 +30,6 @@ class UserController extends \yii\web\Controller
                     'edite-address' => ['POST'],
                 ],
             ],
-
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
                 'only' => ['history', 'profile', 'edit-password', 'update-item'],
@@ -47,40 +39,31 @@ class UserController extends \yii\web\Controller
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                    // everything else is denied
+                // everything else is denied
                 ],
             ],
         ];
-
     }
-
 
     /**
      * @return string
      */
-
-    public function actionProfile()
-    {
-
-
-        $this->layout = 'main';
+    public function actionProfile() {
         $role = Yii::$app->user->identity->role;
         $view_file_path = '';
         $userModel = null;
         if ($role == User::CUSTOMER) {
             $userModel = Yii::$app->user->identity->customer;
             $view_file_path = 'customer/profile';
-        } elseif ($role == User::REPAIRER) {
-            $userModel = Yii::$app->user->identity->repairer;
-            $view_file_path = 'repairer/profile';
         }
-
-
         $customerAdressObj = CustomerAddress::findOne(['customer_id' => $userModel->id, 'default_address' => 1]);
         if ($customerAdressObj) {
             $modelAdd = $customerAdressObj;
+            $countries = Countries::find()->select(['id', 'name'])->asArray()->all();
+            $countries = ArrayHelper::map($countries, 'name', 'name');
             $addresForm = $this->renderPartial('customer/update', array(
-                'model' => $modelAdd
+                'model' => $modelAdd,
+                'countries' => $countries,
             ));
         } else {
             $modelAdd = new CustomerAddress();
@@ -90,7 +73,6 @@ class UserController extends \yii\web\Controller
                 'model' => $modelAdd,
                 'countries' => $countries,
             ));
-
         }
 
         if (Yii::$app->request->post()) {
@@ -101,27 +83,23 @@ class UserController extends \yii\web\Controller
                 return $this->redirect(['user/profile']);
             } else {
                 return $this->render($view_file_path, [
-                    'UserModel' => $userModel,
-                    'addressForm' => $addresForm
+                            'UserModel' => $userModel,
+                            'addressForm' => $addresForm
                 ]);
-
             }
-
         }
-            $user_id = Yii::$app->user->identity->id;
+        $user_id = Yii::$app->user->identity->id;
         $favorites = \frontend\models\Product::getFavoritesByUser($user_id);
-
-
+        $referalLink = \frontend\models\ReferalLinks::find()->where(['user_id'=>$user_id])->select('referal_link')->one();
         return $this->render($view_file_path, [
-            'UserModel' => $userModel,
-            'addressForm' => $addresForm,
-            'favorites' => $favorites
+                    'UserModel' => $userModel,
+                    'addressForm' => $addresForm,
+                    'referalLink' => $referalLink,
+                    'favorites' => $favorites
         ]);
     }
 
-
-    public function actionHistory()
-    {
+    public function actionHistory() {
         $this->layout = 'profile';
         $role = Yii::$app->user->identity->role;
         $view_file_path = '';
@@ -136,17 +114,15 @@ class UserController extends \yii\web\Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $user_id, $role);
 
         return $this->render($view_file_path, [
-            'dataProvider' => $dataProvider,
-            'searchModel' => $searchModel
+                    'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel
         ]);
     }
 
     /**
      * @return string|\yii\web\Response
      */
-
-    public function actionEditPassword()
-    {
+    public function actionEditPassword() {
         $this->layout = 'profile';
         $model = new EditPassword();
         $model->username = Yii::$app->user->identity->username;
@@ -156,27 +132,41 @@ class UserController extends \yii\web\Controller
         }
 
         return $this->render('edit-password', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
-    public function actionProfileImage()
-    {
+    public function actionProfileImage() {
         $this->layout = 'profile';
         return $this->render('profile-image');
     }
 
-    public function actionUpdateItem()
-    {
+    public function actionUpdateItem() {
         if (Yii::$app->request->isAjax) {
             $post = Yii::$app->request->post();
-
-            $Customer = Customer::findOne(Yii::$app->user->identity->customer->id);
-            if ($Customer->load($post) && $Customer->validate()) {
-                $Customer->update();
+            $user = User::findOne(Yii::$app->user->identity->id);
+            $customer = Customer::findOne(Yii::$app->user->identity->customer->id);
+            $customerAddress = CustomerAddress::findOne(['customer_id' => Yii::$app->user->identity->customer->id]);
+            if (isset($customer->$post['name']) || is_null($customer->$post['name'])) {
+                echo "Asdas";die;
+                $customer->$post['name'] = $post['value'];
+                $customer->save();
+                return json_encode(['success' => true]);
+            } elseif (isset($customerAddress->$post['name'])) {
+                $customerAddress->$post['name'] = $post['value'];
+                $customerAddress->customer_id = Yii::$app->user->identity->customer->id;
+                $customerAddress->save();
+                return json_encode(['success' => true]);
+            } elseif (isset($user->$post['name'])) {
+                if ($user->editUser($post)) {
+                    return json_encode(['success' => true]);
+                } else {
+                    return json_encode(['success' => false]);
+                }
             } else {
-                return json_encode($Customer->errors);
+                return json_encode(['success' => false]);
             }
         }
     }
+
 }

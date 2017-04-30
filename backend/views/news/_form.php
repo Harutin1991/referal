@@ -24,6 +24,10 @@ if (!$model->isNewRecord) {
     $formId = 'newsCreate';
     $action = '/news/create';
 }
+$this->registerCssFile("@web/css/admin-forms.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/filInput.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="categoyr-form">
     <?= Html::a('Back to news list', ['/news/index'], ['class' => 'btn btn-primary mb15']) ?>
@@ -43,7 +47,7 @@ if (!$model->isNewRecord) {
                         }
                         ?>">
                             <a href="#tab_<?php echo $value['id'] ?>"  data-toggle="tab" onclick="editNewsTr(<?php echo $value['id']; ?>,<?php echo $model->id; ?>,<?php echo $value['is_default']; ?>)" disabled="disabled">
-                                <span class="flag-xs flag-<?php echo $value['short_code'] ?>"></span>
+                                <span class="flag-xs flag-<?php echo $value['short_code'] ?>"><?php echo $value['name'] ?></span>
                             </a>
                         </li>
                         <?php
@@ -217,10 +221,14 @@ if (!$model->isNewRecord) {
         </div>
     </div>
 </div>
-<?php echo $this->registerJs("
-            CKEDITOR.replace('news-short_description');
-            CKEDITOR.replace('news-description');
-"); ?>
+<?php
+$this->registerJsFile(
+        '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+?>
 <?php
 $this->registerJs("
 $('#news-title').on('focusout',function(){

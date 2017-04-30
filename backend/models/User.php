@@ -61,15 +61,13 @@ class User extends \common\models\User {
     public function rules() {
         return [
             [['username', 'email', 'password','role'], 'required'],
-            [['role', 'starting_amount', 'purse', 'invitation_users_count', 'status','gender', 'activity_status'], 'integer'],
-            [['bio'], 'string'],
-            [['dob', 'referal_link_created', 'deleted_at', 'created', 'updated'], 'safe'],
-            [['username', 'first_name', 'last_name', 'email', 'pic', 'country', 'state', 'city', 'address', 'postal', 'referal_link', 'password_token', 'api_key', 'social_type', 'social_id', 'social_user_name'], 'string', 'max' => 255],
+            [['role'], 'integer'],
+            [['created', 'updated'], 'safe'],
+            [['username','email','password_token', 'api_key'], 'string', 'max' => 255],
             [['password'], 'string', 'max' => 60],
-            [['phone', 'mobile_phone','other_phone'], 'string', 'max' => 50],
             [['auth_key'], 'string', 'max' => 32],
             [['remember_token'], 'string', 'max' => 100],
-            [['username'], 'unique'],
+            [['username','email'], 'unique'],
         ];
     }
 

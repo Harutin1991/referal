@@ -4,10 +4,13 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\User;
-use backend\models\UserSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Customer;
+use common\models\CustomerAddress;
+use backend\models\CustomerSearch;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -22,7 +25,7 @@ class UserController extends Controller {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST','GET'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -33,7 +36,7 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new UserSearch();
+        $searchModel = new CustomerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +47,7 @@ class UserController extends Controller {
 
     /**
      * Displays a single User model.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id) {
@@ -60,14 +63,23 @@ class UserController extends Controller {
      */
     public function actionCreate() {
         $model = new User();
-        if (Yii::$app->request->isAjax) {
-            echo "<pre>";print_r(Yii::$app->request->post());die;
-            return json_encode(['success' => true]);
-        } elseif($model->load(Yii::$app->request->post()) && $model->save()){
-            return $this->redirect(['update', 'id' => $model->id]);
-        }else{
+        $customermodel = new Customer();
+        $customermodelAddress = new CustomerAddress();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $customermodel->load(Yii::$app->request->post());
+            $customermodel->user_id = $model->id;
+            $customermodel->email = $model->email;
+            $customermodel->status = 1;
+            $customermodel->save();
+            $customermodelAddress->load(Yii::$app->request->post());
+            $customermodelAddress->customer_id = $customermodel->id;
+            $customermodelAddress->save();
+            return $this->redirect('index');
+        } else {
             return $this->render('create', [
                         'model' => $model,
+                        'customermodel' => $customermodel,
+                        'customermodelAddress' => $customermodelAddress,
             ]);
         }
     }
@@ -75,17 +87,23 @@ class UserController extends Controller {
     /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $customermodel = $this->findCustomerModel($id);
+        $customermodelAddress = $this->findAddressModel($customermodel->id);
+        if(!$customermodelAddress){
+            $customermodelAddress = new CustomerAddress();
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                         'model' => $model,
+                        'customermodel' => $customermodel,
+                        'customermodelAddress' => $customermodelAddress,
             ]);
         }
     }
@@ -93,7 +111,7 @@ class UserController extends Controller {
     /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id) {
@@ -102,50 +120,10 @@ class UserController extends Controller {
         return $this->redirect(['index']);
     }
 
-    public function actionChangePassword() {
-        $id = Yii::$app->user->identity->id;
-
-        $model = new PasswordChangeForm(User::findOne($id));
-
-        if ($model->load(Yii::$app->request->post()) && $model->changePassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'SUCCESSFULLY_PASSWORD'));
-            return $this->refresh();
-        } else {
-            return $this->render('change_password', [
-                        'user' => $model,
-            ]);
-        }
-    }
-
-    public function actionChangeUsername() {
-        $id = intval(Yii::$app->user->identity->id);
-
-        $user = $this->findModel($id);
-        $user->scenario = User::SCENARIO_PROFILE;
-        $model = new ProfileUpdateForm($user);
-
-        /*   //ЕЛИ ЕТО AJAX
-          if (\Yii::$app->request->isAjax && \Yii::$app->request->isPost) {
-          if ($user->load(\Yii::$app->request->post())) {
-          \Yii::$app->response->format = Response::FORMAT_JSON; //verdarcnuma json formatov brauzer@
-          return ActiveForm::validate($user);
-          }
-          } */
-
-        if ($model->load(Yii::$app->request->post()) && $model->update()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'SUCCESSFULLY_LOGIN'));
-            return $this->refresh();
-        } else {
-            return $this->render('change_username', [
-                        'user' => $model,
-            ]);
-        }
-    }
-
     /**
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     * @param integer $id
      * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -154,6 +132,20 @@ class UserController extends Controller {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    protected function findCustomerModel($id) {
+        if (($model = Customer::findOne(['user_id'=>$id])) !== null) {
+            return $model;
+        } else {
+            return false;
+        }
+    }
+    protected function findAddressModel($id) {
+        if (($model = CustomerAddress::findOne(['customer_id'=>$id])) !== null) {
+            return $model;
+        } else {
+            return false;
         }
     }
 

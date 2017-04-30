@@ -207,5 +207,10 @@ class Common extends Component {
         echo '</pre>';
         die;
     }
+    
+    public static function generateRandomString($user_id = NULL){
+        $link = Yii::$app->security->generatePasswordHash($user_id);
+        return $link;
+    }
 
 }

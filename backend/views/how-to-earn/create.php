@@ -12,10 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="how-to-earn-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
-        'model' => $model,
+         'model' => $model,
+        'trmodel' => $trmodel,
+        'defoultId' => $defoultId,
+        'modelFiles' => $modelFiles,
     ]) ?>
 
 </div>

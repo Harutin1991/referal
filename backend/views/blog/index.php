@@ -9,13 +9,13 @@ use common\components\TimeFormaterHelper;
 /* @var $searchModel backend\models\BlogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '<h1 style="display: inline;margin-left: 8px; margin-right: 10px;">'.Yii::t('app', 'Blogs').'</h1>  '. Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>'.Yii::t('app', 'Create New Blog'), ['/blog/create'], ['class' => 'btn btn-responsive button-alignment btn-success']);
+$this->title = Yii::t('app', 'Blogs');
 $this->params['breadcrumbs'][] = Yii::t('app', 'Blogs');
 ?>
 <div class="row">
     <div class="col-md-12">
         <div class="blog-index">
-
+            <?= Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>'.Yii::t('app', 'Create New Blog'), ['/blog/create'], ['class' => 'btn btn-responsive button-alignment btn-success']);?>
             <div class="tray tray-center filter">
                 <div class="panel">
                     <div class="panel-body pn">

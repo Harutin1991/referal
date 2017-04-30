@@ -31,8 +31,12 @@ class User extends ActiveRecord implements IdentityInterface {
 
 //    const STATUS_DELETED = 0;
 //    const STATUS_ACTIVE = 10;
-    const ADMIN = 0;
+    const ADMIN = 0; //admin
+    const MODERATOR = 1; // Moderator
+    const MANAGER = 2; // Content Manager
+    const CUSTOMER = 20; // User
     const SCENARIO_PROFILE = 'profile';
+
     public static $notverified = false;
 
     /**
@@ -76,11 +80,16 @@ class User extends ActiveRecord implements IdentityInterface {
     public function getCustomer() {
         return self::hasOne(Customer::className(), ['user_id' => 'id']);
     }
-	
-	 public function scenarios()
-    {
+    public function getModerator() {
+        return self::hasOne(Customer::className(), ['user_id' => 'id']);
+    }
+    public function getManager() {
+        return self::hasOne(Customer::className(), ['user_id' => 'id']);
+    }
+
+    public function scenarios() {
         return ArrayHelper::merge(parent::scenarios(), [
-            self::SCENARIO_PROFILE => ['username', 'email'],
+                    self::SCENARIO_PROFILE => ['username', 'email'],
         ]);
     }
 
@@ -132,7 +141,22 @@ class User extends ActiveRecord implements IdentityInterface {
         } elseif (!empty($customer)) {
             self::$notverified = true;
             return false;
-        }else{
+        } else {
+            return false;
+        }
+    }
+    
+    public static function findByEmailOrUsername($username) {
+        $user = self::find();
+        $user->andFilterWhere(['or',
+            ['like','email',$username],
+            ['like','username',$username]]);
+        if (isset($user->one()->id)) {
+            return $user->one();
+        } elseif (!empty($user)) {
+            self::$notverified = true;
+            return false;
+        } else {
             return false;
         }
     }
@@ -247,9 +271,18 @@ class User extends ActiveRecord implements IdentityInterface {
         }
         return false;
     }
+    
+    public function editUser($data) {
+        $this->generateAuthKey();
+        $this->$data['name'] = $data['value'];
+        if ($this->save()) {
+            return true;
+        }
+        return false;
+    }
 
     public function getDefaultAddress($customer_id) {
-       // $customer  = \frontend\models\Customer::find()->where(['user_id'=>$user_id])->one();
+        // $customer  = \frontend\models\Customer::find()->where(['user_id'=>$user_id])->one();
         return CustomerAddress::find()->where(['customer_id' => $customer_id, 'default_address' => 1])->one();
     }
 

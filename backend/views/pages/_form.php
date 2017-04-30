@@ -239,19 +239,7 @@ $('#pages-title').on('focusout',function(){
 ?>
 <?php
 $this->registerJsFile(
-        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+        '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]

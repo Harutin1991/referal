@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 
 //var_dump($countries); die;
 ?>
-
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 <h3>Address</h3>
 
 <?php $form = ActiveForm::begin(['options' => ['class' => 'col-xs-12']]) ?>
@@ -13,7 +13,7 @@ use yii\bootstrap\ActiveForm;
         $form->field($model, 'country', ['template' => '<div class="col-xs-4">{label}</div><div class="col-xs-8">{input}{error}</div>'])
         ->dropDownList($countries, ['prompt' => 'Choose your country...', "class" => "form-control", 'required' => true])
 ?>
-<div>
+
     <div class="clearfix"></div>
     <?=
             $form->field($model, 'city', ['template' => '<div class="form-group">
@@ -62,4 +62,5 @@ use yii\bootstrap\ActiveForm;
 
     <button class="button save pull-right" type="submit">Save Address</button>
     <?php ActiveForm::end() ?>
+</div>
 

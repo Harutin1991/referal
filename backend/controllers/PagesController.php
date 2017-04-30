@@ -302,6 +302,12 @@ class PagesController extends Controller {
         foreach ($tr_pages as $tr_page) {
             $tr_page->delete();
         }
+        $subPages = Pages::find()->where(['parent_id'=>$id])->all();
+        if(!empty($subPages)){
+            foreach($subPages as $pages){
+                $pages->delete();
+            }
+        }
         if (TrPages::find()->where(['pages_id' => $id])->count() == 0) {
             $this->findModel($id)->delete();
             Yii::$app->session->setFlash('success', 'Page successfully removed');

@@ -1,75 +1,24 @@
 
-    $(function() {
-
-        // CKEditor Full
-        $('textarea').ckeditor();
-        $('textarea#ckeditor_full').ckeditor();
-
-        // The "instanceCreated" event is fired for every editor instance created.
-        CKEDITOR.on('instanceCreated', function(event) {
-            var editor = event.editor,
-                element = editor.element;
-            // Customize editors for headers and tag list.
-            // These editors don't need features like smileys, templates, iframes etc.
-            if (element.is('h1', 'h2', 'h3') || element.getAttribute('id') == 'taglist') {
-                // Customize the editor configurations on "configLoaded" event,
-                // which is fired after the configuration file loading and
-                // execution. This makes it possible to change the
-                // configurations before the editor initialization takes place.
-                editor.on('configLoaded', function() {
-
-                    // Remove unnecessary plugins to make the editor simpler.
-                    editor.config.removePlugins = 'colorbutton,find,flash,font,' +
-                        'forms,iframe,image,newpage,removeformat,' +
-                        'smiley,specialchar,stylescombo,templates';
-
-                    // Rearrange the layout of the toolbar.
-                    editor.config.toolbarGroups = [{
-                        name: 'editing',
-                        groups: ['basicstyles', 'links']
-                    }, {
-                        name: 'undo'
-                    }, {
-                        name: 'clipboard',
-                        groups: ['selection', 'clipboard']
-                    }, {
-                        name: 'about'
-                    }];
-                });
-            }
-        });
-        
-        // TinyMCE Basic
-        /*
-        tinymce.init({
-            selector: "#tinymce_basic",
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
-        });
-
-        // TinyMCE Full
-        tinymce.init({
-            selector: "#tinymce_full",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor"
-            ],
-            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-            toolbar2: "print preview media | forecolor backcolor emoticons",
-            image_advtab: true,
-            templates: [{
-                title: 'Test template 1',
-                content: 'Test 1'
-            }, {
-                title: 'Test template 2',
-                content: 'Test 2'
-            }]
-        });
-         */
+$(function () {
+     "use strict";
+var path = 'tinymce';
+    // TinyMCE Full
+    tinymce.init({
+        selector: 'textarea',
+        language: 'ru',
+        height: 250,
+        theme: 'modern',
+        fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px 36px',
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools moxiemanager'
+        ],
+        toolbar1: 'undo redo | styleselect fontsizeselect | forecolor backcolor | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media insertfile',
+        toolbar2: "pagebreak paste  hr spellchecker  visualblocks visualchars inserttime insertdate charmap searchreplace removeformat inserttable outdent indent emoticons print preview fullscreen",
+        image_advtab: true,
+        relative_urls: false
     });
+
+});

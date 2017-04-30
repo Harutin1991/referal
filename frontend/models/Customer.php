@@ -43,10 +43,10 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['status', 'user_id'], 'integer'],
+            [['user_id'], 'integer'],
             [['created_date', 'updated_date'], 'required'],
             [['created_date', 'updated_date'], 'safe'],
-            [['name', 'surname', 'email', 'phone', 'last_ip'], 'string', 'max' => 50],
+            [['first_name','last_name', 'email', 'phone', 'last_ip'], 'string', 'max' => 50],
             [['email'], 'unique'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -59,8 +59,8 @@ class Customer extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
-            'surname' => Yii::t('app', 'Surname'),
+            'first_name' => Yii::t('app', 'First Name'),
+            'last_name' => Yii::t('app', 'Last Name'),
             'email' => Yii::t('app', 'Email'),
             'phone' => Yii::t('app', 'Phone'),
             'status' => Yii::t('app', 'Status'),

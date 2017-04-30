@@ -30,7 +30,6 @@ class Slider extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['status'], 'required'],
             [['status'], 'integer'],
             [['title', 'short_description', 'link'], 'string', 'max' => 255],
         ];
@@ -54,7 +53,7 @@ class Slider extends \yii\db\ActiveRecord {
      * @return array
      */
     public function getDefaultImage($material_id) {
-        $result = Files::find()->where(['category_id' => $material_id, 'category' => 'slider', 'top' => 1, 'status' => 1])->asArray()->all();
+        $result = Files::find()->where(['category_id' => $material_id, 'category' => 'slider', 'top' => 1])->asArray()->all();
         return ArrayHelper::map($result, 'top', 'path');
     }
 

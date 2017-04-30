@@ -34,7 +34,7 @@ if (!$model->isNewRecord) {
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <i class="livicon" data-name="user-add" data-size="18" data-c="#fff" data-hc="#fff" data-loop="true"></i>
-                    Add New User
+                    <?php if (!$model->isNewRecord) { echo Yii::t('app','Edit User'); }else{ echo Yii::t('app','Add New User');}?>
                 </h3>
                 <span class="pull-right clickable">
                     <i class="glyphicon glyphicon-chevron-up"></i>
@@ -69,6 +69,7 @@ if (!$model->isNewRecord) {
                             <?= $form->field($model, 'password')->passwordInput(['maxlength' => true, 'id' => 'password', 'placeholder' => Yii::t('app', 'Enter Password'), 'class' => 'form-control required'])->label(Yii::t('app', 'Password') . '*'); ?>
                             <?=
                             $form->field($model, 'role')->widget(Select2::className(), [
+                                'value'=>$model->role,
                                 'data' => [Yii::t('app', "Admin"), Yii::t('app', "Content Manager"), Yii::t('app', "User")],
                                 'language' => Yii::$app->language,
                                 'options' => ['placeholder' => Yii::t('app', "Select an account type") . '...'],
@@ -94,10 +95,10 @@ if (!$model->isNewRecord) {
                         </div>
                         <div class="tab-pane" id="tab2" disabled="disabled">
                             <h2 class="hidden">&nbsp;</h2>
-                            <?= $form->field($model, 'first_name')->textInput(['maxlength' => true, 'id' => 'first_name', 'placeholder' => Yii::t('app', 'Enter First name'), 'class' => 'form-control required'])->label(Yii::t('app', 'First Name') . '*'); ?>
-                            <?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'id' => 'last_name', 'placeholder' => Yii::t('app', 'Enter Last name'), 'class' => 'form-control required'])->label(Yii::t('app', 'Last Name') . '*'); ?>
+                            <?= $form->field($customermodel, 'first_name')->textInput(['maxlength' => true, 'id' => 'first_name', 'placeholder' => Yii::t('app', 'Enter First name'), 'class' => 'form-control required'])->label(Yii::t('app', 'First Name') . '*'); ?>
+                            <?= $form->field($customermodel, 'last_name')->textInput(['maxlength' => true, 'id' => 'last_name', 'placeholder' => Yii::t('app', 'Enter Last name'), 'class' => 'form-control required'])->label(Yii::t('app', 'Last Name') . '*'); ?>
                             <?=
-                            $form->field($model, 'gender')->widget(Select2::className(), [
+                            $form->field($customermodel, 'gender')->widget(Select2::className(), [
                                 'data' => [Yii::t('app', "Male"), Yii::t('app', "Female")],
                                 'language' => Yii::$app->language,
                                 'options' => ['placeholder' => Yii::t('app', "Select Gender") . '...', 'id' => 'gender'],
@@ -108,8 +109,8 @@ if (!$model->isNewRecord) {
                             ])->label(Yii::t('app', 'Select Gender'))
                             ?>
                             <?=
-                            $form->field($model, 'dob')->widget(DatePicker::className(), [
-                                'value' => $model->dob,
+                            $form->field($customermodel, 'dob')->widget(DatePicker::className(), [
+                                'value' => $customermodel->dob,
                                 'options' => ['placeholder' => Yii::t('app', 'Enter User Date of Birth')],
                                 'language' => Yii::$app->language,
                                 'pluginOptions' => [
@@ -118,23 +119,23 @@ if (!$model->isNewRecord) {
                                 ]
                             ])->label(Yii::t('app', 'User Date of Birth'));
                             ?>
-                            <?= $form->field($model, 'bio')->textarea(['rows' => 6]) ?>
+                            <?= $form->field($customermodel, 'bio')->textarea(['rows' => 6]) ?>
                         </div>
                         <div class="tab-pane" id="tab3" disabled="disabled">
-                            <?= $form->field($model, 'address')->textInput(['maxlength' => true, 'id' => 'address', 'placeholder' => Yii::t('app', 'Enter Address'), 'class' => 'form-control'])->label(Yii::t('app', 'User Address')); ?>
-                            <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'id' => 'country', 'placeholder' => Yii::t('app', 'Enter Country'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodelAddress, 'address')->textInput(['maxlength' => true, 'id' => 'address', 'placeholder' => Yii::t('app', 'Enter Address'), 'class' => 'form-control'])->label(Yii::t('app', 'User Address')); ?>
+                            <?= $form->field($customermodelAddress, 'country')->textInput(['maxlength' => true, 'id' => 'country', 'placeholder' => Yii::t('app', 'Enter Country'), 'class' => 'form-control']) ?>
 
-                            <?= $form->field($model, 'state')->textInput(['maxlength' => true, 'id' => 'state', 'placeholder' => Yii::t('app', 'Enter State'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodelAddress, 'state')->textInput(['maxlength' => true, 'id' => 'state', 'placeholder' => Yii::t('app', 'Enter State'), 'class' => 'form-control']) ?>
 
-                            <?= $form->field($model, 'city')->textInput(['maxlength' => true, 'id' => 'city', 'placeholder' => Yii::t('app', 'Enter City'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodelAddress, 'city')->textInput(['maxlength' => true, 'id' => 'city', 'placeholder' => Yii::t('app', 'Enter City'), 'class' => 'form-control']) ?>
 
-                            <?= $form->field($model, 'postal')->textInput(['maxlength' => true, 'id' => 'postal', 'placeholder' => Yii::t('app', 'Enter Postal Code'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodelAddress, 'postal')->textInput(['maxlength' => true, 'id' => 'postal', 'placeholder' => Yii::t('app', 'Enter Postal Code'), 'class' => 'form-control']) ?>
 
                         </div>
                         <div class="tab-pane" id="tab4" disabled="disabled">
-                            <?= $form->field($model, 'phone')->textInput(['maxlength' => true, 'id' => 'phone', 'placeholder' => Yii::t('app', 'Enter Personal Number'), 'class' => 'form-control']) ?>
-                            <?= $form->field($model, 'mobile_phone')->textInput(['maxlength' => true, 'id' => 'mobile_phone', 'placeholder' => Yii::t('app', 'Enter Home Number'), 'class' => 'form-control']) ?>
-                            <?= $form->field($model, 'other_phone')->textInput(['maxlength' => true, 'id' => 'other_phone', 'placeholder' => Yii::t('app', 'Enter Alternate Number'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodel, 'phone')->textInput(['maxlength' => true, 'id' => 'phone', 'placeholder' => Yii::t('app', 'Enter Personal Number'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodel, 'mobile_phone')->textInput(['maxlength' => true, 'id' => 'mobile_phone', 'placeholder' => Yii::t('app', 'Enter Home Number'), 'class' => 'form-control']) ?>
+                            <?= $form->field($customermodel, 'other_phone')->textInput(['maxlength' => true, 'id' => 'other_phone', 'placeholder' => Yii::t('app', 'Enter Alternate Number'), 'class' => 'form-control']) ?>
 
                         </div>
                         <?php if (!$model->isNewRecord): ?>
@@ -159,11 +160,6 @@ if (!$model->isNewRecord) {
                                     'style'=>$model->isNewRecord ? 'display:none' : '',
                                 ])
                                 ?>
-                                <?php
-                                if (!$model->isNewRecord) {
-                                    echo Html::a(Yii::t('app', 'Reset'), Url::to('/' . Yii::$app->language . '/user/update', true), ['class' => 'btn btn-default btn-sm ph25 reste-button pull-right']);
-                                }
-                                ?>
                         </ul>
                     </div>
                 </div>
@@ -175,19 +171,7 @@ if (!$model->isNewRecord) {
 </div>
 <?php
 $this->registerJsFile(
-        '@web/vendors/livicons/minified/raphael-min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/livicons/minified/livicons-1.4.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/ckeditor.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/adapters/jquery.js', ['depends' => [\yii\web\JqueryAsset::className()]]
-);
-$this->registerJsFile(
-        '@web/vendors/ckeditor/config.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+        '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]

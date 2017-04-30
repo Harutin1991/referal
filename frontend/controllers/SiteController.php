@@ -18,13 +18,15 @@ use common\models\Language;
 use backend\models\Faq;
 use backend\models\Aboutus;
 use frontend\models\ContactForm;
-
+use frontend\models\SignupForm;
+use common\models\Customer;
+use frontend\models\ReferalLinks;
+use common\components\Common;
 
 /**
  * Site controller
  */
 class SiteController extends Controller {
-
 
     /**
      * @inheritdoc
@@ -103,6 +105,22 @@ class SiteController extends Controller {
         return $this->redirect(Yii::$app->request->referrer);
     }
 
+    public function actionValidateEmail($authkey) {
+        $customer = Customer::findByPasswordResetToken($authkey);
+        echo "<pre>";print_r($customer);die;
+        if ($customer) {
+            $modelSignup->name = $customer->name;
+            $modelSignup->surname = $customer->surname;
+            $modelSignup->email = $customer->email;
+            $modelSignup->name = $customer->name;
+            $modelSignup->verifyToken = $authkey;
+            Yii::$app->session->setFlash('notvalid', 'You have successfuly verified your email!');
+            Yii::$app->session->setFlash('notvalid', 'Please type new password on Signup form to alow to enter your account');
+        } else {
+            Yii::$app->session->setFlash('error', 'Wrong password reset token.');
+        }
+    }
+
     /**
      * Logs in a user.
      *
@@ -115,23 +133,10 @@ class SiteController extends Controller {
 
         $model = new LoginForm();
         $modelSignup = new SignupForm();
-        if (!is_null($authkey)) {
-            $customer = Customer::findByPasswordResetToken($authkey);
-            if ($customer) {
-                $modelSignup->name = $customer->name;
-                $modelSignup->surname = $customer->surname;
-                $modelSignup->email = $customer->email;
-                $modelSignup->name = $customer->name;
-                $modelSignup->verifyToken = $authkey;
-                Yii::$app->session->setFlash('notvalid', 'You have successfuly verified your email!');
-                Yii::$app->session->setFlash('notvalid', 'Please type new password on Signup form to alow to enter your account');
-            } else {
-                Yii::$app->session->setFlash('error', 'Wrong password reset token.');
-            }
-        }
+
 
         if ($model->load(Yii::$app->request->post())) {
-            $email = Yii::$app->request->post('LoginForm')['email'];
+            $username = Yii::$app->request->post('LoginForm')['username'];
             if ($model->login()) {
                 return $this->redirect(Url::previous());
             } elseif (User::$notverified) {
@@ -176,6 +181,7 @@ class SiteController extends Controller {
                 $userLogin = User::find()->where(['id' => $user->user_id])->one();
                 if (!empty($userLogin)) {
                     Yii::$app->user->login($userLogin);
+                    $this->redirect('/' . Yii::$app->language . '/user/profile');
                 }
             } else {
                 // Save session attribute user from FB
@@ -185,6 +191,7 @@ class SiteController extends Controller {
                     if ($social == 'facebook') {
                         $user = new User();
                         $user->username = str_replace(' ', '_', $session['attributes']['name']);
+                        $user->email = $session['attributes']['email'];
                         $user->role = 20;
                         $password = Yii::$app->security->generateRandomString(6);
                         $user->setPassword($password);
@@ -192,12 +199,13 @@ class SiteController extends Controller {
                         if ($user->save()) {
                             $customer = new Customer();
                             $user_fio = explode(' ', $session['attributes']['name']);
-                            $customer->name = $user_fio[0];
-                            $customer->surname = $user_fio[1];
+                            $customer->first_name = $user_fio[0];
+                            $customer->last_name = $user_fio[1];
                             $customer->email = $session['attributes']['email'];
                             $customer->user_id = $user->id;
                             $customer->last_ip = \Yii::$app->request->userIP;
                             $customer->status = 0;
+                            $customer->social_type = 'facebook';
                             if (isset($session['attributes']['username'])) {
                                 $customer->social_user_name = $session['attributes']['name'];
                             } else {
@@ -208,6 +216,7 @@ class SiteController extends Controller {
                                 $userData = ['email' => $customer->email, 'password' => $password];
                                 if ($this->sendEmail($customer->email, 'Invite', $userData)) {
                                     Yii::$app->session->setFlash('success', "Your login data sent to your email, please enter to your email to see");
+                                    $this->redirect('user/profile');
                                 }
                             }
                         }
@@ -232,7 +241,7 @@ class SiteController extends Controller {
         return Yii::$app
                         ->mailer
                         ->compose('email-layout', ['content' => $message])
-                        ->setFrom(['admin-odenson@test.com' => Yii::$app->name])
+                        ->setFrom(['info@make-coin.com' => Yii::$app->name])
                         ->setTo($to)
                         ->setSubject($subject)
                         ->send();
@@ -261,7 +270,7 @@ class SiteController extends Controller {
     public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail('narek.amirkhanyan92@gmail.com')) {
+            if ($model->sendEmail('harut.soghomonyan@gmail.com')) {
                 Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
             } else {
                 Yii::$app->session->setFlash('error', 'There was an error sending email.');
@@ -288,7 +297,7 @@ class SiteController extends Controller {
     public function actionPage($id) {
         $page = Pages::findList($id);
         $subPage = Pages::findChildList($id);
-        return $this->render('page', ['page' => $page,'subPage'=>$subPage]);
+        return $this->render('page', ['page' => $page, 'subPage' => $subPage]);
     }
 
     /**
@@ -298,9 +307,9 @@ class SiteController extends Controller {
      */
     public function actionFaq() {
         $faq = Faq::findList();
-        return $this->render('/faq/faq',['faq'=>$faq]);
+        return $this->render('/faq/faq', ['faq' => $faq]);
     }
-    
+
     /**
      * Displays faq page.
      *
@@ -321,8 +330,6 @@ class SiteController extends Controller {
             $verifyToken = Yii::$app->request->post('verifyToken');
             $customer = Customer::findByPasswordResetToken($verifyToken);
             $model->load(Yii::$app->request->post());
-            $model->username = $model->name . time();
-            ;
             if ($customer) {
                 $customer->auth_token = "";
                 if ($customer->save()) {
@@ -335,6 +342,10 @@ class SiteController extends Controller {
             } else {
                 if ($user = $model->signup()) {
                     if (Yii::$app->getUser()->login($user)) {
+                        $referalModel = new ReferalLinks();
+                        $referalModel->user_id = Yii::$app->user->identity->id;
+                        $referalModel->referal_link = Common::generateRandomString();
+                        $referalModel->save();
                         Yii::$app->session->setFlash('success', 'You should type your contact info');
                         return $this->redirect('/user/profile');
                     }

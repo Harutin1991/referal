@@ -7,7 +7,7 @@
  */
 
 namespace frontend\models;
-
+use Yii;
 class LoginForm extends \common\models\LoginForm
 {
     /**
@@ -17,7 +17,8 @@ class LoginForm extends \common\models\LoginForm
     {
         return [
             // username and password are both required
-            [['email', 'password'], 'required'],
+            ['username', 'required','message' => Yii::t('app','Please fill Username')],
+            ['password', 'required','message' => Yii::t('app','Please fill Password')],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()

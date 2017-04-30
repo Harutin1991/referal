@@ -15,6 +15,29 @@ $languages = Language::find()->asArray()->all();
 /* @var $this yii\web\View */
 /* @var $model backend\models\Category */
 /* @var $form yii\widgets\ActiveForm */
+$this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/editor.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/pages/blog.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+
+/* * *Image Upload* */
+$this->registerCssFile("@web/css/pages/blueimp-gallery.min.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-ui.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-noscript.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-ui-noscript.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+
+$this->registerCssFile("@web/css/admin-forms.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
+$this->registerCssFile("@web/css/filInput.css", [
+    'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <?php
 if (!$model->isNewRecord) {
@@ -41,47 +64,32 @@ if (!$model->isNewRecord) {
                     ]);
                     ?>
                     <div class="tab-content row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <?=
                                     $form->field($model, 'title', ['template' => '{label}<div class="">{input}{error}</div>'])
-                                    ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Slider Name')])->label(false)
+                                    ->textInput(['maxlength' => true, 'placeholder' => Yii::t('app', 'Slider Title')])->label(false)
                             ?>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <?=
                                     $form->field($model, 'link', ['template' => '<div class="col-md-12" style="padding: 0"><label for="customer-name" class="field prepend-icon">
                                     {input}<label for="customer-name" class="field-icon"><i class="fa fa-euro"></i></label></label>{error}</div>'])
-                                    ->textInput(['placeholder' => Yii::t('app', 'Slider title')])->label(false)
+                                    ->textInput(['placeholder' => Yii::t('app', 'Slider Link')])->label(false)
                             ?>
 
                         </div>
-                        <div class="form-group col-md-4">
-                            <?php //$model->status = 1;  ?>
+                    </div>
+                    <div class="section row">
+                        <div class="col-md-12">
+                            <labe><?= Yii::t('app', 'Short Description') ?></labe>
                             <?=
-                            $form->field($model, 'status')->widget(Select2::className(), [
-                                'data' => [Yii::t('app', "Pasive"), Yii::t('app', "Active")],
-                                'language' => Yii::$app->language,
-                                'options' => ['placeholder' => Yii::t('app', 'Select Status ...')],
-                                'pluginOptions' => [
-                                    'allowClear' => true,
-                                    'multiple' => false,
-                                    'selected' => ['1'],
-                                ],
-                                'pluginLoading' => false,
-                            ])->label(false)
+                            $form->field($model, 'short_description')->textarea(['rows' => 6])->label(false)
                             ?>
                         </div>
                     </div>
                     <div class="section row">
-                        <div class="col-md-6">
-                            <?=
-                                    $form->field($model, 'short_description', ['template' => '<div class="col-md-12" style="padding: 0"><label for="repairer-zip" class="field prepend-icon">
-                                    {input}<label for="repairer-zip" class="field-icon"><i class="fa fa-comments-o" aria-hidden="true"></i></label></label>{error}</div>'])
-                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app', 'Short Description')])->label(false)
-                            ?>
-                        </div>
                         <div class="col-md-6 pt15">
-                            <label><?=Yii::t('app','Image Size');?>:(800x600)</label>
+                            <label><?= Yii::t('app', 'Image Size'); ?>:(1350x570)</label>
                             <?=
                                     $form->field($modelFiles, 'path[]', ['template' => '<div><div class="box">{input}{label}{error}</div></div>'])
                                     ->fileInput(
@@ -177,11 +185,6 @@ if (!$model->isNewRecord) {
                             'type' => 'button'
                         ])
                         ?>
-                        <?php
-                        if (!$model->isNewRecord) {
-                            echo Html::a(Yii::t('app', 'Reset'), Url::to('/' . Yii::$app->language . '/slider/index', true), ['class' => 'btn btn-default btn-sm ph25 reste-button pull-right']);
-                        }
-                        ?>
                     </div>
                     <?php ActiveForm::end(); ?>
                 </div>
@@ -189,6 +192,11 @@ if (!$model->isNewRecord) {
         </div>
     </div>
 </div>
-<?php echo $this->registerJs("
-            CKEDITOR.replace('slider-short_description');
-"); ?>
+<?php
+$this->registerJsFile(
+        '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+?>

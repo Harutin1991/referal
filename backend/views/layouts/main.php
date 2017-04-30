@@ -253,8 +253,8 @@ Yii::$app->language = "ru";
                                         <?= Html::a('<i class="livicon" data-name="sign-out" data-s="18"></i>' . Yii::t('app', 'Logout') . '(' . Yii::$app->user->identity->username . ')', ['/site/logout']) ?>
                                     </div>
                                 </li>
-                            </ul -->
-                        </li>
+                            </ul >
+                        </li-->
                     </ul>
                 </div>
             </nav>
@@ -376,12 +376,24 @@ Yii::$app->language = "ru";
                                     </li>
                                 </ul>
                             </li>
-                            <!--li>
-                                <a href="/<?=Yii::$app->language?><?= Url::to('/content/index') ?>">
-                                    <i class="livicon" data-name="brush" data-c="#F89A14" data-hc="#F89A14" data-size="18" data-loop="true"></i>
-                                    <?= Yii::t('app', 'Content') ?>
+                            <li <?php if ($currentUrl == '/slider/index' || $currentUrl == '/how-to-earn/index' || $currentUrl == '/how-to-earn/create' || $currentUrl == '/slider/create' || $currentUrl == "/pakages/index" || $currentUrl == "/pakages/create"): ?>class="active"<?php endif ?>>
+                                <a href="#">
+                                    <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
+                                    <span class="title"><?= Yii::t('app', 'Content') ?></span>
+                                    <span class="fa arrow"></span>
                                 </a>
-                            </li -->
+                                <ul class="sub-menu">
+                                    <li <?php if ($currentUrl == "/slider/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Slider'), Url::to(['slider/index'])) ?>
+                                    </li>
+                                    <li <?php if ($currentUrl == "/how-to-earn/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'How to earn'), Url::to(['how-to-earn/index'])) ?>
+                                    </li>
+                                     <li>
+                                        <?= Html::a('<i class="livicon" data-name="doc-portrait" data-c="#5bc0de" data-hc="#5bc0de" data-size="18" data-loop="true"></i>' . Yii::t('app', 'Packages List'), Url::to(['pakages/index'])) ?>
+                                    </li>
+                                </ul>
+                            </li>
                             <li>
                                 <a href="/<?=Yii::$app->language?><?= Url::to('/faq/index') ?>">
                                     <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>

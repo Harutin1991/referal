@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -14,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-12">
         <div class="blog-index">
             <div class="header" style="margin-bottom: 10px;">
-            <h1 style="display:inline;"><?= Html::encode($this->title) . ' ' . Yii::t('app', 'Table') ?></h1>
-            <?= Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>' . Yii::t('app', 'Add User'), ['/user/create'], ['class' => 'btn btn-responsive button-alignment btn-success mb15 pull-right']) ?>
+                <h1 style="display:inline;"><?= Html::encode($this->title) . ' ' . Yii::t('app', 'Table') ?></h1>
+                <?= Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>' . Yii::t('app', 'Add User'), ['/user/create'], ['class' => 'btn btn-responsive button-alignment btn-success mb15 pull-right']) ?>
             </div>
             <div class="tray tray-center filter">
                 <div class="panel">
@@ -39,14 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'summary' => false,
                                 'options' => ['class' => 'br-r',],
                                 'columns' => [
-                                    'username',
-                                    'email',
                                     'first_name',
                                     'last_name',
-                                    'gender',
-                                    'phone',
-                                    'starting_amount',
-                                    'purse',
+                                    'user.username',
+                                    'email',
                                     ['class' => 'yii\grid\ActionColumn',
                                         'template' => '{update}{delete}',
                                         //   'contentOptions' => ['style' => 'width: 20%;'],
@@ -61,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 ]);
                                             },
                                                     'update' => function ($url, $model) {
+                                                $url = Url::to(['user/update','id'=>$model->user_id]);
                                                 return Html::a('<span class="glyphicon glyphicon-pencil"></span> Edit', $url, [
                                                             'title' => 'Edit',
                                                             'aria-label' => 'Edit',
@@ -75,10 +73,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ],
                                     ]);
                                     ?>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
