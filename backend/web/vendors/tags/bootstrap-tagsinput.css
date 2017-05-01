@@ -11,7 +11,7 @@
   line-height: 22px;
   cursor: text;
 }
-.bootstrap-tagsinput input {
+/*.bootstrap-tagsinput input {
   border: none;
   box-shadow: none;
   outline: none;
@@ -20,7 +20,7 @@
   margin: 0;
   width: auto;
   max-width: inherit;
-}
+}*/
 .bootstrap-tagsinput.form-control input::-moz-placeholder {
   color: #777;
   opacity: 1;

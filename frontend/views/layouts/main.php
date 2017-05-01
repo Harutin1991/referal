@@ -183,7 +183,7 @@ if (isset($this->title)) {
                                     <li>
                                         <?php if (!Yii::$app->user->identity): ?>
                                             <div class="registration" id="registration">
-                                                <a href=" javascript:void(0);" id="registrationModela"><?= Yii::t('app', 'Login/Registration') ?></a>
+                                                <a href=" javascript:void(0);" id="registrationModela"><?= Yii::t('app', 'Login / Registration') ?></a>
                                             </div>
                                             <div id="login" class="login">
                                                 <?php $form = ActiveForm::begin(['action' => '/' . Yii::$app->language . '/site/login', 'options' => ['accept-charset' => 'utf-8']]) ?>

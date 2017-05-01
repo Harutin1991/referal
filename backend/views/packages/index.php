@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
     <div class="col-md-12">
         <div class="packages-index">
-            <?= Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>' . Yii::t('app', 'Create New Packages'), ['create'], ['class' => 'btn btn-responsive button-alignment btn-success']); ?>
+            <?php // Html::a('<i class="fa fa-plus fa-plus-square pr5"></i>' . Yii::t('app', 'Create New Packages'), ['create'], ['class' => 'btn btn-responsive button-alignment btn-success']); ?>
             <div class="tray tray-center filter">
                 <div class="panel">
                     <div class="panel-body pn">
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         }
                                     ],
                                     ['class' => 'yii\grid\ActionColumn',
-                                        'template' => '{delete}{update}',
+                                        'template' => '{update}',
                                         'buttons' => [
                                             'update' => function ($url, $model) {
                                                 return Html::a('<span class="glyphicon glyphicon-pencil"></span> ' . Yii::t('app', 'Update'), $url, [
@@ -59,19 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             'class' => 'btn btn-info btn-xs fs12 br2 ml5 pull-right',
                                                             'style' => 'font-size: 15px;'
                                                 ]);
-                                            },
-                                                    'delete' => function ($url, $model) {
-                                                return Html::a('<span class="glyphicon glyphicon-trash"></span> ' . Yii::t('app', 'Delete'), $url, [
-                                                            'title' => Yii::t('app', 'Delete'),
-                                                            'aria-label' => Yii::t('app', 'Delete'),
-                                                            'data-confirm' => Yii::t('app', 'Are you sure! You whant delete this item?'),
-                                                            'data-method' => 'post',
-                                                            'data-pjax' => '0',
-                                                            'data-key' => $model->id,
-                                                            'class' => 'btn btn-danger btn-xs fs12 br2 ml5 pull-right',
-                                                            'style' => 'font-size: 15px;'
-                                                ]);
-                                            },
+                                            }
                                                 ]
                                             ],
                                         ],

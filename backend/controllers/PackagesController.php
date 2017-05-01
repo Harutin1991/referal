@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use backend\models\User;
+use backend\models\PackageMessages;
 
 /**
  * PackagesController implements the CRUD actions for Packages model.
@@ -88,15 +89,55 @@ class PackagesController extends Controller
     public function actionCreate()
     {
         $model = new Packages();
-        if ($model->load(Yii::$app->request->post())) {
+        $modelMessage = new PackageMessages();
+        if ($model->load(Yii::$app->request->post()) && $modelMessage->load(Yii::$app->request->post())) {
+            echo "<pre>";print_r(Yii::$app->request->post());die;
             $model->created_date = time();
             $model->updated_date = time();
-            $model->save();
+            if($model->save()){
+                $modelMessage->save();
+            }
             return $this->redirect('index');
         } else {
+            
             return $this->render('create', [
                 'model' => $model,
+                'modelMessage' => $modelMessage,
             ]);
+        }
+    }
+    
+    public function actionCreatePackageMessage(){
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            $modelMessage = new PackageMessages();
+            $modelMessage->package_id = $data['packageId'];
+            $modelMessage->message = $data['message'];
+            if($modelMessage->save()){
+                echo json_encode(['success'=>true,'messageID'=>$modelMessage->id]);exit();
+            }
+            echo json_encode(['success'=>false]);exit();
+        }
+    }
+    public function actionEditPackageMessage(){
+        if (Yii::$app->request->isAjax) {
+             $data = Yii::$app->request->post();
+             $modelMessage = PackageMessages::findOne($data['messageId']);
+             $modelMessage->message = $data['message'];
+             if($modelMessage->save()){
+                echo json_encode(['success'=>true]);exit();
+            }
+            echo json_encode(['success'=>false]);exit();
+        }
+    }
+    public function actionDeletePackageMessage(){
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            $modelMessage = PackageMessages::findOne($data['messageID'])->delete();
+            if($modelMessage){
+                echo json_encode(['success'=>true]);exit();
+            }
+            echo json_encode(['success'=>false]);exit();
         }
     }
 
@@ -116,8 +157,10 @@ class PackagesController extends Controller
             $model->save();
             return $this->redirect('index');
         } else {
+            $packageMessages = PackageMessages::find()->where(['package_id'=>$id])->asArray()->all();
             return $this->render('update', [
                 'model' => $model,
+                'packageMessages' => $packageMessages,
             ]);
         }
     }

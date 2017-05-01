@@ -1,9 +1,13 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+use backend\models\Files;
+use backend\models\Calculator;
+use backend\models\Packages;
+use backend\models\PackageMessages;
+$calculatorOption = Calculator::find()->asArray()->one();
+$calcBackground = Files::find()->where(['category'=>'calculator','category_id'=>$calculatorOption['id']])->asArray()->one();
+$packages = Packages::find()->asArray()->all();
+
+
 $this->registerCssFile("@web/js/rangeSlider/css/ion.rangeSlider.skinHTML5.css", [
     'depends' => [frontend\assets\AppAsset::className()]]);
 $this->registerCssFile("@web/js/rangeSlider/css/ion.rangeSlider.css", [
@@ -12,44 +16,28 @@ $this->registerCssFile("@web/css/ion.css", [
     'depends' => [frontend\assets\AppAsset::className()]]);
 ?>      
 
-<div class="calculator col-xs-12" style="background-image: url(image/calc-banner.png);">
+<div class="calculator col-xs-12" style="background-image: url('<?=Yii::$app->params['adminUrl'].'/uploads/images/calculator/'.$calculatorOption['id'].'/'.$calcBackground['path']?>');">
     <div class="container">
         <div class="info">
             <div class="paragraph">
-                <span>
-                    Калькулятор доходов
-                </span>
+                <span><?=$calculatorOption['title']?></span>
             </div>
             <div class="rate col-xs-12">
+                <?php foreach($packages as $key=>$pack):?>
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <div class="fild">
                         <label>
-                            <img src="image/1.png" class="img-responsive">
-                            <div class="title">Classic</div>
-                            <div><input type="radio" onclick="changePackage('classic')" name="1" checked=""></div>
+                            <img src="image/<?=$key+1?>.png" class="img-responsive">
+                            <div class="title"><?=$pack['title']?></div>
+                            <div><input type="radio" onclick="changePackage('<?=lcfirst($pack['title'])?>')" name="1" <?php if(!$key):?>checked=""<?php endif;?>></div>
                         </label>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="fild">
-                        <label>
-                            <img src="image/2.png" class="img-responsive">
-                            <div class="title">Silver</div>
-                            <div><input type="radio" onclick="changePackage('silver')" name="1"></div>
-                        </label>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <div class="fild">
-                        <label>
-                            <img src="image/3.png" class="img-responsive">
-                            <div class="title">Gold</div>
-                            <div><input type="radio" onclick="changePackage('gold')" name="1"></div>
-                        </label>
-                    </div>
-                </div>
+                <?php endforeach;?>
             </div>
             <div class="calc col-xs-12">
+                <?php //foreach($packages as $key=>$pack):?>
+                <?php //$message = PackageMessages::find()->where(['package_id'=>$pack['id']])->all();?> 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 range">
                     <div class="selecteurPrix">
                         <div class="range-slider">
@@ -61,12 +49,10 @@ $this->registerCssFile("@web/css/ion.css", [
                     </div>
                     <div class="col-xs-12 info">
                         <span class="caret"></span>
-                        <div class="txt">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.	
-                        </div>
+                        <div class="txt"> Lorem ipsum dolor sit amet, consectetur adipisicing elit </div>
                     </div>
                 </div>
+                <?php //endforeach;?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 range">
                     <div class="selecteurPrix">
                         <div class="range-slider">
@@ -84,14 +70,7 @@ $this->registerCssFile("@web/css/ion.css", [
                         </div>
                     </div> 
                 </div>
-                <div class="description-calc col-xs-12">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </div>
+                <div class="description-calc col-xs-12" style="display:none;"><?=$calculatorOption['short_description']?></div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 range" id="package_range_3" style="display: none;">
                     <div class="selecteurPrix">
                         <div class="range-slider">
@@ -127,10 +106,12 @@ $this->registerCssFile("@web/css/ion.css", [
                     </div> 
                 </div>
             </div>
-
-            <div class="col-xs-12 see-more">
+            <div class="col-xs-12 see-more paragraph">
+                <span id="calculate_button"><?=Yii::t('app','Calculate')?></span><span id="calculation_button" style="display:none;"><?=Yii::t('app','Calculation')?>: <p id="calculation_result" style="display: inline;"></p></span>
+            </div>
+            <div class="col-xs-12 see-more hidden">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#calculateModela">
-                    <?=Yii::t('app','Calculate')?>
+                    
                 </a>
             </div>
             <div id="calculateModela" class="modal fade" role="dialog">
@@ -151,10 +132,6 @@ $this->registerCssFile("@web/css/ion.css", [
                     </div>
 
                 </div>
-            </div>
-            <div class="description col-xs-12">
-                <div class="title">Остались вопросы? </div>
-                <div class="txt">Читайте наш блог или Раздел Часто задаваемые вопросы или обратитесь в службу поддержки 24/7</div>
             </div>
         </div>
     </div>

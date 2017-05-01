@@ -31,8 +31,8 @@ class Packages extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'status', 'created_date', 'updated_date'], 'required'],
-            [['status', 'created_date', 'updated_date', 'ordering'], 'integer'],
-            [['title'], 'string', 'max' => 255],
+            [['status', 'created_date', 'updated_date', 'ordering', 'percent'], 'integer'],
+            [['title', 'price'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,8 +48,19 @@ class Packages extends \yii\db\ActiveRecord
             'created_date' => Yii::t('app', 'Created Date'),
             'updated_date' => Yii::t('app', 'Updated Date'),
             'ordering' => Yii::t('app', 'Ordering'),
+            'price' => Yii::t('app', 'Price'),
+            'percent' => Yii::t('app', 'Percent'),
         ];
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPackageMessages()
+    {
+        return $this->hasMany(PackageMessages::className(), ['package_id' => 'id']);
+    }
+    
     /**
      * @param $AllData
      * @return int

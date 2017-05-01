@@ -576,6 +576,12 @@ header .modal-forget-password .change-pass .send-form button:hover {
   font-size: 14px;
   color: #b2b2b2;
 }
+.main-section .counter .cols p {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+  fill: #717171;
+}
 .main-section .price .paragraph {
   text-align: center;
   margin-bottom: 10px;
@@ -1024,6 +1030,7 @@ header .modal-forget-password .change-pass .send-form button:hover {
   margin-top: 35px;
 }
 .main-section .calculator .info .calc .range {
+  position: relative;
   padding: 0 25px;
 }
 .main-section .calculator .info .calc .range .selecteurPrix {
@@ -1033,35 +1040,44 @@ header .modal-forget-password .change-pass .send-form button:hover {
   margin-top: 15px;
 }
 .main-section .calculator .info .calc .range .info .txt {
-  border: 1px solid #dab82d;
-  padding: 10px;
+  padding: 25px 35px 10px 10px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 16px;
+  text-align: center;
   color: #fff;
+  position: relative;
+  margin-top: -15px;
 }
 .main-section .calculator .info .calc .range .info .txt p {
   color: #fff;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 16px;
+  text-align: center;
   margin: 0;
   display: none;
 }
 .main-section .calculator .info .calc .range .info .txt p:first-child {
   display: block;
 }
+.main-section .calculator .info .calc .range .info .txt:after {
+  position: absolute;
+  content: "";
+  bottom: 30px;
+  right: -20px;
+  background-image: url(../image/arrow.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 60px;
+  height: 33px;
+  transform: rotate(-40deg);
+}
 .main-section .calculator .info .calc .range .info .caret {
-  border-top: 14px dashed #fad82d;
-  border-top: 14px solid \9;
-  border-right: 14px solid transparent;
-  border-left: 14px solid transparent;
-  transform: rotate(180deg);
-  margin: 0 auto;
-  display: block;
+  display: none;
 }
 .main-section .calculator .info .calc .range .valeurPrix {
   position: absolute;
@@ -1188,9 +1204,9 @@ header .modal-forget-password .change-pass .send-form button:hover {
   border: 0;
 }
 .main-section .calculator .info .calc .description-calc {
-  font-size: 16px;
-  color: #fff;
-  text-align: justify;
+  font-size: 38px;
+  color: #dab82d;
+  text-align: center;
   padding: 10px 25px 55px 25px;
 }
 .main-section .calculator .info .drops {
@@ -1248,18 +1264,30 @@ header .modal-forget-password .change-pass .send-form button:hover {
   background: -ms-linear-gradient(-45deg, #dab82d 0%, #ffce09 100%);
   background: linear-gradient(135deg, #dab82d 0%, #ffce09 100%);
 }
-.main-section .calculator .info .description {
+.main-section .info-calc .description {
   margin-top: 20px;
 }
-.main-section .calculator .info .description .title {
+.main-section .info-calc .description .title {
   text-align: center;
-  color: #b2b2b2;
-  font-size: 24px;
+  color: #dab82d;
+  font-size: 38px;
 }
-.main-section .calculator .info .description .txt {
+.main-section .info-calc .description .title h1,
+.main-section .info-calc .description .title h2,
+.main-section .info-calc .description .title h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 38px;
+}
+.main-section .info-calc .description .txt {
   text-align: center;
   font-size: 21px;
-  color: #b2b2b2;
+  color: #dab82d;
+}
+.main-section .info-calc .description .txt p {
+  font-size: 21px;
+  margin: 0;
+  padding: 0;
 }
 .main-section .news {
   padding: 25px 0;
@@ -2594,4 +2622,130 @@ header .login .form .form-group .help-block {
     width: -webkit-calc(99.5%);
     width: calc(99.5%);
   }
+}
+.main-section .calculator .info .calc .range:after {
+  height: 90px;
+}
+.main-section .calculator .info .calc .description-calc {
+  padding: 0 25px 0 25px;
+}
+.main-section .calculator .info .calc .range .valeurPrix {
+  top: -40px;
+}
+.package .pricetab {
+  width: 90%;
+  min-width: 220px;
+  background: linear-gradient(#555, #444);
+  float: left;
+  margin-top: .2%;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+}
+.package .pricetab:first-child {
+  float: right;
+}
+.package .pricetab:last-child {
+  float: right;
+}
+.package .pricetab .title {
+  text-align: center;
+  display: block;
+  font-size: 36px;
+  color: #fff;
+  padding-top: 15px;
+}
+.package .pricetab .title h1,
+.package .pricetab .title h2,
+.package .pricetab .title h3 {
+  text-align: center;
+  display: block;
+  font-size: 36px;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+.package .pricetab .price {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid #dab82d;
+  margin: 5% auto 0 auto;
+  text-align: center;
+}
+.package .pricetab .price span {
+  text-align: center;
+  font-size: 42px;
+  color: #fff;
+  margin: 25px 0;
+  display: block;
+}
+.package .pricetab .price h1,
+.package .pricetab .price h2,
+.package .pricetab .price h3 {
+  text-align: center;
+  font-size: 42px;
+  color: #fff;
+  margin: 32px 0;
+}
+.package .pricetab .infos ul {
+  padding: 15px 25px;
+}
+.package .pricetab .infos ul li {
+  list-style: none;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+.package .pricetab .infos ul li::before {
+  font-size: 1.3rem;
+  background-image: url(../image/arrow-package-2.png);
+  margin-right: 3px;
+  content: "";
+  padding: 0px 10px;
+  background-size: 18px;
+  background-repeat: no-repeat;
+}
+.package .pricetab .pricefooter {
+  width: 100%;
+  height: 50px;
+  margin-top: 10%;
+  background: #333;
+}
+.package .pricetab .pricefooter .button {
+  width: 50%;
+  height: 50px;
+  margin: 0 auto 0 auto;
+  border: 1px solid #dab82d;
+  background: #f1e767;
+  background: -moz-linear-gradient(-45deg, #f1e767 0%, #ffce09 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, #f1e767), color-stop(100%, #ffce09));
+  background: -webkit-linear-gradient(-45deg, #f1e767 0%, #ffce09 100%);
+  background: -o-linear-gradient(-45deg, #f1e767 0%, #ffce09 100%);
+  background: -ms-linear-gradient(-45deg, #f1e767 0%, #ffce09 100%);
+  background: linear-gradient(135deg, #f1e767 0%, #ffce09 100%);
+  text-align: center;
+  cursor: pointer;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.package .pricetab .pricefooter .button a {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  line-height: 3;
+  color: #000;
+  font-size: 16px;
+}
+.package .pricetab .pricefooter .button:hover {
+  width: 60%;
+}
+.package .pricetab:hover {
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.8);
 }

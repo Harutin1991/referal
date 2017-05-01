@@ -63,6 +63,7 @@ var update1 = function () {
         },
         onFinish: function (data) {
             update2(data.from);
+           calculate($('#range-value1').html(),$('#range-value2').html(),$('#range-value3').html(),$('#range-value4').html());
         },
         onUpdate: function (data) {
             $('#range-value1').html(data.from_value);
@@ -117,6 +118,7 @@ var update2 = function (from) {
         onFinish: function (data) {
             $('#range-value2').html(data.from_value);
             update3(data.from);
+            calculate($('#range-value1').html(),$('#range-value2').html(),$('#range-value3').html(),$('#range-value4').html());
         },
         onUpdate: function (data) {
             $('#range-value2').html(data.from_value);
@@ -168,6 +170,7 @@ function update3(from) {
         },
         onFinish: function (data) {
             $('#range-value3').html(data.from_value);
+            console.log(123)
             calculate($('#range-value1').html(),$('#range-value2').html(),$('#range-value3').html(),$('#range-value4').html());
         },
         onUpdate: function (data) {
@@ -193,6 +196,7 @@ function create4() {
         },
         onFinish: function (data) {
             $('#range-value4').html(data.from);
+            calculate($('#range-value1').html(),$('#range-value2').html(),$('#range-value3').html(),$('#range-value4').html());
         },
         onUpdate: function (data) {
             $('#range-value4').html(data.from);
@@ -227,11 +231,15 @@ function changePackage(package_name) {
     if (package_name == "classic") {
         $('#package_range_3').css('display', 'none');
         $('#package_range_4').css('display', 'none');
+        $('.description-calc').css('padding','0px 25px 0px 25px');
+        $('.description-calc').hide();
         update1();
         update2(0);
     } else if (package_name == "silver") {
         $('#package_range_3').css('display', 'block');
         $('#package_range_4').css('display', 'block');
+        $('.description-calc').show();
+        $('.description-calc').css('padding','10px 25px 55px 25px');  
         slider1_values = [
             50, 100, 200,
             400, 800, 1600,
@@ -282,5 +290,7 @@ function calculate(range1,range2,range3,range4){
         aditional = ((parseInt(range4) * parseInt(range1)) * 30) / 100;
         result += aditional;
     }
-    $('#calculationResult').html(result+'$')
+    $('#calculation_result').html(result+'$')
+    $('#calculate_button').hide();
+    $('#calculation_button').show();
 }

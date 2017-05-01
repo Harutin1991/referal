@@ -24,8 +24,26 @@
 
 .circliful {
     overflow: visible !important;
+	position:relative;
 
 }
+
+.circliful .timer .number {
+	fill: #717171 !important;
+}
+
+.circliful g {
+	stroke: #717171 !important;
+}
+
+..main-section .counter .cols  p{
+	margin:0 !important;
+	font-size: 16px !important;
+    text-align: center !important;
+	fill: #717171 !important;
+}
+
+.circliful .circle {r:43% !Important;}
 
 .svg-container {
     width: 100%;

@@ -351,7 +351,7 @@ Yii::$app->language = "ru";
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create' || $currentUrl =='/contactus/index' || $currentUrl =='/aboutus/index' || $currentUrl =='/calculator/index' || strpos($currentUrl, '/pages/update') !== false || strpos($currentUrl, '/pages/sub-pages') !== false): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == '/pages/index' || $currentUrl == '/pages/create' || $currentUrl =='/contactus/index' || $currentUrl =='/aboutus/index' || strpos($currentUrl, '/pages/update') !== false || strpos($currentUrl, '/pages/sub-pages') !== false): ?>class="active"<?php endif ?>>
                                 <a href="javascript:void(0)">
                                     <i class="livicon" data-name="flag" data-c="#418bca" data-hc="#418bca" data-size="18" data-loop="true"></i>
                                     <span class="title"><?= Yii::t('app', 'Pages') ?></span>
@@ -373,16 +373,13 @@ Yii::$app->language = "ru";
                                     <?php endforeach; ?>
                                     <!--li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Pakage and Price'), Url::to(['pakage-price/index'])) ?>
-                                    </li>
-                                    <li>
-                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
-                                    </li -->
+                                    </li-->
                                     <li>
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Support'), Url::to(['contactus/index'])) ?>
                                     </li>
                                 </ul>
                             </li>
-                            <li <?php if ($currentUrl == '/slider/index' || $currentUrl == '/how-to-earn/index' || $currentUrl == '/how-to-earn/create' || $currentUrl == '/slider/create' || $currentUrl == "/investor-packages/index" || $currentUrl == "/investor-packages/create" || $currentUrl == "/other-investor-diff/index" || $currentUrl == "/other-investor-diff/create"): ?>class="active"<?php endif ?>>
+                            <li <?php if ($currentUrl == '/slider/index' || $currentUrl == '/how-to-earn/index' || $currentUrl == '/how-to-earn/create' || $currentUrl == '/slider/create' || $currentUrl == "/investor-packages/index" || $currentUrl == "/investor-packages/create" || $currentUrl == "/other-investor-diff/index" || $currentUrl == "/other-investor-diff/create" || $currentUrl == "/calculator/index"): ?>class="active"<?php endif ?>>
                                 <a href="#">
                                     <i class="livicon" data-name="medal" data-size="18" data-c="#00bc8c" data-hc="#00bc8c" data-loop="true"></i>
                                     <span class="title"><?= Yii::t('app', 'Content') ?></span>
@@ -400,6 +397,9 @@ Yii::$app->language = "ru";
                                     </li>
                                     <li <?php if ($currentUrl == "/other-investor-diff/index" || $currentUrl == "/other-investor-diff/create"): ?>class="active"<?php endif ?> >
                                         <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Other Investor`s Differents'), Url::to(['other-investor-diff/index'])) ?>
+                                    </li>
+                                    <li <?php if ($currentUrl == "/calculator/index"): ?>class="active"<?php endif ?> >
+                                        <?= Html::a('<i class="fa fa-angle-double-right"></i>' . Yii::t('app', 'Calculator'), Url::to(['calculator/index'])) ?>
                                     </li>
                                 </ul>
                             </li>

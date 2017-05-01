@@ -3,7 +3,11 @@
 namespace backend\models;
 
 use Yii;
-
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use backend\models\Files;
+use backend\models\TrCalculator;
+use yii\db\Query;
 /**
  * This is the model class for table "{{%calculator}}".
  *
@@ -55,4 +59,28 @@ class Calculator extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
         ];
     }
+    /**
+     * @param $product_id
+     * @return array
+     */
+    public function getDefaultImage($calculator_id) {
+        $result = Files::find()->where(['category_id' => $calculator_id, 'category' => 'calculator', 'top' => 1])->asArray()->all();
+        return ArrayHelper::map($result, 'top', 'path');
+    }
+
+    public function updateDefaultTranslate($language_id) {
+        $tr = TrCalculator::findOne(['language_id' => $language_id, 'calculator_id' => $this->id]);
+        if (!$tr) {
+            $tr = new TrCalculator();
+
+            $tr->setAttribute('language_id', $language_id);
+            $tr->setAttribute('calculator_id', $this->id);
+        }
+        $tr->setAttribute('title', $this->title);
+        $tr->setAttribute('short_description', $this->short_description);
+
+        $tr->save();
+        return true;
+    }
+    
 }

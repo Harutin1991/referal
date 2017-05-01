@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.14
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: Apr 24, 2017 at 12:01 PM
--- Server version: 5.5.52-cll
--- PHP Version: 5.6.20
+-- Host: 127.0.0.1
+-- Generation Time: May 01, 2017 at 07:13 PM
+-- Server version: 5.6.20
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `makecoin_referal`
+-- Database: `referal`
 --
 
 -- --------------------------------------------------------
@@ -27,11 +27,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `aboutus` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` text NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `description` text NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -48,13 +47,12 @@ INSERT INTO `aboutus` (`id`, `title`, `short_description`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `articles` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -64,11 +62,10 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 CREATE TABLE IF NOT EXISTS `articles_home` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `asrticle_id` int(11) NOT NULL,
   `ordering` int(2) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -78,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `articles_home` (
 --
 
 CREATE TABLE IF NOT EXISTS `blog` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `blog_category_id` int(11) unsigned DEFAULT NULL,
   `user_id` int(11) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -91,24 +88,20 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `ordering` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_3` (`id`),
-  KEY `blog_category_id` (`blog_category_id`),
-  KEY `id` (`id`),
-  KEY `id_2` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=26 ;
+  `ordering` int(2) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `blog`
 --
 
 INSERT INTO `blog` (`id`, `blog_category_id`, `user_id`, `title`, `description`, `short_description`, `meta_description`, `meta_key`, `status`, `views`, `created_at`, `updated_at`, `deleted_at`, `ordering`) VALUES
-(15, NULL, 1, 'Lorem Ispum', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '', 1, 0, '2017-04-18 20:00:06', '0000-00-00 00:00:00', NULL, 6),
-(16, NULL, 1, 'Test', '<p>xcvbxcvbxcvb</p>\r\n', '<p>xcvbxcvbxcvb</p>\r\n', '<p>xcvbxcvbxcvb</p>\r\n', '', 1, 0, '2017-04-18 20:16:20', '0000-00-00 00:00:00', NULL, 5),
-(22, NULL, 1, 'Test5', '<p>hfdghfhdfgh</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-19 05:14:35', '0000-00-00 00:00:00', NULL, 7),
-(24, NULL, 1, 'zcZCZCZCZC', '<p>cxZcxzc</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-24 12:07:34', '0000-00-00 00:00:00', NULL, 0),
-(25, NULL, 1, 'sadfsdf', '<p>sadfasdf</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-24 16:44:39', '0000-00-00 00:00:00', NULL, 0);
+(15, NULL, 1, 'Lorem Ispum', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '<p>Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum&nbsp;Lorem Ispum</p>\r\n', '', 1, 0, '2017-04-18 20:00:06', '0000-00-00 00:00:00', NULL, 5),
+(16, NULL, 1, 'Test', '<p>xcvbxcvbxcvb</p>\r\n', '<p>xcvbxcvbxcvb</p>\r\n', '<p>xcvbxcvbxcvb</p>\r\n', '', 1, 0, '2017-04-18 20:16:20', '0000-00-00 00:00:00', NULL, 4),
+(22, NULL, 1, 'Test5', '<p>hfdghfhdfgh</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-19 05:14:35', '0000-00-00 00:00:00', NULL, 6),
+(24, NULL, 1, 'zcZCZCZCZC', '<p>cxZcxzc</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-24 12:07:34', '0000-00-00 00:00:00', NULL, 3),
+(25, NULL, 1, 'sadfsdf', '<p>sadfasdf</p>\r\n', NULL, '', NULL, 1, 0, '2017-04-24 16:44:39', '0000-00-00 00:00:00', NULL, 1),
+(26, NULL, 1, 'bxcvcvb', '<p><img src="/uploads/images/tinymce/g14915515240.jpg" alt="" width="651" height="488" /></p>', NULL, '', NULL, 1, 0, '2017-04-27 10:20:45', '0000-00-00 00:00:00', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -117,12 +110,11 @@ INSERT INTO `blog` (`id`, `blog_category_id`, `user_id`, `title`, `description`,
 --
 
 CREATE TABLE IF NOT EXISTS `blog_categories` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -132,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `blog_categories` (
 --
 
 CREATE TABLE IF NOT EXISTS `blog_comments` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `blog_id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -140,8 +132,7 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
   `comment` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -151,15 +142,21 @@ CREATE TABLE IF NOT EXISTS `blog_comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `calculator` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `calculator`
+--
+
+INSERT INTO `calculator` (`id`, `title`, `short_description`, `description`, `created_date`, `updated_date`, `status`) VALUES
+(1, 'Калькулятор доходов', '<p>Lorem ipsum dolor sit amet</p>', '', '2017-05-01 14:09:15', '2017-05-01 14:09:15', 1);
 
 -- --------------------------------------------------------
 
@@ -168,10 +165,12 @@ CREATE TABLE IF NOT EXISTS `calculator` (
 --
 
 CREATE TABLE IF NOT EXISTS `calculator_profit` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `background` varchar(255) DEFAULT NULL,
+`id` int(11) unsigned NOT NULL,
   `description` text,
-  PRIMARY KEY (`id`)
+  `pakage_id` int(11) DEFAULT NULL,
+  `prices` text,
+  `procent` int(2) DEFAULT NULL,
+  `message` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -181,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `calculator_profit` (
 --
 
 CREATE TABLE IF NOT EXISTS `contactus` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `short_description` text NOT NULL,
   `description` text NOT NULL,
   `phone` varchar(255) DEFAULT NULL,
@@ -189,8 +188,7 @@ CREATE TABLE IF NOT EXISTS `contactus` (
   `fax` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `coordinate` varchar(255) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -207,7 +205,7 @@ INSERT INTO `contactus` (`id`, `short_description`, `description`, `phone`, `mob
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `slider` varchar(50) DEFAULT NULL,
   `how_to_earn` varchar(255) DEFAULT NULL,
   `investor_pakage` varchar(255) DEFAULT NULL,
@@ -216,8 +214,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `calculator` varchar(255) DEFAULT NULL,
   `articles` varchar(255) DEFAULT NULL,
   `content_type` varchar(255) NOT NULL,
-  `ordering` int(2) NOT NULL,
-  PRIMARY KEY (`id`)
+  `ordering` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -227,11 +224,10 @@ CREATE TABLE IF NOT EXISTS `content` (
 --
 
 CREATE TABLE IF NOT EXISTS `countries` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `sortname` varchar(3) NOT NULL,
   `name` varchar(150) NOT NULL,
-  `status` smallint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `status` smallint(1) DEFAULT '0'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=247 ;
 
 --
@@ -493,14 +489,13 @@ INSERT INTO `countries` (`id`, `sortname`, `name`, `status`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `currency` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `exchange_value` float DEFAULT '0',
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
   `short_code` varchar(255) NOT NULL,
-  `default` int(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `default` int(1) DEFAULT '0'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
@@ -518,7 +513,7 @@ INSERT INTO `currency` (`id`, `name`, `exchange_value`, `created_date`, `updated
 --
 
 CREATE TABLE IF NOT EXISTS `customer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
@@ -544,17 +539,17 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `activity_status` int(10) NOT NULL DEFAULT '0',
   `referal_link_created` date DEFAULT NULL,
   `invitation_users_count` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+  `facebook` varchar(255) DEFAULT NULL,
+  `vkontakt` varchar(255) DEFAULT NULL,
+  `skype` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `first_name`, `last_name`, `email`, `phone`, `mobile_phone`, `other_phone`, `social_user_name`, `status`, `user_id`, `last_ip`, `auth_token`, `created_date`, `updated_date`, `gender`, `dob`, `pic`, `starting_amount`, `purse`, `referal_link`, `bio`, `social_type`, `social_id`, `activity_status`, `referal_link_created`, `invitation_users_count`) VALUES
-(36, 'Harut', 'Sogomonyan', 'harut-good@mail.ru', NULL, NULL, NULL, '', 0, 52, '46.71.82.115', '', '2017-04-24 11:56:53', '2017-04-24 11:56:53', NULL, NULL, NULL, 0, 0, '', '', NULL, NULL, 0, NULL, 0);
+INSERT INTO `customer` (`id`, `first_name`, `last_name`, `email`, `phone`, `mobile_phone`, `other_phone`, `social_user_name`, `status`, `user_id`, `last_ip`, `auth_token`, `created_date`, `updated_date`, `gender`, `dob`, `pic`, `starting_amount`, `purse`, `referal_link`, `bio`, `social_type`, `social_id`, `activity_status`, `referal_link_created`, `invitation_users_count`, `facebook`, `vkontakt`, `skype`) VALUES
+(42, 'Harut2', 'Soghomonyant', 'harut.soghomonyan@gmail.com', '45465465456', NULL, NULL, '', 0, 58, '127.0.0.1', '8eB4Sbi3c4XoVLX3qc9s5c7lKEJTxij9', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '1970-01-01', NULL, 0, 0, '', '', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -563,7 +558,7 @@ INSERT INTO `customer` (`id`, `first_name`, `last_name`, `email`, `phone`, `mobi
 --
 
 CREATE TABLE IF NOT EXISTS `customer_address` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `city` varchar(50) DEFAULT NULL,
   `country` varchar(50) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
@@ -573,10 +568,15 @@ CREATE TABLE IF NOT EXISTS `customer_address` (
   `lat` double DEFAULT NULL,
   `default_address` smallint(1) DEFAULT NULL,
   `zip` varchar(20) DEFAULT NULL,
-  `postal` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `postal` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `customer_address`
+--
+
+INSERT INTO `customer_address` (`id`, `city`, `country`, `address`, `state`, `customer_id`, `long`, `lat`, `default_address`, `zip`, `postal`) VALUES
+(8, 'Ереван', 'Армения', 'police рядом с Yerevan, Armavir Province, Armenia', NULL, 42, NULL, NULL, 1, NULL, '456');
 
 -- --------------------------------------------------------
 
@@ -585,14 +585,12 @@ CREATE TABLE IF NOT EXISTS `customer_address` (
 --
 
 CREATE TABLE IF NOT EXISTS `customer_card` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `card_nuber` varchar(20) DEFAULT NULL,
   `date_from` varchar(10) DEFAULT NULL,
   `date_to` varchar(10) DEFAULT NULL,
-  `cv_code` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cr_card_cust_id` (`customer_id`)
+  `cv_code` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -602,15 +600,14 @@ CREATE TABLE IF NOT EXISTS `customer_card` (
 --
 
 CREATE TABLE IF NOT EXISTS `faq` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `ordering` int(2) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `yes_count` int(10) NOT NULL DEFAULT '0',
-  `no_count` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `no_count` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
@@ -628,10 +625,9 @@ INSERT INTO `faq` (`id`, `title`, `short_description`, `description`, `ordering`
 --
 
 CREATE TABLE IF NOT EXISTS `favorites` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -648,16 +644,15 @@ INSERT INTO `favorites` (`id`, `product_id`, `user_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `files` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `category_id` int(11) NOT NULL,
   `mime` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `top` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=33 ;
+  `top` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `files`
@@ -678,7 +673,18 @@ INSERT INTO `files` (`id`, `path`, `category`, `category_id`, `mime`, `created_a
 (28, '149257882358f6f207d22dd6.18378645_0.png', 'blog', 19, '', '2017-04-19 05:13:44', '0000-00-00 00:00:00', 1),
 (29, '149257887558f6f23b5833c1.65843957_0.jpg', 'blog', 22, '', '2017-04-19 05:14:36', '0000-00-00 00:00:00', 1),
 (31, '149303565458fdea8619eca0.45034424_0.jpg', 'blog', 24, '', '2017-04-24 12:07:35', '0000-00-00 00:00:00', 1),
-(32, '149305227958fe2b7736a225.96366352_0.jpg', 'blog', 25, '', '2017-04-24 16:44:39', '0000-00-00 00:00:00', 1);
+(32, '149305227958fe2b7736a225.96366352_0.jpg', 'blog', 25, '', '2017-04-24 16:44:39', '0000-00-00 00:00:00', 1),
+(33, '14932890325901c848777290.51446585_0.jpg', 'news', 1, '', '2017-04-27 10:30:33', '0000-00-00 00:00:00', 1),
+(34, '149346651359047d9165d471.88827395_0.jpg', 'slider', 1, '', '2017-04-29 11:48:34', '0000-00-00 00:00:00', 1),
+(38, '14935545555905d57b082914.54094689_0.jpg', 'other_investor_diff', 1, '', '2017-04-30 12:15:55', '0000-00-00 00:00:00', 1),
+(39, '14935547615905d649c1d506.50997327_0.jpg', 'other_investor_diff', 2, '', '2017-04-30 12:19:22', '0000-00-00 00:00:00', 1),
+(40, '149358877559065b27652679.25151235_0.png', 'slider', 2, '', '2017-04-30 21:46:16', '0000-00-00 00:00:00', 1),
+(41, '149358884059065b6836b127.01777415_0.png', 'slider', 3, '', '2017-04-30 21:47:20', '0000-00-00 00:00:00', 1),
+(42, '149358995059065fbecb8057.98868364_0.jpg', 'how_to_earn', 1, '', '2017-04-30 22:05:51', '0000-00-00 00:00:00', 1),
+(43, '149358997659065fd80f9f08.02344651_0.jpg', 'how_to_earn', 2, '', '2017-04-30 22:06:16', '0000-00-00 00:00:00', 1),
+(44, '149358999759065fed70d801.29559932_0.jpg', 'how_to_earn', 3, '', '2017-04-30 22:06:37', '0000-00-00 00:00:00', 1),
+(45, '1493590016590660002feb70.39366291_0.jpg', 'how_to_earn', 4, '', '2017-04-30 22:06:56', '0000-00-00 00:00:00', 1),
+(46, '1493648545590744a173edd9.18617433_0.png', 'calculator', 1, '', '2017-05-01 14:22:25', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -687,29 +693,46 @@ INSERT INTO `files` (`id`, `path`, `category`, `category_id`, `mime`, `created_a
 --
 
 CREATE TABLE IF NOT EXISTS `how_to_earn` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
-  `ordering` int(2) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ordering` int(2) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `how_to_earn`
+--
+
+INSERT INTO `how_to_earn` (`id`, `short_description`, `ordering`, `status`) VALUES
+(1, '<p>Зарегистрируйтесь и купите один из пакетов инвестора Classic, Silver или Gold за 10, 50 или 100$</p>', 1, 1),
+(2, '<p>Пригласите друзей и знакомых участвовать в программе и в качестве премии получите реальные деньги!</p>', 2, 1),
+(3, '<p>Можете повысить свой уровень инвестора и зарабатывать больше</p>', 3, 1),
+(4, '<p>Или можете получить проценты инвестора</p>', 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invsetor_packages`
+-- Table structure for table `investor_packages`
 --
 
-CREATE TABLE IF NOT EXISTS `invsetor_packages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `investor_packages` (
+`id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text,
   `price` float DEFAULT NULL,
   `create_date` datetime DEFAULT NULL,
   `update_date` datetime DEFAULT NULL,
-  `default_package` smallint(1) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `ordering` int(2) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `investor_packages`
+--
+
+INSERT INTO `investor_packages` (`id`, `title`, `description`, `price`, `create_date`, `update_date`, `ordering`) VALUES
+(1, 'Classic', '<ul>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n</ul>', 10, NULL, NULL, 1),
+(2, 'Silver', '<ul>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n</ul>', 50, NULL, NULL, 2),
+(4, 'Gold', '<ul>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n<li>Пакеты инвестора</li>\r\n</ul>', 100, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -718,13 +741,12 @@ CREATE TABLE IF NOT EXISTS `invsetor_packages` (
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `short_code` varchar(250) DEFAULT NULL,
   `ordering` int(11) NOT NULL DEFAULT '1',
-  `is_default` smallint(6) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `is_default` smallint(6) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `language`
@@ -742,9 +764,7 @@ INSERT INTO `language` (`id`, `name`, `short_code`, `ordering`, `is_default`) VA
 CREATE TABLE IF NOT EXISTS `message` (
   `id` int(11) NOT NULL,
   `language` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `translation` text COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`,`language`),
-  KEY `idx_message_language` (`language`)
+  `translation` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -822,7 +842,15 @@ INSERT INTO `message` (`id`, `language`, `translation`) VALUES
 (39, 'ru', 'логин'),
 (40, 'ru', 'пароль'),
 (41, 'ru', 'Вход/Регистрация'),
-(42, 'ru', 'Забыли пароль');
+(42, 'ru', 'Забыли пароль'),
+(43, 'ru', 'Рассчитать'),
+(44, 'ru', 'Результат расчета'),
+(45, 'ru', 'Ваш доход'),
+(46, 'ru', 'ПОДРОБНЕЕ'),
+(47, 'ru', 'Как можно зарабатывать с нами'),
+(48, 'ru', 'Пакеты инвестора'),
+(49, 'ru', 'Купить'),
+(50, 'ru', 'Ваш доход составит до');
 
 -- --------------------------------------------------------
 
@@ -831,14 +859,13 @@ INSERT INTO `message` (`id`, `language`, `translation`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `message_system` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `sender_user_id` int(11) NOT NULL COMMENT 'User who sent message',
   `recipient_user_id` int(11) NOT NULL COMMENT 'User who get message',
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `status` int(1) NOT NULL COMMENT 'Is message read',
-  `send_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `send_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -859,9 +886,8 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 --
 
 CREATE TABLE IF NOT EXISTS `most_active_users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+`id` int(11) unsigned NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -871,14 +897,20 @@ CREATE TABLE IF NOT EXISTS `most_active_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `url` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `short_description`, `description`, `url`, `status`) VALUES
+(1, 'fghfdh', '<p>fdhffdghfgh</p>', '<p>ghdhdghgfhfgh</p>', 'fghfdh', 1);
 
 -- --------------------------------------------------------
 
@@ -887,7 +919,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 CREATE TABLE IF NOT EXISTS `ordering` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `customer_address_id` int(11) NOT NULL,
   `status` int(1) DEFAULT NULL,
@@ -897,8 +929,7 @@ CREATE TABLE IF NOT EXISTS `ordering` (
   `shipping_address` varchar(255) NOT NULL,
   `accepted_date` datetime NOT NULL,
   `created_date` datetime NOT NULL,
-  `updated_date` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
@@ -915,13 +946,68 @@ INSERT INTO `ordering` (`id`, `customer_id`, `customer_address_id`, `status`, `p
 --
 
 CREATE TABLE IF NOT EXISTS `other_investor_diff` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
-  `ordering` int(2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `ordering` int(2) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `other_investor_diff`
+--
+
+INSERT INTO `other_investor_diff` (`id`, `title`, `icon`, `status`, `ordering`) VALUES
+(1, 'sdfgsfdgRU', NULL, 0, 2),
+(2, 'fdasfasdfsdf', NULL, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packages`
+--
+
+CREATE TABLE IF NOT EXISTS `packages` (
+`id` int(11) unsigned NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_date` int(11) NOT NULL,
+  `updated_date` int(11) NOT NULL,
+  `ordering` int(2) NOT NULL DEFAULT '0',
+  `price` varchar(255) DEFAULT NULL,
+  `percent` int(2) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`id`, `title`, `status`, `created_date`, `updated_date`, `ordering`, `price`, `percent`) VALUES
+(1, 'Classic', 0, 1493656063, 1493656063, 1, '10,20,40,80,160,320,640', NULL),
+(2, 'Silver', 0, 1493656075, 1493656075, 2, '50,100,200', 30),
+(3, 'Gold', 0, 1493656085, 1493656085, 3, '', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `package_messages`
+--
+
+CREATE TABLE IF NOT EXISTS `package_messages` (
+`id` int(11) unsigned NOT NULL,
+  `package_id` int(11) unsigned NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `package_messages`
+--
+
+INSERT INTO `package_messages` (`id`, `package_id`, `message`) VALUES
+(5, 1, 'sdfxxxxxx'),
+(8, 1, 'asyyyyyyy'),
+(19, 2, 'kkkkkoooo'),
+(21, 2, 'xcv');
 
 -- --------------------------------------------------------
 
@@ -930,7 +1016,7 @@ CREATE TABLE IF NOT EXISTS `other_investor_diff` (
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `short_description` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
   `content` text CHARACTER SET utf8,
@@ -941,8 +1027,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `updated_date` datetime NOT NULL,
   `type` int(2) DEFAULT NULL,
   `route_name` varchar(255) DEFAULT NULL,
-  `social_link` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `social_link` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
 
 --
@@ -961,51 +1046,7 @@ INSERT INTO `pages` (`id`, `title`, `short_description`, `content`, `status`, `p
 (28, 'История', '', '', 1, 27, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
 (29, 'Преимущества', '', '', 1, 27, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
 (30, 'Реквизиты', '', '', 1, 27, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL),
-(31, 'Регистрация на сайте', '', '', 1, 24, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pakages`
---
-
-CREATE TABLE IF NOT EXISTS `pakages` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `short_description` varchar(500) DEFAULT NULL,
-  `description` text NOT NULL,
-  `price` int(10) NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `created_date` int(11) NOT NULL,
-  `updated_date` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pakage_price`
---
-
-CREATE TABLE IF NOT EXISTS `pakage_price` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `short_description` varchar(500) DEFAULT NULL,
-  `description` text,
-  `price` int(10) DEFAULT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `route_name` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
-
---
--- Dumping data for table `pakage_price`
---
-
-INSERT INTO `pakage_price` (`id`, `title`, `short_description`, `description`, `price`, `created_date`, `updated_date`, `route_name`, `status`) VALUES
-(9, 'Пакет бесплатный', '', '', NULL, '2017-04-17 12:58:31', '0000-00-00 00:00:00', NULL, 1);
+(31, 'Регистрация на сайте', '', '', 1, 24, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1016,9 +1057,7 @@ INSERT INTO `pakage_price` (`id`, `title`, `short_description`, `description`, `
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  KEY `password_resets_email_index` (`email`),
-  KEY `password_resets_token_index` (`token`)
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1028,17 +1067,14 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `amount` float DEFAULT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
-  `order_id` int(11) DEFAULT NULL COMMENT 'store order id wich related to payment',
-  PRIMARY KEY (`id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `order_id` (`order_id`)
+  `order_id` int(11) DEFAULT NULL COMMENT 'store order id wich related to payment'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1048,14 +1084,20 @@ CREATE TABLE IF NOT EXISTS `payment` (
 --
 
 CREATE TABLE IF NOT EXISTS `referal_links` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `referal_link` varchar(255) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `expiration_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `referal_links`
+--
+
+INSERT INTO `referal_links` (`id`, `referal_link`, `user_id`, `created_date`, `expiration_date`, `status`) VALUES
+(1, '$2y$13$kXCf0UIBahZzgWcF2oJu0eD9yKbUcpP8A7EHz/a0TSVPgXUDBwM7.', 58, '2017-04-28 13:12:57', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -1064,12 +1106,11 @@ CREATE TABLE IF NOT EXISTS `referal_links` (
 --
 
 CREATE TABLE IF NOT EXISTS `referer_users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `user_referer` int(11) NOT NULL,
   `user_registered` int(11) DEFAULT NULL,
   `registered_status` tinyint(1) NOT NULL,
-  `from_link` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `from_link` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1079,16 +1120,14 @@ CREATE TABLE IF NOT EXISTS `referer_users` (
 --
 
 CREATE TABLE IF NOT EXISTS `review` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL COMMENT 'means what order''s related review',
   `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0 and 1 wil be review maked by customer or repairers',
   `rate` smallint(10) NOT NULL DEFAULT '1',
   `message` text,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `created_date` datetime NOT NULL,
-  `updated_date` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `order_id` (`order_id`)
+  `updated_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1098,15 +1137,14 @@ CREATE TABLE IF NOT EXISTS `review` (
 --
 
 CREATE TABLE IF NOT EXISTS `service` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(250) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(250) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `created_date` datetime NOT NULL,
   `updated_date` datetime NOT NULL,
-  `price` float DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -1116,13 +1154,20 @@ CREATE TABLE IF NOT EXISTS `service` (
 --
 
 CREATE TABLE IF NOT EXISTS `slider` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `slider`
+--
+
+INSERT INTO `slider` (`id`, `title`, `short_description`, `link`, `status`) VALUES
+(2, 'Lorem Ipsum', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>', '', 1),
+(3, 'Lorem Ipsum', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1131,11 +1176,10 @@ CREATE TABLE IF NOT EXISTS `slider` (
 --
 
 CREATE TABLE IF NOT EXISTS `source_message` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `category` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'app',
-  `message` text COLLATE utf8_unicode_ci,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=43 ;
+  `message` text COLLATE utf8_unicode_ci
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `source_message`
@@ -1181,7 +1225,15 @@ INSERT INTO `source_message` (`id`, `category`, `message`) VALUES
 (39, 'app', 'Login'),
 (40, 'app', 'Password'),
 (41, 'app', 'Login/Registration'),
-(42, 'app', 'Forgot Password');
+(42, 'app', 'Forgot Password'),
+(43, 'app', 'Calculate'),
+(44, 'app', 'Calculation Result'),
+(45, 'app', 'Your income'),
+(46, 'app', 'VIEW MORE'),
+(47, 'app', 'How You can earn money with us'),
+(48, 'app', 'Investors Packages'),
+(49, 'app', 'Buy'),
+(50, 'app', 'Calculation');
 
 -- --------------------------------------------------------
 
@@ -1190,10 +1242,9 @@ INSERT INTO `source_message` (`id`, `category`, `message`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `states` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `country_id` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  `country_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4121 ;
 
 --
@@ -5330,13 +5381,12 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tr_about` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `aboutus_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5346,13 +5396,12 @@ CREATE TABLE IF NOT EXISTS `tr_about` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_aboutus` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` text NOT NULL,
   `description` text NOT NULL,
   `aboutus_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -5370,13 +5419,12 @@ INSERT INTO `tr_aboutus` (`id`, `title`, `short_description`, `description`, `ab
 --
 
 CREATE TABLE IF NOT EXISTS `tr_articles` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `events_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5386,16 +5434,15 @@ CREATE TABLE IF NOT EXISTS `tr_articles` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_blog` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` text,
   `short_description` varchar(255) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `meta_key` varchar(255) DEFAULT NULL,
   `language_id` int(11) NOT NULL,
-  `blog_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
+  `blog_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `tr_blog`
@@ -5409,7 +5456,8 @@ INSERT INTO `tr_blog` (`id`, `title`, `description`, `short_description`, `meta_
 (45, 'Test5', '<p>hfdghfhdfgh</p>\r\n', NULL, NULL, NULL, 1, 22),
 (46, 'Test5', '<p>hfdghfhdfgh</p>\r\n', NULL, NULL, NULL, 2, 22),
 (49, 'zcZCZCZCZC', '<p>cxZcxzc</p>\r\n', NULL, NULL, NULL, 1, 24),
-(50, 'sadfsdf', '<p>sadfasdf</p>\r\n', NULL, NULL, NULL, 1, 25);
+(50, 'sadfsdf', '<p>sadfasdf</p>\r\n', NULL, NULL, NULL, 1, 25),
+(51, 'bxcvcvb', '<p><img src="/uploads/images/tinymce/g14915515240.jpg" alt="" width="651" height="488" /></p>', NULL, NULL, NULL, 1, 26);
 
 -- --------------------------------------------------------
 
@@ -5418,13 +5466,10 @@ INSERT INTO `tr_blog` (`id`, `title`, `description`, `short_description`, `meta_
 --
 
 CREATE TABLE IF NOT EXISTS `tr_blog_categories` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `blog_categories_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `language_id` (`language_id`),
-  KEY `blog_categories_id` (`blog_categories_id`)
+  `blog_categories_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5434,14 +5479,20 @@ CREATE TABLE IF NOT EXISTS `tr_blog_categories` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_calculator` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `calculator_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `language_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tr_calculator`
+--
+
+INSERT INTO `tr_calculator` (`id`, `title`, `short_description`, `description`, `calculator_id`, `language_id`) VALUES
+(1, 'Калькулятор доходов', '<p>Lorem ipsum dolor sit amet</p>', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5450,12 +5501,11 @@ CREATE TABLE IF NOT EXISTS `tr_calculator` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_contact` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `address` varchar(500) NOT NULL,
   `contact_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
-  `text` text NOT NULL,
-  PRIMARY KEY (`id`)
+  `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5465,13 +5515,12 @@ CREATE TABLE IF NOT EXISTS `tr_contact` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_faq` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `faq_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -5491,26 +5540,34 @@ INSERT INTO `tr_faq` (`id`, `title`, `short_description`, `description`, `faq_id
 --
 
 CREATE TABLE IF NOT EXISTS `tr_how_to_earn` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `how_to_earn_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `language_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `tr_how_to_earn`
+--
+
+INSERT INTO `tr_how_to_earn` (`id`, `short_description`, `how_to_earn_id`, `language_id`) VALUES
+(1, '<p>Зарегистрируйтесь и купите один из пакетов инвестора Classic, Silver или Gold за 10, 50 или 100$</p>', 1, 1),
+(2, '<p>Пригласите друзей и знакомых участвовать в программе и в качестве премии получите реальные деньги!</p>', 2, 1),
+(3, '<p>Можете повысить свой уровень инвестора и зарабатывать больше</p>', 3, 1),
+(4, '<p>Или можете получить проценты инвестора</p>', 4, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tr_invsetor_packages`
+-- Table structure for table `tr_investor_packages`
 --
 
-CREATE TABLE IF NOT EXISTS `tr_invsetor_packages` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `tr_investor_packages` (
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `invsetor_packages_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5520,14 +5577,41 @@ CREATE TABLE IF NOT EXISTS `tr_invsetor_packages` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_news` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `short_description` varchar(255) NOT NULL,
   `news_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `language_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tr_news`
+--
+
+INSERT INTO `tr_news` (`id`, `name`, `description`, `short_description`, `news_id`, `language_id`) VALUES
+(1, 'fghfdh', '<p>ghdhdghgfhfgh</p>', '<p>fdhffdghfgh</p>', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tr_other_investor_diff`
+--
+
+CREATE TABLE IF NOT EXISTS `tr_other_investor_diff` (
+`id` int(11) unsigned NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `other_investor_diff_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tr_other_investor_diff`
+--
+
+INSERT INTO `tr_other_investor_diff` (`id`, `title`, `other_investor_diff_id`, `language_id`) VALUES
+(1, 'sdfgsfdgRU', 1, 1),
+(2, 'fdasfasdfsdf', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -5536,15 +5620,12 @@ CREATE TABLE IF NOT EXISTS `tr_news` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_pages` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `short_description` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
   `content` text CHARACTER SET utf8,
   `pages_id` int(11) DEFAULT NULL,
-  `language_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_page_pages_id` (`pages_id`),
-  KEY `fk_page_language_id` (`language_id`)
+  `language_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
@@ -5586,13 +5667,12 @@ INSERT INTO `tr_pages` (`id`, `title`, `short_description`, `content`, `pages_id
 --
 
 CREATE TABLE IF NOT EXISTS `tr_pakages` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `pakage_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5602,13 +5682,12 @@ CREATE TABLE IF NOT EXISTS `tr_pakages` (
 --
 
 CREATE TABLE IF NOT EXISTS `tr_pakage_price` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) NOT NULL,
   `short_description` varchar(500) DEFAULT NULL,
   `description` text,
   `pakage_price_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
@@ -5626,12 +5705,11 @@ INSERT INTO `tr_pakage_price` (`id`, `title`, `short_description`, `description`
 --
 
 CREATE TABLE IF NOT EXISTS `tr_slider` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(11) unsigned NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `short_description` varchar(255) DEFAULT NULL,
   `slider_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `language_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -5641,7 +5719,7 @@ CREATE TABLE IF NOT EXISTS `tr_slider` (
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `auth_key` varchar(32) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -5652,17 +5730,39 @@ CREATE TABLE IF NOT EXISTS `user` (
   `api_key` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+  `avatar_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `auth_key`, `password`, `role`, `password_token`, `created`, `updated`, `api_key`, `email`, `remember_token`) VALUES
-(1, 'admin123', '', '$2y$13$cOqQNxujcCnt9hq510fBaeauxVaT9pTSZ7ivvl06I/wLXMCRPnCYa', 0, NULL, '2016-07-26 00:00:00', '2016-07-26 00:00:00', NULL, '', NULL),
-(52, 'Harut_Sogomonyan', 'stNq6Ka-gePCDgFDNQ3HUH3V8myuaO0G', '$2y$13$YNvod32d5gV6I95eJyGsMOZHGtVY8PFtkFqhLJvEHf48DdpaaYiU6', 20, NULL, '2017-04-24 11:56:53', '2017-04-24 11:56:53', NULL, '', NULL);
+INSERT INTO `user` (`id`, `username`, `auth_key`, `password`, `role`, `password_token`, `created`, `updated`, `api_key`, `email`, `remember_token`, `avatar_id`) VALUES
+(1, 'admin123', '', '$2y$13$cOqQNxujcCnt9hq510fBaeauxVaT9pTSZ7ivvl06I/wLXMCRPnCYa', 0, NULL, '2016-07-26 00:00:00', '2016-07-26 00:00:00', NULL, '', NULL, NULL),
+(58, 'harutin1991', 'cWSWv3estchzoKaM5izbF0kFFB-QUviu', '$2y$13$6KZmA4j4iHS1dfEImKH.2u//ptfu5V4.UUwO6092H.14On1KnrSa.', 20, NULL, '2017-04-28 17:12:55', '2017-04-28 17:12:55', NULL, 'harut.soghomonyan@gmail.com', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_avatars`
+--
+
+CREATE TABLE IF NOT EXISTS `user_avatars` (
+`id` int(11) unsigned NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `ordering` int(2) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `user_avatars`
+--
+
+INSERT INTO `user_avatars` (`id`, `path`, `ordering`) VALUES
+(2, '14935594435905e893a48c19.62952071_0.jpg', 2),
+(3, '14935594435905e893d560d4.99509121_1.jpg', 3),
+(4, '14935594445905e8940d2f72.29111876_2.jpg', 4),
+(5, '14935650755905fe93e2fab0.29553150_0.jpg', 2),
+(6, '14935650775905fe9594a239.45264353_1.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -5671,13 +5771,647 @@ INSERT INTO `user` (`id`, `username`, `auth_key`, `password`, `role`, `password_
 --
 
 CREATE TABLE IF NOT EXISTS `user_images` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `path` varchar(255) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_usr_img_user_id` (`user_id`)
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `aboutus`
+--
+ALTER TABLE `aboutus`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `articles_home`
+--
+ALTER TABLE `articles_home`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id_3` (`id`), ADD KEY `blog_category_id` (`blog_category_id`), ADD KEY `id` (`id`), ADD KEY `id_2` (`id`);
+
+--
+-- Indexes for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `calculator`
+--
+ALTER TABLE `calculator`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `calculator_profit`
+--
+ALTER TABLE `calculator_profit`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contactus`
+--
+ALTER TABLE `contactus`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `content`
+--
+ALTER TABLE `content`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `currency`
+--
+ALTER TABLE `currency`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `customer_address`
+--
+ALTER TABLE `customer_address`
+ ADD PRIMARY KEY (`id`), ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `customer_card`
+--
+ALTER TABLE `customer_card`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_cr_card_cust_id` (`customer_id`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `favorites`
+--
+ALTER TABLE `favorites`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `how_to_earn`
+--
+ALTER TABLE `how_to_earn`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `investor_packages`
+--
+ALTER TABLE `investor_packages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `language`
+--
+ALTER TABLE `language`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+ ADD PRIMARY KEY (`id`,`language`), ADD KEY `idx_message_language` (`language`);
+
+--
+-- Indexes for table `message_system`
+--
+ALTER TABLE `message_system`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `most_active_users`
+--
+ALTER TABLE `most_active_users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ordering`
+--
+ALTER TABLE `ordering`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `other_investor_diff`
+--
+ALTER TABLE `other_investor_diff`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `package_messages`
+--
+ALTER TABLE `package_messages`
+ ADD PRIMARY KEY (`id`), ADD KEY `package_id` (`package_id`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+ ADD KEY `password_resets_email_index` (`email`), ADD KEY `password_resets_token_index` (`token`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+ ADD PRIMARY KEY (`id`), ADD KEY `customer_id` (`customer_id`), ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `referal_links`
+--
+ALTER TABLE `referal_links`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`), ADD UNIQUE KEY `referal_link` (`referal_link`), ADD KEY `user_id_2` (`user_id`), ADD KEY `referal_link_2` (`referal_link`);
+
+--
+-- Indexes for table `referer_users`
+--
+ALTER TABLE `referer_users`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+ ADD PRIMARY KEY (`id`), ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `source_message`
+--
+ALTER TABLE `source_message`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `states`
+--
+ALTER TABLE `states`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_about`
+--
+ALTER TABLE `tr_about`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_aboutus`
+--
+ALTER TABLE `tr_aboutus`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_articles`
+--
+ALTER TABLE `tr_articles`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_blog`
+--
+ALTER TABLE `tr_blog`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_blog_categories`
+--
+ALTER TABLE `tr_blog_categories`
+ ADD PRIMARY KEY (`id`), ADD KEY `language_id` (`language_id`), ADD KEY `blog_categories_id` (`blog_categories_id`);
+
+--
+-- Indexes for table `tr_calculator`
+--
+ALTER TABLE `tr_calculator`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_contact`
+--
+ALTER TABLE `tr_contact`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_faq`
+--
+ALTER TABLE `tr_faq`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_how_to_earn`
+--
+ALTER TABLE `tr_how_to_earn`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_investor_packages`
+--
+ALTER TABLE `tr_investor_packages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_news`
+--
+ALTER TABLE `tr_news`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_other_investor_diff`
+--
+ALTER TABLE `tr_other_investor_diff`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_pages`
+--
+ALTER TABLE `tr_pages`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_page_pages_id` (`pages_id`), ADD KEY `fk_page_language_id` (`language_id`);
+
+--
+-- Indexes for table `tr_pakages`
+--
+ALTER TABLE `tr_pakages`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_pakage_price`
+--
+ALTER TABLE `tr_pakage_price`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tr_slider`
+--
+ALTER TABLE `tr_slider`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `user_avatars`
+--
+ALTER TABLE `user_avatars`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_images`
+--
+ALTER TABLE `user_images`
+ ADD PRIMARY KEY (`id`), ADD KEY `fk_usr_img_user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `aboutus`
+--
+ALTER TABLE `aboutus`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `articles`
+--
+ALTER TABLE `articles`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `articles_home`
+--
+ALTER TABLE `articles_home`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `blog_categories`
+--
+ALTER TABLE `blog_categories`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `blog_comments`
+--
+ALTER TABLE `blog_comments`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `calculator`
+--
+ALTER TABLE `calculator`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `calculator_profit`
+--
+ALTER TABLE `calculator_profit`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `contactus`
+--
+ALTER TABLE `contactus`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `content`
+--
+ALTER TABLE `content`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=247;
+--
+-- AUTO_INCREMENT for table `currency`
+--
+ALTER TABLE `currency`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT for table `customer_address`
+--
+ALTER TABLE `customer_address`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `customer_card`
+--
+ALTER TABLE `customer_card`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `favorites`
+--
+ALTER TABLE `favorites`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT for table `how_to_earn`
+--
+ALTER TABLE `how_to_earn`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `investor_packages`
+--
+ALTER TABLE `investor_packages`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `language`
+--
+ALTER TABLE `language`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `message_system`
+--
+ALTER TABLE `message_system`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `most_active_users`
+--
+ALTER TABLE `most_active_users`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `ordering`
+--
+ALTER TABLE `ordering`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `other_investor_diff`
+--
+ALTER TABLE `other_investor_diff`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `package_messages`
+--
+ALTER TABLE `package_messages`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `referal_links`
+--
+ALTER TABLE `referal_links`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `referer_users`
+--
+ALTER TABLE `referer_users`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `service`
+--
+ALTER TABLE `service`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `source_message`
+--
+ALTER TABLE `source_message`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT for table `states`
+--
+ALTER TABLE `states`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4121;
+--
+-- AUTO_INCREMENT for table `tr_about`
+--
+ALTER TABLE `tr_about`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_aboutus`
+--
+ALTER TABLE `tr_aboutus`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tr_articles`
+--
+ALTER TABLE `tr_articles`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_blog`
+--
+ALTER TABLE `tr_blog`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+--
+-- AUTO_INCREMENT for table `tr_blog_categories`
+--
+ALTER TABLE `tr_blog_categories`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_calculator`
+--
+ALTER TABLE `tr_calculator`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tr_contact`
+--
+ALTER TABLE `tr_contact`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_faq`
+--
+ALTER TABLE `tr_faq`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tr_how_to_earn`
+--
+ALTER TABLE `tr_how_to_earn`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tr_investor_packages`
+--
+ALTER TABLE `tr_investor_packages`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_news`
+--
+ALTER TABLE `tr_news`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `tr_other_investor_diff`
+--
+ALTER TABLE `tr_other_investor_diff`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tr_pages`
+--
+ALTER TABLE `tr_pages`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+--
+-- AUTO_INCREMENT for table `tr_pakages`
+--
+ALTER TABLE `tr_pakages`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tr_pakage_price`
+--
+ALTER TABLE `tr_pakage_price`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tr_slider`
+--
+ALTER TABLE `tr_slider`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+--
+-- AUTO_INCREMENT for table `user_avatars`
+--
+ALTER TABLE `user_avatars`
+MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `user_images`
+--
+ALTER TABLE `user_images`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -5686,25 +6420,31 @@ CREATE TABLE IF NOT EXISTS `user_images` (
 -- Constraints for table `blog`
 --
 ALTER TABLE `blog`
-  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`blog_category_id`) REFERENCES `blog_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `customer`
 --
 ALTER TABLE `customer`
-  ADD CONSTRAINT `fk_customer_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE SET NULL;
+ADD CONSTRAINT `fk_customer_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE SET NULL;
 
 --
 -- Constraints for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  ADD CONSTRAINT `fk_customer_address_c_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `fk_customer_address_c_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `customer_card`
 --
 ALTER TABLE `customer_card`
-  ADD CONSTRAINT `fk_cr_card_cust_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+ADD CONSTRAINT `fk_cr_card_cust_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+
+--
+-- Constraints for table `package_messages`
+--
+ALTER TABLE `package_messages`
+ADD CONSTRAINT `package_messages_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

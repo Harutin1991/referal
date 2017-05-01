@@ -23,28 +23,11 @@ if (!$model->isNewRecord) {
     $action = '/packages/create';
     $tr_action = '/tr-pakages/create';
 }
-$this->registerCssFile("@web/vendors/bootstrap3-wysiwyg/bootstrap3-wysihtml5.min.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/css/pages/editor.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/css/pages/blog.css", [
+
+$this->registerCssFile("@web/vendors/tags/dist/bootstrap-tagsinput.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 
-/* * *Image Upload* */
-$this->registerCssFile("@web/css/pages/blueimp-gallery.min.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-ui.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-noscript.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/vendors/jQuery-File-Upload/css/jquery.fileupload-ui-noscript.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-
-$this->registerCssFile("@web/css/admin-forms.css", [
-    'depends' => [backend\assets\AppAsset::className()]]);
-$this->registerCssFile("@web/css/filInput.css", [
+$this->registerCssFile("@web/css/pages/todolist.css", [
     'depends' => [backend\assets\AppAsset::className()]]);
 ?>
 <div class="row">
@@ -82,50 +65,28 @@ $this->registerCssFile("@web/css/filInput.css", [
                                                     'options' => ['role' => 'form']
                                         ]);
                                         ?>
+                                        <input type="hidden" value="<?= $model->id ?>" id="package_id">
                                         <div class="row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-6">
                                                 <?=
                                                         $form->field($model, 'title')
-                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Package title') . '...'])->label(false)
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Package title')])->label(false)
                                                 ?>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <?=
+                                                        $form->field($model, 'percent')
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Package percent')])->label(false)
+                                                ?>
+                                            </div>
+                                            <div class="col-sm-12">
                                                 <?=
                                                         $form->field($model, 'price')
-                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Price From') . '...'])->label(false)
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control input-lg', 'placeholder' => Yii::t('app', 'Package Level Prices'), 'data-role' => "tagsinput"])->label(false)
                                                 ?>
-                                                <div class="row">
-                                                    <div class="panel panel-success">
-                                                        <div class="panel-heading">
-                                                            <div class="text-muted bootstrap-admin-box-title editor-clr">
-                                                                <h3 class="panel-title"><i class="livicon" data-name="thermo-down" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                                                    <?= Yii::t('app', 'Short Description') ?></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="bootstrap-admin-panel-content">
-                                                            <?=
-                                                                    $form->field($model, 'short_description')
-                                                                    ->textarea(['maxlength' => true, 'placeholder' => Yii::t('app', 'Short Description')])->label(false)
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="panel panel-primary">
-                                                        <div class="panel-heading">
-                                                            <div class="text-muted bootstrap-admin-box-title editor-clr">
-                                                                <h3 class="panel-title"><i class="livicon" data-name="thermo-down" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                                                                    <?= Yii::t('app', 'Description') ?></h3>
-                                                            </div>
-                                                        </div>
-                                                        <div class="bootstrap-admin-panel-content">
-                                                            <?=
-                                                                    $form->field($model, 'description')
-                                                                    ->textarea(['rows' => 6, 'placeholder' => Yii::t('app', 'Description')])->label(false)
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                        </div>        
+                                        </div>
+
                                         <!-- /.col-sm-4 -->
                                         <div class="form-group col-md-12">
                                             <?=
@@ -143,6 +104,41 @@ $this->registerCssFile("@web/css/filInput.css", [
                             </div>
                         </div>
                     </div>
+                    <?php if (!$model->isNewRecord) { ?>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form class="row list_of_items">
+                                    <div class="todolist_list showactions">
+                                        <div class="col-md-8 col-sm-8 col-xs-12 nopadmar custom_textbox1">
+                                            <div class="todotext todoitem"><?= Yii::t('app', 'Package Messages') ?></div>
+                                        </div>
+                                    </div>
+                                    <?php foreach ($packageMessages as $key => $messages): ?>
+                                        <div class="todolist_list showactions list<?= $key + 1 ?>" id="todolist_list_<?= $messages['id'] ?>">  
+                                            <div class="col-md-8 col-sm-8 col-xs-8 nopadmar custom_textbox1"> 
+                                                <div class='todotext todoitemjs'><?= $messages['message'] ?></div> 
+                                            </div>
+                                            <div class='col-md-4 col-sm-4 col-xs-4  pull-right showbtns todoitembtns'>
+                                                <a href='javascript:void(0)' onclick="editMessage('<?=$messages['id']?>')" id="edit_button_<?= $messages['id'] ?>" class='todoedit'><span class='glyphicon glyphicon-pencil'></span></a> | 
+                                                <a href='javascript:void(0)' onclick="deleteMessage('<?=$messages['id']?>')" class='tododelete redcolor'><span class='glyphicon glyphicon-trash'></span></a>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </form>
+                                <div class="todolist_list adds">
+                                    <form role="form" id="main_input_box">
+                                        <input type="hidden" value="<?= count($packageMessages) ?>" id="message_count">
+                                        <div class="col-md-6 col-xs-6">
+                                            <input id="custom_textbox" name="Item" type="text" required placeholder="<?=Yii::t('app','Add new message here')?>" class="form-control" />
+                                        </div>
+                                        <div class="col-md-4 col-xs-4">
+                                            <input type="submit" value="<?=Yii::t('app','Add Message')?>" class="btn btn-primary add_button" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
                 <?php else: ?>
                     <?php
                     $trmodel = TrPakages::findOne(['pakage_id' => $model->id, 'language_id' => $value['id']]);
@@ -243,9 +239,15 @@ $this->registerCssFile("@web/css/filInput.css", [
 </div>
 <?php
 $this->registerJsFile(
+        '@web/vendors/tags/dist/bootstrap-tagsinput.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
         '@web/js/tinymce/js/tinymce/tinymce.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 $this->registerJsFile(
         '@web/js/pages/editor1.js', ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+$this->registerJsFile(
+        '@web/js/todolist.js', ['depends' => [\yii\web\JqueryAsset::className()]]
 );
 ?>
